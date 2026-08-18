@@ -1,0 +1,35 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+<form id="formSesion" action='@Url.Action("Login", "Sesion")' method="post">
+    <div class="card">
+        <div class="card-body p-5">
+            <div class="login-logo">
+                <img src="~/assets/img/logo.png" alt="img" style="width:300px;">
+            </div>
+            <div class="login-userheading">
+                <h3>Iniciar sesión</h3>
+                <h4>Accede utilizando su usuario y contraseña.</h4>
+            </div>
+            <div class="mb-3">
+                <label class="form-label"><b>Usuario</b> <span class="text-danger"> *</span></label>
+                <div class="input-group">
+                    <input type="text" class="form-control form-control-sm border-end-0" id="Username" name="Username" required autofocus>
+                    <span class="input-group-text border-start-0">
+                        <i class="ti ti-user"></i>
+                    </span>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label"><b>Contraseña</b> <span class="text-danger"> *</span></label>
+                <div class="pass-group">
+                    <input type="password" class="pass-input form-control form-control-sm" id="Password" name="Password" required onKeyDown="return tab_btn(event);">
+                    <span class="ti toggle-password ti-eye-off text-gray-9"></span>
+                </div>
+            </div>
+            <div class="form-login" style="margin-bottom: 20px;">
+                <button type="submit" class="btn btn-primary w-100">Acceder</button>
+            </div>
+        </div>
+    </div>
+</form>

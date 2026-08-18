@@ -1,0 +1,479 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MasterRestModelStoreContainer" CdmEntityContainer="MasterRestEntities">
+    <EntitySetMapping Name="cArea">
+      <EntityTypeMapping TypeName="MasterRestModel.cArea">
+        <MappingFragment StoreEntitySet="cArea">
+          <ScalarProperty Name="estatus" ColumnName="estatus" />
+          <ScalarProperty Name="area" ColumnName="area" />
+          <ScalarProperty Name="idcArea" ColumnName="idcArea" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cBeneficio">
+      <EntityTypeMapping TypeName="MasterRestModel.cBeneficio">
+        <MappingFragment StoreEntitySet="cBeneficio">
+          <ScalarProperty Name="estatus" ColumnName="estatus" />
+          <ScalarProperty Name="opciones" ColumnName="opciones" />
+          <ScalarProperty Name="tipo" ColumnName="tipo" />
+          <ScalarProperty Name="beneficio" ColumnName="beneficio" />
+          <ScalarProperty Name="idcBeneficio" ColumnName="idcBeneficio" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cCategoria">
+      <EntityTypeMapping TypeName="MasterRestModel.cCategoria">
+        <MappingFragment StoreEntitySet="cCategoria">
+          <ScalarProperty Name="nombreCateria" ColumnName="nombreCateria" />
+          <ScalarProperty Name="idcSucursal" ColumnName="idcSucursal" />
+          <ScalarProperty Name="idcCategoria" ColumnName="idcCategoria" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cCliente">
+      <EntityTypeMapping TypeName="MasterRestModel.cCliente">
+        <MappingFragment StoreEntitySet="cCliente">
+          <ScalarProperty Name="puntosFidelidad" ColumnName="puntosFidelidad" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="telefono" ColumnName="telefono" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="idcEmpresa" ColumnName="idcEmpresa" />
+          <ScalarProperty Name="idcCliente" ColumnName="idcCliente" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cDocumento">
+      <EntityTypeMapping TypeName="MasterRestModel.cDocumento">
+        <MappingFragment StoreEntitySet="cDocumento">
+          <ScalarProperty Name="estatus" ColumnName="estatus" />
+          <ScalarProperty Name="responsable" ColumnName="responsable" />
+          <ScalarProperty Name="obligatorio" ColumnName="obligatorio" />
+          <ScalarProperty Name="documento" ColumnName="documento" />
+          <ScalarProperty Name="claveDocumento" ColumnName="claveDocumento" />
+          <ScalarProperty Name="idcDocumento" ColumnName="idcDocumento" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cDocumentoProbatorio">
+      <EntityTypeMapping TypeName="MasterRestModel.cDocumentoProbatorio">
+        <MappingFragment StoreEntitySet="cDocumentoProbatorio">
+          <ScalarProperty Name="estatus" ColumnName="estatus" />
+          <ScalarProperty Name="documentoProbatorio" ColumnName="documentoProbatorio" />
+          <ScalarProperty Name="idcDocumentoProbatorio" ColumnName="idcDocumentoProbatorio" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cEmpresa">
+      <EntityTypeMapping TypeName="MasterRestModel.cEmpresa">
+        <MappingFragment StoreEntitySet="cEmpresa">
+          <ScalarProperty Name="estatus" ColumnName="estatus" />
+          <ScalarProperty Name="rfc" ColumnName="rfc" />
+          <ScalarProperty Name="razonSocial" ColumnName="razonSocial" />
+          <ScalarProperty Name="nombreComercial" ColumnName="nombreComercial" />
+          <ScalarProperty Name="idcEmpresa" ColumnName="idcEmpresa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cEntidadFederativa">
+      <EntityTypeMapping TypeName="MasterRestModel.cEntidadFederativa">
+        <MappingFragment StoreEntitySet="cEntidadFederativa">
+          <ScalarProperty Name="claveCurp" ColumnName="claveCurp" />
+          <ScalarProperty Name="entidadFederativa" ColumnName="entidadFederativa" />
+          <ScalarProperty Name="clave" ColumnName="clave" />
+          <ScalarProperty Name="idcEntidadFederativa" ColumnName="idcEntidadFederativa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cEscolaridad">
+      <EntityTypeMapping TypeName="MasterRestModel.cEscolaridad">
+        <MappingFragment StoreEntitySet="cEscolaridad">
+          <ScalarProperty Name="estatus" ColumnName="estatus" />
+          <ScalarProperty Name="escolaridad" ColumnName="escolaridad" />
+          <ScalarProperty Name="idcEscolaridad" ColumnName="idcEscolaridad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cEstadoCivil">
+      <EntityTypeMapping TypeName="MasterRestModel.cEstadoCivil">
+        <MappingFragment StoreEntitySet="cEstadoCivil">
+          <ScalarProperty Name="estatus" ColumnName="estatus" />
+          <ScalarProperty Name="estadoCivil" ColumnName="estadoCivil" />
+          <ScalarProperty Name="idcEstadoCivil" ColumnName="idcEstadoCivil" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cIncapacidad">
+      <EntityTypeMapping TypeName="MasterRestModel.cIncapacidad">
+        <MappingFragment StoreEntitySet="cIncapacidad">
+          <ScalarProperty Name="estatus" ColumnName="estatus" />
+          <ScalarProperty Name="incapacidad" ColumnName="incapacidad" />
+          <ScalarProperty Name="idcIncapacidad" ColumnName="idcIncapacidad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cInventario">
+      <EntityTypeMapping TypeName="MasterRestModel.cInventario">
+        <MappingFragment StoreEntitySet="cInventario">
+          <ScalarProperty Name="stockMinimo" ColumnName="stockMinimo" />
+          <ScalarProperty Name="unidadMedida" ColumnName="unidadMedida" />
+          <ScalarProperty Name="cantidadActual" ColumnName="cantidadActual" />
+          <ScalarProperty Name="nombreIngrediente" ColumnName="nombreIngrediente" />
+          <ScalarProperty Name="idcSucursal" ColumnName="idcSucursal" />
+          <ScalarProperty Name="idcIngrediente" ColumnName="idcIngrediente" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cMenu">
+      <EntityTypeMapping TypeName="MasterRestModel.cMenu">
+        <MappingFragment StoreEntitySet="cMenu">
+          <ScalarProperty Name="disponible" ColumnName="disponible" />
+          <ScalarProperty Name="precio" ColumnName="precio" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="nombre_platillo" ColumnName="nombre_platillo" />
+          <ScalarProperty Name="idcCategoria" ColumnName="idcCategoria" />
+          <ScalarProperty Name="idcMenu" ColumnName="idcMenu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cMesa">
+      <EntityTypeMapping TypeName="MasterRestModel.cMesa">
+        <MappingFragment StoreEntitySet="cMesa">
+          <ScalarProperty Name="estatus" ColumnName="estatus" />
+          <ScalarProperty Name="capacidad" ColumnName="capacidad" />
+          <ScalarProperty Name="numeroMesa" ColumnName="numeroMesa" />
+          <ScalarProperty Name="idcSucursal" ColumnName="idcSucursal" />
+          <ScalarProperty Name="idcMesa" ColumnName="idcMesa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cMotivoBaja">
+      <EntityTypeMapping TypeName="MasterRestModel.cMotivoBaja">
+        <MappingFragment StoreEntitySet="cMotivoBaja">
+          <ScalarProperty Name="estatus" ColumnName="estatus" />
+          <ScalarProperty Name="motivo" ColumnName="motivo" />
+          <ScalarProperty Name="idcMotivoBaja" ColumnName="idcMotivoBaja" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cMotivoMovimiento">
+      <EntityTypeMapping TypeName="MasterRestModel.cMotivoMovimiento">
+        <MappingFragment StoreEntitySet="cMotivoMovimiento">
+          <ScalarProperty Name="estatus" ColumnName="estatus" />
+          <ScalarProperty Name="motivo" ColumnName="motivo" />
+          <ScalarProperty Name="idcMotivoMovimiento" ColumnName="idcMotivoMovimiento" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cMotivoRequisicion">
+      <EntityTypeMapping TypeName="MasterRestModel.cMotivoRequisicion">
+        <MappingFragment StoreEntitySet="cMotivoRequisicion">
+          <ScalarProperty Name="estatus" ColumnName="estatus" />
+          <ScalarProperty Name="motivoRequisicion" ColumnName="motivoRequisicion" />
+          <ScalarProperty Name="idcMotivoRequisicion" ColumnName="idcMotivoRequisicion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cMunicipio">
+      <EntityTypeMapping TypeName="MasterRestModel.cMunicipio">
+        <MappingFragment StoreEntitySet="cMunicipio">
+          <ScalarProperty Name="municipio" ColumnName="municipio" />
+          <ScalarProperty Name="clave" ColumnName="clave" />
+          <ScalarProperty Name="idcEntidadFederativa" ColumnName="idcEntidadFederativa" />
+          <ScalarProperty Name="idcMunicipio" ColumnName="idcMunicipio" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cProfesion">
+      <EntityTypeMapping TypeName="MasterRestModel.cProfesion">
+        <MappingFragment StoreEntitySet="cProfesion">
+          <ScalarProperty Name="estatus" ColumnName="estatus" />
+          <ScalarProperty Name="profesion" ColumnName="profesion" />
+          <ScalarProperty Name="idcProfesion" ColumnName="idcProfesion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cPuesto">
+      <EntityTypeMapping TypeName="MasterRestModel.cPuesto">
+        <MappingFragment StoreEntitySet="cPuesto">
+          <ScalarProperty Name="estatus" ColumnName="estatus" />
+          <ScalarProperty Name="tabuladorMax" ColumnName="tabuladorMax" />
+          <ScalarProperty Name="tabuladorProm" ColumnName="tabuladorProm" />
+          <ScalarProperty Name="tabuladorMin" ColumnName="tabuladorMin" />
+          <ScalarProperty Name="funcionesPuesto" ColumnName="funcionesPuesto" />
+          <ScalarProperty Name="posicionesAutorizadas" ColumnName="posicionesAutorizadas" />
+          <ScalarProperty Name="puesto" ColumnName="puesto" />
+          <ScalarProperty Name="idcEmpresa" ColumnName="idcEmpresa" />
+          <ScalarProperty Name="idcPuesto" ColumnName="idcPuesto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cRol">
+      <EntityTypeMapping TypeName="MasterRestModel.cRol">
+        <MappingFragment StoreEntitySet="cRol">
+          <ScalarProperty Name="estatus" ColumnName="estatus" />
+          <ScalarProperty Name="rol" ColumnName="rol" />
+          <ScalarProperty Name="idcEmpresa" ColumnName="idcEmpresa" />
+          <ScalarProperty Name="idcRol" ColumnName="idcRol" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cSucursal">
+      <EntityTypeMapping TypeName="MasterRestModel.cSucursal">
+        <MappingFragment StoreEntitySet="cSucursal">
+          <ScalarProperty Name="estatus" ColumnName="estatus" />
+          <ScalarProperty Name="longitud" ColumnName="longitud" />
+          <ScalarProperty Name="latitud" ColumnName="latitud" />
+          <ScalarProperty Name="direccion" ColumnName="direccion" />
+          <ScalarProperty Name="telefono" ColumnName="telefono" />
+          <ScalarProperty Name="sucursal" ColumnName="sucursal" />
+          <ScalarProperty Name="idcEmpresa" ColumnName="idcEmpresa" />
+          <ScalarProperty Name="idcSucursal" ColumnName="idcSucursal" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cTipoBaja">
+      <EntityTypeMapping TypeName="MasterRestModel.cTipoBaja">
+        <MappingFragment StoreEntitySet="cTipoBaja">
+          <ScalarProperty Name="estatus" ColumnName="estatus" />
+          <ScalarProperty Name="tipoBaja" ColumnName="tipoBaja" />
+          <ScalarProperty Name="idcTipoBaja" ColumnName="idcTipoBaja" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cTipoContrato">
+      <EntityTypeMapping TypeName="MasterRestModel.cTipoContrato">
+        <MappingFragment StoreEntitySet="cTipoContrato">
+          <ScalarProperty Name="estatus" ColumnName="estatus" />
+          <ScalarProperty Name="contrato" ColumnName="contrato" />
+          <ScalarProperty Name="idcTipoContrato" ColumnName="idcTipoContrato" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cTipoNomina">
+      <EntityTypeMapping TypeName="MasterRestModel.cTipoNomina">
+        <MappingFragment StoreEntitySet="cTipoNomina">
+          <ScalarProperty Name="estatus" ColumnName="estatus" />
+          <ScalarProperty Name="tipoNomina" ColumnName="tipoNomina" />
+          <ScalarProperty Name="idcTipoNomina" ColumnName="idcTipoNomina" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cUsuario">
+      <EntityTypeMapping TypeName="MasterRestModel.cUsuario">
+        <MappingFragment StoreEntitySet="cUsuario">
+          <ScalarProperty Name="estatus" ColumnName="estatus" />
+          <ScalarProperty Name="clave" ColumnName="clave" />
+          <ScalarProperty Name="usuario" ColumnName="usuario" />
+          <ScalarProperty Name="idmEmpleado" ColumnName="idmEmpleado" />
+          <ScalarProperty Name="idcEmpresa" ColumnName="idcEmpresa" />
+          <ScalarProperty Name="idcUsuario" ColumnName="idcUsuario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="dEmpleadoDomicilio">
+      <EntityTypeMapping TypeName="MasterRestModel.dEmpleadoDomicilio">
+        <MappingFragment StoreEntitySet="dEmpleadoDomicilio">
+          <ScalarProperty Name="estatus" ColumnName="estatus" />
+          <ScalarProperty Name="codigoPostal" ColumnName="codigoPostal" />
+          <ScalarProperty Name="referencia" ColumnName="referencia" />
+          <ScalarProperty Name="noInterior" ColumnName="noInterior" />
+          <ScalarProperty Name="noExterior" ColumnName="noExterior" />
+          <ScalarProperty Name="calle" ColumnName="calle" />
+          <ScalarProperty Name="colonia" ColumnName="colonia" />
+          <ScalarProperty Name="idcMunicipio" ColumnName="idcMunicipio" />
+          <ScalarProperty Name="iddEmpleadoDomicilio" ColumnName="iddEmpleadoDomicilio" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="dPedido">
+      <EntityTypeMapping TypeName="MasterRestModel.dPedido">
+        <MappingFragment StoreEntitySet="dPedido">
+          <ScalarProperty Name="notasEspeciales" ColumnName="notasEspeciales" />
+          <ScalarProperty Name="precioUnitario" ColumnName="precioUnitario" />
+          <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+          <ScalarProperty Name="idcMenu" ColumnName="idcMenu" />
+          <ScalarProperty Name="idmPedido" ColumnName="idmPedido" />
+          <ScalarProperty Name="iddPedido" ColumnName="iddPedido" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="eEmpleadoBaja">
+      <EntityTypeMapping TypeName="MasterRestModel.eEmpleadoBaja">
+        <MappingFragment StoreEntitySet="eEmpleadoBaja">
+          <ScalarProperty Name="json" ColumnName="json" />
+          <ScalarProperty Name="recontratable" ColumnName="recontratable" />
+          <ScalarProperty Name="observacionesBaja" ColumnName="observacionesBaja" />
+          <ScalarProperty Name="fechaBaja" ColumnName="fechaBaja" />
+          <ScalarProperty Name="fechaAlta" ColumnName="fechaAlta" />
+          <ScalarProperty Name="tipoBaja" ColumnName="tipoBaja" />
+          <ScalarProperty Name="motivoBaja" ColumnName="motivoBaja" />
+          <ScalarProperty Name="area" ColumnName="area" />
+          <ScalarProperty Name="puesto" ColumnName="puesto" />
+          <ScalarProperty Name="jefeInmediato" ColumnName="jefeInmediato" />
+          <ScalarProperty Name="rol" ColumnName="rol" />
+          <ScalarProperty Name="sucursal" ColumnName="sucursal" />
+          <ScalarProperty Name="empresa" ColumnName="empresa" />
+          <ScalarProperty Name="idmPlaza" ColumnName="idmPlaza" />
+          <ScalarProperty Name="idmEmpleado" ColumnName="idmEmpleado" />
+          <ScalarProperty Name="ideEmpleadoBaja" ColumnName="ideEmpleadoBaja" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="eEmpleadoContrato">
+      <EntityTypeMapping TypeName="MasterRestModel.eEmpleadoContrato">
+        <MappingFragment StoreEntitySet="eEmpleadoContrato">
+          <ScalarProperty Name="ruta" ColumnName="ruta" />
+          <ScalarProperty Name="proyecto" ColumnName="proyecto" />
+          <ScalarProperty Name="tiempoContrato" ColumnName="tiempoContrato" />
+          <ScalarProperty Name="idcTipoContrato" ColumnName="idcTipoContrato" />
+          <ScalarProperty Name="fechaFinal" ColumnName="fechaFinal" />
+          <ScalarProperty Name="fechaInicial" ColumnName="fechaInicial" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="noContrato" ColumnName="noContrato" />
+          <ScalarProperty Name="idmEmpleado" ColumnName="idmEmpleado" />
+          <ScalarProperty Name="ideEmpleadoContrato" ColumnName="ideEmpleadoContrato" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="eEmpleadoDocumentacion">
+      <EntityTypeMapping TypeName="MasterRestModel.eEmpleadoDocumentacion">
+        <MappingFragment StoreEntitySet="eEmpleadoDocumentacion">
+          <ScalarProperty Name="ruta" ColumnName="ruta" />
+          <ScalarProperty Name="idcDocumento" ColumnName="idcDocumento" />
+          <ScalarProperty Name="idmEmpleado" ColumnName="idmEmpleado" />
+          <ScalarProperty Name="ideEmpleadoDocumentacion" ColumnName="ideEmpleadoDocumentacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ePlazaBeneficio">
+      <EntityTypeMapping TypeName="MasterRestModel.ePlazaBeneficio">
+        <MappingFragment StoreEntitySet="ePlazaBeneficio">
+          <ScalarProperty Name="valor" ColumnName="valor" />
+          <ScalarProperty Name="tipo" ColumnName="tipo" />
+          <ScalarProperty Name="idcBeneficio" ColumnName="idcBeneficio" />
+          <ScalarProperty Name="idmPlaza" ColumnName="idmPlaza" />
+          <ScalarProperty Name="idePlazaBeneficio" ColumnName="idePlazaBeneficio" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="mEmpleado">
+      <EntityTypeMapping TypeName="MasterRestModel.mEmpleado">
+        <MappingFragment StoreEntitySet="mEmpleado">
+          <ScalarProperty Name="estatus" ColumnName="estatus" />
+          <ScalarProperty Name="observaciones" ColumnName="observaciones" />
+          <ScalarProperty Name="fotoPerfil" ColumnName="fotoPerfil" />
+          <ScalarProperty Name="salarioDiarioCotizacion" ColumnName="salarioDiarioCotizacion" />
+          <ScalarProperty Name="salarioDiarioExcedente" ColumnName="salarioDiarioExcedente" />
+          <ScalarProperty Name="salarioIntegrado" ColumnName="salarioIntegrado" />
+          <ScalarProperty Name="salarioDiario" ColumnName="salarioDiario" />
+          <ScalarProperty Name="salarioMensual" ColumnName="salarioMensual" />
+          <ScalarProperty Name="clabeInterbancaria" ColumnName="clabeInterbancaria" />
+          <ScalarProperty Name="noCuenta" ColumnName="noCuenta" />
+          <ScalarProperty Name="codiSucursal" ColumnName="codiSucursal" />
+          <ScalarProperty Name="codiBanco" ColumnName="codiBanco" />
+          <ScalarProperty Name="factorFonacot" ColumnName="factorFonacot" />
+          <ScalarProperty Name="descuentoFonacot" ColumnName="descuentoFonacot" />
+          <ScalarProperty Name="noCreditoFonacot" ColumnName="noCreditoFonacot" />
+          <ScalarProperty Name="factorInfonavit" ColumnName="factorInfonavit" />
+          <ScalarProperty Name="descuentoInfonavit" ColumnName="descuentoInfonavit" />
+          <ScalarProperty Name="noCreditoInfonavit" ColumnName="noCreditoInfonavit" />
+          <ScalarProperty Name="tipoNomina" ColumnName="tipoNomina" />
+          <ScalarProperty Name="esquemaPago" ColumnName="esquemaPago" />
+          <ScalarProperty Name="estatusInstitucion" ColumnName="estatusInstitucion" />
+          <ScalarProperty Name="tipoInstitucion" ColumnName="tipoInstitucion" />
+          <ScalarProperty Name="institucion" ColumnName="institucion" />
+          <ScalarProperty Name="idcProfesion" ColumnName="idcProfesion" />
+          <ScalarProperty Name="documentoProbatorio" ColumnName="documentoProbatorio" />
+          <ScalarProperty Name="idcEscolaridad" ColumnName="idcEscolaridad" />
+          <ScalarProperty Name="parentescoContacto" ColumnName="parentescoContacto" />
+          <ScalarProperty Name="nombreContacto" ColumnName="nombreContacto" />
+          <ScalarProperty Name="telefonoContacto" ColumnName="telefonoContacto" />
+          <ScalarProperty Name="telefono" ColumnName="telefono" />
+          <ScalarProperty Name="telefonoCelularEmpresa" ColumnName="telefonoCelularEmpresa" />
+          <ScalarProperty Name="telefonoExtension" ColumnName="telefonoExtension" />
+          <ScalarProperty Name="telefonoFijoEmpresa" ColumnName="telefonoFijoEmpresa" />
+          <ScalarProperty Name="correoCoorporativo" ColumnName="correoCoorporativo" />
+          <ScalarProperty Name="correoPersonal" ColumnName="correoPersonal" />
+          <ScalarProperty Name="tipoSangre" ColumnName="tipoSangre" />
+          <ScalarProperty Name="sexo" ColumnName="sexo" />
+          <ScalarProperty Name="nacionalidad" ColumnName="nacionalidad" />
+          <ScalarProperty Name="idcEstadoCivil" ColumnName="idcEstadoCivil" />
+          <ScalarProperty Name="fechaIngresoImss" ColumnName="fechaIngresoImss" />
+          <ScalarProperty Name="nss" ColumnName="nss" />
+          <ScalarProperty Name="rfc" ColumnName="rfc" />
+          <ScalarProperty Name="curp" ColumnName="curp" />
+          <ScalarProperty Name="lugarNacimiento" ColumnName="lugarNacimiento" />
+          <ScalarProperty Name="fechaNacimiento" ColumnName="fechaNacimiento" />
+          <ScalarProperty Name="fechaContratacion" ColumnName="fechaContratacion" />
+          <ScalarProperty Name="materno" ColumnName="materno" />
+          <ScalarProperty Name="paterno" ColumnName="paterno" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="iddEmpleadoDomicilio" ColumnName="iddEmpleadoDomicilio" />
+          <ScalarProperty Name="idcEmpresa" ColumnName="idcEmpresa" />
+          <ScalarProperty Name="idmEmpleado" ColumnName="idmEmpleado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="mFactura">
+      <EntityTypeMapping TypeName="MasterRestModel.mFactura">
+        <MappingFragment StoreEntitySet="mFactura">
+          <ScalarProperty Name="metodoPago" ColumnName="metodoPago" />
+          <ScalarProperty Name="total" ColumnName="total" />
+          <ScalarProperty Name="impuestos" ColumnName="impuestos" />
+          <ScalarProperty Name="subtotal" ColumnName="subtotal" />
+          <ScalarProperty Name="fechaPago" ColumnName="fechaPago" />
+          <ScalarProperty Name="idmPedido" ColumnName="idmPedido" />
+          <ScalarProperty Name="idmFactura" ColumnName="idmFactura" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="mPedido">
+      <EntityTypeMapping TypeName="MasterRestModel.mPedido">
+        <MappingFragment StoreEntitySet="mPedido">
+          <ScalarProperty Name="estatus" ColumnName="estatus" />
+          <ScalarProperty Name="fechaPedido" ColumnName="fechaPedido" />
+          <ScalarProperty Name="idcCliente" ColumnName="idcCliente" />
+          <ScalarProperty Name="idmEmpleado" ColumnName="idmEmpleado" />
+          <ScalarProperty Name="idcMesa" ColumnName="idcMesa" />
+          <ScalarProperty Name="idmPedido" ColumnName="idmPedido" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="mPlaza">
+      <EntityTypeMapping TypeName="MasterRestModel.mPlaza">
+        <MappingFragment StoreEntitySet="mPlaza">
+          <ScalarProperty Name="estatus" ColumnName="estatus" />
+          <ScalarProperty Name="idcArea" ColumnName="idcArea" />
+          <ScalarProperty Name="idcPuesto" ColumnName="idcPuesto" />
+          <ScalarProperty Name="idmPlazaJefeInmediato" ColumnName="idmPlazaJefeInmediato" />
+          <ScalarProperty Name="idcRol" ColumnName="idcRol" />
+          <ScalarProperty Name="idmEmpleado" ColumnName="idmEmpleado" />
+          <ScalarProperty Name="idcSucursal" ColumnName="idcSucursal" />
+          <ScalarProperty Name="idcEmpresa" ColumnName="idcEmpresa" />
+          <ScalarProperty Name="idmPlaza" ColumnName="idmPlaza" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="eEmpleadoPromocion">
+      <EntityTypeMapping TypeName="MasterRestModel.eEmpleadoPromocion">
+        <MappingFragment StoreEntitySet="eEmpleadoPromocion">
+          <ScalarProperty Name="observaciones" ColumnName="observaciones" />
+          <ScalarProperty Name="jefeInmediatoNuevo" ColumnName="jefeInmediatoNuevo" />
+          <ScalarProperty Name="jefeInmediatoActual" ColumnName="jefeInmediatoActual" />
+          <ScalarProperty Name="sucursalNuevo" ColumnName="sucursalNuevo" />
+          <ScalarProperty Name="sucursalActual" ColumnName="sucursalActual" />
+          <ScalarProperty Name="areaNuevo" ColumnName="areaNuevo" />
+          <ScalarProperty Name="areaActual" ColumnName="areaActual" />
+          <ScalarProperty Name="puestoNuevo" ColumnName="puestoNuevo" />
+          <ScalarProperty Name="puestoActual" ColumnName="puestoActual" />
+          <ScalarProperty Name="sueldoNuevo" ColumnName="sueldoNuevo" />
+          <ScalarProperty Name="sueldoActual" ColumnName="sueldoActual" />
+          <ScalarProperty Name="fechaMovimiento" ColumnName="fechaMovimiento" />
+          <ScalarProperty Name="idcMotivoMovimiento" ColumnName="idcMotivoMovimiento" />
+          <ScalarProperty Name="idmEmpleado" ColumnName="idmEmpleado" />
+          <ScalarProperty Name="ideEmpleadoPromocion" ColumnName="ideEmpleadoPromocion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

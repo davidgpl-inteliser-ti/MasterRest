@@ -1,0 +1,275 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\DELL\\Desktop\\MasterRest\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{BF2C0EA1-AA11-4F6C-947C-9D2A4E279DCB}|MasterRest\\MasterRest.csproj|c:\\users\\dell\\desktop\\masterrest\\masterrest\\controllers\\empleadocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BF2C0EA1-AA11-4F6C-947C-9D2A4E279DCB}|MasterRest\\MasterRest.csproj|solutionrelative:masterrest\\controllers\\empleadocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF2C0EA1-AA11-4F6C-947C-9D2A4E279DCB}|MasterRest\\MasterRest.csproj|c:\\users\\dell\\desktop\\masterrest\\masterrest\\views\\empleado\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BF2C0EA1-AA11-4F6C-947C-9D2A4E279DCB}|MasterRest\\MasterRest.csproj|solutionrelative:masterrest\\views\\empleado\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF2C0EA1-AA11-4F6C-947C-9D2A4E279DCB}|MasterRest\\MasterRest.csproj|c:\\users\\dell\\desktop\\masterrest\\masterrest\\views\\empleado\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BF2C0EA1-AA11-4F6C-947C-9D2A4E279DCB}|MasterRest\\MasterRest.csproj|solutionrelative:masterrest\\views\\empleado\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF2C0EA1-AA11-4F6C-947C-9D2A4E279DCB}|MasterRest\\MasterRest.csproj|c:\\users\\dell\\desktop\\masterrest\\masterrest\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BF2C0EA1-AA11-4F6C-947C-9D2A4E279DCB}|MasterRest\\MasterRest.csproj|solutionrelative:masterrest\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF2C0EA1-AA11-4F6C-947C-9D2A4E279DCB}|MasterRest\\MasterRest.csproj|c:\\users\\dell\\desktop\\masterrest\\masterrest\\views\\sesion\\dashboard.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BF2C0EA1-AA11-4F6C-947C-9D2A4E279DCB}|MasterRest\\MasterRest.csproj|solutionrelative:masterrest\\views\\sesion\\dashboard.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF2C0EA1-AA11-4F6C-947C-9D2A4E279DCB}|MasterRest\\MasterRest.csproj|c:\\users\\dell\\desktop\\masterrest\\masterrest\\views\\empleado\\salary.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BF2C0EA1-AA11-4F6C-947C-9D2A4E279DCB}|MasterRest\\MasterRest.csproj|solutionrelative:masterrest\\views\\empleado\\salary.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF2C0EA1-AA11-4F6C-947C-9D2A4E279DCB}|MasterRest\\MasterRest.csproj|c:\\users\\dell\\desktop\\masterrest\\masterrest\\views\\empleado\\reenter.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BF2C0EA1-AA11-4F6C-947C-9D2A4E279DCB}|MasterRest\\MasterRest.csproj|solutionrelative:masterrest\\views\\empleado\\reenter.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF2C0EA1-AA11-4F6C-947C-9D2A4E279DCB}|MasterRest\\MasterRest.csproj|c:\\users\\dell\\desktop\\masterrest\\masterrest\\views\\empleado\\promote.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BF2C0EA1-AA11-4F6C-947C-9D2A4E279DCB}|MasterRest\\MasterRest.csproj|solutionrelative:masterrest\\views\\empleado\\promote.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF2C0EA1-AA11-4F6C-947C-9D2A4E279DCB}|MasterRest\\MasterRest.csproj|c:\\users\\dell\\desktop\\masterrest\\masterrest\\views\\empleado\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BF2C0EA1-AA11-4F6C-947C-9D2A4E279DCB}|MasterRest\\MasterRest.csproj|solutionrelative:masterrest\\views\\empleado\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF2C0EA1-AA11-4F6C-947C-9D2A4E279DCB}|MasterRest\\MasterRest.csproj|c:\\users\\dell\\desktop\\masterrest\\masterrest\\views\\empleado\\discharge.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BF2C0EA1-AA11-4F6C-947C-9D2A4E279DCB}|MasterRest\\MasterRest.csproj|solutionrelative:masterrest\\views\\empleado\\discharge.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF2C0EA1-AA11-4F6C-947C-9D2A4E279DCB}|MasterRest\\MasterRest.csproj|c:\\users\\dell\\desktop\\masterrest\\masterrest\\views\\empleado\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BF2C0EA1-AA11-4F6C-947C-9D2A4E279DCB}|MasterRest\\MasterRest.csproj|solutionrelative:masterrest\\views\\empleado\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF2C0EA1-AA11-4F6C-947C-9D2A4E279DCB}|MasterRest\\MasterRest.csproj|c:\\users\\dell\\desktop\\masterrest\\masterrest\\views\\empleado\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BF2C0EA1-AA11-4F6C-947C-9D2A4E279DCB}|MasterRest\\MasterRest.csproj|solutionrelative:masterrest\\views\\empleado\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF2C0EA1-AA11-4F6C-947C-9D2A4E279DCB}|MasterRest\\MasterRest.csproj|c:\\users\\dell\\desktop\\masterrest\\masterrest\\views\\empleado\\createcontract.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BF2C0EA1-AA11-4F6C-947C-9D2A4E279DCB}|MasterRest\\MasterRest.csproj|solutionrelative:masterrest\\views\\empleado\\createcontract.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF2C0EA1-AA11-4F6C-947C-9D2A4E279DCB}|MasterRest\\MasterRest.csproj|c:\\users\\dell\\desktop\\masterrest\\masterrest\\controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BF2C0EA1-AA11-4F6C-947C-9D2A4E279DCB}|MasterRest\\MasterRest.csproj|solutionrelative:masterrest\\controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF2C0EA1-AA11-4F6C-947C-9D2A4E279DCB}|MasterRest\\MasterRest.csproj|c:\\users\\dell\\desktop\\masterrest\\masterrest\\controllers\\plazacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BF2C0EA1-AA11-4F6C-947C-9D2A4E279DCB}|MasterRest\\MasterRest.csproj|solutionrelative:masterrest\\controllers\\plazacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 13,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\MasterRest\\MasterRest\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "MasterRest\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\MasterRest\\MasterRest\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "MasterRest\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAM8BAAAAAAAAAAAAAC4CAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-17T03:16:09.135Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\MasterRest\\MasterRest\\Views\\Empleado\\Index.cshtml",
+              "RelativeDocumentMoniker": "MasterRest\\Views\\Empleado\\Index.cshtml",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\MasterRest\\MasterRest\\Views\\Empleado\\Index.cshtml",
+              "RelativeToolTip": "MasterRest\\Views\\Empleado\\Index.cshtml",
+              "ViewState": "AgIAADAAAAAAAAAAAAAAADoAAABsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-17T03:09:06.424Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\MasterRest\\MasterRest\\Views\\Empleado\\Create.cshtml",
+              "RelativeDocumentMoniker": "MasterRest\\Views\\Empleado\\Create.cshtml",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\MasterRest\\MasterRest\\Views\\Empleado\\Create.cshtml",
+              "RelativeToolTip": "MasterRest\\Views\\Empleado\\Create.cshtml",
+              "ViewState": "AgIAAK0AAAAAAAAAAAAMwMcAAAA8AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-17T03:07:53.172Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Salary.cshtml",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\MasterRest\\MasterRest\\Views\\Empleado\\Salary.cshtml",
+              "RelativeDocumentMoniker": "MasterRest\\Views\\Empleado\\Salary.cshtml",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\MasterRest\\MasterRest\\Views\\Empleado\\Salary.cshtml",
+              "RelativeToolTip": "MasterRest\\Views\\Empleado\\Salary.cshtml",
+              "ViewState": "AgIAAMsAAAAAAAAAAAAiwO8AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-17T03:09:57.217Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Reenter.cshtml",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\MasterRest\\MasterRest\\Views\\Empleado\\Reenter.cshtml",
+              "RelativeDocumentMoniker": "MasterRest\\Views\\Empleado\\Reenter.cshtml",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\MasterRest\\MasterRest\\Views\\Empleado\\Reenter.cshtml",
+              "RelativeToolTip": "MasterRest\\Views\\Empleado\\Reenter.cshtml",
+              "ViewState": "AgIAAOcEAAAAAAAAAAAiwAsFAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-17T03:09:42.385Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Promote.cshtml",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\MasterRest\\MasterRest\\Views\\Empleado\\Promote.cshtml",
+              "RelativeDocumentMoniker": "MasterRest\\Views\\Empleado\\Promote.cshtml",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\MasterRest\\MasterRest\\Views\\Empleado\\Promote.cshtml",
+              "RelativeToolTip": "MasterRest\\Views\\Empleado\\Promote.cshtml",
+              "ViewState": "AgIAAOQAAAAAAAAAAAAiwAgBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-17T03:09:20.528Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\MasterRest\\MasterRest\\Views\\Empleado\\Edit.cshtml",
+              "RelativeDocumentMoniker": "MasterRest\\Views\\Empleado\\Edit.cshtml",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\MasterRest\\MasterRest\\Views\\Empleado\\Edit.cshtml",
+              "RelativeToolTip": "MasterRest\\Views\\Empleado\\Edit.cshtml",
+              "ViewState": "AgIAAE4FAAAAAAAAAAAiwHIFAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-17T03:08:55.473Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Discharge.cshtml",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\MasterRest\\MasterRest\\Views\\Empleado\\Discharge.cshtml",
+              "RelativeDocumentMoniker": "MasterRest\\Views\\Empleado\\Discharge.cshtml",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\MasterRest\\MasterRest\\Views\\Empleado\\Discharge.cshtml",
+              "RelativeToolTip": "MasterRest\\Views\\Empleado\\Discharge.cshtml",
+              "ViewState": "AgIAAEwAAAAAAAAAAAAiwHAAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-17T03:08:46.671Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\MasterRest\\MasterRest\\Views\\Empleado\\Details.cshtml",
+              "RelativeDocumentMoniker": "MasterRest\\Views\\Empleado\\Details.cshtml",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\MasterRest\\MasterRest\\Views\\Empleado\\Details.cshtml",
+              "RelativeToolTip": "MasterRest\\Views\\Empleado\\Details.cshtml",
+              "ViewState": "AgIAAO8BAAAAAAAAAAAiwBMCAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-17T03:08:31.389Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Delete.cshtml",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\MasterRest\\MasterRest\\Views\\Empleado\\Delete.cshtml",
+              "RelativeDocumentMoniker": "MasterRest\\Views\\Empleado\\Delete.cshtml",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\MasterRest\\MasterRest\\Views\\Empleado\\Delete.cshtml",
+              "RelativeToolTip": "MasterRest\\Views\\Empleado\\Delete.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-17T03:08:19.315Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "CreateContract.cshtml",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\MasterRest\\MasterRest\\Views\\Empleado\\CreateContract.cshtml",
+              "RelativeDocumentMoniker": "MasterRest\\Views\\Empleado\\CreateContract.cshtml",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\MasterRest\\MasterRest\\Views\\Empleado\\CreateContract.cshtml",
+              "RelativeToolTip": "MasterRest\\Views\\Empleado\\CreateContract.cshtml",
+              "ViewState": "AgIAAE4AAAAAAAAAAAAiwHIAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-17T03:08:07.727Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "UsuarioController.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\MasterRest\\MasterRest\\Controllers\\UsuarioController.cs",
+              "RelativeDocumentMoniker": "MasterRest\\Controllers\\UsuarioController.cs",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\MasterRest\\MasterRest\\Controllers\\UsuarioController.cs",
+              "RelativeToolTip": "MasterRest\\Controllers\\UsuarioController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-17T00:43:33.351Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "PlazaController.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\MasterRest\\MasterRest\\Controllers\\PlazaController.cs",
+              "RelativeDocumentMoniker": "MasterRest\\Controllers\\PlazaController.cs",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\MasterRest\\MasterRest\\Controllers\\PlazaController.cs",
+              "RelativeToolTip": "MasterRest\\Controllers\\PlazaController.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAAAAsAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-17T00:43:20.515Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "EmpleadoController.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\MasterRest\\MasterRest\\Controllers\\EmpleadoController.cs",
+              "RelativeDocumentMoniker": "MasterRest\\Controllers\\EmpleadoController.cs",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\MasterRest\\MasterRest\\Controllers\\EmpleadoController.cs",
+              "RelativeToolTip": "MasterRest\\Controllers\\EmpleadoController.cs",
+              "ViewState": "AgIAAEgAAAAAAAAAAAAowFYAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-17T00:43:08.342Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Dashboard.cshtml",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\MasterRest\\MasterRest\\Views\\Sesion\\Dashboard.cshtml",
+              "RelativeDocumentMoniker": "MasterRest\\Views\\Sesion\\Dashboard.cshtml",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\MasterRest\\MasterRest\\Views\\Sesion\\Dashboard.cshtml",
+              "RelativeToolTip": "MasterRest\\Views\\Sesion\\Dashboard.cshtml",
+              "ViewState": "AgIAAPYEAAAAAAAAAADwvx4FAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-15T02:58:19.643Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

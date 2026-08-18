@@ -1,0 +1,27 @@
+﻿@model MasterRest.Models.mEmpleado
+@{
+    Layout = null;
+}
+@using (Html.BeginForm(new { onsubmit = "return loading();" }))
+{
+    @Html.AntiForgeryToken()
+    @*<div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.idmEmpleado)
+            <div class="form-group row">
+                <div class="col-md-12">
+                    <center>@Model.nombre @Model.paterno @Model.materno</center>
+                </div>
+                <div class="col-md-12">
+                    <center>@(Model.mPlaza.Count()>0 ? Model.mPlaza.FirstOrDefault().puesto : "")</center>
+                </div>
+            </div>
+            <hr />
+            <br />
+            <div class="form-group" style="position: relative; float: right;">
+                <div class="col-md-12">
+                    <button type="submit" class="btn btn-danger">ELIMINAR</button>
+                </div>
+            </div>
+        </div>*@
+}

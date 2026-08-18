@@ -1,0 +1,264 @@
+﻿@model MasterRest.Models.dh_e_trabajadorPromocion
+@{
+    Layout = null;
+}
+@using (Html.BeginForm("Promote", "Empleado", FormMethod.Post, new { enctype = "multipart/form-data", id = "frmPromocion", onsubmit = "return loading();" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <input type="hidden" id="idmEmpleado" name="idmEmpleado" value="@ViewBag.idmEmpleado" />
+        <input type="hidden" value="Promociones" id="seccion" name="seccion" />
+        <input type="hidden" value="@ViewBag.tipoNomina" id="idcTipoNomina" name="tipoNomina" />
+        <div class="form-group row mb-4">
+            <div class="col-md-4">
+                <label class="control-label col-md-12"><b>Nombre</b></label>
+                <input class="form-control" value="@ViewBag.nombre" readonly />
+            </div>
+            <div class="col-md-4">
+                @Html.LabelFor(model => model.puestoActual, "Posición actual", htmlAttributes: new { @class = "control-label col-md-12", @style = "font-weight:bold" })
+                @Html.TextBoxFor(model => model.puestoActual, new { @class = "form-control", @minlength = "0", @maxlength = "100", @required = "*", @readonly = "readonly" })
+            </div>
+            <div class="col-md-4">
+                @Html.LabelFor(model => model.departamentoActual, "Departamento actual", htmlAttributes: new { @class = "control-label col-md-12", @style = "font-weight:bold" })
+                @Html.TextBoxFor(model => model.departamentoActual, new { @class = "form-control", @minlength = "0", @maxlength = "100", @required = "*", @readonly = "readonly" })
+            </div>
+        </div>
+        <div class="form-group row mb-4">
+            <div class="col-md-4">
+                @Html.LabelFor(model => model.fechaMovimiento, "Fecha de movimiento", htmlAttributes: new { @class = "control-label col-md-12", @style = "font-weight:bold" })
+                @Html.TextBoxFor(model => model.fechaMovimiento, new { @class = "form-control", @type = "date", @required = "*", @Value = DateTime.Now.ToString("yyyy-MM-dd") })
+                @Html.ValidationMessageFor(model => model.fechaMovimiento, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-4">
+                @Html.LabelFor(model => model.idcMotivoMovimiento, "Motivo", htmlAttributes: new { @class = "control-label col-md-12", @style = "font-weight:bold" })
+                @Html.DropDownList("idcMotivoMovimiento", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown", @required = "*", @onchange = "OnChangeMotivo(this.value)" })
+                @Html.ValidationMessageFor(model => model.idcMotivoMovimiento, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-4">
+                @Html.LabelFor(model => model.observaciones, "Observaciones", htmlAttributes: new { @class = "control-label col-md-12", @style = "font-weight:bold" })
+                @Html.TextBoxFor(model => model.observaciones, new { @class = "form-control", @minlength = "0", @maxlength = "300", @onkeyup = "this.value = textUppercase(this.value);" })
+                @Html.ValidationMessageFor(model => model.observaciones, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div id="puesto" style="display: none">
+            <div class="form-group row mb-4">
+                <div class="col-md-4">
+                    @Html.LabelFor(model => model.puestoNuevo, "Posición nueva", htmlAttributes: new { @class = "control-label col-md-12", @style = "font-weight:bold" })
+                    @Html.DropDownList("idmPlantilla", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown", @id = "idmPlantilla" })
+                    @Html.ValidationMessageFor(model => model.puestoNuevo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div id="salario" style="display: none">
+            <div class="form-group row mb-4">
+                <div class="col-lg-4">
+                    @Html.LabelFor(model => model.sueldoNuevo, "Salario mensual nuevo", htmlAttributes: new { @class = "control-label col-md-12", @style = "font-weight:bold" })
+                    @Html.TextBoxFor(model => model.sueldoNuevo, new { @class = "form-control", @placeholder = "0.00", @minlength = "0", @maxlength = "10", onblur = "calcula();", @onkeypress = "return validNumbers3(event, this);", @onfocusout = "if(this.value=='.'){this.value='';}else if(this.value.substring(0,1)=='.'){this.value='0'+this.value}else if(this.value.substring(this.value.length-1)=='.'){this.value=this.value.substring(0, this.value.length - 1)}" })
+                    @Html.ValidationMessageFor(model => model.sueldoNuevo, "", new { @class = "text-danger" })
+                </div>
+                @*<div class="col-lg-4">
+                        @Html.LabelFor(model => model.sueldoNuevo, "Salario diario", htmlAttributes: new { @class = "control-label col-md-12", @style = "font-weight:bold" })
+                        <input type="number" class="form-control" min="0" step="0.1" placeholder="0.00" id="salarioDiario" name="salarioDiario" readonly />
+                    </div>
+                    <div class="col-lg-4">
+                        @Html.LabelFor(model => model.sueldoNuevo, "Salario integrado", htmlAttributes: new { @class = "control-label col-md-12", @style = "font-weight:bold" })
+                        <input type="number" class="form-control" min="0" step="0.1" placeholder="0.00" id="salarioIntegrado" name="salarioIntegrado" readonly />
+                    </div>*@
+            </div>
+            <div class="form-group row mb-4">
+                <div class="col-lg-4">
+                    @Html.Label("salarioMensual2", "Salario mensual actual", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
+                    <a href="javascript:verAccesoRestringidoSalario2();"><i class="bx bx-lock"></i></a>
+                    @Html.TextBox("salarioMensual2", null, new { @class = "form-control", @id = "salarioMensual2", onblur = "calcula();", @placeholder = "0.00", @readonly = "readonly", @minlength = "0", @maxlength = "10", @onkeypress = "return validNumbers3(event, this);", @onfocusout = "if(this.value=='.'){this.value='';}else if(this.value.substring(0,1)=='.'){this.value='0'+this.value}else if(this.value.substring(this.value.length-1)=='.'){this.value=this.value.substring(0, this.value.length - 1)}" })
+                    @Html.ValidationMessage("salarioMensual2", "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div id="divEmpresa" style="display: none">
+            <div class="form-group row mb-4">
+                <div class="col-lg-4">
+                    @Html.Label("empresa", "Empresa", htmlAttributes: new { @class = "control-label col-md-12 required", @style = "font-weight:bold" })
+                    @Html.DropDownList("empresa", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown", @id = "empresa" })
+                    @Html.ValidationMessage("empresa", "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div id="divPatronal" style="display: none">
+            <div class="form-group row mb-4">
+                <div class="col-lg-4">
+                    @Html.Label("patronal", "Patronal", htmlAttributes: new { @class = "control-label col-md-12 required", @style = "font-weight:bold" })
+                    @Html.DropDownList("patronal", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown", @id = "patronal" })
+                    @Html.ValidationMessage("patronal", "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div id="divCentroCostros" style="display: none">
+            <div class="form-group row mb-4">
+                <div class="col-lg-4">
+                    @Html.Label("centroCostos", "Centro de costos", htmlAttributes: new { @class = "control-label col-md-12", @style = "font-weight:bold" })
+                    @Html.DropDownList("centroCostos", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown", @id = "centroCostos" })
+                    @Html.ValidationMessage("centroCostos", "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div id="divJefeInmediato" style="display: none ">
+            <div class="form-group row mb-4">
+                <div class="col-lg-4">
+                    @Html.Label("jefeInmediato", "Jefe inmediato", htmlAttributes: new { @class = "control-label col-md-12", @style = "font-weight:bold" })
+                    @Html.DropDownList("jefeInmediato", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown", @id = "jefeInmediato" })
+                    @Html.ValidationMessage("jefeInmediato", "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div id="divCentroTrabajo" style="display: none ">
+            <div class="form-group row mb-4">
+                <div class="col-lg-4">
+                    @Html.Label("centroTrabajo", "Centro de trabajo", htmlAttributes: new { @class = "control-label col-md-12", @style = "font-weight:bold" })
+                    @Html.DropDownList("centroTrabajo", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown", @id = "centroTrabajo" })
+                    @Html.ValidationMessage("centroTrabajo", "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div id="divNivelMercer" style="display: none ">
+            <div class="form-group row mb-4">
+                <div class="col-lg-4">
+                    @Html.Label("nivelMercer", "Nivel mercer", htmlAttributes: new { @class = "control-label col-md-12", @style = "font-weight:bold" })
+                    @Html.DropDownList("nivelMercer", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown", @id = "centroTrabajo" })
+                    @Html.ValidationMessage("nivelMercer", "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group mb-4">
+        <hr />
+        <div style="position: relative; float: right;">
+            <input type="submit" value="Guardar" class="btn btn-primary" style="margin-top:22px" />
+        </div>
+    </div>
+}
+
+<script src="~/assets/js/a-valid-input.js"></script>
+
+<script type="text/javascript">
+
+    var verSalario = false;
+    function verAccesoRestringidoSalario2() {
+        if (!verSalario) {
+            var isOkay = false;
+            swal({
+                title: 'Acceso restringido',
+                input: 'password',
+                inputPlaceholder: 'Escriba su clave de seguridad',
+                inputAttributes: { 'maxlength': 150, 'autocapitalize': 'off', 'autocorrect': 'off' },
+                inputValidator: (value) => {
+                    if (!value || (value !== "@ViewBag.clave")) return 'clave de seguridad incorrecta'
+                    else { isOkay = true; return null }
+                  }
+            }).then(function (password) {
+                if (isOkay) {
+                    verSalario = true;
+                    $("#salarioMensual2").val('@ViewBag.salarioMensual');
+                }
+            })
+        } else {
+            verSalario = false;
+            $("#salarioMensual2").val("");
+        }
+    }
+
+    $(function () {
+        $("#idmPlantilla").select2({ dropdownParent: $('#myModal3') });
+        $("#empresa").select2({ dropdownParent: $('#myModal3') });
+        $("#patronal").select2({ dropdownParent: $('#myModal3') });
+        $("#centroCostos").select2({ dropdownParent: $('#myModal3') });
+        $("#jefeInmediato").select2({ dropdownParent: $('#myModal3') });
+        $("#centroTrabajo").select2({ dropdownParent: $('#myModal3') });
+        $("#nivelMercer").select2({ dropdownParent: $('#myModal3') });
+    });
+
+    function OnChangeMotivo(id) {
+
+        $("#salario").css("display", "none");
+        $("#puesto").css("display", "none");
+        $("#divJefeInmediato").css("display", "none");
+        $("#divEmpresa").css("display", "none");
+        $("#divPatronal").css("display", "none");
+        $("#divCentroCostros").css("display", "none");
+        $("#divCentroTrabajo").css("display", "none");
+        $("#divNivelMercer").css("display", "none");
+
+        $('#idmPlantilla').removeAttr("required");
+        $('#sueldoNuevoMensual').removeAttr("required");
+        $('#salarioDiario').removeAttr("required");
+        $('#salarioIntegrado').removeAttr("required");
+        $('#jefeInmediato').removeAttr("required");
+        $('#empresa').removeAttr("required");
+        $('#patronal').removeAttr("required");
+        $('#centroCostos').removeAttr("required");
+        $('#centroTrabajo').removeAttr("required");
+        $('#nivelMercer').removeAttr("required");
+
+        if (id == "1") {
+            $("#salario").css("display", "block");
+            $('#sueldoNuevoMensual').prop("required", true);
+            $('#salarioDiario').prop("required", true);
+            $('#salarioIntegrado').prop("required", true);
+        } else if (id == "3") {
+            $("#puesto").css("display", "block");
+            $('#idmPlantilla').prop("required", true);
+        } else if (id == "2" || id == "4" || id == "5") {
+            $("#salario").css("display", "block");
+            $("#puesto").css("display", "block");
+            $('#idmPlantilla').prop("required", true);
+            $('#sueldoNuevoMensual').prop("required", true);
+            $('#salarioDiario').prop("required", true);
+            $('#salarioIntegrado').prop("required", true);
+        } else if (id == "6") {
+            $("#divEmpresa").css("display", "block");
+            $('#empresa').prop("required", true);
+        } else if (id == "7") {
+            $("#divPatronal").css("display", "block");
+            $('#patronal').prop("required", true);
+        } else if (id == "8") {
+            $("#divCentroCostros").css("display", "block");
+            $('#centroCostos').prop("required", true);
+        } else if (id == "9") {
+            $("#divJefeInmediato").css("display", "block");
+            $('#jefeInmediato').prop("required", true);
+        } else if (id == "10") {
+            $("#divCentroTrabajo").css("display", "block");
+            $('#centroTrabajo').prop("required", true);
+        } else if (id == "11") {
+            $("#divNivelMercer").css("display", "block");
+            $('#nivelMercer').prop("required", true);
+        }
+    }
+
+    function calcula() {
+        var salarioMensual = document.getElementById("sueldoNuevoMensual").value;
+        var salarioMensualActual = 0;
+        try {
+            if ('@ViewBag.salarioMensual' != '') {
+                salarioMensualActual = parseInt('@ViewBag.salarioMensual');
+            }
+        } catch (e) { }
+        if (salarioMensual != null && salarioMensual != "") {
+            if ((salarioMensual > 0 && salarioMensualActual == 0) || (salarioMensual > 0 && salarioMensualActual > 0 && salarioMensual > salarioMensualActual)) {
+                var diasMes = $("#idcTipoNomina").val() === '2' ? 30.4 : 30;
+                $("#salarioDiario").val(parseFloat(salarioMensual / diasMes).toFixed(2));
+                $("#salarioIntegrado").val(parseFloat(parseFloat(salarioMensual / 30) * 1.0452).toFixed(2));
+            } else {
+                swal("El salario mensual nuevo no debe ser menor o igual al sueldo ya establecido.");
+                $("#sueldoNuevoMensual").val('');
+                $("#salarioDiario").val('');
+                $("#salarioIntegrado").val('');
+            }
+        } else {
+            $("#sueldoNuevoMensual").val('');
+            $("#salarioDiario").val('');
+            $("#salarioIntegrado").val('');
+        }
+    }
+</script>

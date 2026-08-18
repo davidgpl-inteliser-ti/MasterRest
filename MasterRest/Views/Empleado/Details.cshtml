@@ -1,0 +1,532 @@
+﻿@model MasterRest.Models.mEmpleado
+@{
+    Layout = null;
+
+    var sesion = Session["GV"] as MasterRest.Entities.Session;
+
+    var AP_PER_BEN = sesion.eReglaNegocio.Contains("AP-PER-BEN");
+
+    var AP_PER_SAL = sesion.eReglaNegocio.Contains("AP-PER-SAL");
+}
+<div class="col-xl-12">
+    <div class="nav-align-top mb-4">
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+                <button type="button" id="btn-top-1" class="nav-link active" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-1" aria-controls="navs-top-1" aria-selected="true">Personal</button>
+            </li>
+            <li class="nav-item">
+                <button type="button" id="btn-top-2" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-2" aria-controls="navs-top-2" aria-selected="false">Domicilio</button>
+            </li>
+            <li class="nav-item">
+                <button type="button" id="btn-top-3" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-3" aria-controls="navs-top-3" aria-selected="false">Estudios</button>
+            </li>
+            <li class="nav-item">
+                <button type="button" id="btn-top-4" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-4" aria-controls="navs-top-4" aria-selected="false">Contacto</button>
+            </li>
+            <li class="nav-item">
+                <button type="button" id="btn-top-5" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-5" aria-controls="navs-top-5" aria-selected="false">Nómina</button>
+            </li>
+            @if (AP_PER_SAL)
+            {
+                <li class="nav-item">
+                    <button type="button" id="btn-top-10" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-10" aria-controls="navs-top-10" aria-selected="false">Sueldo</button>
+                </li>
+            }
+            <li class="nav-item">
+                <button type="button" id="btn-top-6" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-6" aria-controls="navs-top-6" aria-selected="false">Contratos</button>
+            </li>
+            <li class="nav-item">
+                <button type="button" id="btn-top-7" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-7" aria-controls="navs-top-7" aria-selected="false">Beneficios</button>
+            </li>
+            <li class="nav-item">
+                <button type="button" id="btn-top-8" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-8" aria-controls="navs-top-8" aria-selected="false">Documentación</button>
+            </li>
+            @if (Model.dh_e_trabajadorPromocion.Count > 0)
+            {
+                <li class="nav-item">
+                    <button type="button" id="btn-top-9" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-9" aria-controls="navs-top-9" aria-selected="false">Movimientos</button>
+                </li>
+            }
+            @if (Model.dh_e_trabajadorBaja.Count > 0)
+            {
+                <li class="nav-item">
+                    <button type="button" id="btn-top-11" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-11" aria-controls="navs-top-11" aria-selected="false">Bajas</button>
+                </li>
+            }
+
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="navs-top-1" role="tabpanel">
+                <div class="form-group row">
+                    <div class="col-lg-3">
+                        <div class="d-flex align-items-start align-items-sm-center gap-4">
+                            <img src="~/assets/img/avatar/avatar-1.jpg" class="d-block rounded" height="150" id="fotoPerfil" onclick="foto(this)" />
+                        </div>
+                    </div>
+                    <div class="col-lg-9">
+                        <div class="form-group row">
+                            <div class="col-lg-4"><label><b>Nombre</b></label><br />@Model.nombre</div>
+                            <div class="col-lg-4"><label><b>Apellido paterno</b></label><br />@Model.paterno</div>
+                            <div class="col-lg-4"><label><b>Apellido materno</b></label><br />@Model.materno</div>
+                        </div>
+                        <br />
+                        <div class="form-group row">
+                            <div class="col-lg-2"><label><b>No. colab.</b></label><br />@Model.numeroEmpleado</div>
+                            <div class="col-lg-4"><label><b>CURP</b></label><br />@Model.curp</div>
+                            <div class="col-lg-3"><label><b>RFC</b></label><br />@Model.rfc</div>
+                            <div class="col-lg-3"><label><b>Sexo</b></label><br />@Model.sexo</div>
+                        </div>
+                        <br />
+                        <div class="form-group row">
+                            <div class="col-lg-4"><label><b>Edad</b></label><br />@ViewBag.edad años</div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="form-group row">
+                    <div class="col-lg-3"><label><b>Fecha de nacimiento</b></label><br />@(Model.fechaNacimiento != null ? ((DateTime)Model.fechaNacimiento).ToString("dd/MM/yyyy") : "")</div>
+                    <div class="col-lg-3"><label><b>Lugar de nacimiento</b></label><br />@Model.lugarNacimiento</div>
+                    <div class="col-lg-3"><label><b>Nacionalidad</b></label><br />@Model.nacionalidad</div>
+                    <div class="col-lg-3"><label><b>Tipo de sangre</b></label><br />@Model.tipoSangre</div>
+
+                </div>
+                <br />
+                <div class="form-group row">
+                    <div class="col-lg-3"><label><b>Correo personal</b></label><br />@Model.correoPersonal</div>
+                    <div class="col-lg-3"><label><b>Estado civil</b></label><br />@Model.estadoCivil</div>
+                    <div class="col-lg-3"><label><b>No. hijos</b></label><br />@Model.hijos</div>
+                    <div class="col-lg-3">
+                        <label><b>Fechas nacimiento hijos</b></label><br />
+                        @if (Model.hijosEdadXML != null & Model.hijosEdadXML != "")
+                        {
+                            foreach (var f in Model.hijosEdadXML.Split(','))
+                            {
+                                var arg = f.Replace(" ", "").Split('-');
+                                <span class="badge bg-label-dark me-1">@arg[0] - @arg[1]</span>
+                            }
+                        }
+                    </div>
+                </div>
+                <br />
+                <div class="form-group row">
+                    <div class="col-lg-3"><label><b>Teléfono personal</b></label><br />@Model.telefono</div>
+                    <div class="col-lg-3"><label><b>Teléfono contacto emerg.</b></label><br />@Model.telefonoContacto</div>
+                    <div class="col-lg-3"><label><b>Nombre contacto emerg.</b></label><br />@Model.nombreContacto</div>
+                    <div class="col-lg-3"><label><b>Parentesco contacto emerg.</b></label><br />@Model.parentescoContacto</div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="navs-top-2" role="tabpanel">
+                <div class="form-group row">
+                    <div class="col-lg-3"><label><b>Calle</b></label><br />@Model.dh_d_trabajadorDomicilio.calle</div>
+                    <div class="col-lg-3"><label><b>Número exterior</b></label><br />@Model.dh_d_trabajadorDomicilio.noExterior</div>
+                    <div class="col-lg-3"><label><b>Número interior</b></label><br />@Model.dh_d_trabajadorDomicilio.noInterior</div>
+                    <div class="col-lg-3"><label><b>Colonia</b></label><br />@Model.dh_d_trabajadorDomicilio.colonia</div>
+                </div>
+                <br />
+                <div class="form-group row">
+                    <div class="col-lg-3"><label><b>Entidad federativa</b></label><br />@Model.dh_d_trabajadorDomicilio.entidadFederativa</div>
+                    <div class="col-lg-3"><label><b>Municipio</b></label><br />@Model.dh_d_trabajadorDomicilio.municipio</div>
+                    <div class="col-lg-3"><label><b>Código postal</b></label><br />@Model.dh_d_trabajadorDomicilio.codigoPostal</div>
+                    <div class="col-lg-3"><label><b>Referencia</b></label><br />@Model.dh_d_trabajadorDomicilio.referencia</div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="navs-top-3" role="tabpanel">
+                <div class="form-group row">
+                    <div class="col-lg-3"><label><b>Escolaridad</b></label><br />@Model.escolaridad</div>
+                    <div class="col-lg-6"><label><b>Profesión</b></label><br />@Model.profesion</div>
+                    <div class="col-lg-3"><label><b>Documento probatorio</b></label><br />@Model.documentoProbatorio</div>
+                </div>
+                <br />
+                <div class="form-group row">
+                    <div class="col-lg-6"><label><b>Nombre de la institución</b></label><br />@Model.institucion</div>
+                    <div class="col-lg-3"><label><b>Tipo de institución</b></label><br />@Model.tipoInstitucion</div>
+                    <div class="col-lg-3"><label><b>Estatus de estudios</b></label><br />@Model.estatusInstitucion</div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="navs-top-4" role="tabpanel">
+                <div class="form-group row">
+                    <div class="col-lg-4"><label><b>Celular de la empresa</b></label><br />@Model.telefonoCelularEmpresa</div>
+                    <div class="col-lg-4"><label><b>Teléfono fijo</b></label><br />@Model.telefonoFijoEmpresa</div>
+                    <div class="col-lg-4"><label><b>Extensión</b></label><br />@Model.telefonoExtension</div>
+                </div>
+                <br />
+                <div class="form-group row">
+                    <div class="col-lg-4"><label><b>Correo corporativo</b></label><br />@Model.correoCoorporativo</div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="navs-top-5" role="tabpanel">
+                <div class="form-group row">
+                    <div class="col-lg-4">
+                        <label><b>Puesto</b></label><br /><font style="color:@(Model.estatus == "BAJA" ? "red" : "black")">@(Model.mPlaza != null && Model.mPlaza.Count > 0 ? Model.mPlaza.FirstOrDefault().puesto : "")</font>
+                        <p style="font-size:12px; color:gray; margin:0; padding:0;">
+                            <b>ID POSICIÓN</b> @(Model.mPlaza != null && Model.mPlaza.Count > 0 ? Model.mPlaza.FirstOrDefault().idPosicion : "")<br />
+                            <b>Dirección</b> @(Model.mPlaza != null && Model.mPlaza.Count > 0 ? Model.mPlaza.FirstOrDefault().direccion : "")<br />
+                            <b>Área</b> @(Model.mPlaza != null && Model.mPlaza.Count > 0 ? Model.mPlaza.FirstOrDefault().area : "")<br />
+                            <b>Departamento</b> @(Model.mPlaza != null && Model.mPlaza.Count > 0 ? Model.mPlaza.FirstOrDefault().departamento : "")<br />
+                            <b>Jerarquia</b> @(Model.mPlaza != null && Model.mPlaza.Count > 0 ? Model.mPlaza.FirstOrDefault().jerarquia : "")<br />
+                            <b>Centro de costos</b> @(Model.mPlaza != null && Model.mPlaza.Count > 0 ? Model.mPlaza.FirstOrDefault().centroCostos : "")<br />
+                            <b>Programa</b> @(Model.mPlaza != null && Model.mPlaza.Count > 0 ? Model.mPlaza.FirstOrDefault().programa : "")<br />
+                            <b>Facturar a</b> @(Model.mPlaza != null && Model.mPlaza.Count > 0 ? Model.mPlaza.FirstOrDefault().facturar : "")<br />
+                            <b>Centro de trabajo</b> @(Model.mPlaza != null && Model.mPlaza.Count > 0 ? Model.mPlaza.FirstOrDefault().centroTrabajo : "")<br />
+                            <b>Empresa</b> @(Model.mPlaza != null && Model.mPlaza.Count > 0 ? Model.mPlaza.FirstOrDefault().empresaGV : "")<br />
+                            <b>Nivel mercer</b> @(Model.mPlaza != null && Model.mPlaza.Count > 0 ? Model.mPlaza.FirstOrDefault().nivelMercer : "")<br />
+                            <b>Agencia</b> @(Model.mPlaza != null && Model.mPlaza.Count > 0 ? Model.mPlaza.FirstOrDefault().agencia : "")<br />
+                            <b>Patronal</b> @(Model.mPlaza != null && Model.mPlaza.Count > 0 ? Model.mPlaza.FirstOrDefault().patronal : "")<br />
+                            <b>Clasificación</b> @(Model.mPlaza != null && Model.mPlaza.Count > 0 ? Model.mPlaza.FirstOrDefault().clasificacion : "")<br />
+                        </p>
+                    </div>
+                    <div class="col-md-4"><label><b>Jefe inmediato</b></label><br />@ViewBag.jefeInmediatoPuesto<br />@ViewBag.jefeInmediato</div>
+                </div>
+                <br />
+                <div class="form-group row">
+                    <div class="col-lg-3"><label><b>Número de seguridad social</b></label><br />@Model.nss</div>
+                    <div class="col-lg-3"><label><b>Fecha de ingreso al IMSS</b></label><br />@(Model.fechaIngresoImss != null ? ((DateTime)Model.fechaIngresoImss).ToString("dd/MM/yyyy") : "")</div>
+                    <div class="col-lg-3"><label><b>Tipo de nómina</b></label><br />@Model.tipoNomina</div>
+                    <div class="col-lg-3"><label><b>Esquema de pago</b></label><br />@Model.esquemaPago</div>
+                </div>
+                <br />
+                <div class="form-group row">
+                    <div class="col-lg-3"><label><b>Fecha de ingreso</b></label><br />@Model.fechaAlta.ToString("dd/MM/yyyy")</div>
+                    <div class="col-lg-3"><label><b>Código de banco</b></label><br />@ViewBag.banco</div>
+                    <div class="col-lg-3"><label><b>Número de cuenta</b></label><br />@Model.noCuenta</div>
+                    <div class="col-lg-3"><label><b>Clabe interbancaria</b></label><br />@Model.clabeInterbancaria</div>
+                </div>
+                <br />
+                <div class="form-group row">
+                    <div class="col-lg-3"><label><b>Antigüedad</b></label><br />@ViewBag.antiguedad</div>
+                </div>
+                <br />
+                <div class="form-group row">
+                    <div class="col-lg-3"><label><b>Número credito infonavit</b></label><br />@Model.noCreditoInfonavit</div>
+                    <div class="col-lg-3"><label><b>Descuento infonavit</b></label><br />@Model.descuentoInfonavit</div>
+                    <div class="col-lg-3"><label><b>Factor infonavit</b></label><br />@Model.factorInfonavit</div>
+                </div>
+                <br />
+                <div class="form-group row">
+                    <div class="col-lg-3"><label><b>Número credito fonacot</b></label><br />@Model.noCreditoFonacot</div>
+                    <div class="col-lg-3"><label><b>Descuento fonacot</b></label><br />@Model.descuentoFonacot</div>
+                </div>
+                <br />
+                <hr />
+                <div class="form-group row">
+                    <div class="col-lg-3"><label><b>Horario laboral</b></label><br />@(Model.dh_c_horario != null ? Model.dh_c_horario.descripcion : "")</div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="navs-top-10" role="tabpanel">
+                <div class="form-group row">
+                    <div class="col-lg-3"><label><b>Salario mensual: <a href="javascript:verAccesoRestringidoSalario();"><i class="bx bx-lock"></i></a></b></label><br /><div id="salarioMensual">********</div></div>
+                    <div class="col-lg-3"><label><b>Salario diario neto</b></label><br /><div id="salarioDiario">********</div></div>
+                    <div class="col-lg-3"><label><b>Salario diario integrado</b></label><br /><div id="salarioIntegrado">********</div></div>
+                </div>
+                <br />
+                <div class="form-group row">
+                    <div class="col-lg-3"><label><b>Salario diario cotización</b></label><br /><div id="salarioDiarioCotizacion">********</div></div>
+                    <div class="col-lg-3"><label><b>Salario diario excedente</b></label><br /><div id="salarioDiarioExcedente">********</div></div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="navs-top-6" role="tabpanel" style="overflow: scroll;">
+                @if (Model.dh_e_trabajadorContrato.Count > 0)
+                {
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>No.</th>
+                                <th>Contrato</th>
+                                <th>Fecha inicial</th>
+                                <th>Fecha final</th>
+                                <th>Ver</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var c in Model.dh_e_trabajadorContrato)
+                            {
+                                <tr>
+                                    <th>@c.noContrato</th>
+                                    <th>@c.dh_c_contrato.contrato</th>
+                                    <th>@c.fechaInicial.ToString("dd/MM/yyyy")</th>
+                                    <th>@(c.fechaFinal != null ? ((DateTime)c.fechaFinal).ToString("dd/MM/yyyy") : "")</th>
+                                    <th>
+                                        @if (c.ruta != null && c.ruta != "")
+                                        {<a href="../@(Url.Content("~/").TrimStart('/') + c.ruta)?id=@(DateTime.Now.ToString("hhmmss"))" target="_blank"><i class="bx bxs-file-pdf me-1"></i></a>}
+                                    </th>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+                else
+                {
+                    <p>No tiene contratos</p>
+                }
+            </div>
+            <div class="tab-pane fade" id="navs-top-7" role="tabpanel">
+                @if (Model.mPlaza.Count > 0 && Model.mPlaza.FirstOrDefault().dh_e_plantillaBeneficio.Count > 0)
+                {
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Beneficio</th>
+                                <th>Tipo</th>
+                                <th>Monto</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var b in Model.mPlaza.FirstOrDefault().dh_e_plantillaBeneficio)
+                            {
+                                <tr>
+                                    <th>@b.dh_c_beneficio.beneficio</th>
+                                    <th>@b.tipo</th>
+                                    <th>@b.valor</th>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+                else
+                {
+                    <p>No tiene beneficios</p>
+                }
+            </div>
+            <div class="tab-pane fade" id="navs-top-8" role="tabpanel">
+                @if (Model.dh_e_trabajadorDocumentacion.Count > 0)
+                {
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Documento</th>
+                                <th>Ver</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var d in Model.dh_e_trabajadorDocumentacion.OrderBy(_ => _.dh_c_documento.documento))
+                            {
+                                <tr>
+                                    <th>@d.dh_c_documento.documento</th>
+                                    <th><a href="../@(Url.Content("~/").TrimStart('/') + d.ruta)?id=@(DateTime.Now.ToString("hhmmss"))" target="_blank"><i class="bx bxs-file-pdf me-1"></i></a></th>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+                else
+                {
+                    <p>No tiene documentos</p>
+                }
+            </div>
+            <div class="tab-pane fade" id="navs-top-9" role="tabpanel">
+                @if (Model.dh_e_trabajadorPromocion.Count > 0)
+                {
+                    <div style="display: block; overflow-x: auto; white-space: nowrap;">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Motivo</th>
+                                    <th>Fecha</th>
+                                    <th>
+                                        Sueldo anterior @if (AP_PER_SAL)
+                                        {<a href="javascript:verAccesoRestringidoSalarioMovimiento();"><i class="bx bx-lock"></i></a>}
+                                    </th>
+                                    <th>Sueldo actual</th>
+                                    <th>Puesto anterior</th>
+                                    <th>Puesto actual</th>
+                                    <th>Departamento anterior</th>
+                                    <th>Departamento actual</th>
+                                    <th>Empresa anterior</th>
+                                    <th>Empresa actual</th>
+                                    <th>Patronal anterior</th>
+                                    <th>Patronal actual</th>
+                                    <th>Centro costos anterior</th>
+                                    <th>Centro costos actual</th>
+                                    <th>Jefe inmediato anterior</th>
+                                    <th>Jefe inmediato actual</th>
+                                    <th>Centro de trabajo anterior</th>
+                                    <th>Centro de trabajo actual</th>
+                                    <th>Nivel mercer anterior</th>
+                                    <th>Nivel mercer actual</th>
+                                    <th>Observaciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var d in Model.dh_e_trabajadorPromocion)
+                                {
+                                    <tr>
+                                        <th>@d.dh_c_motivoMovimiento.motivo</th>
+                                        <th>@(((DateTime)d.fechaMovimiento).ToString("dd/MM/yyyy"))</th>
+                                        <th><div id="sueldoActualMovimiento_@(d.idePromocion)">********</div></th>
+                                        <th><div id="sueldoNuevoMovimiento_@(d.idePromocion)">********</div></th>
+                                        <th>@d.puestoActual</th>
+                                        <th>@d.puestoNuevo</th>
+                                        <th>@d.departamentoActual</th>
+                                        <th>@d.departamentoNuevo</th>
+                                        <th>@d.empresaActual</th>
+                                        <th>@d.empresaNuevo</th>
+                                        <th>@d.patronalActual</th>
+                                        <th>@d.patronalNuevo</th>
+                                        <th>@d.centroCostosActual</th>
+                                        <th>@d.centroCostosNuevo</th>
+                                        <th>@d.jefeInmediatoActual</th>
+                                        <th>@d.jefeInmediatoNuevo</th>
+                                        <th>@d.centroTrabajoActual</th>
+                                        <th>@d.centroTrabajoNuevo</th>
+                                        <th>@d.nivelMercerActual</th>
+                                        <th>@d.nivelMercerNuevo</th>
+                                        <th>@d.observaciones</th>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+                else
+                {
+                    <p>No tiene movimientos</p>
+                }
+            </div>
+            <div class="tab-pane fade" id="navs-top-11" role="tabpanel">
+                @if (Model.dh_e_trabajadorBaja.Count > 0)
+                {
+                    <div style="display: block; overflow-x: auto; white-space: nowrap;">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Puesto</th>
+                                    <th>Departamento</th>
+                                    <th>Motivo</th>
+                                    <th>Tipo</th>
+                                    <th>Fecha de ingreso</th>
+                                    <th>Fecha de baja</th>
+                                    <th>Observaciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var d in Model.dh_e_trabajadorBaja)
+                                {
+                                    <tr>
+                                        <th>@d.puesto</th>
+                                        <th>@d.departamento</th>
+                                        <th>@d.motivoBaja</th>
+                                        <th>@d.tipoBaja</th>
+                                        <th>@(((DateTime)d.fechaAlta).ToString("dd/MM/yyyy"))</th>
+                                        <th>@(((DateTime)d.fechaBaja).ToString("dd/MM/yyyy"))</th>
+                                        <th>@d.observacionesBaja</th>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+                else
+                {
+                    <p>No tiene baja</p>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+
+    function foto(img) {
+        window.open(img.src);
+    }
+
+    $(document).ready(function() {
+        document.getElementById("fotoPerfil").src = window.location.origin + "@Url.Content("~/")" + "@(Model.fotoPerfil != null && Model.fotoPerfil != "" ? Model.fotoPerfil : "assets/img/avatar/avatar-1.jpg")?id=" + new Date().getTime();
+
+        var seccion = '@ViewBag.seccion';
+        if (seccion != null && seccion != "") {
+            document.getElementById("btn-top-1").className = "nav-link";
+            document.getElementById("navs-top-1").className = "tab-pane fade";
+            switch (seccion) {
+                case "Contratos":
+                    document.getElementById("btn-top-6").className = "nav-link active";
+                    document.getElementById("navs-top-6").className = "tab-pane fade show active";
+                    break;
+                case "Documentos":
+                    document.getElementById("btn-top-8").className = "nav-link active";
+                    document.getElementById("navs-top-8").className = "tab-pane fade show active";
+                    break;
+                case "Promociones":
+                    document.getElementById("btn-top-9").className = "nav-link active";
+                    document.getElementById("navs-top-9").className = "tab-pane fade show active";
+                    break;
+            }
+        }
+    });
+
+    var verSalarioMovimiento = false;
+    function verAccesoRestringidoSalarioMovimiento() {
+        if (!verSalarioMovimiento) {
+            var isOkay = false;
+            swal({
+                title: 'Acceso restringido',
+                input: 'password',
+                inputPlaceholder: 'Escriba su clave de seguridad',
+                inputAttributes: { 'maxlength': 150, 'autocapitalize': 'off', 'autocorrect': 'off' },
+                inputValidator: (value) => {
+                    if (!value || (value !== "@ViewBag.clave")) return 'clave de seguridad incorrecta'
+                    else { isOkay = true; return null }
+                  }
+            }).then(function (password) {
+                if (isOkay) {
+                    verSalarioMovimiento = true;
+                    @foreach (var _ in Model.dh_e_trabajadorPromocion) {
+                        @:$("#sueldoActualMovimiento_@_.idePromocion").text("@(_.sueldoActual)");
+                        @:$("#sueldoNuevoMovimiento_@_.idePromocion").text("@_.sueldoNuevo");
+                    }
+                    @*setTimeout(function () {
+                        @foreach (var _ in Model.dh_e_trabajadorPromocion) {
+                            @:$("#sueldoActualMovimiento_@_.idePromocion").text("********");
+                            @:$("#sueldoNuevoMovimiento_@_.idePromocion").text("********");
+                        }
+                    }, 2000);*@
+                }
+            })
+        } else {
+            verSalarioMovimiento = false;
+            @foreach (var _ in Model.dh_e_trabajadorPromocion) {
+                @:$("#sueldoActualMovimiento_@_.idePromocion").text("********");
+                @:$("#sueldoNuevoMovimiento_@_.idePromocion").text("********");
+            }
+        }
+    }
+
+    var verSalario = false;
+    function verAccesoRestringidoSalario() {
+        if (!verSalario) {
+            var isOkay = false;
+            swal({
+                title: 'Acceso restringido',
+                input: 'password',
+                inputPlaceholder: 'Escriba su clave de seguridad',
+                inputAttributes: { 'maxlength': 150, 'autocapitalize': 'off', 'autocorrect': 'off' },
+                inputValidator: (value) => {
+                    if (!value || (value !== "@ViewBag.clave")) return 'clave de seguridad incorrecta'
+                    else { isOkay = true; return null }
+                  }
+            }).then(function (password) {
+                if (isOkay) {
+                    verSalario = true;
+                    $("#salarioMensual").text("@Model.salarioMensual");
+                    $("#salarioDiario").text("@Model.salarioDiario");
+                    $("#salarioIntegrado").text("@Model.salarioIntegrado");
+                    $("#salarioDiarioCotizacion").text("@Model.salarioDiarioCotizacion");
+                    $("#salarioDiarioExcedente").text("@Model.salarioDiarioExcedente");
+                    @*setTimeout(function () {
+                        $("#salarioMensual").text("********");
+                        $("#salarioDiario").text("********");
+                        $("#salarioIntegrado").text("********");
+                        $("#salarioDiarioCotizacion").text("********");
+                        $("#salarioDiarioExcedente").text("********");
+                    }, 2000);*@
+                }
+            })
+        } else {
+            verSalario = false;
+            $("#salarioMensual").text("********");
+            $("#salarioDiario").text("********");
+            $("#salarioIntegrado").text("********");
+            $("#salarioDiarioCotizacion").text("********");
+            $("#salarioDiarioExcedente").text("********");
+        }
+    }
+</script>

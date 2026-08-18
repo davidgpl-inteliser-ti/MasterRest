@@ -1,0 +1,113 @@
+﻿@model MasterRest.Models.dh_e_trabajadorBaja
+@{
+    Layout = null;
+}
+@using (Html.BeginForm(new { onsubmit = "return loading();" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.idmEmpleado)
+        @Html.HiddenFor(model => model.idmPlantilla)
+        @Html.HiddenFor(model => model.fechaAlta)
+        <div class="form-group row">
+            <div class="col-md-12">
+                <label class="control-label col-md-12" style="font-weight: bold">Nombre</label>
+                <input type="text" class="form-control" value="@ViewBag.nombre" readonly />
+            </div>
+        </div><br />
+        <div class="form-group row">
+            <div class="col-md-12">
+                <label class="control-label col-md-12" style="font-weight: bold">Posición</label>
+                <input type="text" class="form-control" value="@ViewBag.puesto" readonly />
+            </div>
+        </div><br />
+        <div class="form-group row">
+            <div class="col-md-12">
+                @Html.LabelFor(model => model.fechaBaja, "Fecha de baja", htmlAttributes: new { @class = "control-label col-md-12", @style = "font-weight:bold" })
+                @Html.TextBoxFor(model => model.fechaBaja, new
+                {
+                    @class = "form-control",
+                    @type = "date",
+                    @Value = DateTime.Now.ToString("yyyy-MM-dd"),@*@min = DateTime.Now.AddDays(-10).ToString("yyyy-MM-dd"), @max = DateTime.Now.ToString("yyyy-MM-dd"), @onfocusout = "this.value = validarFecha_10(this.value);",*@ @required = "*"
+                })
+                @Html.ValidationMessageFor(model => model.fechaBaja, "", new { @class = "text-danger" })
+            </div>
+        </div><br />
+        <div class="form-group row">
+            <div class="col-md-12">
+                @Html.Label("tipoBaja", "Tipo de baja", htmlAttributes: new { @class = "control-label col-md-12", @style = "font-weight:bold" })
+                @Html.DropDownList("tipoBaja", null, "", htmlAttributes: new { @class = "form-select color-dropdown", @required = "*" })
+                @Html.ValidationMessage("tipoBaja", "", new { @class = "text-danger" })
+            </div>
+        </div><br />
+        <div class="form-group row">
+            <div class="col-md-12">
+                @Html.LabelFor(model => model.motivoBaja, "Motivo de baja", htmlAttributes: new { @class = "control-label col-md-12", @style = "font-weight:bold" })
+                @Html.DropDownList("motivoBaja", null, "", htmlAttributes: new { @class = "form-select color-dropdown", @required = "*" })
+                @Html.ValidationMessageFor(model => model.motivoBaja, "", new { @class = "text-danger" })
+            </div>
+        </div><br />
+        <div class="form-group row">
+            <div class="col-md-12">
+                @{
+                    List<string> htList = (List<string>)ViewBag.herramientasTrabajoList;
+
+                    if (htList.Count > 0)
+                    {
+                        <b>Herramientas de trabajo</b><br />
+
+                        foreach (var _ in htList)
+                        {
+                            <div class="col-md-12">
+                                <div style="font-family:Arial"><i class="menu-icon tf-icons bx bx-check-square"></i> @_ @(_ == "OTRO(S)" ? ": " + @ViewBag.otraHerramientaTrabajo : "")</div>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <div>No tiene herramientas de trabajo.</div>
+                    }
+                }
+            </div>
+        </div><br />
+        <div class="form-group row">
+            <div class="col-md-12">
+                @Html.LabelFor(model => model.observacionesBaja, "Observaciones", htmlAttributes: new { @class = "control-label col-md-12", @style = "font-weight:bold" })
+                @Html.TextBoxFor(model => model.observacionesBaja, new { @class = "form-control", @maxlength = "300" })
+                @Html.ValidationMessageFor(model => model.observacionesBaja, "", new { @class = "text-danger" })
+            </div>
+        </div><br />
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-warning">Baja</button>
+        </div>
+    </div>
+}
+<script type="text/javascript">
+    function validarFecha_10(ff) {
+        var fechaMin = new Date(new Date().setDate(new Date().getDate() - 10));
+        var fechaMin2 = new Date(new Date().setDate(new Date().getDate() - 11));
+        var fechaMax = new Date();
+        var fecha = new Date(ff);
+        if (fechaMin2 <= fecha && fecha <= fechaMax) {
+            return ff;
+        }
+        var d1 = fechaMin.getDate();
+        var m1 = fechaMin.getMonth() + 1;
+        var f1 = (d1 < 10 ? "0" + d1 : d1) + "-" + (m1 < 10 ? "0" + m1 : m1) + "-" + fechaMin.getFullYear();
+        var d2 = fechaMax.getDate();
+        var m2 = fechaMax.getMonth() + 1;
+        var f2 = (d2 < 10 ? "0" + d2 : d2) + "-" + (m2 < 10 ? "0" + m2 : m2) + "-" + fechaMax.getFullYear();
+        swal("La fecha debe ser entre " + f1 + " y " + f2 + ".");
+        return "";
+    }
+    $(document).ready(function () {
+        $('#recontratable').click(function () {
+            if ($(this).is(':checked')) {
+                $("#lblrecontratable").text("Si");
+            } else {
+                $("#lblrecontratable").text("No");
+            }
+        });
+    });
+</script>

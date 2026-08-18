@@ -1,0 +1,115 @@
+﻿@model MasterRest.Models.dh_e_trabajadorContrato
+@{
+    Layout = null;
+}
+@using (Html.BeginForm("CreateContract", "Empleado", FormMethod.Post, new { enctype = "multipart/form-data", id = "frm" }))
+{
+    @Html.AntiForgeryToken()
+    <form role="form">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.idmEmpleado)
+        <div class="col-sm-12">
+            <div class="form-group row">
+                <div class="col-md-12 mb-3">
+                    <label>@ViewBag.nombre</label>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-12 mb-3">
+                    @Html.LabelFor(model => model.noContrato, "No. de contrato", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
+                    @Html.TextBoxFor(model => model.noContrato, new { @class = "form-control", @Required = "Requeired", @readonly = "readonly" })
+                    @Html.ValidationMessageFor(model => model.noContrato, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-12 mb-3">
+                    @Html.LabelFor(model => model.idcContrato, "Tipo de contrato", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
+                    @Html.DropDownList("idcContrato", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown", @Required = "Requeired" })
+                    @Html.ValidationMessageFor(model => model.idcContrato, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-12 mb-3">
+                    @Html.LabelFor(model => model.fechaInicial, "Fecha inicial", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
+                    @Html.TextBoxFor(model => model.fechaInicial, new { @type = "date", @class = "form-control", @Required = "Requeired", @Value = Model.fechaInicial.ToString("yyyy-MM-dd") })
+                    @Html.ValidationMessageFor(model => model.fechaInicial, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div id="divA" style="display: none">
+                <div class="form-group row">
+                    <div class="col-lg-4 mb-3">
+                        @Html.Label("diasContrato", "Días", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
+                        @Html.TextBox("diasContrato", null, new { @class = "form-control", @onkeypress = "return validNumbers(event);" })
+                        @Html.ValidationMessage("diasContrato", "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-lg-8 mb-3">
+                        @Html.LabelFor(model => model.fechaFinal, "Fecha vencimiento", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
+                        @Html.TextBoxFor(model => model.fechaFinal, new { @type = "date", @class = "form-control", @Required = "Requeired" })
+                        @Html.ValidationMessageFor(model => model.fechaFinal, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-12 mb-3">
+                    @Html.LabelFor(model => model.descripcion, "Observaciones", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
+                    @Html.TextBoxFor(model => model.descripcion, new { @class = "form-control", @onkeyup = "this.value = textUppercase(this.value);" })
+                    @Html.ValidationMessageFor(model => model.descripcion, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12 mb-3">
+                    @Html.Label("Contract", "Adjuntar contrato", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
+                    <input class="form-control" type="file" id="file" name="file" accept="application/pdf" required />
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="validarContrato()">Guardar</button>
+            </div>
+        </div>
+    </form>
+}
+
+<script src="~/assets/js/a-valid-input.js"></script>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $("#tiempoContrato").keypress(function (e) {
+            if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                $("#errmsg").html("Digits Only").show().fadeOut("slow");
+                return false;
+            }
+        });
+    });
+
+    $('#diasContrato').change(function () {
+        var strDias = $(this).val();
+        var strDate = document.getElementById("fechaInicial").value;
+        var parts = strDate.split('-');
+        var date = new Date(parts[0], parts[1] - 1, parts[2]);
+        date.setDate(date.getDate() + parseInt(strDias));
+        document.getElementById("fechaFinal").value = date.toISOString().substring(0, 10);
+    });
+
+    $("#idcContrato").change(function () {
+        if ($('#idcContrato').val() == 4) {
+            document.getElementById("divA").style.display = 'none';
+        } else {
+            document.getElementById("divA").style.display = 'block';
+        }
+    });
+
+    function validarContrato() {
+        if ($("#fechaInicial").val() == '' || ($('#idcContrato').val() != 2 && $("#fechaFinal").val() == '')) {
+            var campo = $("#fechaInicial").val() == '' ? 'Fecha Inicial' : $("#fechaFinal").val() == '' ? 'Fecha Vencimiento' : '';
+            swal({
+                title: 'Completa la información',
+                html: '<p>Falta completar el campo <strong>' + campo + '</strong>.</p>',
+                type: 'warning',
+            });
+        } else {
+            document.getElementById("frm").submit();
+        }
+    }
+
+</script>

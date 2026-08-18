@@ -1,0 +1,1291 @@
+﻿@model MasterRest.Models.mEmpleado
+@{
+    Layout = null;
+
+    var sesion = Session["GV"] as MasterRest.Entities.Session;
+
+    var AP_PER_BEN = sesion.eReglaNegocio.Contains("AP-PER-BEN");
+
+    var AP_PER_SAL = sesion.eReglaNegocio.Contains("AP-PER-SAL");
+}
+<style>
+    .upload-btn-wrapper
+    {
+        position: relative;
+        overflow: hidden;
+        display: inline-block;
+    }
+
+        .upload-btn-wrapper input[type=file]
+        {
+            font-size: 100px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+        }
+
+    .boton-standar-rw
+    {
+        margin: 5px;
+        background-color: white;
+        color: dimgray;
+        border-radius: 20px;
+        font-weight: bold;
+        letter-spacing: 1px;
+        line-height: 15px;
+        border: 2px solid dimgray;
+        transition: all 0.3s ease 0s;
+        width: 9.7em;
+        padding: 5px;
+    }
+
+        .boton-standar-rw:hover
+        {
+            color: white;
+            background-color: rgb(245, 61, 58);
+        }
+
+    .toast.bs-toast .toast-header .btn-close
+    {
+        position: absolute;
+        top: 8px !important;
+        border-radius: 0.375rem;
+        padding: 0.65rem;
+        background-size: 0.7em;
+        transition: all 0.23s ease 0.1s;
+        background-color: #fff;
+        box-shadow: 0 0.125rem 0.25rem rgba(161, 172, 184, 0.4);
+        right: 20px !important;
+    }
+
+    .required::after
+    {
+        content: " *";
+        font-weight: bold;
+        color: red;
+    }
+</style>
+@using (Html.BeginForm("Reenter", "Empleado", FormMethod.Post, new { enctype = "multipart/form-data", id = "frmEdit", onsubmit = "return loading();" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.idmEmpleado)
+    @Html.HiddenFor(model => model.nombreCompleto)
+    @Html.HiddenFor(model => model.iddDomicilio)
+    @Html.HiddenFor(model => model.salarioMensual)
+    @Html.HiddenFor(model => model.salarioDiario)
+    @Html.HiddenFor(model => model.salarioIntegrado)
+    @Html.HiddenFor(model => model.salarioDiarioCotizacion)
+    @Html.HiddenFor(model => model.salarioDiarioExcedente)
+    @Html.HiddenFor(model => model.fotoPerfil)
+    @Html.HiddenFor(model => model.estatus)
+    <div class="col-xl-12">
+        <div class="nav-align-top mb-4">
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item">
+                    <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-1" aria-controls="navs-top-1" aria-selected="true">Personal</button>
+                </li>
+                <li class="nav-item">
+                    <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-2" aria-controls="navs-top-2" aria-selected="false">Domicilio</button>
+                </li>
+                <li class="nav-item">
+                    <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-3" aria-controls="navs-top-3" aria-selected="false">Estudios</button>
+                </li>
+                <li class="nav-item">
+                    <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-4" aria-controls="navs-top-4" aria-selected="false">Contacto</button>
+                </li>
+                <li class="nav-item">
+                    <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-5" aria-controls="navs-top-5" aria-selected="false">Nómina</button>
+                </li>
+                @if (AP_PER_SAL)
+                {
+                    <li class="nav-item">
+                        <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-9" aria-controls="navs-top-9" aria-selected="false">Sueldos</button>
+                    </li>
+                }
+                <li class="nav-item">
+                    <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-6" aria-controls="navs-top-6" aria-selected="false">Contratos</button>
+                </li>
+                @if (AP_PER_BEN)
+                {
+                    <li class="nav-item">
+                        <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-7" aria-controls="navs-top-7" aria-selected="false">Beneficios</button>
+                    </li>
+                }
+                <li class="nav-item">
+                    <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-8" aria-controls="navs-top-8" aria-selected="false">Documentación</button>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane fade show active" id="navs-top-1" role="tabpanel">
+                    <div class="form-group row">
+                        <div class="col-lg-3">
+                            <div class="upload-btn-wrapper">
+                                <button class="boton-standar-rw">Foto perfil</button>
+                                <input class="upload-file-buton" type="file" id="fileFoto" name="fileFoto" accept="image/gif, image/jpeg, image/png" onchange="loadFile(event)">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-lg-3">
+                            <div class="d-flex align-items-start align-items-sm-center gap-4">
+                                <img src="~/assets/img/avatar/avatar-1.jpg" class="d-block rounded" height="150" id="fotoPerfil" />
+                            </div>
+                            <script>
+                                var loadFile = function (event) {
+                                    var img = document.getElementById('fotoPerfil');
+                                    img.src = URL.createObjectURL(event.target.files[0]);
+                                    img.onload = function () {
+                                        URL.revokeObjectURL(img.src)
+                                    }
+                                };
+                            </script>
+                        </div>
+                        <div class="col-lg-9">
+                            <div class="form-group row">
+                                <div class="col-lg-4">
+                                    @Html.LabelFor(model => model.nombre, "Nombre", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
+                                    @Html.TextBoxFor(model => model.nombre, new { @class = "form-control", @required = "*", @maxlength = "100", @onkeyup = "this.value = textUppercase(this.value);" })
+                                    @Html.ValidationMessageFor(model => model.nombre, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-lg-4">
+                                    @Html.LabelFor(model => model.paterno, "Apellido paterno", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
+                                    @Html.TextBoxFor(model => model.paterno, new { @class = "form-control", @required = "*", @maxlength = "70", @onkeyup = "this.value = textUppercase(this.value);" })
+                                    @Html.ValidationMessageFor(model => model.paterno, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-lg-4">
+                                    @Html.LabelFor(model => model.materno, "Apellido materno", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
+                                    @Html.TextBoxFor(model => model.materno, new { @class = "form-control", @maxlength = "70", @onkeyup = "this.value = textUppercase(this.value);" })
+                                    @Html.ValidationMessageFor(model => model.materno, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <br />
+                            <div class="form-group row">
+                                <div class="col-lg-4">
+                                    @Html.LabelFor(model => model.curp, "CURP", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
+                                    @Html.TextBoxFor(model => model.curp, new { @class = "form-control", @required = "*", @maxlength = "18", @onfocusout = "onFocusOutCURP()", @onkeyup = "this.value = textUppercaseNumbersComma(this.value);" })
+                                    @Html.ValidationMessageFor(model => model.curp, "", new { @class = "text-danger" })
+                                    <div id="errorCURP" style="color:red"></div>
+                                </div>
+                                <div class="col-lg-4">
+                                    @Html.LabelFor(model => model.rfc, "RFC", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
+                                    @Html.TextBoxFor(model => model.rfc, new { @class = "form-control", @required = "*", @maxlength = "13", @onfocusout = "onFocusOutRFC()", @onkeyup = "this.value = textUppercaseNumbersComma(this.value);" })
+                                    @Html.ValidationMessageFor(model => model.rfc, "", new { @class = "text-danger" })
+                                    <div id="errorRFC" style="color:red"></div>
+                                </div>
+                                <div class="col-lg-4">
+                                    @Html.LabelFor(model => model.sexo, "Sexo", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
+                                    @Html.DropDownList("sexo", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown", @required = "*" })
+                                    @Html.ValidationMessageFor(model => model.sexo, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-group row">
+                        <div class="col-lg-3">
+                            @Html.LabelFor(model => model.fechaNacimiento, "Fecha de nacimiento", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
+                            @Html.TextBoxFor(model => model.fechaNacimiento, new { @class = "form-control", @required = "*", @type = "date", @Value = (Model.fechaNacimiento != null ? ((DateTime)Model.fechaNacimiento).ToString("yyyy-MM-dd") : "") })
+                            @Html.ValidationMessageFor(model => model.fechaNacimiento, "", new { @class = "text-danger" })
+                            <div id="edad" style="font-weight: bold;"></div>
+                        </div>
+                        <div class="col-lg-3">
+                            @Html.LabelFor(model => model.lugarNacimiento, "Lugar de nacimiento", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
+                            @Html.DropDownList("lugarNacimiento", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown", @required = "*" })
+                            @Html.ValidationMessageFor(model => model.lugarNacimiento, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-lg-3">
+                            @Html.LabelFor(model => model.nacionalidad, "Nacionalidad", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
+                            @Html.DropDownList("nacionalidad", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown", @required = "*" })
+                            @Html.ValidationMessageFor(model => model.nacionalidad, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-lg-3">
+                            @Html.LabelFor(model => model.tipoSangre, "Tipo de sangre", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
+                            @Html.DropDownList("tipoSangre", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown" })
+                            @Html.ValidationMessageFor(model => model.tipoSangre, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-group row">
+                        <div class="col-lg-3">
+                            @Html.LabelFor(model => model.correoPersonal, "Correo personal", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
+                            @Html.TextBoxFor(model => model.correoPersonal, new { @class = "form-control", @required = "*", @maxlength = "100" })
+                            @Html.ValidationMessageFor(model => model.correoPersonal, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-lg-3">
+                            @Html.LabelFor(model => model.estadoCivil, "Estado civil", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
+                            @Html.DropDownList("estadoCivil", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown", @required = "*" })
+                            @Html.ValidationMessageFor(model => model.estadoCivil, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-lg-1">
+                            @Html.LabelFor(model => model.hijos, "Hijos", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
+                            @Html.TextBoxFor(model => model.hijos, new { @class = "form-control", @required = "*", @type = "number", @Value = Model.hijos, @min = 0, @max = 99, @onkeyup = "validNumberRange(this, 0, 99);" })
+                            @Html.ValidationMessageFor(model => model.hijos, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-lg-5">
+                            <div id="divE" style="display: none">
+                                @Html.LabelFor(model => model.hijosEdadXML, "Fechas nacimiento hijos", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
+                                @Html.HiddenFor(model => model.hijosEdadXML, new { htmlAttributes = new { @class = "form-control" } })
+                                <div class="input-group">
+                                    <input class="form-control" type="date" id="fechaNacimientoHijos" />
+                                    <select class="form-select color-dropdown" id="sexoHijos">
+                                        <option value="MUJER">MUJER</option>
+                                        <option value="HOMBRE">HOMBRE</option>
+                                    </select>
+                                    <button type="button" class="btn btn-icon btn-success" onclick="addModalHEX();"><span class="tf-icons bx bx-send"></span></button>
+                                </div>
+                                <div class="input-group">
+                                    <select class="form-select" id="shijosEdadXML">
+                                        @if (Model.hijosEdadXML != null & Model.hijosEdadXML != "")
+                                        {
+                                            var x = 0;
+                                            foreach (var f in Model.hijosEdadXML.Split('|'))
+                                            {
+                                                var arg = f.Replace(" ", "").Split('-');
+                                                <option value="@arg[0] - @arg[1]" @(x == 0 ? "selected" : "")>@arg[0] - @arg[1]</option>
+                                                x++;
+                                            }
+                                        }
+                                    </select>
+                                    <button type="button" class="btn btn-icon btn-warning" onclick="clearModalHEX();"><span class="tf-icons bx bx-minus"></span></button>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.hijosEdadXML, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-group row">
+                        <div class="col-lg-3">
+                            @Html.LabelFor(model => model.telefono, "Teléfono personal", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
+                            @Html.TextBoxFor(model => model.telefono, new { @class = "form-control", @required = "*", @maxlength = "10", @onfocusout = "onFocusOutTelefono('telefono')", @onkeypress = "return validNumbers(event);" })
+                            @Html.ValidationMessageFor(model => model.telefono, "", new { @class = "text-danger" })
+                            <div id="errortelefono" style="color:red"></div>
+                        </div>
+                        <div class="col-lg-3">
+                            @Html.LabelFor(model => model.telefonoContacto, "Teléfono contacto emerg.", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
+                            @Html.TextBoxFor(model => model.telefonoContacto, new { @class = "form-control", @required = "*", @maxlength = "10", @onfocusout = "onFocusOutTelefono('telefonoContacto')", @onkeypress = "return validNumbers(event);" })
+                            @Html.ValidationMessageFor(model => model.telefonoContacto, "", new { @class = "text-danger" })
+                            <div id="errortelefonoContacto" style="color:red"></div>
+                        </div>
+                        <div class="col-lg-3">
+                            @Html.LabelFor(model => model.nombreContacto, "Nombre contacto emerg.", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
+                            @Html.TextBoxFor(model => model.nombreContacto, new { @class = "form-control", @required = "*", @maxlength = "100", @onkeyup = "this.value = textUppercase(this.value);" })
+                            @Html.ValidationMessageFor(model => model.nombreContacto, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-lg-3">
+                            @Html.LabelFor(model => model.parentescoContacto, "Parentesco contacto emerg.", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
+                            @Html.TextBoxFor(model => model.parentescoContacto, new { @class = "form-control", @required = "*", @maxlength = "100", @onkeyup = "this.value = textUppercase(this.value);" })
+                            @Html.ValidationMessageFor(model => model.parentescoContacto, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="navs-top-2" role="tabpanel">
+                    <div class="form-group row">
+                        <div class="col-lg-3">
+                            @Html.Label("calle", "Calle", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
+                            @Html.TextBox("calle", null, new { @class = "form-control", @required = "*", @Value = Model.dh_d_trabajadorDomicilio.calle, @maxlength = "150", @id = "calle", @name = "calle", @onkeyup = "this.value = textUppercaseNumbersComma(this.value);" })
+                            @Html.ValidationMessage("calle", "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-lg-3">
+                            @Html.Label("noExterior", "Número exterior", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
+                            @Html.TextBox("noExterior", null, new { @class = "form-control", @required = "*", @Value = Model.dh_d_trabajadorDomicilio.noExterior, @maxlength = "15", @id = "noExterior", @name = "noExterior", @onkeyup = "this.value = textUppercaseNumbersComma(this.value);" })
+                            @Html.ValidationMessage("noExterior", "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-lg-3">
+                            @Html.Label("noInterior", "Número interior", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
+                            @Html.TextBox("noInterior", null, new { @class = "form-control", @Value = Model.dh_d_trabajadorDomicilio.noInterior, @maxlength = "15", @id = "noInterior", @name = "noInteror", @onkeyup = "this.value = textUppercaseNumbersComma(this.value);" })
+                            @Html.ValidationMessage("noInterior", "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-lg-3">
+                            @Html.Label("colonia", "Colonia", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
+                            @Html.TextBox("colonia", null, new { @class = "form-control", @required = "*", @Value = Model.dh_d_trabajadorDomicilio.colonia, @maxlength = "150", @id = "colonia", @name = "colonia", @onkeyup = "this.value = textUppercaseNumbersComma(this.value);" })
+                            @Html.ValidationMessage("colonia", "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-group row">
+                        <div class="col-lg-3">
+                            @Html.Label("idcEntidadFederativa", "Entidad federativa", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
+                            @Html.DropDownList("idcEntidadFederativa", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown", @required = "*", @onchange = "OnChangeEntidadFederativa(this)" })
+                            @Html.TextBox("entidadFederativa", null, new { @type = "hidden" })
+                            @Html.ValidationMessage("idcEntidadFederativa", "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-lg-3">
+                            @Html.Label("idcMunicipio", "Municipio", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
+                            @Html.DropDownList("idcMunicipio", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown", @required = "*", @onchange = "OnChangeMunicipio(this)" })
+                            @Html.TextBox("municipio", null, new { @type = "hidden" })
+                            @Html.ValidationMessage("idcMunicipio", "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-lg-3">
+                            @Html.Label("codigoPostal", "Código postal", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
+                            @Html.TextBox("codigoPostal", null, new { @class = "form-control", @required = "*", @Value = Model.dh_d_trabajadorDomicilio.codigoPostal, @maxlength = "6", @id = "codigoPostal", @name = "codigoPostal", @onkeypress = "return validNumbers(event);" })
+                            @Html.ValidationMessage("codigoPostal", "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-lg-3">
+                            @Html.Label("referencia", "Referencia", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
+                            @Html.TextBox("referencia", null, new { @class = "form-control", @Value = Model.dh_d_trabajadorDomicilio.referencia, @maxlength = "250", @id = "referencia", @name = "referencia", @onkeyup = "this.value = textUppercaseNumbersComma(this.value);" })
+                            @Html.ValidationMessage("referencia", "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="navs-top-3" role="tabpanel">
+                    <div class="form-group row">
+                        <div class="col-lg-3">
+                            @Html.LabelFor(model => model.escolaridad, "Escolaridad", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
+                            @Html.DropDownList("escolaridad", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown", @required = "*" })
+                            @Html.ValidationMessageFor(model => model.escolaridad, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-lg-6">
+                            @Html.LabelFor(model => model.profesion, "Profesión", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
+                            @Html.DropDownList("profesion", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown" })
+                            @Html.ValidationMessageFor(model => model.profesion, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-lg-3">
+                            @Html.LabelFor(model => model.documentoProbatorio, "Documento probatorio", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
+                            @Html.DropDownList("documentoProbatorio", null, "NO ESPECIFICADO", htmlAttributes: new { @class = "form-select color-dropdown" })
+                            @Html.ValidationMessageFor(model => model.documentoProbatorio, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-group row">
+                        <div class="col-lg-6">
+                            @Html.LabelFor(model => model.institucion, "Nombre de la institución", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
+                            @Html.TextBoxFor(model => model.institucion, new { @class = "form-control", @onkeyup = "this.value = textUppercase(this.value);" })
+                            @Html.ValidationMessageFor(model => model.institucion, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-lg-3">
+                            @Html.LabelFor(model => model.tipoInstitucion, "Tipo de institución", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
+                            @Html.DropDownList("tipoInstitucion", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown" })
+                            @Html.ValidationMessageFor(model => model.tipoInstitucion, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-lg-3">
+                            @Html.LabelFor(model => model.estatusInstitucion, "Estatus de estudios", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
+                            @Html.DropDownList("estatusInstitucion", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown" })
+                            @Html.ValidationMessageFor(model => model.estatusInstitucion, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="navs-top-4" role="tabpanel">
+                    <div class="form-group row">
+                        <div class="col-lg-4">
+                            @Html.LabelFor(model => model.telefonoCelularEmpresa, "Celular de la empresa", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
+                            @Html.TextBoxFor(model => model.telefonoCelularEmpresa, new { @class = "form-control", @maxlength = "10", @onfocusout = "onFocusOutTelefono('telefonoCelularEmpresa')", @onkeypress = "return validNumbers(event);" })
+                            @Html.ValidationMessageFor(model => model.telefonoCelularEmpresa, "", new { @class = "text-danger" })
+                            <div id="errortelefonoCelularEmpresa" style="color:red"></div>
+                        </div>
+                        <div class="col-lg-4">
+                            @Html.LabelFor(model => model.telefonoFijoEmpresa, "Teléfono fijo", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
+                            @Html.TextBoxFor(model => model.telefonoFijoEmpresa, new { @class = "form-control", @maxlength = "10", @onfocusout = "onFocusOutTelefono('telefonoFijoEmpresa')", @onkeypress = "return validNumbers(event);" })
+                            @Html.ValidationMessageFor(model => model.telefonoFijoEmpresa, "", new { @class = "text-danger" })
+                            <div id="errortelefonoFijoEmpresa" style="color:red"></div>
+                        </div>
+                        <div class="col-lg-4">
+                            @Html.LabelFor(model => model.telefonoExtension, "Extensión", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
+                            @Html.TextBoxFor(model => model.telefonoExtension, new { @class = "form-control", @maxlength = "10", @onkeypress = "return validNumbers(event);" })
+                            @Html.ValidationMessageFor(model => model.telefonoExtension, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-group row">
+                        <div class="col-lg-4">
+                            @Html.LabelFor(model => model.correoCoorporativo, "Correo corporativo", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
+                            @Html.TextBoxFor(model => model.correoCoorporativo, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.correoCoorporativo, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="navs-top-5" role="tabpanel">
+                    <div class="form-group row">
+                        <div class="col-lg-4">
+                            @Html.Label("idmPlantilla", "Posición", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
+                            @Html.DropDownList("idmPlantilla", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown", @required = "*", @id = "idmPlantilla", @onchange = "OnChangePuesto(this.value)" })
+                            @Html.ValidationMessage("idmPlantilla", "", new { @class = "text-danger" })
+                        </div>
+                        @*<div class="col-md-4">
+                                @Html.Label("jefeInmediato", "Jefe inmediato", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
+                                @Html.DropDownList("jefeInmediato", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown", @required = "*" })
+                                @Html.ValidationMessage("jefeInmediato", "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-4">
+                                @Html.Label("patronal", "Patronal", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
+                                @Html.DropDownList("patronal", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown", @required = "*" })
+                                @Html.ValidationMessage("patronal", "", new { @class = "text-danger" })
+                            </div>*@
+                    </div>
+                    <br />
+                    <div class="form-group row">
+                        <div class="col-lg-3">
+                            @Html.LabelFor(model => model.nss, "Número de seguridad social", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
+                            @Html.TextBoxFor(model => model.nss, new { @class = "form-control", @required = "*", @maxlength = "11", @onfocusout = "onFocusOutNSS()", @onkeypress = "return validNumbers(event);" })
+                            @Html.ValidationMessageFor(model => model.nss, "", new { @class = "text-danger" })
+                            <div id="errorNSS" style="color:red"></div>
+                        </div>
+                        <div class="col-lg-3">
+                            @Html.LabelFor(model => model.fechaIngresoImss, "Fecha de ingreso al IMSS", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
+                            @Html.TextBoxFor(model => model.fechaIngresoImss, new { @class = "form-control", @required = "*", @type = "date", @Value = (Model.fechaIngresoImss != null ? ((DateTime)Model.fechaIngresoImss).ToString("yyyy-MM-dd") : "") })
+                            @Html.ValidationMessageFor(model => model.fechaIngresoImss, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-lg-3">
+                            @Html.LabelFor(model => model.tipoNomina, "Tipo de nómina", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
+                            @Html.DropDownList("tipoNomina", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown", @required = "*" })
+                            @Html.ValidationMessageFor(model => model.tipoNomina, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-lg-3">
+                            @Html.LabelFor(model => model.esquemaPago, "Esquema de pago", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
+                            @Html.DropDownList("esquemaPago", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown", @required = "*", @id = "isn", @name = "isn" })
+                            @Html.ValidationMessageFor(model => model.esquemaPago, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-group row">
+                        <div class="col-lg-3">
+                            @Html.LabelFor(model => model.fechaAlta, "Fecha de ingreso", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
+                            @Html.TextBoxFor(model => model.fechaAlta, new { @class = "form-control", @required = "*", @type = "date", @Value = Model.fechaAlta.ToString("yyyy-MM-dd") })
+                            @Html.ValidationMessageFor(model => model.fechaAlta, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-lg-3">
+                            @Html.LabelFor(model => model.codigoBanco, "Código de banco", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
+                            @Html.DropDownList("codigoBanco", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown" })
+                            @Html.ValidationMessageFor(model => model.codigoBanco, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-lg-3">
+                            @Html.LabelFor(model => model.noCuenta, "Número de cuenta", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
+                            @Html.TextBoxFor(model => model.noCuenta, new { @class = "form-control", @minlength = "0", @maxlength = "20", @onkeypress = "return validNumbers(event);" })
+                            @Html.ValidationMessageFor(model => model.noCuenta, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-lg-3">
+                            @Html.LabelFor(model => model.clabeInterbancaria, "Clabe interbancaria", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
+                            @Html.TextBoxFor(model => model.clabeInterbancaria, new { @class = "form-control", @minlength = "0", @maxlength = "20", @onkeypress = "return validNumbers(event);" })
+                            @Html.ValidationMessageFor(model => model.clabeInterbancaria, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-group row">
+                        <div class="col-lg-3">
+                            @Html.LabelFor(model => model.noCreditoInfonavit, "Número credito infonavit", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
+                            @Html.TextBoxFor(model => model.noCreditoInfonavit, new { @class = "form-control", @minlength = "0", @maxlength = "10", @onkeypress = "return validNumbers(event);" })
+                            @Html.ValidationMessageFor(model => model.noCreditoInfonavit, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-lg-3">
+                            @Html.LabelFor(model => model.descuentoInfonavit, "Descuento infonavit", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
+                            @Html.TextBoxFor(model => model.descuentoInfonavit, new { @class = "form-control", @minlength = "0", @maxlength = "8", @onkeypress = "return validNumbers3(event, this);", @onfocusout = "if(this.value=='.'){this.value='';}else if(this.value.substring(0,1)=='.'){this.value='0'+this.value}else if(this.value.substring(this.value.length-1)=='.'){this.value=this.value.substring(0, this.value.length - 1)}" })
+                            @Html.ValidationMessageFor(model => model.descuentoInfonavit, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-lg-3">
+                            @Html.LabelFor(model => model.factorInfonavit, "Factor infonavit", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
+                            @Html.TextBoxFor(model => model.factorInfonavit, new { @class = "form-control", @minlength = "0", @maxlength = "8", @onkeypress = "return validNumbers3(event, this);", @onfocusout = "if(this.value=='.'){this.value='';}else if(this.value.substring(0,1)=='.'){this.value='0'+this.value}else if(this.value.substring(this.value.length-1)=='.'){this.value=this.value.substring(0, this.value.length - 1)}" })
+                            @Html.ValidationMessageFor(model => model.factorInfonavit, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-group row">
+                        <div class="col-lg-3">
+                            @Html.LabelFor(model => model.noCreditoFonacot, "Número credito fonacot", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
+                            @Html.TextBoxFor(model => model.noCreditoFonacot, new { @class = "form-control", @minlength = "0", @maxlength = "10", @onkeypress = "return validNumbers(event);" })
+                            @Html.ValidationMessageFor(model => model.noCreditoFonacot, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-lg-3">
+                            @Html.LabelFor(model => model.descuentoFonacot, "Descuento fonacot", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
+                            @Html.TextBoxFor(model => model.descuentoFonacot, new { @class = "form-control", @minlength = "0", @maxlength = "8", @onkeypress = "return validNumbers3(event, this);", @onfocusout = "if(this.value=='.'){this.value='';}else if(this.value.substring(0,1)=='.'){this.value='0'+this.value}else if(this.value.substring(this.value.length-1)=='.'){this.value=this.value.substring(0, this.value.length - 1)}" })
+                            @Html.ValidationMessageFor(model => model.descuentoFonacot, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <br />
+                    <hr />
+                    <div class="form-group row">
+                        <div class="col-lg-3">
+                            @Html.LabelFor(model => model.idcHorario, "Horario laboral", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
+                            @Html.DropDownList("idcHorario", null, "SELECCIONE...", htmlAttributes: new
+                            {
+                                @class = "form-select"@*, @required = "required"*@,
+@id = "horarioLaboral"
+})
+                            @Html.ValidationMessageFor(model => model.idcHorario, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="navs-top-9" role="tabpanel">
+                    <div class="form-group row">
+                        <div class="col-lg-3">
+                            @Html.Label("salarioMensual2", "Salario mensual", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
+                            <a href="javascript:verAccesoRestringidoSalario2();"><i class="bx bx-lock"></i></a>
+                            @Html.TextBox("salarioMensual2", null, new { @class = "form-control", @id = "salarioMensual2", onblur = "calcula();", @placeholder = "0.00", @readonly = "readonly", @minlength = "0", @maxlength = "10", @onkeypress = "return validNumbers3(event, this);", @onfocusout = "if(this.value=='.'){this.value='';}else if(this.value.substring(0,1)=='.'){this.value='0'+this.value}else if(this.value.substring(this.value.length-1)=='.'){this.value=this.value.substring(0, this.value.length - 1)}" })
+                            @Html.ValidationMessage("salarioMensual2", "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-lg-3">
+                            @Html.Label("salarioDiario2", "Salario diario neto", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
+                            @Html.TextBox("salarioDiario2", null, new { @class = "form-control", @id = "salarioDiario2", @readonly = "readonly", @placeholder = "0.00" })
+                            @Html.ValidationMessage("salarioDiario2", "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-lg-3">
+                            @Html.Label("salarioIntegrado2", "Salario diario integrado", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
+                            @Html.TextBox("salarioIntegrado2", null, new { @class = "form-control", @id = "salarioIntegrado2", @readonly = "readonly", @placeholder = "0.00" })
+                            @Html.ValidationMessage("salarioIntegrado2", "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-group row">
+                        <div class="col-lg-3">
+                            @Html.Label("salarioDiarioCotizacion2", "Salario diario cotización", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
+                            @Html.TextBox("salarioDiarioCotizacion2", null, new { @class = "form-control", @id = "salarioDiarioCotizacion2", @placeholder = "0.00", @readonly = "readonly", @minlength = "0", @maxlength = "10", @onkeypress = "return validNumbers3(event, this);", @onfocusout = "if(this.value=='.'){this.value='';}else if(this.value.substring(0,1)=='.'){this.value='0'+this.value}else if(this.value.substring(this.value.length-1)=='.'){this.value=this.value.substring(0, this.value.length - 1)}" })
+                            @Html.ValidationMessage("salarioDiarioCotizacion2", "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-lg-3">
+                            @Html.Label("salarioDiarioExcedente2", "Salario diario excedente", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
+                            @Html.TextBox("salarioDiarioExcedente2", null, new { @class = "form-control", @id = "salarioDiarioExcedente2", @placeholder = "0.00", @readonly = "readonly", @minlength = "0", @maxlength = "10", @onkeypress = "return validNumbers3(event, this);", @onfocusout = "if(this.value=='.'){this.value='';}else if(this.value.substring(0,1)=='.'){this.value='0'+this.value}else if(this.value.substring(this.value.length-1)=='.'){this.value=this.value.substring(0, this.value.length - 1)}" })
+                            @Html.ValidationMessage("salarioDiarioExcedente2", "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <br />
+                </div>
+                <div class="tab-pane fade" id="navs-top-6" role="tabpanel">
+                    <div class="accordion mt-3" id="accordionContrato">
+                        <div class="card accordion-item active">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button type="button" class="accordion-button collapsed" id="buttonContrato1" data-bs-toggle="collapse" data-bs-target="#accordionContrato1" aria-expanded="true" aria-controls="accordionContrato1"><b>Agregar contrato</b></button>
+                            </h2>
+                            <div id="accordionContrato1" class="accordion-collapse collapse" data-bs-parent="#accordionContrato">
+                                <div class="accordion-body">
+                                    <div class="form-group row p-2">
+                                        <div class="col-lg-3">
+                                            @Html.Label("idcContrato", "Tipo de contrato", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
+                                            @Html.DropDownList("idcContrato", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown", @id = "idcContrato", @name = "idcContrato" })
+                                            @Html.ValidationMessage("idcContrato", "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="col-lg-3">
+                                            @Html.Label("fechaInicial", "Fecha inicial", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
+                                            @Html.TextBox("fechaInicial", null, new { @type = "date", @class = "form-control", @Value = DateTime.Now.ToString("yyyy-MM-dd") })
+                                            @Html.ValidationMessage("fechaInicial", "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="col-lg-4" id="divC" style="display: none">
+                                            <div class="form-group row">
+                                                <div class="col-lg-3">
+                                                    <label><b>Días</b></label>
+                                                    <input type="text" class="form-control" name="diasContrato" id="diasContrato" onkeypress="return validNumbers(event);">
+                                                </div>
+                                                <div class="col-lg-9">
+                                                    @Html.Label("fechaFinal", "Fecha de vencimiento", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
+                                                    @Html.TextBox("fechaFinal", null, new { @type = "date", @class = "form-control" })
+                                                    @Html.ValidationMessage("fechaFinal", "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row p-2">
+                                        <div class="col-lg-3">
+                                            <label style="font-weight: bold">Adjuntar contrato</label>
+                                            <input class="form-control" type="file" id="fileContrato" name="fileContrato" accept="application/pdf" />
+                                        </div>
+                                        <div class="col-lg-4">
+                                            @Html.Label("descripcion", "Observaciones", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
+                                            @Html.TextBox("descripcion", null, new { @class = "form-control", @onkeyup = "this.value = textUppercase(this.value);" })
+                                            @Html.ValidationMessage("descripcion", "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="col-lg-3" id="divD" style="display: none">
+                                            @Html.Label("proyecto", "Proyecto", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
+                                            @Html.TextBox("proyecto", null, new { @class = "form-control", @id = "proyecto", @name = "proyecto", @onkeyup = "this.value = textUppercase(this.value);" })
+                                            @Html.ValidationMessage("proyecto", "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group row p-2">
+                                        <div class="col-lg-8">
+                                            <p id="error_agregar_contrato" style="color:red"></p>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div style="position: relative; float: right;">
+                                                <input type="button" value="Agregar contrato" class="btn btn-success" style="margin-top:22px" onclick="OnClickUploadContract()" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><br />
+                    @if (Model.dh_e_trabajadorContrato.Count > 0)
+                    {
+                        <div style="overflow: scroll;">
+                            <table id="tableContratos" class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>No.</th>
+                                        <th>Contrato</th>
+                                        <th>Fecha inicial</th>
+                                        <th>Fecha final</th>
+                                        <th>Ver</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var c in Model.dh_e_trabajadorContrato)
+                                    {
+                                        <tr>
+                                            <th>@c.noContrato</th>
+                                            <th>@c.dh_c_contrato.contrato</th>
+                                            <th>@c.fechaInicial.ToString("dd/MM/yyyy")</th>
+                                            <th>@(c.fechaFinal != null ? ((DateTime)c.fechaFinal).ToString("dd/MM/yyyy") : "")</th>
+                                            <th>
+                                                @if (c.ruta != null && c.ruta != "")
+                                                {<a href="../@c.ruta" target="_blank"><i class="bx bxs-file-pdf me-1"></i></a>}
+                                        </th>
+                                    </tr>
+                                }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                    else
+                    {
+                        <p>No tiene contratos</p>
+                    }
+                </div>
+                @if (AP_PER_BEN)
+                {
+                    <div class="tab-pane fade" id="navs-top-7" role="tabpanel">
+                        @{
+                            var total = ViewBag.beneficio.Count;
+                            var totalx = total % 3 > 0 ? total / 3 + 1 : total / 3;
+                            var i = 0;
+                            for (int a = 0; a < totalx; a++)
+                            {
+                                <div class="form-group row">
+                                    @for (int b = 0; b < 3; b++)
+                                    {
+                                        if (i < total)
+                                        {
+                                            <div class="col-md-4">
+                                                <input type="checkbox" class="form-check-input" id="check-@ViewBag.beneficio[i].idcBeneficio" name="check-@ViewBag.beneficio[i].idcBeneficio" onclick="OnClickTextVisible(this, '@ViewBag.beneficio[i].idcBeneficio');" />
+                                                <label style="font-size:12px; font-weight:bold" for="check-@ViewBag.beneficio[i].idcBeneficio"> @ViewBag.beneficio[i].beneficio</label>
+                                                @if (ViewBag.beneficio[i].tipo == "IMPORTE" || ViewBag.beneficio[i].tipo == "PORCENTAJE")
+                                                {
+                                                    <div id="div-@ViewBag.beneficio[i].idcBeneficio" style="display: none">
+                                                        <div class="input-group" style="width:120px;">
+                                                            @if (ViewBag.beneficio[i].tipo == "IMPORTE")
+                                                            {
+                                                                <span class="input-group-text">$</span>
+                                                            }
+                                                            <input type="text" class="form-control" id="input-@ViewBag.beneficio[i].idcBeneficio" name="input-@ViewBag.beneficio[i].idcBeneficio" maxlength="6" onkeypress="return validNumbers2(event);">
+                                                            @if (ViewBag.beneficio[i].tipo == "PORCENTAJE")
+                                                            {
+                                                                <span class="input-group-text">%</span>
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                }
+                                                else if (ViewBag.beneficio[i].tipo == "LISTA")
+                                                {
+                                                    var opciones = ViewBag.beneficio[i].opciones.Split(',');
+
+                                                    <div id="div-@ViewBag.beneficio[i].idcBeneficio" style="display: none">
+                                                        <select class="form-select " id="input-@ViewBag.beneficio[i].idcBeneficio" name="input-@ViewBag.beneficio[i].idcBeneficio" style="width:120px;">
+                                                            <option value=""></option>
+                                                            @foreach (var opcion in opciones)
+                                                            {
+                                                                <option value="@opcion">@opcion</option>
+                                                            }
+                                                        </select>
+                                                    </div>
+                                                }
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="col-md-6"></div>
+                                        }
+                                        i++;
+                                    }
+                                </div>
+                                <br />
+                            }
+                        }
+                    </div>
+                }
+                <div class="tab-pane fade" id="navs-top-8" role="tabpanel" style="height: 450px; overflow: auto;">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Tipo de documento</th>
+                                <th>Seleccionar nuevo archivo</th>
+                                <th>Archivo anterior</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var d in (List<MasterRest.Models.dh_c_documento>)ViewBag.documentos)
+                            {
+                                <tr>
+                                    <th style="padding: 0">@d.documento</th>
+                                    <th style="padding: 0"><input class="form-control" type="file" id="fileDocumento_@d.idcDocumento" name="fileDocumento_@d.idcDocumento" accept="application/pdf" /></th>
+                                    <th style="padding: 0">
+                                        <center>
+                                            @if (Model.dh_e_trabajadorDocumentacion.Count > 0)
+                                            {
+                                                var dh_e_trabajadorDocumentacion = Model.dh_e_trabajadorDocumentacion.FirstOrDefault(_ => _.idcDocumento == d.idcDocumento);
+                                                if (dh_e_trabajadorDocumentacion != null)
+                                                {
+                                                    <a href="../@dh_e_trabajadorDocumentacion.ruta" target="_blank"><i class="bx bxs-file-pdf me-1"></i></a>
+                                                }
+                                            }
+                                        </center>
+                                    </th>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="form-group col-md-12">
+            <div style="position: relative; float: right;">
+                <input type="submit" value="Guardar" class="btn btn-primary" onclick='guardar()' style="margin-top:22px" />
+            </div>
+        </div>
+    </div>
+    <div class="bs-toast toast toast-placement-ex m-2" role="alert" aria-live="assertive" aria-atomic="true" data-delay="500">
+        <div class="toast-header">
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body"></div>
+    </div>
+}
+
+<script src="~/assets/js/a-valid-input.js"></script>
+
+<script type="text/javascript">
+
+    $(function () {
+        document.getElementById("fotoPerfil").src = "../@(Model.fotoPerfil != null && Model.fotoPerfil != "" ? Model.fotoPerfil : "assets/img/avatar/avatar-1.jpg")?" + new Date().getTime();
+        $("#sexo").select2({ dropdownParent: $('#myModal3') });
+        $("#nacionalidad").select2({ dropdownParent: $('#myModal3') });
+        $("#tipoSangre").select2({ dropdownParent: $('#myModal3') });
+        $("#estadoCivil").select2({ dropdownParent: $('#myModal3') });
+        $("#idcEntidadFederativa").select2({ dropdownParent: $('#myModal3') });
+        $("#idcMunicipio").select2({ dropdownParent: $('#myModal3') });
+        $("#escolaridad").select2({ dropdownParent: $('#myModal3') });
+        $("#profesion").select2({ dropdownParent: $('#myModal3') });
+        $("#documentoProbatorio").select2({ dropdownParent: $('#myModal3') });
+        $("#tipoInstitucion").select2({ dropdownParent: $('#myModal3') });
+        $("#estatusInstitucion").select2({ dropdownParent: $('#myModal3') });
+        $("#idmPlantilla").select2({ dropdownParent: $('#myModal3') });
+        $("#jefeInmediato").select2({ dropdownParent: $('#myModal3') });
+        $("#tipoNomina").select2({ dropdownParent: $('#myModal3') });
+        $("#isn").select2({ dropdownParent: $('#myModal3') });
+        $("#codigoBanco").select2({ dropdownParent: $('#myModal3') });
+        $("#idcContrato").select2({ dropdownParent: $('#myModal3') });
+        $("#patronal").select2({ dropdownParent: $('#myModal3') });
+
+        var fechaNacimiento = "@(Model.fechaNacimiento!= null ? ((DateTime)Model.fechaNacimiento).ToString("yyyy-MM-dd") : "")";
+        const años = moment().diff(fechaNacimiento, 'years');
+        $('#edad').text(años + "" != "NaN" ? años + " años" : "");
+    });
+
+    function calcularAños(value) {
+        var fechaNacimiento = $('#fechaNacimiento').val() != null && $('#fechaNacimiento').val() != "" ? $('#fechaNacimiento').val() : "";
+        const años = moment().diff(fechaNacimiento, 'years');
+        $('#edad').text(años + "" != "NaN" ? años + " años" : "");
+    }
+
+    $("#idcContrato").change(function () {
+        document.getElementById("divD").style.display = $('#idcContrato').val() == 7 ? "block" : "none";
+        document.getElementById("divC").style.display = $('#idcContrato').val() == 4 || $('#idcContrato').val() == "" ? "none" : "block";
+    });
+
+    $('#diasContrato').change(function () {
+        var strDias = $(this).val();
+        var strDate = document.getElementById("fechaInicial").value;
+        var parts = strDate.split('-');
+        var date = new Date(parts[0], parts[1] - 1, parts[2]);
+        date.setDate(date.getDate() + (parseInt(strDias) - 1));
+        document.getElementById("fechaFinal").value = date.toISOString().substring(0, 10);
+    });
+
+    function guardar() {
+        var requiredCompleted = true;
+        $('button.nav-link').each(function () {
+            var btn = $(this);
+            var div = $(btn.attr("data-bs-target"));
+            var requiredEmpty = true;
+            div.find('select, textarea, input').each(function () {
+                if ($(this).prop('required') && $(this).val() == "") {
+                    var controlName = $('label[for="' + $(this).attr('name') + '"]').html();
+                    clearNav();
+                    btn.addClass("active");
+                    div.addClass("show active");
+                    toast(controlName + " es obligatorio", "bg-warning");
+                    requiredEmpty = false;
+                    requiredCompleted = false;
+                    return false;
+                }
+            });
+            return requiredEmpty;
+        });
+        if (requiredCompleted) {
+            swal({
+                title: 'LLenado correctamente',
+                html: '<p>Guardando <strong>por favor, espere...</strong>.</p>',
+                type: 'success',
+            });
+            return requiredCompleted;
+        }
+    }
+
+    var verSalario = false;
+    function verAccesoRestringidoSalario2() {
+        if (!verSalario) {
+            var isOkay = false;
+            swal({
+                title: 'Acceso restringido',
+                input: 'password',
+                inputPlaceholder: 'Escriba su clave de seguridad',
+                inputAttributes: { 'maxlength': 150, 'autocapitalize': 'off', 'autocorrect': 'off' },
+                inputValidator: (value) => {
+                    if (!value || (value !== "@ViewBag.clave")) return 'clave de seguridad incorrecta'
+                    else { isOkay = true; return null }
+                  }
+            }).then(function (password) {
+                if (isOkay) {
+                    verSalario = true;
+                    $("#salarioMensual2").val("@Model.salarioMensual");
+                    $("#salarioDiario2").val("@Model.salarioDiario");
+                    $("#salarioIntegrado2").val("@Model.salarioIntegrado");
+                    $("#salarioDiarioCotizacion2").val("@Model.salarioDiarioCotizacion");
+                    $("#salarioDiarioExcedente2").val("@Model.salarioDiarioExcedente");
+                    $("#salarioMensual2").prop("readonly", false);
+                    $("#salarioDiarioCotizacion2").prop("readonly", false);
+                    $("#salarioDiarioExcedente2").prop("readonly", false);
+                }
+            })
+        } else {
+            verSalario = false;
+            $("#salarioMensual2").val("");
+            $("#salarioDiario2").val("");
+            $("#salarioIntegrado2").val("");
+            $("#salarioDiarioCotizacion2").val("");
+            $("#salarioDiarioExcedente2").val("");
+            $("#salarioMensual2").prop("readonly", true);
+            $("#salarioDiarioCotizacion2").prop("readonly", true);
+            $("#salarioDiarioExcedente2").prop("readonly", true);
+        }
+    }
+
+    function clearNav() {
+        $('button.nav-link').each(function () {
+            var btn = $(this);
+            var div = $(btn.attr("data-bs-target"));
+            btn.removeClass("active");
+            div.removeClass("show active");
+        });
+    }
+
+    function onFocusOutTelefono(id) {
+        var telefono = $('#' + id).val();
+        $('#error' + id).text('');
+        if (telefono.length > 0 && telefono.length < 10) {
+            $('#' + id).focus().select();
+            $('#error' + id).text('Debe tener 10 dígitos!');
+        }
+    }
+
+    function onFocusOutCURP() {
+        var curp = $('#curp').val();
+        if (curp.length == 18) {
+            $('#errorCURP').text('');
+            existeCURP($('#curp').val());
+            //if (formatoCURP(curp)) {
+            //    existeCURP($('#curp').val());
+            //} else {
+            //    $('#curp').focus().select();
+            //    $('#errorCURP').text('Formato no valido!');
+            //}
+        }
+
+        if (curp.length > 0 && curp.length < 18) {
+            $('#curp').focus().select();
+            $('#errorCURP').text('Debe tener 18 caracteres!');
+        } else if (curp.length == 0) {
+            $('#errorCURP').text('');
+        }
+    }
+
+    function obtenerDatosCURP() {
+        var curp = $('#curp').val();
+        var rfc = curp.substring(0, 10);
+        var entidadFederativa = curp.substring(11, 13);
+        var sexo = curp.substring(10, 11);
+        var YY = curp.substring(4, 6);
+        var MM = curp.substring(6, 8);
+        var DD = curp.substring(8, 10);
+        var YYYY = (parseInt(YY) < 45 ? '20' : '19') + YY;
+
+        $('#rfc').val(rfc);
+        $("#rfc").focus();
+
+        $('#fechaNacimiento').val(YYYY + '-' + MM + '-' + DD);
+
+        if (sexo == 'M') {
+            $("#sexo").val("MUJER").change();
+        } else {
+            $("#sexo").val("HOMBRE").change();
+        }
+
+        if (entidadFederativa == 'NE') {
+            $("#lugarNacimiento").val("NACIDO EN EL EXTRANJERO");
+        } else {
+            $("#nacionalidad").val("MEXICANA").change();
+            $.ajax({
+                type: 'GET',
+                url: '@Url.Action("entidadFederativa", "Empleado")',
+                dataType: 'json',
+                data: { claveCurp: entidadFederativa },
+                success: function (result) {
+                    $("#lugarNacimiento").val(result);
+                },
+                error: function (request, status, error) {
+                    $("#lugarNacimiento").val("");
+                }
+            });
+        }
+    }
+
+    function existeCURP(curp) {
+        $.ajax({
+            type: 'GET',
+            url: '@Url.Action("validarCURP", "Empleado")',
+            dataType: 'json',
+            data: { curp: curp },
+            success: function (result) {
+                if (result == "1") {
+                    $('#curp').val('');
+                    $('#curp').focus().select();
+                    $('#errorCURP').text('Ya existe!');
+                } else {
+                    obtenerDatosCURP();
+                }
+            },
+            error: function (request, status, error) {
+                document.getElementById("curp").value = "";
+            }
+        });
+    }
+
+    function formatoCURP(curp) {
+
+        var validado = curp.match(/^([A-Z][AEIOUX][A-Z]{2}\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])[HM](?:AS|B[CS]|C[CLMSH]|D[FG]|G[TR]|HG|JC|M[CNS]|N[ETL]|OC|PL|Q[TR]|S[PLR]|T[CSL]|VZ|YN|ZS)[B-DF-HJ-NP-TV-Z]{3}[A-Z\d])(\d)$/);
+
+        if (validado==null)
+            return false;
+
+        function digitoVerificador(curp17) {
+            var diccionario = "0123456789ABCDEFGHIJKLMNÑOPQRSTUVWXYZ",
+                lngSuma = 0.0,
+                lngDigito = 0.0;
+            for (var i = 0; i < 17; i++)
+                lngSuma = lngSuma + diccionario.indexOf(curp17.charAt(i)) * (18 - i);
+            lngDigito = 10 - lngSuma % 10;
+            if (lngDigito == 10) return 0;
+            return lngDigito;
+        }
+
+        if (validado[2] != digitoVerificador(validado[1]))
+            return false;
+
+        return true;
+    }
+
+    function onFocusOutRFC() {
+
+        var rfc = $('#rfc').val();
+
+        if (rfc.length == 13) {
+            $('#errorRFC').text('');
+            existeRFC($('#rfc').val());
+        }
+
+        if (rfc.length > 0 && rfc.length < 13) {
+            $('#rfc').focus().select();
+            $('#errorRFC').text('Debe tener 13 caracteres!');
+        } else if (rfc.length == 0) {
+            $('#errorRFC').text('');
+        }
+    }
+
+    function existeRFC(rfc) {
+        $.ajax({
+            type: 'GET',
+            url: '@Url.Action("validarRFC", "Empleado")',
+            dataType: 'json',
+            data: { rfc: rfc },
+            success: function(result) {
+                if (result == "1") {
+                    $('#rfc').val('');
+                    $('#rfc').focus().select();
+                    $('#errorRFC').text('Ya existe!');
+                }
+            },
+            error: function (request, status, error) {
+                document.getElementById("rfc").value = "";
+            }
+        });
+    }
+
+    function onFocusOutNSS() {
+
+        var nss = $('#nss').val();
+
+        if (nss.length > 0 && nss.length < 11) {
+            $('#nss').focus().select();
+            $('#errorNSS').text('Debe tener 11 caracteres!');
+        } else if (nss.length == 0 || nss.length == 11) {
+            $('#errorNSS').text('');
+        }
+    }
+
+    function hijosEdadXML() {
+        var hijosEdadXML = "";
+        $("#shijosEdadXML option").each(function () {
+            hijosEdadXML += $(this).val() + "|";
+        });
+        hijosEdadXML = hijosEdadXML.substring(0, hijosEdadXML.length - 1);
+        $("#hijosEdadXML").val(hijosEdadXML);
+    }
+
+    $('#shijosEdadXML').change(function () {
+        swal({
+            title: "Borrar?",
+            text: "Desea borrar la fecha de nacimiento " + $(this).val(),
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'Borrar',
+            cancelButtonText: "Salir sin borrar",
+        }).then((result) => {
+            if (result.value) {
+                $("#shijosEdadXML option[value='" + $(this).val() + "']").remove();
+                hijosEdadXML();
+            }
+        });
+    });
+
+    function clearModalHEX() {
+        swal({
+            title: "Borrar?",
+            text: "Desea borrar todas las fechas de nacimiento",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'Borrar',
+            cancelButtonText: "Salir sin borrar",
+        }).then((result) => {
+            if (result.value) {
+                $('#shijosEdadXML').empty();
+                hijosEdadXML();
+            }
+        });
+    }
+
+    function addModalHEX() {
+        if ($("#fechaNacimientoHijos").val() != "") {
+            var fnh = $("#fechaNacimientoHijos").val().split('-');
+            var f = fnh[2] + "/" + fnh[1] + "/" + fnh[0];
+            var sh = $("#sexoHijos").val();
+            if ($("#hijos").val() > $('#shijosEdadXML option').length) {
+                $("#shijosEdadXML").prepend("<option value='" + f + " - " + sh + "' selected='selected'>" + f + " - " + sh + "</option>");
+                hijosEdadXML();
+                swal("Agregada exitosamente", "Agregó la fecha " + f + " - " + sh, "success");
+            } else {
+                swal("Solo puedes agregar " + $("#hijos").val(), "Si quieres agregar más, aumenta el numero de hijos.", "error");
+            }
+        } else {
+            swal("Fecha vacia", "Debe agregar una fecha.", "error");
+        }
+    }
+
+    $("#hijos").change(function () {
+        document.getElementById("divE").style.display = $('#hijos').val() >= 1 ? "block" : "none";
+        if ($('#hijos').val() == 0) {
+            $('#shijosEdadXML').empty();
+            hijosEdadXML();
+        }
+    });
+
+    document.addEventListener('DOMContentLoaded', function (e) {
+        (function () {
+            let accountUserImage = document.getElementById('uploadedAvatar');
+            const fileInput = document.querySelector('.account-file-input');
+            if (accountUserImage) {
+                fileInput.onchange = () => {
+                    if (fileInput.files[0]) {
+                        accountUserImage.src = window.URL.createObjectURL(fileInput.files[0]);
+                    }
+                };
+            }
+        })();
+    });
+
+    function OnClickUploadFile() {
+        $('#buttonDocumento1').addClass("collapsed");
+        $('#accordionDocumento1').removeClass("show");
+        $.ajax({
+            type: 'GET',
+            url: '@Url.Action("UploadFile", "Empleado")',
+            dataType: 'json',
+            data: { ne: ne },
+            success: function(result) {
+
+            }
+        });
+    }
+
+    function OnClickUploadContract() {
+        var idcContrato = $('#idcContrato').val();
+        var fechaInicial = $('#fechaInicial').val();
+        var fechaFinal = $('#fechaFinal').val();
+        if (idcContrato == "" && fechaInicial == "" || (idcContrato != 4 && fechaFinal == '')) {
+            var campo = idcContrato == '' ? '"tipo de contrato"' :
+                        fechaInicial == '' ? '"fecha inicial"' :
+                        fechaFinal == '' ? '"fecha final"' : '';
+            $('#error_agregar_contrato').text('* Falta agregar ' + campo + '!');
+        } else {
+            $('#error_agregar_contrato').text("");
+            var formData = new FormData();
+            formData.append("idmEmpleado", $('#idmEmpleado').val());
+            formData.append("idcContrato", idcContrato);
+            formData.append("fechaInicial", fechaInicial);
+            formData.append("fechaFinal", fechaFinal);
+            formData.append("proyecto", $('#proyecto').val());
+            formData.append("diasContrato", $('#diasContrato').val());
+            formData.append("descripcion", $('#descripcion').val());
+            formData.append("fileContrato", $('#fileContrato')[0].files[0]);
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GuardarContrato", "Empleado")',
+                enctype: 'multipart/form-data',
+                contentType: false,
+                processData: false,
+                data: formData,
+                success: function (result) {
+                    $('#tableContratos tbody').empty();
+                    $.each(result, function (i, r) {
+                        $("#tableContratos tbody").append('<tr><th>' + r.no + '</th><th>' + r.contrato + '</th><th>' + r.fechaInicial_format + '</th><th>' + r.fechaFinal_format + '</th><th>' + ((r.ruta != null && r.ruta != "" && r.ruta != "null") ? '<a href="../' + r.ruta + '" target="_blank"><i class="bx bxs-file-pdf me-1"></i>' : '') + '</a></th></tr>');
+                    });
+                    $('#buttonContrato1').addClass("collapsed");
+                    $('#accordionContrato1').removeClass("show");
+                    $('#fileContrato').val('');
+                    $('#fechaInicial').val('');
+                    $('#fechaFinal').val('');
+                    $('#descripcion').val('');
+                    $('#proyecto').val('');
+                    $('#diasContrato').val('');
+                    $('#idcContrato option:eq(0)').prop('selected', true);
+                    $('#idcContrato').trigger('change');
+                }
+            });
+        }
+    }
+
+    function OnClickTextVisible(cb, input) {
+        document.getElementById('div-' + input).style.display = cb.checked ? "block" : "none";
+        document.getElementById('input-' + input).value = "";
+    }
+
+    function OnChangePuesto(idmPlantilla) {
+
+        document.getElementById('divBeneficios').style.display = idmPlantilla == null || idmPlantilla == "" ? "none" : "block";
+
+        idmPlantilla = idmPlantilla == null || idmPlantilla == "" ? 0 : idmPlantilla;
+        $.ajax({
+            type: 'GET',
+            url: '@Url.Action("beneficiosPorPlantilla", "Empleado")',
+            dataType: 'json',
+            data: { idmPlantilla: idmPlantilla },
+            success: function (r) {
+
+                $("#patronal").val(r.patronal).change();
+
+                $("#jefeInmediato").empty();
+                $("#jefeInmediato").append('<option value="">SELECCIONE...</option>');
+                $.each(r.jefeInmediato, function (i, ji) {
+                    $("#jefeInmediato").append('<option value="' + ji.idmPlantilla + '">' + ji.puesto + '</option>');
+                });
+
+                $.each(r.cbeneficio, function (i, cb) {
+                    document.getElementById('check-' + cb.idcBeneficio).checked = false;
+                    document.getElementById('div-' + cb.idcBeneficio).style.display = "none";
+                    document.getElementById('input-' + cb.idcBeneficio).value = "";
+                });
+
+                $.each(r.ebeneficio, function (i, eb) {
+                    document.getElementById('check-' + eb.idcBeneficio).checked = true;
+                    document.getElementById('div-' + eb.idcBeneficio).style.display = "block";
+                    document.getElementById('input-' + eb.idcBeneficio).value = eb.valor;
+                });
+            },
+            error: function (request, status, error) { }
+        });
+    }
+
+    function OnChangeValidarNE(ne) {
+        $.ajax({
+            type: 'GET',
+            url: '@Url.Action("validarNE", "Empleado")',
+            dataType: 'json',
+            data: { ne: ne },
+            success: function(result) {
+                if (result == "1") {
+                    document.getElementById("numeroEmpleado").value = "";
+                    toast("El NE ya existe!<br/><b>" + ne + "</b>");
+                }
+            },
+            error: function (request, status, error) {
+                document.getElementById("numeroEmpleado").value = "";
+            }
+        });
+    }
+
+    function OnChangeEntidadFederativa(e) {
+        $("#entidadFederativa").val(e.options[e.selectedIndex].innerHTML);
+        $("#idcMunicipio").empty();
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("municipios", "Empleado")',
+            dataType: 'json',
+            data: { id: e.value },
+            success: function (items) {
+                $.each(items, function (i, item) {
+                    $("#idcMunicipio").append('<option value="' + item.Value + '">' + item.Text + '</option>');
+                });
+            }
+        });
+    }
+
+    function OnChangeMunicipio(e) {
+        $("#municipio").val(e.options[e.selectedIndex].innerHTML);
+    }
+
+    function calcula() {
+        var salarioMensual = document.getElementById("salarioMensual").value;
+        if (salarioMensual != null && salarioMensual != "") {
+            if (salarioMensual < 0) {
+                document.getElementById("salarioMensual").value = "";
+            }
+            if (salarioMensual >= 0) {
+                var diasMes = ($("#tipoNomina option").filter(":selected").val() === 'SEMANAL') ? 30.4 : 30;
+                var primaVacacional = 3.0;
+                var aguinaldo = 15;
+                var factor = ((primaVacacional + aguinaldo) / 365) + 1;
+                $("#salarioDiario").val(parseFloat(salarioMensual / diasMes).toFixed(2));
+                $("#salarioIntegrado").val(parseFloat(parseFloat(salarioMensual / diasMes) * factor).toFixed(2));
+            }
+        } else {
+            $("#salarioDiario").val('');
+            $("#salarioIntegrado").val('');
+        }
+    }
+
+    function toast(msg, type) {
+        $('div.toast-body').html(msg);
+        const t = document.querySelector('.toast-placement-ex');
+        t.classList.add(type);
+        DOMTokenList.prototype.add.apply(t.classList, ["top-0", "end-0"]);
+        let toastPlacement = new bootstrap.Toast(t);
+        toastPlacement.show();
+    }
+</script>

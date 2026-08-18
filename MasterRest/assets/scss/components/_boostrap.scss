@@ -1,0 +1,56 @@
+@use "../utils/variables";
+
+.bootstrap-datetimepicker-widget table td.active,
+.bootstrap-datetimepicker-widget table td.active:hover {
+	background-color: variables.$warning;
+	text-shadow: unset;
+}
+.bootstrap-datetimepicker-widget table td.today:before {
+	border-bottom-color: variables.$warning;
+}
+.bootstrap-datetimepicker-widget {
+	z-index: 9999999;
+	table thead tr:first-child th:hover {
+		background: transparent;
+	}
+} 
+.bor-b1{
+    border-bottom: 1px solid variables.$gray-300;
+}
+.dropdown-xl {
+	width: 600px;
+}
+.shadow-primary {
+	box-shadow: variables.$box-shadow-primary;
+}
+
+.link-opacity-10 {
+    opacity: 0.1;
+}
+.link-opacity-25 {
+    opacity: 0.25;
+}
+.link-opacity-50 {
+    opacity: 0.50;
+}
+.link-opacity-75 {
+    opacity: 0.75;
+}
+.link-opacity-10-hover:hover {
+    opacity: 0.1;
+}
+.link-opacity-25-hover:hover {
+    opacity: 0.25;
+}
+.link-opacity-50-hover:hover {
+    opacity: 0.50;
+}
+.link-opacity-75-hover:hover {
+    opacity: 0.75;
+}
+.link-underline-opacity-100 { --link-underline-opacity: 1; }
+.link-underline-opacity-75  { --link-underline-opacity: 0.75; }
+.link-underline-opacity-50  { --link-underline-opacity: 0.5; }
+.link-underline-opacity-25  { --link-underline-opacity: 0.25; }
+.link-underline-opacity-10  { --link-underline-opacity: 0.10; }
+.link-underline-opacity-0  { --link-underline-opacity: 0; }

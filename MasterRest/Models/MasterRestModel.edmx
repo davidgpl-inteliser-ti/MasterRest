@@ -1,0 +1,2831 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MasterRestModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="cArea">
+          <Key>
+            <PropertyRef Name="idcArea" />
+          </Key>
+          <Property Name="idcArea" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="area" Type="varchar" MaxLength="75" Nullable="false" />
+          <Property Name="estatus" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cBeneficio">
+          <Key>
+            <PropertyRef Name="idcBeneficio" />
+          </Key>
+          <Property Name="idcBeneficio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="beneficio" Type="varchar" MaxLength="75" Nullable="false" />
+          <Property Name="tipo" Type="varchar" MaxLength="50" />
+          <Property Name="opciones" Type="varchar" MaxLength="1500" />
+          <Property Name="estatus" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cCategoria">
+          <Key>
+            <PropertyRef Name="idcCategoria" />
+          </Key>
+          <Property Name="idcCategoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idcSucursal" Type="int" Nullable="false" />
+          <Property Name="nombreCateria" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cCliente">
+          <Key>
+            <PropertyRef Name="idcCliente" />
+          </Key>
+          <Property Name="idcCliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idcEmpresa" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="telefono" Type="varchar" MaxLength="15" />
+          <Property Name="email" Type="varchar" MaxLength="100" />
+          <Property Name="puntosFidelidad" Type="int" />
+        </EntityType>
+        <EntityType Name="cDocumento">
+          <Key>
+            <PropertyRef Name="idcDocumento" />
+          </Key>
+          <Property Name="idcDocumento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="claveDocumento" Type="varchar" MaxLength="25" />
+          <Property Name="documento" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="obligatorio" Type="bit" />
+          <Property Name="responsable" Type="varchar" MaxLength="200" />
+          <Property Name="estatus" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cDocumentoProbatorio">
+          <Key>
+            <PropertyRef Name="idcDocumentoProbatorio" />
+          </Key>
+          <Property Name="idcDocumentoProbatorio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="documentoProbatorio" Type="varchar" MaxLength="75" />
+          <Property Name="estatus" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="cEmpresa">
+          <Key>
+            <PropertyRef Name="idcEmpresa" />
+          </Key>
+          <Property Name="idcEmpresa" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombreComercial" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="razonSocial" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="rfc" Type="varchar" MaxLength="13" />
+          <Property Name="estatus" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cEntidadFederativa">
+          <Key>
+            <PropertyRef Name="idcEntidadFederativa" />
+          </Key>
+          <Property Name="idcEntidadFederativa" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="clave" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="entidadFederativa" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="claveCurp" Type="varchar" MaxLength="2" />
+        </EntityType>
+        <EntityType Name="cEscolaridad">
+          <Key>
+            <PropertyRef Name="idcEscolaridad" />
+          </Key>
+          <Property Name="idcEscolaridad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="escolaridad" Type="varchar" MaxLength="75" />
+          <Property Name="estatus" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cEstadoCivil">
+          <Key>
+            <PropertyRef Name="idcEstadoCivil" />
+          </Key>
+          <Property Name="idcEstadoCivil" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="estadoCivil" Type="varchar" MaxLength="75" Nullable="false" />
+          <Property Name="estatus" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cIncapacidad">
+          <Key>
+            <PropertyRef Name="idcIncapacidad" />
+          </Key>
+          <Property Name="idcIncapacidad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="incapacidad" Type="varchar" MaxLength="75" />
+          <Property Name="estatus" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="cInventario">
+          <Key>
+            <PropertyRef Name="idcIngrediente" />
+          </Key>
+          <Property Name="idcIngrediente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idcSucursal" Type="int" Nullable="false" />
+          <Property Name="nombreIngrediente" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="cantidadActual" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="unidadMedida" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="stockMinimo" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cMenu">
+          <Key>
+            <PropertyRef Name="idcMenu" />
+          </Key>
+          <Property Name="idcMenu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idcCategoria" Type="int" Nullable="false" />
+          <Property Name="nombre_platillo" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="descripcion" Type="text" />
+          <Property Name="precio" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="disponible" Type="bit" />
+        </EntityType>
+        <EntityType Name="cMesa">
+          <Key>
+            <PropertyRef Name="idcMesa" />
+          </Key>
+          <Property Name="idcMesa" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idcSucursal" Type="int" Nullable="false" />
+          <Property Name="numeroMesa" Type="int" Nullable="false" />
+          <Property Name="capacidad" Type="int" Nullable="false" />
+          <Property Name="estatus" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="cMotivoBaja">
+          <Key>
+            <PropertyRef Name="idcMotivoBaja" />
+          </Key>
+          <Property Name="idcMotivoBaja" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="motivo" Type="varchar" MaxLength="75" Nullable="false" />
+          <Property Name="estatus" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cMotivoMovimiento">
+          <Key>
+            <PropertyRef Name="idcMotivoMovimiento" />
+          </Key>
+          <Property Name="idcMotivoMovimiento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="motivo" Type="varchar" MaxLength="75" />
+          <Property Name="estatus" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="cMotivoRequisicion">
+          <Key>
+            <PropertyRef Name="idcMotivoRequisicion" />
+          </Key>
+          <Property Name="idcMotivoRequisicion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="motivoRequisicion" Type="varchar" MaxLength="75" />
+          <Property Name="estatus" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="cMunicipio">
+          <Key>
+            <PropertyRef Name="idcMunicipio" />
+          </Key>
+          <Property Name="idcMunicipio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idcEntidadFederativa" Type="int" Nullable="false" />
+          <Property Name="clave" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="municipio" Type="varchar" MaxLength="75" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cProfesion">
+          <Key>
+            <PropertyRef Name="idcProfesion" />
+          </Key>
+          <Property Name="idcProfesion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="profesion" Type="varchar" MaxLength="75" Nullable="false" />
+          <Property Name="estatus" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cPuesto">
+          <Key>
+            <PropertyRef Name="idcPuesto" />
+          </Key>
+          <Property Name="idcPuesto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idcEmpresa" Type="int" Nullable="false" />
+          <Property Name="puesto" Type="varchar" MaxLength="75" Nullable="false" />
+          <Property Name="posicionesAutorizadas" Type="int" />
+          <Property Name="funcionesPuesto" Type="varchar(max)" />
+          <Property Name="tabuladorMin" Type="money" Nullable="false" />
+          <Property Name="tabuladorProm" Type="money" Nullable="false" />
+          <Property Name="tabuladorMax" Type="money" Nullable="false" />
+          <Property Name="estatus" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cRol">
+          <Key>
+            <PropertyRef Name="idcRol" />
+          </Key>
+          <Property Name="idcRol" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idcEmpresa" Type="int" Nullable="false" />
+          <Property Name="rol" Type="varchar" MaxLength="75" Nullable="false" />
+          <Property Name="estatus" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cSucursal">
+          <Key>
+            <PropertyRef Name="idcSucursal" />
+          </Key>
+          <Property Name="idcSucursal" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idcEmpresa" Type="int" Nullable="false" />
+          <Property Name="sucursal" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="telefono" Type="varchar" MaxLength="10" />
+          <Property Name="direccion" Type="varchar" MaxLength="75" Nullable="false" />
+          <Property Name="latitud" Type="decimal" Precision="8" Scale="6" Nullable="false" />
+          <Property Name="longitud" Type="decimal" Precision="9" Scale="6" Nullable="false" />
+          <Property Name="estatus" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cTipoBaja">
+          <Key>
+            <PropertyRef Name="idcTipoBaja" />
+          </Key>
+          <Property Name="idcTipoBaja" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tipoBaja" Type="varchar" MaxLength="75" />
+          <Property Name="estatus" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="cTipoContrato">
+          <Key>
+            <PropertyRef Name="idcTipoContrato" />
+          </Key>
+          <Property Name="idcTipoContrato" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="contrato" Type="varchar" MaxLength="75" Nullable="false" />
+          <Property Name="estatus" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cTipoNomina">
+          <Key>
+            <PropertyRef Name="idcTipoNomina" />
+          </Key>
+          <Property Name="idcTipoNomina" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tipoNomina" Type="varchar" MaxLength="75" Nullable="false" />
+          <Property Name="estatus" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cUsuario">
+          <Key>
+            <PropertyRef Name="idcUsuario" />
+          </Key>
+          <Property Name="idcUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idcEmpresa" Type="int" Nullable="false" />
+          <Property Name="idmEmpleado" Type="int" Nullable="false" />
+          <Property Name="usuario" Type="varchar" MaxLength="50" />
+          <Property Name="clave" Type="varchar" MaxLength="50" />
+          <Property Name="estatus" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="dEmpleadoDomicilio">
+          <Key>
+            <PropertyRef Name="iddEmpleadoDomicilio" />
+          </Key>
+          <Property Name="iddEmpleadoDomicilio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idcMunicipio" Type="int" Nullable="false" />
+          <Property Name="colonia" Type="varchar" MaxLength="150" />
+          <Property Name="calle" Type="varchar" MaxLength="150" />
+          <Property Name="noExterior" Type="varchar" MaxLength="15" />
+          <Property Name="noInterior" Type="varchar" MaxLength="15" />
+          <Property Name="referencia" Type="varchar" MaxLength="250" />
+          <Property Name="codigoPostal" Type="varchar" MaxLength="6" />
+          <Property Name="estatus" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="dPedido">
+          <Key>
+            <PropertyRef Name="iddPedido" />
+          </Key>
+          <Property Name="iddPedido" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idmPedido" Type="int" Nullable="false" />
+          <Property Name="idcMenu" Type="int" Nullable="false" />
+          <Property Name="cantidad" Type="int" Nullable="false" />
+          <Property Name="precioUnitario" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="notasEspeciales" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="eEmpleadoBaja">
+          <Key>
+            <PropertyRef Name="ideEmpleadoBaja" />
+          </Key>
+          <Property Name="ideEmpleadoBaja" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idmEmpleado" Type="int" />
+          <Property Name="idmPlaza" Type="int" />
+          <Property Name="empresa" Type="varchar" MaxLength="150" />
+          <Property Name="sucursal" Type="varchar" MaxLength="150" />
+          <Property Name="rol" Type="varchar" MaxLength="150" />
+          <Property Name="jefeInmediato" Type="varchar" MaxLength="550" />
+          <Property Name="puesto" Type="varchar" MaxLength="150" />
+          <Property Name="area" Type="varchar" MaxLength="150" />
+          <Property Name="motivoBaja" Type="varchar" MaxLength="75" />
+          <Property Name="tipoBaja" Type="varchar" MaxLength="75" />
+          <Property Name="fechaAlta" Type="date" />
+          <Property Name="fechaBaja" Type="date" />
+          <Property Name="observacionesBaja" Type="varchar" MaxLength="300" />
+          <Property Name="recontratable" Type="bit" />
+          <Property Name="json" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="eEmpleadoContrato">
+          <Key>
+            <PropertyRef Name="ideEmpleadoContrato" />
+          </Key>
+          <Property Name="ideEmpleadoContrato" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idmEmpleado" Type="int" Nullable="false" />
+          <Property Name="noContrato" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="150" />
+          <Property Name="fechaInicial" Type="datetime" Nullable="false" />
+          <Property Name="fechaFinal" Type="datetime" />
+          <Property Name="idcTipoContrato" Type="int" />
+          <Property Name="tiempoContrato" Type="smallint" />
+          <Property Name="proyecto" Type="varchar" MaxLength="250" />
+          <Property Name="ruta" Type="varchar" MaxLength="115" />
+        </EntityType>
+        <EntityType Name="eEmpleadoDocumentacion">
+          <Key>
+            <PropertyRef Name="ideEmpleadoDocumentacion" />
+          </Key>
+          <Property Name="ideEmpleadoDocumentacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idmEmpleado" Type="int" Nullable="false" />
+          <Property Name="idcDocumento" Type="int" />
+          <Property Name="ruta" Type="varchar" MaxLength="115" Nullable="false" />
+        </EntityType>
+        <EntityType Name="eEmpleadoPromocion">
+          <Key>
+            <PropertyRef Name="ideEmpleadoPromocion" />
+          </Key>
+          <Property Name="ideEmpleadoPromocion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idmEmpleado" Type="int" Nullable="false" />
+          <Property Name="idcMotivoMovimiento" Type="int" />
+          <Property Name="fechaMovimiento" Type="date" />
+          <Property Name="sueldoActual" Type="varchar" MaxLength="50" />
+          <Property Name="sueldoNuevo" Type="varchar" MaxLength="50" />
+          <Property Name="puestoActual" Type="varchar" MaxLength="150" />
+          <Property Name="puestoNuevo" Type="varchar" MaxLength="150" />
+          <Property Name="areaActual" Type="varchar" MaxLength="150" />
+          <Property Name="areaNuevo" Type="varchar" MaxLength="150" />
+          <Property Name="sucursalActual" Type="varchar" MaxLength="150" />
+          <Property Name="sucursalNuevo" Type="varchar" MaxLength="150" />
+          <Property Name="jefeInmediatoActual" Type="varchar" MaxLength="150" />
+          <Property Name="jefeInmediatoNuevo" Type="varchar" MaxLength="150" />
+          <Property Name="observaciones" Type="varchar" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="ePlazaBeneficio">
+          <Key>
+            <PropertyRef Name="idePlazaBeneficio" />
+          </Key>
+          <Property Name="idePlazaBeneficio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idmPlaza" Type="int" Nullable="false" />
+          <Property Name="idcBeneficio" Type="int" Nullable="false" />
+          <Property Name="tipo" Type="varchar" MaxLength="50" />
+          <Property Name="valor" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="mEmpleado">
+          <Key>
+            <PropertyRef Name="idmEmpleado" />
+          </Key>
+          <Property Name="idmEmpleado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idcEmpresa" Type="int" Nullable="false" />
+          <Property Name="iddEmpleadoDomicilio" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="paterno" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="materno" Type="varchar" MaxLength="70" />
+          <Property Name="fechaContratacion" Type="date" />
+          <Property Name="fechaNacimiento" Type="date" />
+          <Property Name="lugarNacimiento" Type="varchar" MaxLength="150" />
+          <Property Name="curp" Type="varchar" MaxLength="18" Nullable="false" />
+          <Property Name="rfc" Type="varchar" MaxLength="13" Nullable="false" />
+          <Property Name="nss" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="fechaIngresoImss" Type="date" />
+          <Property Name="idcEstadoCivil" Type="int" />
+          <Property Name="nacionalidad" Type="varchar" MaxLength="50" />
+          <Property Name="sexo" Type="varchar" MaxLength="10" />
+          <Property Name="tipoSangre" Type="varchar" MaxLength="50" />
+          <Property Name="correoPersonal" Type="varchar" MaxLength="100" />
+          <Property Name="correoCoorporativo" Type="varchar" MaxLength="100" />
+          <Property Name="telefonoFijoEmpresa" Type="varchar" MaxLength="13" />
+          <Property Name="telefonoExtension" Type="varchar" MaxLength="13" />
+          <Property Name="telefonoCelularEmpresa" Type="varchar" MaxLength="13" />
+          <Property Name="telefono" Type="varchar" MaxLength="13" />
+          <Property Name="telefonoContacto" Type="varchar" MaxLength="13" />
+          <Property Name="nombreContacto" Type="varchar" MaxLength="100" />
+          <Property Name="parentescoContacto" Type="varchar" MaxLength="50" />
+          <Property Name="idcEscolaridad" Type="int" />
+          <Property Name="documentoProbatorio" Type="varchar" MaxLength="50" />
+          <Property Name="idcProfesion" Type="int" />
+          <Property Name="institucion" Type="varchar" MaxLength="100" />
+          <Property Name="tipoInstitucion" Type="varchar" MaxLength="100" />
+          <Property Name="estatusInstitucion" Type="varchar" MaxLength="15" />
+          <Property Name="esquemaPago" Type="varchar" MaxLength="50" />
+          <Property Name="tipoNomina" Type="varchar" MaxLength="75" />
+          <Property Name="noCreditoInfonavit" Type="varchar" MaxLength="50" />
+          <Property Name="descuentoInfonavit" Type="varchar" MaxLength="50" />
+          <Property Name="factorInfonavit" Type="varchar" MaxLength="50" />
+          <Property Name="noCreditoFonacot" Type="varchar" MaxLength="50" />
+          <Property Name="descuentoFonacot" Type="varchar" MaxLength="50" />
+          <Property Name="factorFonacot" Type="varchar" MaxLength="50" />
+          <Property Name="codiBanco" Type="varchar" MaxLength="3" />
+          <Property Name="codiSucursal" Type="varchar" MaxLength="5" />
+          <Property Name="noCuenta" Type="varchar" MaxLength="50" />
+          <Property Name="clabeInterbancaria" Type="varchar" MaxLength="50" />
+          <Property Name="salarioMensual" Type="varchar" MaxLength="50" />
+          <Property Name="salarioDiario" Type="varchar" MaxLength="50" />
+          <Property Name="salarioIntegrado" Type="varchar" MaxLength="50" />
+          <Property Name="salarioDiarioExcedente" Type="varchar" MaxLength="50" />
+          <Property Name="salarioDiarioCotizacion" Type="varchar" MaxLength="50" />
+          <Property Name="fotoPerfil" Type="varchar" MaxLength="115" />
+          <Property Name="observaciones" Type="varchar" MaxLength="300" />
+          <Property Name="estatus" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="mFactura">
+          <Key>
+            <PropertyRef Name="idmFactura" />
+          </Key>
+          <Property Name="idmFactura" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idmPedido" Type="int" Nullable="false" />
+          <Property Name="fechaPago" Type="datetime" />
+          <Property Name="subtotal" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="impuestos" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="total" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="metodoPago" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="mPedido">
+          <Key>
+            <PropertyRef Name="idmPedido" />
+          </Key>
+          <Property Name="idmPedido" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idcMesa" Type="int" Nullable="false" />
+          <Property Name="idmEmpleado" Type="int" Nullable="false" />
+          <Property Name="idcCliente" Type="int" />
+          <Property Name="fechaPedido" Type="datetime" />
+          <Property Name="estatus" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="mPlaza">
+          <Key>
+            <PropertyRef Name="idmPlaza" />
+          </Key>
+          <Property Name="idmPlaza" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idcEmpresa" Type="int" Nullable="false" />
+          <Property Name="idcSucursal" Type="int" Nullable="false" />
+          <Property Name="idmEmpleado" Type="int" />
+          <Property Name="idcRol" Type="int" Nullable="false" />
+          <Property Name="idmPlazaJefeInmediato" Type="int" />
+          <Property Name="idcPuesto" Type="int" Nullable="false" />
+          <Property Name="idcArea" Type="int" Nullable="false" />
+          <Property Name="estatus" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__cCategori__idcSu__245D67DE">
+          <End Role="cSucursal" Type="Self.cSucursal" Multiplicity="1" />
+          <End Role="cCategoria" Type="Self.cCategoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cSucursal">
+              <PropertyRef Name="idcSucursal" />
+            </Principal>
+            <Dependent Role="cCategoria">
+              <PropertyRef Name="idcSucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__cCliente__idcEmp__208CD6FA">
+          <End Role="cEmpresa" Type="Self.cEmpresa" Multiplicity="1" />
+          <End Role="cCliente" Type="Self.cCliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cEmpresa">
+              <PropertyRef Name="idcEmpresa" />
+            </Principal>
+            <Dependent Role="cCliente">
+              <PropertyRef Name="idcEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__cInventar__idcSu__42E1EEFE">
+          <End Role="cSucursal" Type="Self.cSucursal" Multiplicity="1" />
+          <End Role="cInventario" Type="Self.cInventario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cSucursal">
+              <PropertyRef Name="idcSucursal" />
+            </Principal>
+            <Dependent Role="cInventario">
+              <PropertyRef Name="idcSucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__cMenu__idcCatego__2739D489">
+          <End Role="cCategoria" Type="Self.cCategoria" Multiplicity="1" />
+          <End Role="cMenu" Type="Self.cMenu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cCategoria">
+              <PropertyRef Name="idcCategoria" />
+            </Principal>
+            <Dependent Role="cMenu">
+              <PropertyRef Name="idcCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__cMesa__idcSucurs__2BFE89A6">
+          <End Role="cSucursal" Type="Self.cSucursal" Multiplicity="1" />
+          <End Role="cMesa" Type="Self.cMesa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cSucursal">
+              <PropertyRef Name="idcSucursal" />
+            </Principal>
+            <Dependent Role="cMesa">
+              <PropertyRef Name="idcSucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__cMunicipi__idcEn__4CA06362">
+          <End Role="cEntidadFederativa" Type="Self.cEntidadFederativa" Multiplicity="1" />
+          <End Role="cMunicipio" Type="Self.cMunicipio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cEntidadFederativa">
+              <PropertyRef Name="idcEntidadFederativa" />
+            </Principal>
+            <Dependent Role="cMunicipio">
+              <PropertyRef Name="idcEntidadFederativa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__cPuesto__idcEmpr__07C12930">
+          <End Role="cEmpresa" Type="Self.cEmpresa" Multiplicity="1" />
+          <End Role="cPuesto" Type="Self.cPuesto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cEmpresa">
+              <PropertyRef Name="idcEmpresa" />
+            </Principal>
+            <Dependent Role="cPuesto">
+              <PropertyRef Name="idcEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__cRol__idcEmpresa__04E4BC85">
+          <End Role="cEmpresa" Type="Self.cEmpresa" Multiplicity="1" />
+          <End Role="cRol" Type="Self.cRol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cEmpresa">
+              <PropertyRef Name="idcEmpresa" />
+            </Principal>
+            <Dependent Role="cRol">
+              <PropertyRef Name="idcEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__cSucursal__idcEm__02084FDA">
+          <End Role="cEmpresa" Type="Self.cEmpresa" Multiplicity="1" />
+          <End Role="cSucursal" Type="Self.cSucursal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cEmpresa">
+              <PropertyRef Name="idcEmpresa" />
+            </Principal>
+            <Dependent Role="cSucursal">
+              <PropertyRef Name="idcEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__cUsuario__idcEmp__1CBC4616">
+          <End Role="cEmpresa" Type="Self.cEmpresa" Multiplicity="1" />
+          <End Role="cUsuario" Type="Self.cUsuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cEmpresa">
+              <PropertyRef Name="idcEmpresa" />
+            </Principal>
+            <Dependent Role="cUsuario">
+              <PropertyRef Name="idcEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__cUsuario__idmEmp__1DB06A4F">
+          <End Role="mEmpleado" Type="Self.mEmpleado" Multiplicity="1" />
+          <End Role="cUsuario" Type="Self.cUsuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mEmpleado">
+              <PropertyRef Name="idmEmpleado" />
+            </Principal>
+            <Dependent Role="cUsuario">
+              <PropertyRef Name="idmEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__dEmpleado__idcMu__628FA481">
+          <End Role="cMunicipio" Type="Self.cMunicipio" Multiplicity="1" />
+          <End Role="dEmpleadoDomicilio" Type="Self.dEmpleadoDomicilio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cMunicipio">
+              <PropertyRef Name="idcMunicipio" />
+            </Principal>
+            <Dependent Role="dEmpleadoDomicilio">
+              <PropertyRef Name="idcMunicipio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__dPedido__idcMenu__3A4CA8FD">
+          <End Role="cMenu" Type="Self.cMenu" Multiplicity="1" />
+          <End Role="dPedido" Type="Self.dPedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cMenu">
+              <PropertyRef Name="idcMenu" />
+            </Principal>
+            <Dependent Role="dPedido">
+              <PropertyRef Name="idcMenu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__dPedido__idmPedi__395884C4">
+          <End Role="mPedido" Type="Self.mPedido" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="dPedido" Type="Self.dPedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mPedido">
+              <PropertyRef Name="idmPedido" />
+            </Principal>
+            <Dependent Role="dPedido">
+              <PropertyRef Name="idmPedido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__eEmpleado__idcDo__7B5B524B">
+          <End Role="cDocumento" Type="Self.cDocumento" Multiplicity="0..1" />
+          <End Role="eEmpleadoDocumentacion" Type="Self.eEmpleadoDocumentacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cDocumento">
+              <PropertyRef Name="idcDocumento" />
+            </Principal>
+            <Dependent Role="eEmpleadoDocumentacion">
+              <PropertyRef Name="idcDocumento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__eEmpleado__idcMo__7F2BE32F">
+          <End Role="cMotivoMovimiento" Type="Self.cMotivoMovimiento" Multiplicity="0..1" />
+          <End Role="eEmpleadoPromocion" Type="Self.eEmpleadoPromocion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cMotivoMovimiento">
+              <PropertyRef Name="idcMotivoMovimiento" />
+            </Principal>
+            <Dependent Role="eEmpleadoPromocion">
+              <PropertyRef Name="idcMotivoMovimiento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__eEmpleado__idcTi__778AC167">
+          <End Role="cTipoContrato" Type="Self.cTipoContrato" Multiplicity="0..1" />
+          <End Role="eEmpleadoContrato" Type="Self.eEmpleadoContrato" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cTipoContrato">
+              <PropertyRef Name="idcTipoContrato" />
+            </Principal>
+            <Dependent Role="eEmpleadoContrato">
+              <PropertyRef Name="idcTipoContrato" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__eEmpleado__idmEm__18EBB532">
+          <End Role="mEmpleado" Type="Self.mEmpleado" Multiplicity="0..1" />
+          <End Role="eEmpleadoBaja" Type="Self.eEmpleadoBaja" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mEmpleado">
+              <PropertyRef Name="idmEmpleado" />
+            </Principal>
+            <Dependent Role="eEmpleadoBaja">
+              <PropertyRef Name="idmEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__eEmpleado__idmEm__76969D2E">
+          <End Role="mEmpleado" Type="Self.mEmpleado" Multiplicity="1" />
+          <End Role="eEmpleadoContrato" Type="Self.eEmpleadoContrato" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mEmpleado">
+              <PropertyRef Name="idmEmpleado" />
+            </Principal>
+            <Dependent Role="eEmpleadoContrato">
+              <PropertyRef Name="idmEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__eEmpleado__idmEm__7A672E12">
+          <End Role="mEmpleado" Type="Self.mEmpleado" Multiplicity="1" />
+          <End Role="eEmpleadoDocumentacion" Type="Self.eEmpleadoDocumentacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mEmpleado">
+              <PropertyRef Name="idmEmpleado" />
+            </Principal>
+            <Dependent Role="eEmpleadoDocumentacion">
+              <PropertyRef Name="idmEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__eEmpleado__idmEm__7E37BEF6">
+          <End Role="mEmpleado" Type="Self.mEmpleado" Multiplicity="1" />
+          <End Role="eEmpleadoPromocion" Type="Self.eEmpleadoPromocion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mEmpleado">
+              <PropertyRef Name="idmEmpleado" />
+            </Principal>
+            <Dependent Role="eEmpleadoPromocion">
+              <PropertyRef Name="idmEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__eEmpleado__idmPl__19DFD96B">
+          <End Role="mPlaza" Type="Self.mPlaza" Multiplicity="0..1" />
+          <End Role="eEmpleadoBaja" Type="Self.eEmpleadoBaja" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mPlaza">
+              <PropertyRef Name="idmPlaza" />
+            </Principal>
+            <Dependent Role="eEmpleadoBaja">
+              <PropertyRef Name="idmPlaza" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ePlazaBen__idcBe__160F4887">
+          <End Role="cBeneficio" Type="Self.cBeneficio" Multiplicity="1" />
+          <End Role="ePlazaBeneficio" Type="Self.ePlazaBeneficio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cBeneficio">
+              <PropertyRef Name="idcBeneficio" />
+            </Principal>
+            <Dependent Role="ePlazaBeneficio">
+              <PropertyRef Name="idcBeneficio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ePlazaBen__idmPl__151B244E">
+          <End Role="mPlaza" Type="Self.mPlaza" Multiplicity="1" />
+          <End Role="ePlazaBeneficio" Type="Self.ePlazaBeneficio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mPlaza">
+              <PropertyRef Name="idmPlaza" />
+            </Principal>
+            <Dependent Role="ePlazaBeneficio">
+              <PropertyRef Name="idmPlaza" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__mEmpleado__idcEm__6EF57B66">
+          <End Role="cEmpresa" Type="Self.cEmpresa" Multiplicity="1" />
+          <End Role="mEmpleado" Type="Self.mEmpleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cEmpresa">
+              <PropertyRef Name="idcEmpresa" />
+            </Principal>
+            <Dependent Role="mEmpleado">
+              <PropertyRef Name="idcEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__mEmpleado__idcEs__71D1E811">
+          <End Role="cEstadoCivil" Type="Self.cEstadoCivil" Multiplicity="0..1" />
+          <End Role="mEmpleado" Type="Self.mEmpleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cEstadoCivil">
+              <PropertyRef Name="idcEstadoCivil" />
+            </Principal>
+            <Dependent Role="mEmpleado">
+              <PropertyRef Name="idcEstadoCivil" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__mEmpleado__idcEs__72C60C4A">
+          <End Role="cEscolaridad" Type="Self.cEscolaridad" Multiplicity="0..1" />
+          <End Role="mEmpleado" Type="Self.mEmpleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cEscolaridad">
+              <PropertyRef Name="idcEscolaridad" />
+            </Principal>
+            <Dependent Role="mEmpleado">
+              <PropertyRef Name="idcEscolaridad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__mEmpleado__idcPr__73BA3083">
+          <End Role="cProfesion" Type="Self.cProfesion" Multiplicity="0..1" />
+          <End Role="mEmpleado" Type="Self.mEmpleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cProfesion">
+              <PropertyRef Name="idcProfesion" />
+            </Principal>
+            <Dependent Role="mEmpleado">
+              <PropertyRef Name="idcProfesion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__mEmpleado__iddEm__6FE99F9F">
+          <End Role="dEmpleadoDomicilio" Type="Self.dEmpleadoDomicilio" Multiplicity="1" />
+          <End Role="mEmpleado" Type="Self.mEmpleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dEmpleadoDomicilio">
+              <PropertyRef Name="iddEmpleadoDomicilio" />
+            </Principal>
+            <Dependent Role="mEmpleado">
+              <PropertyRef Name="iddEmpleadoDomicilio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__mFactura__idmPed__3E1D39E1">
+          <End Role="mPedido" Type="Self.mPedido" Multiplicity="1" />
+          <End Role="mFactura" Type="Self.mFactura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mPedido">
+              <PropertyRef Name="idmPedido" />
+            </Principal>
+            <Dependent Role="mFactura">
+              <PropertyRef Name="idmPedido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__mPedido__idcClie__339FAB6E">
+          <End Role="cCliente" Type="Self.cCliente" Multiplicity="0..1" />
+          <End Role="mPedido" Type="Self.mPedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cCliente">
+              <PropertyRef Name="idcCliente" />
+            </Principal>
+            <Dependent Role="mPedido">
+              <PropertyRef Name="idcCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__mPedido__idcMesa__31B762FC">
+          <End Role="cMesa" Type="Self.cMesa" Multiplicity="1" />
+          <End Role="mPedido" Type="Self.mPedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cMesa">
+              <PropertyRef Name="idcMesa" />
+            </Principal>
+            <Dependent Role="mPedido">
+              <PropertyRef Name="idcMesa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__mPedido__idmEmpl__32AB8735">
+          <End Role="mEmpleado" Type="Self.mEmpleado" Multiplicity="1" />
+          <End Role="mPedido" Type="Self.mPedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mEmpleado">
+              <PropertyRef Name="idmEmpleado" />
+            </Principal>
+            <Dependent Role="mPedido">
+              <PropertyRef Name="idmEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__mPlaza__idcArea__123EB7A3">
+          <End Role="cArea" Type="Self.cArea" Multiplicity="1" />
+          <End Role="mPlaza" Type="Self.mPlaza" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cArea">
+              <PropertyRef Name="idcArea" />
+            </Principal>
+            <Dependent Role="mPlaza">
+              <PropertyRef Name="idcArea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__mPlaza__idcEmpre__0C85DE4D">
+          <End Role="cEmpresa" Type="Self.cEmpresa" Multiplicity="1" />
+          <End Role="mPlaza" Type="Self.mPlaza" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cEmpresa">
+              <PropertyRef Name="idcEmpresa" />
+            </Principal>
+            <Dependent Role="mPlaza">
+              <PropertyRef Name="idcEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__mPlaza__idcPuest__114A936A">
+          <End Role="cPuesto" Type="Self.cPuesto" Multiplicity="1" />
+          <End Role="mPlaza" Type="Self.mPlaza" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cPuesto">
+              <PropertyRef Name="idcPuesto" />
+            </Principal>
+            <Dependent Role="mPlaza">
+              <PropertyRef Name="idcPuesto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__mPlaza__idcRol__0F624AF8">
+          <End Role="cRol" Type="Self.cRol" Multiplicity="1" />
+          <End Role="mPlaza" Type="Self.mPlaza" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cRol">
+              <PropertyRef Name="idcRol" />
+            </Principal>
+            <Dependent Role="mPlaza">
+              <PropertyRef Name="idcRol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__mPlaza__idcSucur__0D7A0286">
+          <End Role="cSucursal" Type="Self.cSucursal" Multiplicity="1" />
+          <End Role="mPlaza" Type="Self.mPlaza" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cSucursal">
+              <PropertyRef Name="idcSucursal" />
+            </Principal>
+            <Dependent Role="mPlaza">
+              <PropertyRef Name="idcSucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__mPlaza__idmEmple__0E6E26BF">
+          <End Role="mEmpleado" Type="Self.mEmpleado" Multiplicity="0..1" />
+          <End Role="mPlaza" Type="Self.mPlaza" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mEmpleado">
+              <PropertyRef Name="idmEmpleado" />
+            </Principal>
+            <Dependent Role="mPlaza">
+              <PropertyRef Name="idmEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__mPlaza__idmPlaza__10566F31">
+          <End Role="mPlaza" Type="Self.mPlaza" Multiplicity="0..1" />
+          <End Role="mPlaza1" Type="Self.mPlaza" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mPlaza">
+              <PropertyRef Name="idmPlaza" />
+            </Principal>
+            <Dependent Role="mPlaza1">
+              <PropertyRef Name="idmPlazaJefeInmediato" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MasterRestModelStoreContainer">
+          <EntitySet Name="cArea" EntityType="Self.cArea" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cBeneficio" EntityType="Self.cBeneficio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cCategoria" EntityType="Self.cCategoria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cCliente" EntityType="Self.cCliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cDocumento" EntityType="Self.cDocumento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cDocumentoProbatorio" EntityType="Self.cDocumentoProbatorio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cEmpresa" EntityType="Self.cEmpresa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cEntidadFederativa" EntityType="Self.cEntidadFederativa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cEscolaridad" EntityType="Self.cEscolaridad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cEstadoCivil" EntityType="Self.cEstadoCivil" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cIncapacidad" EntityType="Self.cIncapacidad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cInventario" EntityType="Self.cInventario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cMenu" EntityType="Self.cMenu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cMesa" EntityType="Self.cMesa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cMotivoBaja" EntityType="Self.cMotivoBaja" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cMotivoMovimiento" EntityType="Self.cMotivoMovimiento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cMotivoRequisicion" EntityType="Self.cMotivoRequisicion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cMunicipio" EntityType="Self.cMunicipio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cProfesion" EntityType="Self.cProfesion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cPuesto" EntityType="Self.cPuesto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cRol" EntityType="Self.cRol" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cSucursal" EntityType="Self.cSucursal" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cTipoBaja" EntityType="Self.cTipoBaja" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cTipoContrato" EntityType="Self.cTipoContrato" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cTipoNomina" EntityType="Self.cTipoNomina" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cUsuario" EntityType="Self.cUsuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="dEmpleadoDomicilio" EntityType="Self.dEmpleadoDomicilio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="dPedido" EntityType="Self.dPedido" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="eEmpleadoBaja" EntityType="Self.eEmpleadoBaja" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="eEmpleadoContrato" EntityType="Self.eEmpleadoContrato" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="eEmpleadoDocumentacion" EntityType="Self.eEmpleadoDocumentacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="eEmpleadoPromocion" EntityType="Self.eEmpleadoPromocion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ePlazaBeneficio" EntityType="Self.ePlazaBeneficio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="mEmpleado" EntityType="Self.mEmpleado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="mFactura" EntityType="Self.mFactura" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="mPedido" EntityType="Self.mPedido" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="mPlaza" EntityType="Self.mPlaza" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__cCategori__idcSu__245D67DE" Association="Self.FK__cCategori__idcSu__245D67DE">
+            <End Role="cSucursal" EntitySet="cSucursal" />
+            <End Role="cCategoria" EntitySet="cCategoria" />
+          </AssociationSet>
+          <AssociationSet Name="FK__cCliente__idcEmp__208CD6FA" Association="Self.FK__cCliente__idcEmp__208CD6FA">
+            <End Role="cEmpresa" EntitySet="cEmpresa" />
+            <End Role="cCliente" EntitySet="cCliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK__cInventar__idcSu__42E1EEFE" Association="Self.FK__cInventar__idcSu__42E1EEFE">
+            <End Role="cSucursal" EntitySet="cSucursal" />
+            <End Role="cInventario" EntitySet="cInventario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__cMenu__idcCatego__2739D489" Association="Self.FK__cMenu__idcCatego__2739D489">
+            <End Role="cCategoria" EntitySet="cCategoria" />
+            <End Role="cMenu" EntitySet="cMenu" />
+          </AssociationSet>
+          <AssociationSet Name="FK__cMesa__idcSucurs__2BFE89A6" Association="Self.FK__cMesa__idcSucurs__2BFE89A6">
+            <End Role="cSucursal" EntitySet="cSucursal" />
+            <End Role="cMesa" EntitySet="cMesa" />
+          </AssociationSet>
+          <AssociationSet Name="FK__cMunicipi__idcEn__4CA06362" Association="Self.FK__cMunicipi__idcEn__4CA06362">
+            <End Role="cEntidadFederativa" EntitySet="cEntidadFederativa" />
+            <End Role="cMunicipio" EntitySet="cMunicipio" />
+          </AssociationSet>
+          <AssociationSet Name="FK__cPuesto__idcEmpr__07C12930" Association="Self.FK__cPuesto__idcEmpr__07C12930">
+            <End Role="cEmpresa" EntitySet="cEmpresa" />
+            <End Role="cPuesto" EntitySet="cPuesto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__cRol__idcEmpresa__04E4BC85" Association="Self.FK__cRol__idcEmpresa__04E4BC85">
+            <End Role="cEmpresa" EntitySet="cEmpresa" />
+            <End Role="cRol" EntitySet="cRol" />
+          </AssociationSet>
+          <AssociationSet Name="FK__cSucursal__idcEm__02084FDA" Association="Self.FK__cSucursal__idcEm__02084FDA">
+            <End Role="cEmpresa" EntitySet="cEmpresa" />
+            <End Role="cSucursal" EntitySet="cSucursal" />
+          </AssociationSet>
+          <AssociationSet Name="FK__cUsuario__idcEmp__1CBC4616" Association="Self.FK__cUsuario__idcEmp__1CBC4616">
+            <End Role="cEmpresa" EntitySet="cEmpresa" />
+            <End Role="cUsuario" EntitySet="cUsuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__cUsuario__idmEmp__1DB06A4F" Association="Self.FK__cUsuario__idmEmp__1DB06A4F">
+            <End Role="mEmpleado" EntitySet="mEmpleado" />
+            <End Role="cUsuario" EntitySet="cUsuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__dEmpleado__idcMu__628FA481" Association="Self.FK__dEmpleado__idcMu__628FA481">
+            <End Role="cMunicipio" EntitySet="cMunicipio" />
+            <End Role="dEmpleadoDomicilio" EntitySet="dEmpleadoDomicilio" />
+          </AssociationSet>
+          <AssociationSet Name="FK__dPedido__idcMenu__3A4CA8FD" Association="Self.FK__dPedido__idcMenu__3A4CA8FD">
+            <End Role="cMenu" EntitySet="cMenu" />
+            <End Role="dPedido" EntitySet="dPedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK__dPedido__idmPedi__395884C4" Association="Self.FK__dPedido__idmPedi__395884C4">
+            <End Role="mPedido" EntitySet="mPedido" />
+            <End Role="dPedido" EntitySet="dPedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK__eEmpleado__idcDo__7B5B524B" Association="Self.FK__eEmpleado__idcDo__7B5B524B">
+            <End Role="cDocumento" EntitySet="cDocumento" />
+            <End Role="eEmpleadoDocumentacion" EntitySet="eEmpleadoDocumentacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__eEmpleado__idcMo__7F2BE32F" Association="Self.FK__eEmpleado__idcMo__7F2BE32F">
+            <End Role="cMotivoMovimiento" EntitySet="cMotivoMovimiento" />
+            <End Role="eEmpleadoPromocion" EntitySet="eEmpleadoPromocion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__eEmpleado__idcTi__778AC167" Association="Self.FK__eEmpleado__idcTi__778AC167">
+            <End Role="cTipoContrato" EntitySet="cTipoContrato" />
+            <End Role="eEmpleadoContrato" EntitySet="eEmpleadoContrato" />
+          </AssociationSet>
+          <AssociationSet Name="FK__eEmpleado__idmEm__18EBB532" Association="Self.FK__eEmpleado__idmEm__18EBB532">
+            <End Role="mEmpleado" EntitySet="mEmpleado" />
+            <End Role="eEmpleadoBaja" EntitySet="eEmpleadoBaja" />
+          </AssociationSet>
+          <AssociationSet Name="FK__eEmpleado__idmEm__76969D2E" Association="Self.FK__eEmpleado__idmEm__76969D2E">
+            <End Role="mEmpleado" EntitySet="mEmpleado" />
+            <End Role="eEmpleadoContrato" EntitySet="eEmpleadoContrato" />
+          </AssociationSet>
+          <AssociationSet Name="FK__eEmpleado__idmEm__7A672E12" Association="Self.FK__eEmpleado__idmEm__7A672E12">
+            <End Role="mEmpleado" EntitySet="mEmpleado" />
+            <End Role="eEmpleadoDocumentacion" EntitySet="eEmpleadoDocumentacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__eEmpleado__idmEm__7E37BEF6" Association="Self.FK__eEmpleado__idmEm__7E37BEF6">
+            <End Role="mEmpleado" EntitySet="mEmpleado" />
+            <End Role="eEmpleadoPromocion" EntitySet="eEmpleadoPromocion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__eEmpleado__idmPl__19DFD96B" Association="Self.FK__eEmpleado__idmPl__19DFD96B">
+            <End Role="mPlaza" EntitySet="mPlaza" />
+            <End Role="eEmpleadoBaja" EntitySet="eEmpleadoBaja" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ePlazaBen__idcBe__160F4887" Association="Self.FK__ePlazaBen__idcBe__160F4887">
+            <End Role="cBeneficio" EntitySet="cBeneficio" />
+            <End Role="ePlazaBeneficio" EntitySet="ePlazaBeneficio" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ePlazaBen__idmPl__151B244E" Association="Self.FK__ePlazaBen__idmPl__151B244E">
+            <End Role="mPlaza" EntitySet="mPlaza" />
+            <End Role="ePlazaBeneficio" EntitySet="ePlazaBeneficio" />
+          </AssociationSet>
+          <AssociationSet Name="FK__mEmpleado__idcEm__6EF57B66" Association="Self.FK__mEmpleado__idcEm__6EF57B66">
+            <End Role="cEmpresa" EntitySet="cEmpresa" />
+            <End Role="mEmpleado" EntitySet="mEmpleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK__mEmpleado__idcEs__71D1E811" Association="Self.FK__mEmpleado__idcEs__71D1E811">
+            <End Role="cEstadoCivil" EntitySet="cEstadoCivil" />
+            <End Role="mEmpleado" EntitySet="mEmpleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK__mEmpleado__idcEs__72C60C4A" Association="Self.FK__mEmpleado__idcEs__72C60C4A">
+            <End Role="cEscolaridad" EntitySet="cEscolaridad" />
+            <End Role="mEmpleado" EntitySet="mEmpleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK__mEmpleado__idcPr__73BA3083" Association="Self.FK__mEmpleado__idcPr__73BA3083">
+            <End Role="cProfesion" EntitySet="cProfesion" />
+            <End Role="mEmpleado" EntitySet="mEmpleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK__mEmpleado__iddEm__6FE99F9F" Association="Self.FK__mEmpleado__iddEm__6FE99F9F">
+            <End Role="dEmpleadoDomicilio" EntitySet="dEmpleadoDomicilio" />
+            <End Role="mEmpleado" EntitySet="mEmpleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK__mFactura__idmPed__3E1D39E1" Association="Self.FK__mFactura__idmPed__3E1D39E1">
+            <End Role="mPedido" EntitySet="mPedido" />
+            <End Role="mFactura" EntitySet="mFactura" />
+          </AssociationSet>
+          <AssociationSet Name="FK__mPedido__idcClie__339FAB6E" Association="Self.FK__mPedido__idcClie__339FAB6E">
+            <End Role="cCliente" EntitySet="cCliente" />
+            <End Role="mPedido" EntitySet="mPedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK__mPedido__idcMesa__31B762FC" Association="Self.FK__mPedido__idcMesa__31B762FC">
+            <End Role="cMesa" EntitySet="cMesa" />
+            <End Role="mPedido" EntitySet="mPedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK__mPedido__idmEmpl__32AB8735" Association="Self.FK__mPedido__idmEmpl__32AB8735">
+            <End Role="mEmpleado" EntitySet="mEmpleado" />
+            <End Role="mPedido" EntitySet="mPedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK__mPlaza__idcArea__123EB7A3" Association="Self.FK__mPlaza__idcArea__123EB7A3">
+            <End Role="cArea" EntitySet="cArea" />
+            <End Role="mPlaza" EntitySet="mPlaza" />
+          </AssociationSet>
+          <AssociationSet Name="FK__mPlaza__idcEmpre__0C85DE4D" Association="Self.FK__mPlaza__idcEmpre__0C85DE4D">
+            <End Role="cEmpresa" EntitySet="cEmpresa" />
+            <End Role="mPlaza" EntitySet="mPlaza" />
+          </AssociationSet>
+          <AssociationSet Name="FK__mPlaza__idcPuest__114A936A" Association="Self.FK__mPlaza__idcPuest__114A936A">
+            <End Role="cPuesto" EntitySet="cPuesto" />
+            <End Role="mPlaza" EntitySet="mPlaza" />
+          </AssociationSet>
+          <AssociationSet Name="FK__mPlaza__idcRol__0F624AF8" Association="Self.FK__mPlaza__idcRol__0F624AF8">
+            <End Role="cRol" EntitySet="cRol" />
+            <End Role="mPlaza" EntitySet="mPlaza" />
+          </AssociationSet>
+          <AssociationSet Name="FK__mPlaza__idcSucur__0D7A0286" Association="Self.FK__mPlaza__idcSucur__0D7A0286">
+            <End Role="cSucursal" EntitySet="cSucursal" />
+            <End Role="mPlaza" EntitySet="mPlaza" />
+          </AssociationSet>
+          <AssociationSet Name="FK__mPlaza__idmEmple__0E6E26BF" Association="Self.FK__mPlaza__idmEmple__0E6E26BF">
+            <End Role="mEmpleado" EntitySet="mEmpleado" />
+            <End Role="mPlaza" EntitySet="mPlaza" />
+          </AssociationSet>
+          <AssociationSet Name="FK__mPlaza__idmPlaza__10566F31" Association="Self.FK__mPlaza__idmPlaza__10566F31">
+            <End Role="mPlaza" EntitySet="mPlaza" />
+            <End Role="mPlaza1" EntitySet="mPlaza" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MasterRestModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="MasterRestEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="cArea" EntityType="MasterRestModel.cArea" />
+          <EntitySet Name="cBeneficio" EntityType="MasterRestModel.cBeneficio" />
+          <EntitySet Name="cCategoria" EntityType="MasterRestModel.cCategoria" />
+          <EntitySet Name="cCliente" EntityType="MasterRestModel.cCliente" />
+          <EntitySet Name="cDocumento" EntityType="MasterRestModel.cDocumento" />
+          <EntitySet Name="cDocumentoProbatorio" EntityType="MasterRestModel.cDocumentoProbatorio" />
+          <EntitySet Name="cEmpresa" EntityType="MasterRestModel.cEmpresa" />
+          <EntitySet Name="cEntidadFederativa" EntityType="MasterRestModel.cEntidadFederativa" />
+          <EntitySet Name="cEscolaridad" EntityType="MasterRestModel.cEscolaridad" />
+          <EntitySet Name="cEstadoCivil" EntityType="MasterRestModel.cEstadoCivil" />
+          <EntitySet Name="cIncapacidad" EntityType="MasterRestModel.cIncapacidad" />
+          <EntitySet Name="cInventario" EntityType="MasterRestModel.cInventario" />
+          <EntitySet Name="cMenu" EntityType="MasterRestModel.cMenu" />
+          <EntitySet Name="cMesa" EntityType="MasterRestModel.cMesa" />
+          <EntitySet Name="cMotivoBaja" EntityType="MasterRestModel.cMotivoBaja" />
+          <EntitySet Name="cMotivoMovimiento" EntityType="MasterRestModel.cMotivoMovimiento" />
+          <EntitySet Name="cMotivoRequisicion" EntityType="MasterRestModel.cMotivoRequisicion" />
+          <EntitySet Name="cMunicipio" EntityType="MasterRestModel.cMunicipio" />
+          <EntitySet Name="cProfesion" EntityType="MasterRestModel.cProfesion" />
+          <EntitySet Name="cPuesto" EntityType="MasterRestModel.cPuesto" />
+          <EntitySet Name="cRol" EntityType="MasterRestModel.cRol" />
+          <EntitySet Name="cSucursal" EntityType="MasterRestModel.cSucursal" />
+          <EntitySet Name="cTipoBaja" EntityType="MasterRestModel.cTipoBaja" />
+          <EntitySet Name="cTipoContrato" EntityType="MasterRestModel.cTipoContrato" />
+          <EntitySet Name="cTipoNomina" EntityType="MasterRestModel.cTipoNomina" />
+          <EntitySet Name="cUsuario" EntityType="MasterRestModel.cUsuario" />
+          <EntitySet Name="dEmpleadoDomicilio" EntityType="MasterRestModel.dEmpleadoDomicilio" />
+          <EntitySet Name="dPedido" EntityType="MasterRestModel.dPedido" />
+          <EntitySet Name="eEmpleadoBaja" EntityType="MasterRestModel.eEmpleadoBaja" />
+          <EntitySet Name="eEmpleadoContrato" EntityType="MasterRestModel.eEmpleadoContrato" />
+          <EntitySet Name="eEmpleadoDocumentacion" EntityType="MasterRestModel.eEmpleadoDocumentacion" />
+          <EntitySet Name="ePlazaBeneficio" EntityType="MasterRestModel.ePlazaBeneficio" />
+          <EntitySet Name="mEmpleado" EntityType="MasterRestModel.mEmpleado" />
+          <EntitySet Name="mFactura" EntityType="MasterRestModel.mFactura" />
+          <EntitySet Name="mPedido" EntityType="MasterRestModel.mPedido" />
+          <EntitySet Name="mPlaza" EntityType="MasterRestModel.mPlaza" />
+          <AssociationSet Name="FK__mPlaza__idcArea__123EB7A3" Association="MasterRestModel.FK__mPlaza__idcArea__123EB7A3">
+            <End Role="cArea" EntitySet="cArea" />
+            <End Role="mPlaza" EntitySet="mPlaza" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ePlazaBen__idcBe__160F4887" Association="MasterRestModel.FK__ePlazaBen__idcBe__160F4887">
+            <End Role="cBeneficio" EntitySet="cBeneficio" />
+            <End Role="ePlazaBeneficio" EntitySet="ePlazaBeneficio" />
+          </AssociationSet>
+          <AssociationSet Name="FK__cCategori__idcSu__245D67DE" Association="MasterRestModel.FK__cCategori__idcSu__245D67DE">
+            <End Role="cSucursal" EntitySet="cSucursal" />
+            <End Role="cCategoria" EntitySet="cCategoria" />
+          </AssociationSet>
+          <AssociationSet Name="FK__cMenu__idcCatego__2739D489" Association="MasterRestModel.FK__cMenu__idcCatego__2739D489">
+            <End Role="cCategoria" EntitySet="cCategoria" />
+            <End Role="cMenu" EntitySet="cMenu" />
+          </AssociationSet>
+          <AssociationSet Name="FK__cCliente__idcEmp__208CD6FA" Association="MasterRestModel.FK__cCliente__idcEmp__208CD6FA">
+            <End Role="cEmpresa" EntitySet="cEmpresa" />
+            <End Role="cCliente" EntitySet="cCliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK__mPedido__idcClie__339FAB6E" Association="MasterRestModel.FK__mPedido__idcClie__339FAB6E">
+            <End Role="cCliente" EntitySet="cCliente" />
+            <End Role="mPedido" EntitySet="mPedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK__eEmpleado__idcDo__7B5B524B" Association="MasterRestModel.FK__eEmpleado__idcDo__7B5B524B">
+            <End Role="cDocumento" EntitySet="cDocumento" />
+            <End Role="eEmpleadoDocumentacion" EntitySet="eEmpleadoDocumentacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__cPuesto__idcEmpr__07C12930" Association="MasterRestModel.FK__cPuesto__idcEmpr__07C12930">
+            <End Role="cEmpresa" EntitySet="cEmpresa" />
+            <End Role="cPuesto" EntitySet="cPuesto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__cRol__idcEmpresa__04E4BC85" Association="MasterRestModel.FK__cRol__idcEmpresa__04E4BC85">
+            <End Role="cEmpresa" EntitySet="cEmpresa" />
+            <End Role="cRol" EntitySet="cRol" />
+          </AssociationSet>
+          <AssociationSet Name="FK__cSucursal__idcEm__02084FDA" Association="MasterRestModel.FK__cSucursal__idcEm__02084FDA">
+            <End Role="cEmpresa" EntitySet="cEmpresa" />
+            <End Role="cSucursal" EntitySet="cSucursal" />
+          </AssociationSet>
+          <AssociationSet Name="FK__cUsuario__idcEmp__1CBC4616" Association="MasterRestModel.FK__cUsuario__idcEmp__1CBC4616">
+            <End Role="cEmpresa" EntitySet="cEmpresa" />
+            <End Role="cUsuario" EntitySet="cUsuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__mEmpleado__idcEm__6EF57B66" Association="MasterRestModel.FK__mEmpleado__idcEm__6EF57B66">
+            <End Role="cEmpresa" EntitySet="cEmpresa" />
+            <End Role="mEmpleado" EntitySet="mEmpleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK__mPlaza__idcEmpre__0C85DE4D" Association="MasterRestModel.FK__mPlaza__idcEmpre__0C85DE4D">
+            <End Role="cEmpresa" EntitySet="cEmpresa" />
+            <End Role="mPlaza" EntitySet="mPlaza" />
+          </AssociationSet>
+          <AssociationSet Name="FK__cMunicipi__idcEn__4CA06362" Association="MasterRestModel.FK__cMunicipi__idcEn__4CA06362">
+            <End Role="cEntidadFederativa" EntitySet="cEntidadFederativa" />
+            <End Role="cMunicipio" EntitySet="cMunicipio" />
+          </AssociationSet>
+          <AssociationSet Name="FK__mEmpleado__idcEs__72C60C4A" Association="MasterRestModel.FK__mEmpleado__idcEs__72C60C4A">
+            <End Role="cEscolaridad" EntitySet="cEscolaridad" />
+            <End Role="mEmpleado" EntitySet="mEmpleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK__mEmpleado__idcEs__71D1E811" Association="MasterRestModel.FK__mEmpleado__idcEs__71D1E811">
+            <End Role="cEstadoCivil" EntitySet="cEstadoCivil" />
+            <End Role="mEmpleado" EntitySet="mEmpleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK__cInventar__idcSu__42E1EEFE" Association="MasterRestModel.FK__cInventar__idcSu__42E1EEFE">
+            <End Role="cSucursal" EntitySet="cSucursal" />
+            <End Role="cInventario" EntitySet="cInventario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__dPedido__idcMenu__3A4CA8FD" Association="MasterRestModel.FK__dPedido__idcMenu__3A4CA8FD">
+            <End Role="cMenu" EntitySet="cMenu" />
+            <End Role="dPedido" EntitySet="dPedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK__cMesa__idcSucurs__2BFE89A6" Association="MasterRestModel.FK__cMesa__idcSucurs__2BFE89A6">
+            <End Role="cSucursal" EntitySet="cSucursal" />
+            <End Role="cMesa" EntitySet="cMesa" />
+          </AssociationSet>
+          <AssociationSet Name="FK__mPedido__idcMesa__31B762FC" Association="MasterRestModel.FK__mPedido__idcMesa__31B762FC">
+            <End Role="cMesa" EntitySet="cMesa" />
+            <End Role="mPedido" EntitySet="mPedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK__dEmpleado__idcMu__628FA481" Association="MasterRestModel.FK__dEmpleado__idcMu__628FA481">
+            <End Role="cMunicipio" EntitySet="cMunicipio" />
+            <End Role="dEmpleadoDomicilio" EntitySet="dEmpleadoDomicilio" />
+          </AssociationSet>
+          <AssociationSet Name="FK__mEmpleado__idcPr__73BA3083" Association="MasterRestModel.FK__mEmpleado__idcPr__73BA3083">
+            <End Role="cProfesion" EntitySet="cProfesion" />
+            <End Role="mEmpleado" EntitySet="mEmpleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK__mPlaza__idcPuest__114A936A" Association="MasterRestModel.FK__mPlaza__idcPuest__114A936A">
+            <End Role="cPuesto" EntitySet="cPuesto" />
+            <End Role="mPlaza" EntitySet="mPlaza" />
+          </AssociationSet>
+          <AssociationSet Name="FK__mPlaza__idcRol__0F624AF8" Association="MasterRestModel.FK__mPlaza__idcRol__0F624AF8">
+            <End Role="cRol" EntitySet="cRol" />
+            <End Role="mPlaza" EntitySet="mPlaza" />
+          </AssociationSet>
+          <AssociationSet Name="FK__mPlaza__idcSucur__0D7A0286" Association="MasterRestModel.FK__mPlaza__idcSucur__0D7A0286">
+            <End Role="cSucursal" EntitySet="cSucursal" />
+            <End Role="mPlaza" EntitySet="mPlaza" />
+          </AssociationSet>
+          <AssociationSet Name="FK__eEmpleado__idcTi__778AC167" Association="MasterRestModel.FK__eEmpleado__idcTi__778AC167">
+            <End Role="cTipoContrato" EntitySet="cTipoContrato" />
+            <End Role="eEmpleadoContrato" EntitySet="eEmpleadoContrato" />
+          </AssociationSet>
+          <AssociationSet Name="FK__cUsuario__idmEmp__1DB06A4F" Association="MasterRestModel.FK__cUsuario__idmEmp__1DB06A4F">
+            <End Role="mEmpleado" EntitySet="mEmpleado" />
+            <End Role="cUsuario" EntitySet="cUsuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__mEmpleado__iddEm__6FE99F9F" Association="MasterRestModel.FK__mEmpleado__iddEm__6FE99F9F">
+            <End Role="dEmpleadoDomicilio" EntitySet="dEmpleadoDomicilio" />
+            <End Role="mEmpleado" EntitySet="mEmpleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK__dPedido__idmPedi__395884C4" Association="MasterRestModel.FK__dPedido__idmPedi__395884C4">
+            <End Role="mPedido" EntitySet="mPedido" />
+            <End Role="dPedido" EntitySet="dPedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK__eEmpleado__idmEm__18EBB532" Association="MasterRestModel.FK__eEmpleado__idmEm__18EBB532">
+            <End Role="mEmpleado" EntitySet="mEmpleado" />
+            <End Role="eEmpleadoBaja" EntitySet="eEmpleadoBaja" />
+          </AssociationSet>
+          <AssociationSet Name="FK__eEmpleado__idmPl__19DFD96B" Association="MasterRestModel.FK__eEmpleado__idmPl__19DFD96B">
+            <End Role="mPlaza" EntitySet="mPlaza" />
+            <End Role="eEmpleadoBaja" EntitySet="eEmpleadoBaja" />
+          </AssociationSet>
+          <AssociationSet Name="FK__eEmpleado__idmEm__76969D2E" Association="MasterRestModel.FK__eEmpleado__idmEm__76969D2E">
+            <End Role="mEmpleado" EntitySet="mEmpleado" />
+            <End Role="eEmpleadoContrato" EntitySet="eEmpleadoContrato" />
+          </AssociationSet>
+          <AssociationSet Name="FK__eEmpleado__idmEm__7A672E12" Association="MasterRestModel.FK__eEmpleado__idmEm__7A672E12">
+            <End Role="mEmpleado" EntitySet="mEmpleado" />
+            <End Role="eEmpleadoDocumentacion" EntitySet="eEmpleadoDocumentacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ePlazaBen__idmPl__151B244E" Association="MasterRestModel.FK__ePlazaBen__idmPl__151B244E">
+            <End Role="mPlaza" EntitySet="mPlaza" />
+            <End Role="ePlazaBeneficio" EntitySet="ePlazaBeneficio" />
+          </AssociationSet>
+          <AssociationSet Name="FK__mPedido__idmEmpl__32AB8735" Association="MasterRestModel.FK__mPedido__idmEmpl__32AB8735">
+            <End Role="mEmpleado" EntitySet="mEmpleado" />
+            <End Role="mPedido" EntitySet="mPedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK__mPlaza__idmEmple__0E6E26BF" Association="MasterRestModel.FK__mPlaza__idmEmple__0E6E26BF">
+            <End Role="mEmpleado" EntitySet="mEmpleado" />
+            <End Role="mPlaza" EntitySet="mPlaza" />
+          </AssociationSet>
+          <AssociationSet Name="FK__mFactura__idmPed__3E1D39E1" Association="MasterRestModel.FK__mFactura__idmPed__3E1D39E1">
+            <End Role="mPedido" EntitySet="mPedido" />
+            <End Role="mFactura" EntitySet="mFactura" />
+          </AssociationSet>
+          <AssociationSet Name="FK__mPlaza__idmPlaza__10566F31" Association="MasterRestModel.FK__mPlaza__idmPlaza__10566F31">
+            <End Role="mPlaza" EntitySet="mPlaza" />
+            <End Role="mPlaza1" EntitySet="mPlaza" />
+          </AssociationSet>
+          <EntitySet Name="eEmpleadoPromocion" EntityType="MasterRestModel.eEmpleadoPromocion" />
+          <AssociationSet Name="FK__eEmpleado__idcMo__7F2BE32F" Association="MasterRestModel.FK__eEmpleado__idcMo__7F2BE32F">
+            <End Role="cMotivoMovimiento" EntitySet="cMotivoMovimiento" />
+            <End Role="eEmpleadoPromocion" EntitySet="eEmpleadoPromocion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__eEmpleado__idmEm__7E37BEF6" Association="MasterRestModel.FK__eEmpleado__idmEm__7E37BEF6">
+            <End Role="mEmpleado" EntitySet="mEmpleado" />
+            <End Role="eEmpleadoPromocion" EntitySet="eEmpleadoPromocion" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="cArea">
+          <Key>
+            <PropertyRef Name="idcArea" />
+          </Key>
+          <Property Name="idcArea" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="area" Type="String" Nullable="false" MaxLength="75" FixedLength="false" Unicode="false" />
+          <Property Name="estatus" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="mPlaza" Relationship="MasterRestModel.FK__mPlaza__idcArea__123EB7A3" FromRole="cArea" ToRole="mPlaza" />
+        </EntityType>
+        <EntityType Name="cBeneficio">
+          <Key>
+            <PropertyRef Name="idcBeneficio" />
+          </Key>
+          <Property Name="idcBeneficio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="beneficio" Type="String" Nullable="false" MaxLength="75" FixedLength="false" Unicode="false" />
+          <Property Name="tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="opciones" Type="String" MaxLength="1500" FixedLength="false" Unicode="false" />
+          <Property Name="estatus" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ePlazaBeneficio" Relationship="MasterRestModel.FK__ePlazaBen__idcBe__160F4887" FromRole="cBeneficio" ToRole="ePlazaBeneficio" />
+        </EntityType>
+        <EntityType Name="cCategoria">
+          <Key>
+            <PropertyRef Name="idcCategoria" />
+          </Key>
+          <Property Name="idcCategoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idcSucursal" Type="Int32" Nullable="false" />
+          <Property Name="nombreCateria" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="cSucursal" Relationship="MasterRestModel.FK__cCategori__idcSu__245D67DE" FromRole="cCategoria" ToRole="cSucursal" />
+          <NavigationProperty Name="cMenu" Relationship="MasterRestModel.FK__cMenu__idcCatego__2739D489" FromRole="cCategoria" ToRole="cMenu" />
+        </EntityType>
+        <EntityType Name="cCliente">
+          <Key>
+            <PropertyRef Name="idcCliente" />
+          </Key>
+          <Property Name="idcCliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idcEmpresa" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="telefono" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="puntosFidelidad" Type="Int32" />
+          <NavigationProperty Name="cEmpresa" Relationship="MasterRestModel.FK__cCliente__idcEmp__208CD6FA" FromRole="cCliente" ToRole="cEmpresa" />
+          <NavigationProperty Name="mPedido" Relationship="MasterRestModel.FK__mPedido__idcClie__339FAB6E" FromRole="cCliente" ToRole="mPedido" />
+        </EntityType>
+        <EntityType Name="cDocumento">
+          <Key>
+            <PropertyRef Name="idcDocumento" />
+          </Key>
+          <Property Name="idcDocumento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="claveDocumento" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="documento" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="obligatorio" Type="Boolean" />
+          <Property Name="responsable" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="estatus" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="eEmpleadoDocumentacion" Relationship="MasterRestModel.FK__eEmpleado__idcDo__7B5B524B" FromRole="cDocumento" ToRole="eEmpleadoDocumentacion" />
+        </EntityType>
+        <EntityType Name="cDocumentoProbatorio">
+          <Key>
+            <PropertyRef Name="idcDocumentoProbatorio" />
+          </Key>
+          <Property Name="idcDocumentoProbatorio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="documentoProbatorio" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
+          <Property Name="estatus" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="cEmpresa">
+          <Key>
+            <PropertyRef Name="idcEmpresa" />
+          </Key>
+          <Property Name="idcEmpresa" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombreComercial" Type="String" Nullable="false" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="razonSocial" Type="String" Nullable="false" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="rfc" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="estatus" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="cCliente" Relationship="MasterRestModel.FK__cCliente__idcEmp__208CD6FA" FromRole="cEmpresa" ToRole="cCliente" />
+          <NavigationProperty Name="cPuesto" Relationship="MasterRestModel.FK__cPuesto__idcEmpr__07C12930" FromRole="cEmpresa" ToRole="cPuesto" />
+          <NavigationProperty Name="cRol" Relationship="MasterRestModel.FK__cRol__idcEmpresa__04E4BC85" FromRole="cEmpresa" ToRole="cRol" />
+          <NavigationProperty Name="cSucursal" Relationship="MasterRestModel.FK__cSucursal__idcEm__02084FDA" FromRole="cEmpresa" ToRole="cSucursal" />
+          <NavigationProperty Name="cUsuario" Relationship="MasterRestModel.FK__cUsuario__idcEmp__1CBC4616" FromRole="cEmpresa" ToRole="cUsuario" />
+          <NavigationProperty Name="mEmpleado" Relationship="MasterRestModel.FK__mEmpleado__idcEm__6EF57B66" FromRole="cEmpresa" ToRole="mEmpleado" />
+          <NavigationProperty Name="mPlaza" Relationship="MasterRestModel.FK__mPlaza__idcEmpre__0C85DE4D" FromRole="cEmpresa" ToRole="mPlaza" />
+        </EntityType>
+        <EntityType Name="cEntidadFederativa">
+          <Key>
+            <PropertyRef Name="idcEntidadFederativa" />
+          </Key>
+          <Property Name="idcEntidadFederativa" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="clave" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="entidadFederativa" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="claveCurp" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="cMunicipio" Relationship="MasterRestModel.FK__cMunicipi__idcEn__4CA06362" FromRole="cEntidadFederativa" ToRole="cMunicipio" />
+        </EntityType>
+        <EntityType Name="cEscolaridad">
+          <Key>
+            <PropertyRef Name="idcEscolaridad" />
+          </Key>
+          <Property Name="idcEscolaridad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="escolaridad" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
+          <Property Name="estatus" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="mEmpleado" Relationship="MasterRestModel.FK__mEmpleado__idcEs__72C60C4A" FromRole="cEscolaridad" ToRole="mEmpleado" />
+        </EntityType>
+        <EntityType Name="cEstadoCivil">
+          <Key>
+            <PropertyRef Name="idcEstadoCivil" />
+          </Key>
+          <Property Name="idcEstadoCivil" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="estadoCivil" Type="String" Nullable="false" MaxLength="75" FixedLength="false" Unicode="false" />
+          <Property Name="estatus" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="mEmpleado" Relationship="MasterRestModel.FK__mEmpleado__idcEs__71D1E811" FromRole="cEstadoCivil" ToRole="mEmpleado" />
+        </EntityType>
+        <EntityType Name="cIncapacidad">
+          <Key>
+            <PropertyRef Name="idcIncapacidad" />
+          </Key>
+          <Property Name="idcIncapacidad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="incapacidad" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
+          <Property Name="estatus" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="cInventario">
+          <Key>
+            <PropertyRef Name="idcIngrediente" />
+          </Key>
+          <Property Name="idcIngrediente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idcSucursal" Type="Int32" Nullable="false" />
+          <Property Name="nombreIngrediente" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="cantidadActual" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="unidadMedida" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="stockMinimo" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <NavigationProperty Name="cSucursal" Relationship="MasterRestModel.FK__cInventar__idcSu__42E1EEFE" FromRole="cInventario" ToRole="cSucursal" />
+        </EntityType>
+        <EntityType Name="cMenu">
+          <Key>
+            <PropertyRef Name="idcMenu" />
+          </Key>
+          <Property Name="idcMenu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idcCategoria" Type="Int32" Nullable="false" />
+          <Property Name="nombre_platillo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="precio" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="disponible" Type="Boolean" />
+          <NavigationProperty Name="cCategoria" Relationship="MasterRestModel.FK__cMenu__idcCatego__2739D489" FromRole="cMenu" ToRole="cCategoria" />
+          <NavigationProperty Name="dPedido" Relationship="MasterRestModel.FK__dPedido__idcMenu__3A4CA8FD" FromRole="cMenu" ToRole="dPedido" />
+        </EntityType>
+        <EntityType Name="cMesa">
+          <Key>
+            <PropertyRef Name="idcMesa" />
+          </Key>
+          <Property Name="idcMesa" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idcSucursal" Type="Int32" Nullable="false" />
+          <Property Name="numeroMesa" Type="Int32" Nullable="false" />
+          <Property Name="capacidad" Type="Int32" Nullable="false" />
+          <Property Name="estatus" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="cSucursal" Relationship="MasterRestModel.FK__cMesa__idcSucurs__2BFE89A6" FromRole="cMesa" ToRole="cSucursal" />
+          <NavigationProperty Name="mPedido" Relationship="MasterRestModel.FK__mPedido__idcMesa__31B762FC" FromRole="cMesa" ToRole="mPedido" />
+        </EntityType>
+        <EntityType Name="cMotivoBaja">
+          <Key>
+            <PropertyRef Name="idcMotivoBaja" />
+          </Key>
+          <Property Name="idcMotivoBaja" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="motivo" Type="String" Nullable="false" MaxLength="75" FixedLength="false" Unicode="false" />
+          <Property Name="estatus" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="cMotivoMovimiento">
+          <Key>
+            <PropertyRef Name="idcMotivoMovimiento" />
+          </Key>
+          <Property Name="idcMotivoMovimiento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="motivo" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
+          <Property Name="estatus" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="eEmpleadoPromocion" Relationship="MasterRestModel.FK__eEmpleado__idcMo__7F2BE32F" FromRole="cMotivoMovimiento" ToRole="eEmpleadoPromocion" />
+        </EntityType>
+        <EntityType Name="cMotivoRequisicion">
+          <Key>
+            <PropertyRef Name="idcMotivoRequisicion" />
+          </Key>
+          <Property Name="idcMotivoRequisicion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="motivoRequisicion" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
+          <Property Name="estatus" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="cMunicipio">
+          <Key>
+            <PropertyRef Name="idcMunicipio" />
+          </Key>
+          <Property Name="idcMunicipio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idcEntidadFederativa" Type="Int32" Nullable="false" />
+          <Property Name="clave" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="municipio" Type="String" Nullable="false" MaxLength="75" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="cEntidadFederativa" Relationship="MasterRestModel.FK__cMunicipi__idcEn__4CA06362" FromRole="cMunicipio" ToRole="cEntidadFederativa" />
+          <NavigationProperty Name="dEmpleadoDomicilio" Relationship="MasterRestModel.FK__dEmpleado__idcMu__628FA481" FromRole="cMunicipio" ToRole="dEmpleadoDomicilio" />
+        </EntityType>
+        <EntityType Name="cProfesion">
+          <Key>
+            <PropertyRef Name="idcProfesion" />
+          </Key>
+          <Property Name="idcProfesion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="profesion" Type="String" Nullable="false" MaxLength="75" FixedLength="false" Unicode="false" />
+          <Property Name="estatus" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="mEmpleado" Relationship="MasterRestModel.FK__mEmpleado__idcPr__73BA3083" FromRole="cProfesion" ToRole="mEmpleado" />
+        </EntityType>
+        <EntityType Name="cPuesto">
+          <Key>
+            <PropertyRef Name="idcPuesto" />
+          </Key>
+          <Property Name="idcPuesto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idcEmpresa" Type="Int32" Nullable="false" />
+          <Property Name="puesto" Type="String" Nullable="false" MaxLength="75" FixedLength="false" Unicode="false" />
+          <Property Name="posicionesAutorizadas" Type="Int32" />
+          <Property Name="funcionesPuesto" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="tabuladorMin" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="tabuladorProm" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="tabuladorMax" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="estatus" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="cEmpresa" Relationship="MasterRestModel.FK__cPuesto__idcEmpr__07C12930" FromRole="cPuesto" ToRole="cEmpresa" />
+          <NavigationProperty Name="mPlaza" Relationship="MasterRestModel.FK__mPlaza__idcPuest__114A936A" FromRole="cPuesto" ToRole="mPlaza" />
+        </EntityType>
+        <EntityType Name="cRol">
+          <Key>
+            <PropertyRef Name="idcRol" />
+          </Key>
+          <Property Name="idcRol" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idcEmpresa" Type="Int32" Nullable="false" />
+          <Property Name="rol" Type="String" Nullable="false" MaxLength="75" FixedLength="false" Unicode="false" />
+          <Property Name="estatus" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="cEmpresa" Relationship="MasterRestModel.FK__cRol__idcEmpresa__04E4BC85" FromRole="cRol" ToRole="cEmpresa" />
+          <NavigationProperty Name="mPlaza" Relationship="MasterRestModel.FK__mPlaza__idcRol__0F624AF8" FromRole="cRol" ToRole="mPlaza" />
+        </EntityType>
+        <EntityType Name="cSucursal">
+          <Key>
+            <PropertyRef Name="idcSucursal" />
+          </Key>
+          <Property Name="idcSucursal" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idcEmpresa" Type="Int32" Nullable="false" />
+          <Property Name="sucursal" Type="String" Nullable="false" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="telefono" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="direccion" Type="String" Nullable="false" MaxLength="75" FixedLength="false" Unicode="false" />
+          <Property Name="latitud" Type="Decimal" Nullable="false" Precision="8" Scale="6" />
+          <Property Name="longitud" Type="Decimal" Nullable="false" Precision="9" Scale="6" />
+          <Property Name="estatus" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="cCategoria" Relationship="MasterRestModel.FK__cCategori__idcSu__245D67DE" FromRole="cSucursal" ToRole="cCategoria" />
+          <NavigationProperty Name="cEmpresa" Relationship="MasterRestModel.FK__cSucursal__idcEm__02084FDA" FromRole="cSucursal" ToRole="cEmpresa" />
+          <NavigationProperty Name="cInventario" Relationship="MasterRestModel.FK__cInventar__idcSu__42E1EEFE" FromRole="cSucursal" ToRole="cInventario" />
+          <NavigationProperty Name="cMesa" Relationship="MasterRestModel.FK__cMesa__idcSucurs__2BFE89A6" FromRole="cSucursal" ToRole="cMesa" />
+          <NavigationProperty Name="mPlaza" Relationship="MasterRestModel.FK__mPlaza__idcSucur__0D7A0286" FromRole="cSucursal" ToRole="mPlaza" />
+        </EntityType>
+        <EntityType Name="cTipoBaja">
+          <Key>
+            <PropertyRef Name="idcTipoBaja" />
+          </Key>
+          <Property Name="idcTipoBaja" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tipoBaja" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
+          <Property Name="estatus" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="cTipoContrato">
+          <Key>
+            <PropertyRef Name="idcTipoContrato" />
+          </Key>
+          <Property Name="idcTipoContrato" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="contrato" Type="String" Nullable="false" MaxLength="75" FixedLength="false" Unicode="false" />
+          <Property Name="estatus" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="eEmpleadoContrato" Relationship="MasterRestModel.FK__eEmpleado__idcTi__778AC167" FromRole="cTipoContrato" ToRole="eEmpleadoContrato" />
+        </EntityType>
+        <EntityType Name="cTipoNomina">
+          <Key>
+            <PropertyRef Name="idcTipoNomina" />
+          </Key>
+          <Property Name="idcTipoNomina" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tipoNomina" Type="String" Nullable="false" MaxLength="75" FixedLength="false" Unicode="false" />
+          <Property Name="estatus" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="cUsuario">
+          <Key>
+            <PropertyRef Name="idcUsuario" />
+          </Key>
+          <Property Name="idcUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idcEmpresa" Type="Int32" Nullable="false" />
+          <Property Name="idmEmpleado" Type="Int32" Nullable="false" />
+          <Property Name="usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="clave" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="estatus" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="cEmpresa" Relationship="MasterRestModel.FK__cUsuario__idcEmp__1CBC4616" FromRole="cUsuario" ToRole="cEmpresa" />
+          <NavigationProperty Name="mEmpleado" Relationship="MasterRestModel.FK__cUsuario__idmEmp__1DB06A4F" FromRole="cUsuario" ToRole="mEmpleado" />
+        </EntityType>
+        <EntityType Name="dEmpleadoDomicilio">
+          <Key>
+            <PropertyRef Name="iddEmpleadoDomicilio" />
+          </Key>
+          <Property Name="iddEmpleadoDomicilio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idcMunicipio" Type="Int32" Nullable="false" />
+          <Property Name="colonia" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="calle" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="noExterior" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="noInterior" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="referencia" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="codigoPostal" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="estatus" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="cMunicipio" Relationship="MasterRestModel.FK__dEmpleado__idcMu__628FA481" FromRole="dEmpleadoDomicilio" ToRole="cMunicipio" />
+          <NavigationProperty Name="mEmpleado" Relationship="MasterRestModel.FK__mEmpleado__iddEm__6FE99F9F" FromRole="dEmpleadoDomicilio" ToRole="mEmpleado" />
+        </EntityType>
+        <EntityType Name="dPedido">
+          <Key>
+            <PropertyRef Name="iddPedido" />
+          </Key>
+          <Property Name="iddPedido" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idmPedido" Type="Int32" Nullable="false" />
+          <Property Name="idcMenu" Type="Int32" Nullable="false" />
+          <Property Name="cantidad" Type="Int32" Nullable="false" />
+          <Property Name="precioUnitario" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="notasEspeciales" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="cMenu" Relationship="MasterRestModel.FK__dPedido__idcMenu__3A4CA8FD" FromRole="dPedido" ToRole="cMenu" />
+          <NavigationProperty Name="mPedido" Relationship="MasterRestModel.FK__dPedido__idmPedi__395884C4" FromRole="dPedido" ToRole="mPedido" />
+        </EntityType>
+        <EntityType Name="eEmpleadoBaja">
+          <Key>
+            <PropertyRef Name="ideEmpleadoBaja" />
+          </Key>
+          <Property Name="ideEmpleadoBaja" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idmEmpleado" Type="Int32" />
+          <Property Name="idmPlaza" Type="Int32" />
+          <Property Name="empresa" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="sucursal" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="rol" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="jefeInmediato" Type="String" MaxLength="550" FixedLength="false" Unicode="false" />
+          <Property Name="puesto" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="area" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="motivoBaja" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
+          <Property Name="tipoBaja" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
+          <Property Name="fechaAlta" Type="DateTime" Precision="0" />
+          <Property Name="fechaBaja" Type="DateTime" Precision="0" />
+          <Property Name="observacionesBaja" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="recontratable" Type="Boolean" />
+          <Property Name="json" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="mEmpleado" Relationship="MasterRestModel.FK__eEmpleado__idmEm__18EBB532" FromRole="eEmpleadoBaja" ToRole="mEmpleado" />
+          <NavigationProperty Name="mPlaza" Relationship="MasterRestModel.FK__eEmpleado__idmPl__19DFD96B" FromRole="eEmpleadoBaja" ToRole="mPlaza" />
+        </EntityType>
+        <EntityType Name="eEmpleadoContrato">
+          <Key>
+            <PropertyRef Name="ideEmpleadoContrato" />
+          </Key>
+          <Property Name="ideEmpleadoContrato" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idmEmpleado" Type="Int32" Nullable="false" />
+          <Property Name="noContrato" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="descripcion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="fechaInicial" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fechaFinal" Type="DateTime" Precision="3" />
+          <Property Name="idcTipoContrato" Type="Int32" />
+          <Property Name="tiempoContrato" Type="Int16" />
+          <Property Name="proyecto" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="ruta" Type="String" MaxLength="115" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="cTipoContrato" Relationship="MasterRestModel.FK__eEmpleado__idcTi__778AC167" FromRole="eEmpleadoContrato" ToRole="cTipoContrato" />
+          <NavigationProperty Name="mEmpleado" Relationship="MasterRestModel.FK__eEmpleado__idmEm__76969D2E" FromRole="eEmpleadoContrato" ToRole="mEmpleado" />
+        </EntityType>
+        <EntityType Name="eEmpleadoDocumentacion">
+          <Key>
+            <PropertyRef Name="ideEmpleadoDocumentacion" />
+          </Key>
+          <Property Name="ideEmpleadoDocumentacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idmEmpleado" Type="Int32" Nullable="false" />
+          <Property Name="idcDocumento" Type="Int32" />
+          <Property Name="ruta" Type="String" Nullable="false" MaxLength="115" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="cDocumento" Relationship="MasterRestModel.FK__eEmpleado__idcDo__7B5B524B" FromRole="eEmpleadoDocumentacion" ToRole="cDocumento" />
+          <NavigationProperty Name="mEmpleado" Relationship="MasterRestModel.FK__eEmpleado__idmEm__7A672E12" FromRole="eEmpleadoDocumentacion" ToRole="mEmpleado" />
+        </EntityType>
+        <EntityType Name="ePlazaBeneficio">
+          <Key>
+            <PropertyRef Name="idePlazaBeneficio" />
+          </Key>
+          <Property Name="idePlazaBeneficio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idmPlaza" Type="Int32" Nullable="false" />
+          <Property Name="idcBeneficio" Type="Int32" Nullable="false" />
+          <Property Name="tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="valor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="cBeneficio" Relationship="MasterRestModel.FK__ePlazaBen__idcBe__160F4887" FromRole="ePlazaBeneficio" ToRole="cBeneficio" />
+          <NavigationProperty Name="mPlaza" Relationship="MasterRestModel.FK__ePlazaBen__idmPl__151B244E" FromRole="ePlazaBeneficio" ToRole="mPlaza" />
+        </EntityType>
+        <EntityType Name="mEmpleado">
+          <Key>
+            <PropertyRef Name="idmEmpleado" />
+          </Key>
+          <Property Name="idmEmpleado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idcEmpresa" Type="Int32" Nullable="false" />
+          <Property Name="iddEmpleadoDomicilio" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="paterno" Type="String" Nullable="false" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="materno" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="fechaContratacion" Type="DateTime" Precision="0" />
+          <Property Name="fechaNacimiento" Type="DateTime" Precision="0" />
+          <Property Name="lugarNacimiento" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="curp" Type="String" Nullable="false" MaxLength="18" FixedLength="false" Unicode="false" />
+          <Property Name="rfc" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="nss" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="fechaIngresoImss" Type="DateTime" Precision="0" />
+          <Property Name="idcEstadoCivil" Type="Int32" />
+          <Property Name="nacionalidad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="sexo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="tipoSangre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="correoPersonal" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="correoCoorporativo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="telefonoFijoEmpresa" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="telefonoExtension" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="telefonoCelularEmpresa" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="telefono" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="telefonoContacto" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="nombreContacto" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="parentescoContacto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="idcEscolaridad" Type="Int32" />
+          <Property Name="documentoProbatorio" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="idcProfesion" Type="Int32" />
+          <Property Name="institucion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="tipoInstitucion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="estatusInstitucion" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="esquemaPago" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="tipoNomina" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
+          <Property Name="noCreditoInfonavit" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="descuentoInfonavit" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="factorInfonavit" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="noCreditoFonacot" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="descuentoFonacot" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="factorFonacot" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="codiBanco" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="codiSucursal" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="noCuenta" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="clabeInterbancaria" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="salarioMensual" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="salarioDiario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="salarioIntegrado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="salarioDiarioExcedente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="salarioDiarioCotizacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fotoPerfil" Type="String" MaxLength="115" FixedLength="false" Unicode="false" />
+          <Property Name="observaciones" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="estatus" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="cEmpresa" Relationship="MasterRestModel.FK__mEmpleado__idcEm__6EF57B66" FromRole="mEmpleado" ToRole="cEmpresa" />
+          <NavigationProperty Name="cEscolaridad" Relationship="MasterRestModel.FK__mEmpleado__idcEs__72C60C4A" FromRole="mEmpleado" ToRole="cEscolaridad" />
+          <NavigationProperty Name="cEstadoCivil" Relationship="MasterRestModel.FK__mEmpleado__idcEs__71D1E811" FromRole="mEmpleado" ToRole="cEstadoCivil" />
+          <NavigationProperty Name="cProfesion" Relationship="MasterRestModel.FK__mEmpleado__idcPr__73BA3083" FromRole="mEmpleado" ToRole="cProfesion" />
+          <NavigationProperty Name="cUsuario" Relationship="MasterRestModel.FK__cUsuario__idmEmp__1DB06A4F" FromRole="mEmpleado" ToRole="cUsuario" />
+          <NavigationProperty Name="dEmpleadoDomicilio" Relationship="MasterRestModel.FK__mEmpleado__iddEm__6FE99F9F" FromRole="mEmpleado" ToRole="dEmpleadoDomicilio" />
+          <NavigationProperty Name="eEmpleadoBaja" Relationship="MasterRestModel.FK__eEmpleado__idmEm__18EBB532" FromRole="mEmpleado" ToRole="eEmpleadoBaja" />
+          <NavigationProperty Name="eEmpleadoContrato" Relationship="MasterRestModel.FK__eEmpleado__idmEm__76969D2E" FromRole="mEmpleado" ToRole="eEmpleadoContrato" />
+          <NavigationProperty Name="eEmpleadoDocumentacion" Relationship="MasterRestModel.FK__eEmpleado__idmEm__7A672E12" FromRole="mEmpleado" ToRole="eEmpleadoDocumentacion" />
+          <NavigationProperty Name="mPedido" Relationship="MasterRestModel.FK__mPedido__idmEmpl__32AB8735" FromRole="mEmpleado" ToRole="mPedido" />
+          <NavigationProperty Name="mPlaza" Relationship="MasterRestModel.FK__mPlaza__idmEmple__0E6E26BF" FromRole="mEmpleado" ToRole="mPlaza" />
+          <NavigationProperty Name="eEmpleadoPromocion" Relationship="MasterRestModel.FK__eEmpleado__idmEm__7E37BEF6" FromRole="mEmpleado" ToRole="eEmpleadoPromocion" />
+        </EntityType>
+        <EntityType Name="mFactura">
+          <Key>
+            <PropertyRef Name="idmFactura" />
+          </Key>
+          <Property Name="idmFactura" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idmPedido" Type="Int32" Nullable="false" />
+          <Property Name="fechaPago" Type="DateTime" Precision="3" />
+          <Property Name="subtotal" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="impuestos" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="total" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="metodoPago" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="mPedido" Relationship="MasterRestModel.FK__mFactura__idmPed__3E1D39E1" FromRole="mFactura" ToRole="mPedido" />
+        </EntityType>
+        <EntityType Name="mPedido">
+          <Key>
+            <PropertyRef Name="idmPedido" />
+          </Key>
+          <Property Name="idmPedido" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idcMesa" Type="Int32" Nullable="false" />
+          <Property Name="idmEmpleado" Type="Int32" Nullable="false" />
+          <Property Name="idcCliente" Type="Int32" />
+          <Property Name="fechaPedido" Type="DateTime" Precision="3" />
+          <Property Name="estatus" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="cCliente" Relationship="MasterRestModel.FK__mPedido__idcClie__339FAB6E" FromRole="mPedido" ToRole="cCliente" />
+          <NavigationProperty Name="cMesa" Relationship="MasterRestModel.FK__mPedido__idcMesa__31B762FC" FromRole="mPedido" ToRole="cMesa" />
+          <NavigationProperty Name="dPedido" Relationship="MasterRestModel.FK__dPedido__idmPedi__395884C4" FromRole="mPedido" ToRole="dPedido" />
+          <NavigationProperty Name="mEmpleado" Relationship="MasterRestModel.FK__mPedido__idmEmpl__32AB8735" FromRole="mPedido" ToRole="mEmpleado" />
+          <NavigationProperty Name="mFactura" Relationship="MasterRestModel.FK__mFactura__idmPed__3E1D39E1" FromRole="mPedido" ToRole="mFactura" />
+        </EntityType>
+        <EntityType Name="mPlaza">
+          <Key>
+            <PropertyRef Name="idmPlaza" />
+          </Key>
+          <Property Name="idmPlaza" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idcEmpresa" Type="Int32" Nullable="false" />
+          <Property Name="idcSucursal" Type="Int32" Nullable="false" />
+          <Property Name="idmEmpleado" Type="Int32" />
+          <Property Name="idcRol" Type="Int32" Nullable="false" />
+          <Property Name="idmPlazaJefeInmediato" Type="Int32" />
+          <Property Name="idcPuesto" Type="Int32" Nullable="false" />
+          <Property Name="idcArea" Type="Int32" Nullable="false" />
+          <Property Name="estatus" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="cArea" Relationship="MasterRestModel.FK__mPlaza__idcArea__123EB7A3" FromRole="mPlaza" ToRole="cArea" />
+          <NavigationProperty Name="cEmpresa" Relationship="MasterRestModel.FK__mPlaza__idcEmpre__0C85DE4D" FromRole="mPlaza" ToRole="cEmpresa" />
+          <NavigationProperty Name="cPuesto" Relationship="MasterRestModel.FK__mPlaza__idcPuest__114A936A" FromRole="mPlaza" ToRole="cPuesto" />
+          <NavigationProperty Name="cRol" Relationship="MasterRestModel.FK__mPlaza__idcRol__0F624AF8" FromRole="mPlaza" ToRole="cRol" />
+          <NavigationProperty Name="cSucursal" Relationship="MasterRestModel.FK__mPlaza__idcSucur__0D7A0286" FromRole="mPlaza" ToRole="cSucursal" />
+          <NavigationProperty Name="eEmpleadoBaja" Relationship="MasterRestModel.FK__eEmpleado__idmPl__19DFD96B" FromRole="mPlaza" ToRole="eEmpleadoBaja" />
+          <NavigationProperty Name="ePlazaBeneficio" Relationship="MasterRestModel.FK__ePlazaBen__idmPl__151B244E" FromRole="mPlaza" ToRole="ePlazaBeneficio" />
+          <NavigationProperty Name="mEmpleado" Relationship="MasterRestModel.FK__mPlaza__idmEmple__0E6E26BF" FromRole="mPlaza" ToRole="mEmpleado" />
+          <NavigationProperty Name="mPlaza1" Relationship="MasterRestModel.FK__mPlaza__idmPlaza__10566F31" FromRole="mPlaza" ToRole="mPlaza1" />
+          <NavigationProperty Name="mPlaza2" Relationship="MasterRestModel.FK__mPlaza__idmPlaza__10566F31" FromRole="mPlaza1" ToRole="mPlaza" />
+        </EntityType>
+        <Association Name="FK__mPlaza__idcArea__123EB7A3">
+          <End Type="MasterRestModel.cArea" Role="cArea" Multiplicity="1" />
+          <End Type="MasterRestModel.mPlaza" Role="mPlaza" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cArea">
+              <PropertyRef Name="idcArea" />
+            </Principal>
+            <Dependent Role="mPlaza">
+              <PropertyRef Name="idcArea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ePlazaBen__idcBe__160F4887">
+          <End Type="MasterRestModel.cBeneficio" Role="cBeneficio" Multiplicity="1" />
+          <End Type="MasterRestModel.ePlazaBeneficio" Role="ePlazaBeneficio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cBeneficio">
+              <PropertyRef Name="idcBeneficio" />
+            </Principal>
+            <Dependent Role="ePlazaBeneficio">
+              <PropertyRef Name="idcBeneficio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__cCategori__idcSu__245D67DE">
+          <End Type="MasterRestModel.cSucursal" Role="cSucursal" Multiplicity="1" />
+          <End Type="MasterRestModel.cCategoria" Role="cCategoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cSucursal">
+              <PropertyRef Name="idcSucursal" />
+            </Principal>
+            <Dependent Role="cCategoria">
+              <PropertyRef Name="idcSucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__cMenu__idcCatego__2739D489">
+          <End Type="MasterRestModel.cCategoria" Role="cCategoria" Multiplicity="1" />
+          <End Type="MasterRestModel.cMenu" Role="cMenu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cCategoria">
+              <PropertyRef Name="idcCategoria" />
+            </Principal>
+            <Dependent Role="cMenu">
+              <PropertyRef Name="idcCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__cCliente__idcEmp__208CD6FA">
+          <End Type="MasterRestModel.cEmpresa" Role="cEmpresa" Multiplicity="1" />
+          <End Type="MasterRestModel.cCliente" Role="cCliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cEmpresa">
+              <PropertyRef Name="idcEmpresa" />
+            </Principal>
+            <Dependent Role="cCliente">
+              <PropertyRef Name="idcEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__mPedido__idcClie__339FAB6E">
+          <End Type="MasterRestModel.cCliente" Role="cCliente" Multiplicity="0..1" />
+          <End Type="MasterRestModel.mPedido" Role="mPedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cCliente">
+              <PropertyRef Name="idcCliente" />
+            </Principal>
+            <Dependent Role="mPedido">
+              <PropertyRef Name="idcCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__eEmpleado__idcDo__7B5B524B">
+          <End Type="MasterRestModel.cDocumento" Role="cDocumento" Multiplicity="0..1" />
+          <End Type="MasterRestModel.eEmpleadoDocumentacion" Role="eEmpleadoDocumentacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cDocumento">
+              <PropertyRef Name="idcDocumento" />
+            </Principal>
+            <Dependent Role="eEmpleadoDocumentacion">
+              <PropertyRef Name="idcDocumento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__cPuesto__idcEmpr__07C12930">
+          <End Type="MasterRestModel.cEmpresa" Role="cEmpresa" Multiplicity="1" />
+          <End Type="MasterRestModel.cPuesto" Role="cPuesto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cEmpresa">
+              <PropertyRef Name="idcEmpresa" />
+            </Principal>
+            <Dependent Role="cPuesto">
+              <PropertyRef Name="idcEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__cRol__idcEmpresa__04E4BC85">
+          <End Type="MasterRestModel.cEmpresa" Role="cEmpresa" Multiplicity="1" />
+          <End Type="MasterRestModel.cRol" Role="cRol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cEmpresa">
+              <PropertyRef Name="idcEmpresa" />
+            </Principal>
+            <Dependent Role="cRol">
+              <PropertyRef Name="idcEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__cSucursal__idcEm__02084FDA">
+          <End Type="MasterRestModel.cEmpresa" Role="cEmpresa" Multiplicity="1" />
+          <End Type="MasterRestModel.cSucursal" Role="cSucursal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cEmpresa">
+              <PropertyRef Name="idcEmpresa" />
+            </Principal>
+            <Dependent Role="cSucursal">
+              <PropertyRef Name="idcEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__cUsuario__idcEmp__1CBC4616">
+          <End Type="MasterRestModel.cEmpresa" Role="cEmpresa" Multiplicity="1" />
+          <End Type="MasterRestModel.cUsuario" Role="cUsuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cEmpresa">
+              <PropertyRef Name="idcEmpresa" />
+            </Principal>
+            <Dependent Role="cUsuario">
+              <PropertyRef Name="idcEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__mEmpleado__idcEm__6EF57B66">
+          <End Type="MasterRestModel.cEmpresa" Role="cEmpresa" Multiplicity="1" />
+          <End Type="MasterRestModel.mEmpleado" Role="mEmpleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cEmpresa">
+              <PropertyRef Name="idcEmpresa" />
+            </Principal>
+            <Dependent Role="mEmpleado">
+              <PropertyRef Name="idcEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__mPlaza__idcEmpre__0C85DE4D">
+          <End Type="MasterRestModel.cEmpresa" Role="cEmpresa" Multiplicity="1" />
+          <End Type="MasterRestModel.mPlaza" Role="mPlaza" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cEmpresa">
+              <PropertyRef Name="idcEmpresa" />
+            </Principal>
+            <Dependent Role="mPlaza">
+              <PropertyRef Name="idcEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__cMunicipi__idcEn__4CA06362">
+          <End Type="MasterRestModel.cEntidadFederativa" Role="cEntidadFederativa" Multiplicity="1" />
+          <End Type="MasterRestModel.cMunicipio" Role="cMunicipio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cEntidadFederativa">
+              <PropertyRef Name="idcEntidadFederativa" />
+            </Principal>
+            <Dependent Role="cMunicipio">
+              <PropertyRef Name="idcEntidadFederativa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__mEmpleado__idcEs__72C60C4A">
+          <End Type="MasterRestModel.cEscolaridad" Role="cEscolaridad" Multiplicity="0..1" />
+          <End Type="MasterRestModel.mEmpleado" Role="mEmpleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cEscolaridad">
+              <PropertyRef Name="idcEscolaridad" />
+            </Principal>
+            <Dependent Role="mEmpleado">
+              <PropertyRef Name="idcEscolaridad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__mEmpleado__idcEs__71D1E811">
+          <End Type="MasterRestModel.cEstadoCivil" Role="cEstadoCivil" Multiplicity="0..1" />
+          <End Type="MasterRestModel.mEmpleado" Role="mEmpleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cEstadoCivil">
+              <PropertyRef Name="idcEstadoCivil" />
+            </Principal>
+            <Dependent Role="mEmpleado">
+              <PropertyRef Name="idcEstadoCivil" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__cInventar__idcSu__42E1EEFE">
+          <End Type="MasterRestModel.cSucursal" Role="cSucursal" Multiplicity="1" />
+          <End Type="MasterRestModel.cInventario" Role="cInventario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cSucursal">
+              <PropertyRef Name="idcSucursal" />
+            </Principal>
+            <Dependent Role="cInventario">
+              <PropertyRef Name="idcSucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__dPedido__idcMenu__3A4CA8FD">
+          <End Type="MasterRestModel.cMenu" Role="cMenu" Multiplicity="1" />
+          <End Type="MasterRestModel.dPedido" Role="dPedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cMenu">
+              <PropertyRef Name="idcMenu" />
+            </Principal>
+            <Dependent Role="dPedido">
+              <PropertyRef Name="idcMenu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__cMesa__idcSucurs__2BFE89A6">
+          <End Type="MasterRestModel.cSucursal" Role="cSucursal" Multiplicity="1" />
+          <End Type="MasterRestModel.cMesa" Role="cMesa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cSucursal">
+              <PropertyRef Name="idcSucursal" />
+            </Principal>
+            <Dependent Role="cMesa">
+              <PropertyRef Name="idcSucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__mPedido__idcMesa__31B762FC">
+          <End Type="MasterRestModel.cMesa" Role="cMesa" Multiplicity="1" />
+          <End Type="MasterRestModel.mPedido" Role="mPedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cMesa">
+              <PropertyRef Name="idcMesa" />
+            </Principal>
+            <Dependent Role="mPedido">
+              <PropertyRef Name="idcMesa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__dEmpleado__idcMu__628FA481">
+          <End Type="MasterRestModel.cMunicipio" Role="cMunicipio" Multiplicity="1" />
+          <End Type="MasterRestModel.dEmpleadoDomicilio" Role="dEmpleadoDomicilio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cMunicipio">
+              <PropertyRef Name="idcMunicipio" />
+            </Principal>
+            <Dependent Role="dEmpleadoDomicilio">
+              <PropertyRef Name="idcMunicipio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__mEmpleado__idcPr__73BA3083">
+          <End Type="MasterRestModel.cProfesion" Role="cProfesion" Multiplicity="0..1" />
+          <End Type="MasterRestModel.mEmpleado" Role="mEmpleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cProfesion">
+              <PropertyRef Name="idcProfesion" />
+            </Principal>
+            <Dependent Role="mEmpleado">
+              <PropertyRef Name="idcProfesion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__mPlaza__idcPuest__114A936A">
+          <End Type="MasterRestModel.cPuesto" Role="cPuesto" Multiplicity="1" />
+          <End Type="MasterRestModel.mPlaza" Role="mPlaza" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cPuesto">
+              <PropertyRef Name="idcPuesto" />
+            </Principal>
+            <Dependent Role="mPlaza">
+              <PropertyRef Name="idcPuesto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__mPlaza__idcRol__0F624AF8">
+          <End Type="MasterRestModel.cRol" Role="cRol" Multiplicity="1" />
+          <End Type="MasterRestModel.mPlaza" Role="mPlaza" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cRol">
+              <PropertyRef Name="idcRol" />
+            </Principal>
+            <Dependent Role="mPlaza">
+              <PropertyRef Name="idcRol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__mPlaza__idcSucur__0D7A0286">
+          <End Type="MasterRestModel.cSucursal" Role="cSucursal" Multiplicity="1" />
+          <End Type="MasterRestModel.mPlaza" Role="mPlaza" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cSucursal">
+              <PropertyRef Name="idcSucursal" />
+            </Principal>
+            <Dependent Role="mPlaza">
+              <PropertyRef Name="idcSucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__eEmpleado__idcTi__778AC167">
+          <End Type="MasterRestModel.cTipoContrato" Role="cTipoContrato" Multiplicity="0..1" />
+          <End Type="MasterRestModel.eEmpleadoContrato" Role="eEmpleadoContrato" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cTipoContrato">
+              <PropertyRef Name="idcTipoContrato" />
+            </Principal>
+            <Dependent Role="eEmpleadoContrato">
+              <PropertyRef Name="idcTipoContrato" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__cUsuario__idmEmp__1DB06A4F">
+          <End Type="MasterRestModel.mEmpleado" Role="mEmpleado" Multiplicity="1" />
+          <End Type="MasterRestModel.cUsuario" Role="cUsuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mEmpleado">
+              <PropertyRef Name="idmEmpleado" />
+            </Principal>
+            <Dependent Role="cUsuario">
+              <PropertyRef Name="idmEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__mEmpleado__iddEm__6FE99F9F">
+          <End Type="MasterRestModel.dEmpleadoDomicilio" Role="dEmpleadoDomicilio" Multiplicity="1" />
+          <End Type="MasterRestModel.mEmpleado" Role="mEmpleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dEmpleadoDomicilio">
+              <PropertyRef Name="iddEmpleadoDomicilio" />
+            </Principal>
+            <Dependent Role="mEmpleado">
+              <PropertyRef Name="iddEmpleadoDomicilio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__dPedido__idmPedi__395884C4">
+          <End Type="MasterRestModel.mPedido" Role="mPedido" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="MasterRestModel.dPedido" Role="dPedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mPedido">
+              <PropertyRef Name="idmPedido" />
+            </Principal>
+            <Dependent Role="dPedido">
+              <PropertyRef Name="idmPedido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__eEmpleado__idmEm__18EBB532">
+          <End Type="MasterRestModel.mEmpleado" Role="mEmpleado" Multiplicity="0..1" />
+          <End Type="MasterRestModel.eEmpleadoBaja" Role="eEmpleadoBaja" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mEmpleado">
+              <PropertyRef Name="idmEmpleado" />
+            </Principal>
+            <Dependent Role="eEmpleadoBaja">
+              <PropertyRef Name="idmEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__eEmpleado__idmPl__19DFD96B">
+          <End Type="MasterRestModel.mPlaza" Role="mPlaza" Multiplicity="0..1" />
+          <End Type="MasterRestModel.eEmpleadoBaja" Role="eEmpleadoBaja" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mPlaza">
+              <PropertyRef Name="idmPlaza" />
+            </Principal>
+            <Dependent Role="eEmpleadoBaja">
+              <PropertyRef Name="idmPlaza" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__eEmpleado__idmEm__76969D2E">
+          <End Type="MasterRestModel.mEmpleado" Role="mEmpleado" Multiplicity="1" />
+          <End Type="MasterRestModel.eEmpleadoContrato" Role="eEmpleadoContrato" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mEmpleado">
+              <PropertyRef Name="idmEmpleado" />
+            </Principal>
+            <Dependent Role="eEmpleadoContrato">
+              <PropertyRef Name="idmEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__eEmpleado__idmEm__7A672E12">
+          <End Type="MasterRestModel.mEmpleado" Role="mEmpleado" Multiplicity="1" />
+          <End Type="MasterRestModel.eEmpleadoDocumentacion" Role="eEmpleadoDocumentacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mEmpleado">
+              <PropertyRef Name="idmEmpleado" />
+            </Principal>
+            <Dependent Role="eEmpleadoDocumentacion">
+              <PropertyRef Name="idmEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ePlazaBen__idmPl__151B244E">
+          <End Type="MasterRestModel.mPlaza" Role="mPlaza" Multiplicity="1" />
+          <End Type="MasterRestModel.ePlazaBeneficio" Role="ePlazaBeneficio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mPlaza">
+              <PropertyRef Name="idmPlaza" />
+            </Principal>
+            <Dependent Role="ePlazaBeneficio">
+              <PropertyRef Name="idmPlaza" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__mPedido__idmEmpl__32AB8735">
+          <End Type="MasterRestModel.mEmpleado" Role="mEmpleado" Multiplicity="1" />
+          <End Type="MasterRestModel.mPedido" Role="mPedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mEmpleado">
+              <PropertyRef Name="idmEmpleado" />
+            </Principal>
+            <Dependent Role="mPedido">
+              <PropertyRef Name="idmEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__mPlaza__idmEmple__0E6E26BF">
+          <End Type="MasterRestModel.mEmpleado" Role="mEmpleado" Multiplicity="0..1" />
+          <End Type="MasterRestModel.mPlaza" Role="mPlaza" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mEmpleado">
+              <PropertyRef Name="idmEmpleado" />
+            </Principal>
+            <Dependent Role="mPlaza">
+              <PropertyRef Name="idmEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__mFactura__idmPed__3E1D39E1">
+          <End Type="MasterRestModel.mPedido" Role="mPedido" Multiplicity="1" />
+          <End Type="MasterRestModel.mFactura" Role="mFactura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mPedido">
+              <PropertyRef Name="idmPedido" />
+            </Principal>
+            <Dependent Role="mFactura">
+              <PropertyRef Name="idmPedido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__mPlaza__idmPlaza__10566F31">
+          <End Type="MasterRestModel.mPlaza" Role="mPlaza" Multiplicity="0..1" />
+          <End Type="MasterRestModel.mPlaza" Role="mPlaza1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mPlaza">
+              <PropertyRef Name="idmPlaza" />
+            </Principal>
+            <Dependent Role="mPlaza1">
+              <PropertyRef Name="idmPlazaJefeInmediato" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="eEmpleadoPromocion">
+          <Key>
+            <PropertyRef Name="ideEmpleadoPromocion" />
+          </Key>
+          <Property Name="ideEmpleadoPromocion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idmEmpleado" Type="Int32" Nullable="false" />
+          <Property Name="idcMotivoMovimiento" Type="Int32" />
+          <Property Name="fechaMovimiento" Type="DateTime" Precision="0" />
+          <Property Name="sueldoActual" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="sueldoNuevo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="puestoActual" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="puestoNuevo" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="areaActual" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="areaNuevo" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="sucursalActual" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="sucursalNuevo" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="jefeInmediatoActual" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="jefeInmediatoNuevo" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="observaciones" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="cMotivoMovimiento" Relationship="MasterRestModel.FK__eEmpleado__idcMo__7F2BE32F" FromRole="eEmpleadoPromocion" ToRole="cMotivoMovimiento" />
+          <NavigationProperty Name="mEmpleado" Relationship="MasterRestModel.FK__eEmpleado__idmEm__7E37BEF6" FromRole="eEmpleadoPromocion" ToRole="mEmpleado" />
+        </EntityType>
+        <Association Name="FK__eEmpleado__idcMo__7F2BE32F">
+          <End Type="MasterRestModel.cMotivoMovimiento" Role="cMotivoMovimiento" Multiplicity="0..1" />
+          <End Type="MasterRestModel.eEmpleadoPromocion" Role="eEmpleadoPromocion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cMotivoMovimiento">
+              <PropertyRef Name="idcMotivoMovimiento" />
+            </Principal>
+            <Dependent Role="eEmpleadoPromocion">
+              <PropertyRef Name="idcMotivoMovimiento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__eEmpleado__idmEm__7E37BEF6">
+          <End Type="MasterRestModel.mEmpleado" Role="mEmpleado" Multiplicity="1" />
+          <End Type="MasterRestModel.eEmpleadoPromocion" Role="eEmpleadoPromocion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mEmpleado">
+              <PropertyRef Name="idmEmpleado" />
+            </Principal>
+            <Dependent Role="eEmpleadoPromocion">
+              <PropertyRef Name="idmEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MasterRestModelStoreContainer" CdmEntityContainer="MasterRestEntities">
+          <EntitySetMapping Name="cArea">
+            <EntityTypeMapping TypeName="MasterRestModel.cArea">
+              <MappingFragment StoreEntitySet="cArea">
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="area" ColumnName="area" />
+                <ScalarProperty Name="idcArea" ColumnName="idcArea" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cBeneficio">
+            <EntityTypeMapping TypeName="MasterRestModel.cBeneficio">
+              <MappingFragment StoreEntitySet="cBeneficio">
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="opciones" ColumnName="opciones" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="beneficio" ColumnName="beneficio" />
+                <ScalarProperty Name="idcBeneficio" ColumnName="idcBeneficio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cCategoria">
+            <EntityTypeMapping TypeName="MasterRestModel.cCategoria">
+              <MappingFragment StoreEntitySet="cCategoria">
+                <ScalarProperty Name="nombreCateria" ColumnName="nombreCateria" />
+                <ScalarProperty Name="idcSucursal" ColumnName="idcSucursal" />
+                <ScalarProperty Name="idcCategoria" ColumnName="idcCategoria" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cCliente">
+            <EntityTypeMapping TypeName="MasterRestModel.cCliente">
+              <MappingFragment StoreEntitySet="cCliente">
+                <ScalarProperty Name="puntosFidelidad" ColumnName="puntosFidelidad" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="idcEmpresa" ColumnName="idcEmpresa" />
+                <ScalarProperty Name="idcCliente" ColumnName="idcCliente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cDocumento">
+            <EntityTypeMapping TypeName="MasterRestModel.cDocumento">
+              <MappingFragment StoreEntitySet="cDocumento">
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="responsable" ColumnName="responsable" />
+                <ScalarProperty Name="obligatorio" ColumnName="obligatorio" />
+                <ScalarProperty Name="documento" ColumnName="documento" />
+                <ScalarProperty Name="claveDocumento" ColumnName="claveDocumento" />
+                <ScalarProperty Name="idcDocumento" ColumnName="idcDocumento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cDocumentoProbatorio">
+            <EntityTypeMapping TypeName="MasterRestModel.cDocumentoProbatorio">
+              <MappingFragment StoreEntitySet="cDocumentoProbatorio">
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="documentoProbatorio" ColumnName="documentoProbatorio" />
+                <ScalarProperty Name="idcDocumentoProbatorio" ColumnName="idcDocumentoProbatorio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cEmpresa">
+            <EntityTypeMapping TypeName="MasterRestModel.cEmpresa">
+              <MappingFragment StoreEntitySet="cEmpresa">
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="rfc" ColumnName="rfc" />
+                <ScalarProperty Name="razonSocial" ColumnName="razonSocial" />
+                <ScalarProperty Name="nombreComercial" ColumnName="nombreComercial" />
+                <ScalarProperty Name="idcEmpresa" ColumnName="idcEmpresa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cEntidadFederativa">
+            <EntityTypeMapping TypeName="MasterRestModel.cEntidadFederativa">
+              <MappingFragment StoreEntitySet="cEntidadFederativa">
+                <ScalarProperty Name="claveCurp" ColumnName="claveCurp" />
+                <ScalarProperty Name="entidadFederativa" ColumnName="entidadFederativa" />
+                <ScalarProperty Name="clave" ColumnName="clave" />
+                <ScalarProperty Name="idcEntidadFederativa" ColumnName="idcEntidadFederativa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cEscolaridad">
+            <EntityTypeMapping TypeName="MasterRestModel.cEscolaridad">
+              <MappingFragment StoreEntitySet="cEscolaridad">
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="escolaridad" ColumnName="escolaridad" />
+                <ScalarProperty Name="idcEscolaridad" ColumnName="idcEscolaridad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cEstadoCivil">
+            <EntityTypeMapping TypeName="MasterRestModel.cEstadoCivil">
+              <MappingFragment StoreEntitySet="cEstadoCivil">
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="estadoCivil" ColumnName="estadoCivil" />
+                <ScalarProperty Name="idcEstadoCivil" ColumnName="idcEstadoCivil" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cIncapacidad">
+            <EntityTypeMapping TypeName="MasterRestModel.cIncapacidad">
+              <MappingFragment StoreEntitySet="cIncapacidad">
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="incapacidad" ColumnName="incapacidad" />
+                <ScalarProperty Name="idcIncapacidad" ColumnName="idcIncapacidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cInventario">
+            <EntityTypeMapping TypeName="MasterRestModel.cInventario">
+              <MappingFragment StoreEntitySet="cInventario">
+                <ScalarProperty Name="stockMinimo" ColumnName="stockMinimo" />
+                <ScalarProperty Name="unidadMedida" ColumnName="unidadMedida" />
+                <ScalarProperty Name="cantidadActual" ColumnName="cantidadActual" />
+                <ScalarProperty Name="nombreIngrediente" ColumnName="nombreIngrediente" />
+                <ScalarProperty Name="idcSucursal" ColumnName="idcSucursal" />
+                <ScalarProperty Name="idcIngrediente" ColumnName="idcIngrediente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cMenu">
+            <EntityTypeMapping TypeName="MasterRestModel.cMenu">
+              <MappingFragment StoreEntitySet="cMenu">
+                <ScalarProperty Name="disponible" ColumnName="disponible" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="nombre_platillo" ColumnName="nombre_platillo" />
+                <ScalarProperty Name="idcCategoria" ColumnName="idcCategoria" />
+                <ScalarProperty Name="idcMenu" ColumnName="idcMenu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cMesa">
+            <EntityTypeMapping TypeName="MasterRestModel.cMesa">
+              <MappingFragment StoreEntitySet="cMesa">
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="capacidad" ColumnName="capacidad" />
+                <ScalarProperty Name="numeroMesa" ColumnName="numeroMesa" />
+                <ScalarProperty Name="idcSucursal" ColumnName="idcSucursal" />
+                <ScalarProperty Name="idcMesa" ColumnName="idcMesa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cMotivoBaja">
+            <EntityTypeMapping TypeName="MasterRestModel.cMotivoBaja">
+              <MappingFragment StoreEntitySet="cMotivoBaja">
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="motivo" ColumnName="motivo" />
+                <ScalarProperty Name="idcMotivoBaja" ColumnName="idcMotivoBaja" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cMotivoMovimiento">
+            <EntityTypeMapping TypeName="MasterRestModel.cMotivoMovimiento">
+              <MappingFragment StoreEntitySet="cMotivoMovimiento">
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="motivo" ColumnName="motivo" />
+                <ScalarProperty Name="idcMotivoMovimiento" ColumnName="idcMotivoMovimiento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cMotivoRequisicion">
+            <EntityTypeMapping TypeName="MasterRestModel.cMotivoRequisicion">
+              <MappingFragment StoreEntitySet="cMotivoRequisicion">
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="motivoRequisicion" ColumnName="motivoRequisicion" />
+                <ScalarProperty Name="idcMotivoRequisicion" ColumnName="idcMotivoRequisicion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cMunicipio">
+            <EntityTypeMapping TypeName="MasterRestModel.cMunicipio">
+              <MappingFragment StoreEntitySet="cMunicipio">
+                <ScalarProperty Name="municipio" ColumnName="municipio" />
+                <ScalarProperty Name="clave" ColumnName="clave" />
+                <ScalarProperty Name="idcEntidadFederativa" ColumnName="idcEntidadFederativa" />
+                <ScalarProperty Name="idcMunicipio" ColumnName="idcMunicipio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cProfesion">
+            <EntityTypeMapping TypeName="MasterRestModel.cProfesion">
+              <MappingFragment StoreEntitySet="cProfesion">
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="profesion" ColumnName="profesion" />
+                <ScalarProperty Name="idcProfesion" ColumnName="idcProfesion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cPuesto">
+            <EntityTypeMapping TypeName="MasterRestModel.cPuesto">
+              <MappingFragment StoreEntitySet="cPuesto">
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="tabuladorMax" ColumnName="tabuladorMax" />
+                <ScalarProperty Name="tabuladorProm" ColumnName="tabuladorProm" />
+                <ScalarProperty Name="tabuladorMin" ColumnName="tabuladorMin" />
+                <ScalarProperty Name="funcionesPuesto" ColumnName="funcionesPuesto" />
+                <ScalarProperty Name="posicionesAutorizadas" ColumnName="posicionesAutorizadas" />
+                <ScalarProperty Name="puesto" ColumnName="puesto" />
+                <ScalarProperty Name="idcEmpresa" ColumnName="idcEmpresa" />
+                <ScalarProperty Name="idcPuesto" ColumnName="idcPuesto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cRol">
+            <EntityTypeMapping TypeName="MasterRestModel.cRol">
+              <MappingFragment StoreEntitySet="cRol">
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="rol" ColumnName="rol" />
+                <ScalarProperty Name="idcEmpresa" ColumnName="idcEmpresa" />
+                <ScalarProperty Name="idcRol" ColumnName="idcRol" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cSucursal">
+            <EntityTypeMapping TypeName="MasterRestModel.cSucursal">
+              <MappingFragment StoreEntitySet="cSucursal">
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="longitud" ColumnName="longitud" />
+                <ScalarProperty Name="latitud" ColumnName="latitud" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="sucursal" ColumnName="sucursal" />
+                <ScalarProperty Name="idcEmpresa" ColumnName="idcEmpresa" />
+                <ScalarProperty Name="idcSucursal" ColumnName="idcSucursal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cTipoBaja">
+            <EntityTypeMapping TypeName="MasterRestModel.cTipoBaja">
+              <MappingFragment StoreEntitySet="cTipoBaja">
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="tipoBaja" ColumnName="tipoBaja" />
+                <ScalarProperty Name="idcTipoBaja" ColumnName="idcTipoBaja" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cTipoContrato">
+            <EntityTypeMapping TypeName="MasterRestModel.cTipoContrato">
+              <MappingFragment StoreEntitySet="cTipoContrato">
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="contrato" ColumnName="contrato" />
+                <ScalarProperty Name="idcTipoContrato" ColumnName="idcTipoContrato" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cTipoNomina">
+            <EntityTypeMapping TypeName="MasterRestModel.cTipoNomina">
+              <MappingFragment StoreEntitySet="cTipoNomina">
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="tipoNomina" ColumnName="tipoNomina" />
+                <ScalarProperty Name="idcTipoNomina" ColumnName="idcTipoNomina" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cUsuario">
+            <EntityTypeMapping TypeName="MasterRestModel.cUsuario">
+              <MappingFragment StoreEntitySet="cUsuario">
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="clave" ColumnName="clave" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="idmEmpleado" ColumnName="idmEmpleado" />
+                <ScalarProperty Name="idcEmpresa" ColumnName="idcEmpresa" />
+                <ScalarProperty Name="idcUsuario" ColumnName="idcUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="dEmpleadoDomicilio">
+            <EntityTypeMapping TypeName="MasterRestModel.dEmpleadoDomicilio">
+              <MappingFragment StoreEntitySet="dEmpleadoDomicilio">
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="codigoPostal" ColumnName="codigoPostal" />
+                <ScalarProperty Name="referencia" ColumnName="referencia" />
+                <ScalarProperty Name="noInterior" ColumnName="noInterior" />
+                <ScalarProperty Name="noExterior" ColumnName="noExterior" />
+                <ScalarProperty Name="calle" ColumnName="calle" />
+                <ScalarProperty Name="colonia" ColumnName="colonia" />
+                <ScalarProperty Name="idcMunicipio" ColumnName="idcMunicipio" />
+                <ScalarProperty Name="iddEmpleadoDomicilio" ColumnName="iddEmpleadoDomicilio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="dPedido">
+            <EntityTypeMapping TypeName="MasterRestModel.dPedido">
+              <MappingFragment StoreEntitySet="dPedido">
+                <ScalarProperty Name="notasEspeciales" ColumnName="notasEspeciales" />
+                <ScalarProperty Name="precioUnitario" ColumnName="precioUnitario" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="idcMenu" ColumnName="idcMenu" />
+                <ScalarProperty Name="idmPedido" ColumnName="idmPedido" />
+                <ScalarProperty Name="iddPedido" ColumnName="iddPedido" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="eEmpleadoBaja">
+            <EntityTypeMapping TypeName="MasterRestModel.eEmpleadoBaja">
+              <MappingFragment StoreEntitySet="eEmpleadoBaja">
+                <ScalarProperty Name="json" ColumnName="json" />
+                <ScalarProperty Name="recontratable" ColumnName="recontratable" />
+                <ScalarProperty Name="observacionesBaja" ColumnName="observacionesBaja" />
+                <ScalarProperty Name="fechaBaja" ColumnName="fechaBaja" />
+                <ScalarProperty Name="fechaAlta" ColumnName="fechaAlta" />
+                <ScalarProperty Name="tipoBaja" ColumnName="tipoBaja" />
+                <ScalarProperty Name="motivoBaja" ColumnName="motivoBaja" />
+                <ScalarProperty Name="area" ColumnName="area" />
+                <ScalarProperty Name="puesto" ColumnName="puesto" />
+                <ScalarProperty Name="jefeInmediato" ColumnName="jefeInmediato" />
+                <ScalarProperty Name="rol" ColumnName="rol" />
+                <ScalarProperty Name="sucursal" ColumnName="sucursal" />
+                <ScalarProperty Name="empresa" ColumnName="empresa" />
+                <ScalarProperty Name="idmPlaza" ColumnName="idmPlaza" />
+                <ScalarProperty Name="idmEmpleado" ColumnName="idmEmpleado" />
+                <ScalarProperty Name="ideEmpleadoBaja" ColumnName="ideEmpleadoBaja" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="eEmpleadoContrato">
+            <EntityTypeMapping TypeName="MasterRestModel.eEmpleadoContrato">
+              <MappingFragment StoreEntitySet="eEmpleadoContrato">
+                <ScalarProperty Name="ruta" ColumnName="ruta" />
+                <ScalarProperty Name="proyecto" ColumnName="proyecto" />
+                <ScalarProperty Name="tiempoContrato" ColumnName="tiempoContrato" />
+                <ScalarProperty Name="idcTipoContrato" ColumnName="idcTipoContrato" />
+                <ScalarProperty Name="fechaFinal" ColumnName="fechaFinal" />
+                <ScalarProperty Name="fechaInicial" ColumnName="fechaInicial" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="noContrato" ColumnName="noContrato" />
+                <ScalarProperty Name="idmEmpleado" ColumnName="idmEmpleado" />
+                <ScalarProperty Name="ideEmpleadoContrato" ColumnName="ideEmpleadoContrato" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="eEmpleadoDocumentacion">
+            <EntityTypeMapping TypeName="MasterRestModel.eEmpleadoDocumentacion">
+              <MappingFragment StoreEntitySet="eEmpleadoDocumentacion">
+                <ScalarProperty Name="ruta" ColumnName="ruta" />
+                <ScalarProperty Name="idcDocumento" ColumnName="idcDocumento" />
+                <ScalarProperty Name="idmEmpleado" ColumnName="idmEmpleado" />
+                <ScalarProperty Name="ideEmpleadoDocumentacion" ColumnName="ideEmpleadoDocumentacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ePlazaBeneficio">
+            <EntityTypeMapping TypeName="MasterRestModel.ePlazaBeneficio">
+              <MappingFragment StoreEntitySet="ePlazaBeneficio">
+                <ScalarProperty Name="valor" ColumnName="valor" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="idcBeneficio" ColumnName="idcBeneficio" />
+                <ScalarProperty Name="idmPlaza" ColumnName="idmPlaza" />
+                <ScalarProperty Name="idePlazaBeneficio" ColumnName="idePlazaBeneficio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mEmpleado">
+            <EntityTypeMapping TypeName="MasterRestModel.mEmpleado">
+              <MappingFragment StoreEntitySet="mEmpleado">
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="observaciones" ColumnName="observaciones" />
+                <ScalarProperty Name="fotoPerfil" ColumnName="fotoPerfil" />
+                <ScalarProperty Name="salarioDiarioCotizacion" ColumnName="salarioDiarioCotizacion" />
+                <ScalarProperty Name="salarioDiarioExcedente" ColumnName="salarioDiarioExcedente" />
+                <ScalarProperty Name="salarioIntegrado" ColumnName="salarioIntegrado" />
+                <ScalarProperty Name="salarioDiario" ColumnName="salarioDiario" />
+                <ScalarProperty Name="salarioMensual" ColumnName="salarioMensual" />
+                <ScalarProperty Name="clabeInterbancaria" ColumnName="clabeInterbancaria" />
+                <ScalarProperty Name="noCuenta" ColumnName="noCuenta" />
+                <ScalarProperty Name="codiSucursal" ColumnName="codiSucursal" />
+                <ScalarProperty Name="codiBanco" ColumnName="codiBanco" />
+                <ScalarProperty Name="factorFonacot" ColumnName="factorFonacot" />
+                <ScalarProperty Name="descuentoFonacot" ColumnName="descuentoFonacot" />
+                <ScalarProperty Name="noCreditoFonacot" ColumnName="noCreditoFonacot" />
+                <ScalarProperty Name="factorInfonavit" ColumnName="factorInfonavit" />
+                <ScalarProperty Name="descuentoInfonavit" ColumnName="descuentoInfonavit" />
+                <ScalarProperty Name="noCreditoInfonavit" ColumnName="noCreditoInfonavit" />
+                <ScalarProperty Name="tipoNomina" ColumnName="tipoNomina" />
+                <ScalarProperty Name="esquemaPago" ColumnName="esquemaPago" />
+                <ScalarProperty Name="estatusInstitucion" ColumnName="estatusInstitucion" />
+                <ScalarProperty Name="tipoInstitucion" ColumnName="tipoInstitucion" />
+                <ScalarProperty Name="institucion" ColumnName="institucion" />
+                <ScalarProperty Name="idcProfesion" ColumnName="idcProfesion" />
+                <ScalarProperty Name="documentoProbatorio" ColumnName="documentoProbatorio" />
+                <ScalarProperty Name="idcEscolaridad" ColumnName="idcEscolaridad" />
+                <ScalarProperty Name="parentescoContacto" ColumnName="parentescoContacto" />
+                <ScalarProperty Name="nombreContacto" ColumnName="nombreContacto" />
+                <ScalarProperty Name="telefonoContacto" ColumnName="telefonoContacto" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="telefonoCelularEmpresa" ColumnName="telefonoCelularEmpresa" />
+                <ScalarProperty Name="telefonoExtension" ColumnName="telefonoExtension" />
+                <ScalarProperty Name="telefonoFijoEmpresa" ColumnName="telefonoFijoEmpresa" />
+                <ScalarProperty Name="correoCoorporativo" ColumnName="correoCoorporativo" />
+                <ScalarProperty Name="correoPersonal" ColumnName="correoPersonal" />
+                <ScalarProperty Name="tipoSangre" ColumnName="tipoSangre" />
+                <ScalarProperty Name="sexo" ColumnName="sexo" />
+                <ScalarProperty Name="nacionalidad" ColumnName="nacionalidad" />
+                <ScalarProperty Name="idcEstadoCivil" ColumnName="idcEstadoCivil" />
+                <ScalarProperty Name="fechaIngresoImss" ColumnName="fechaIngresoImss" />
+                <ScalarProperty Name="nss" ColumnName="nss" />
+                <ScalarProperty Name="rfc" ColumnName="rfc" />
+                <ScalarProperty Name="curp" ColumnName="curp" />
+                <ScalarProperty Name="lugarNacimiento" ColumnName="lugarNacimiento" />
+                <ScalarProperty Name="fechaNacimiento" ColumnName="fechaNacimiento" />
+                <ScalarProperty Name="fechaContratacion" ColumnName="fechaContratacion" />
+                <ScalarProperty Name="materno" ColumnName="materno" />
+                <ScalarProperty Name="paterno" ColumnName="paterno" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="iddEmpleadoDomicilio" ColumnName="iddEmpleadoDomicilio" />
+                <ScalarProperty Name="idcEmpresa" ColumnName="idcEmpresa" />
+                <ScalarProperty Name="idmEmpleado" ColumnName="idmEmpleado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mFactura">
+            <EntityTypeMapping TypeName="MasterRestModel.mFactura">
+              <MappingFragment StoreEntitySet="mFactura">
+                <ScalarProperty Name="metodoPago" ColumnName="metodoPago" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="impuestos" ColumnName="impuestos" />
+                <ScalarProperty Name="subtotal" ColumnName="subtotal" />
+                <ScalarProperty Name="fechaPago" ColumnName="fechaPago" />
+                <ScalarProperty Name="idmPedido" ColumnName="idmPedido" />
+                <ScalarProperty Name="idmFactura" ColumnName="idmFactura" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mPedido">
+            <EntityTypeMapping TypeName="MasterRestModel.mPedido">
+              <MappingFragment StoreEntitySet="mPedido">
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="fechaPedido" ColumnName="fechaPedido" />
+                <ScalarProperty Name="idcCliente" ColumnName="idcCliente" />
+                <ScalarProperty Name="idmEmpleado" ColumnName="idmEmpleado" />
+                <ScalarProperty Name="idcMesa" ColumnName="idcMesa" />
+                <ScalarProperty Name="idmPedido" ColumnName="idmPedido" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mPlaza">
+            <EntityTypeMapping TypeName="MasterRestModel.mPlaza">
+              <MappingFragment StoreEntitySet="mPlaza">
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="idcArea" ColumnName="idcArea" />
+                <ScalarProperty Name="idcPuesto" ColumnName="idcPuesto" />
+                <ScalarProperty Name="idmPlazaJefeInmediato" ColumnName="idmPlazaJefeInmediato" />
+                <ScalarProperty Name="idcRol" ColumnName="idcRol" />
+                <ScalarProperty Name="idmEmpleado" ColumnName="idmEmpleado" />
+                <ScalarProperty Name="idcSucursal" ColumnName="idcSucursal" />
+                <ScalarProperty Name="idcEmpresa" ColumnName="idcEmpresa" />
+                <ScalarProperty Name="idmPlaza" ColumnName="idmPlaza" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="eEmpleadoPromocion">
+            <EntityTypeMapping TypeName="MasterRestModel.eEmpleadoPromocion">
+              <MappingFragment StoreEntitySet="eEmpleadoPromocion">
+                <ScalarProperty Name="observaciones" ColumnName="observaciones" />
+                <ScalarProperty Name="jefeInmediatoNuevo" ColumnName="jefeInmediatoNuevo" />
+                <ScalarProperty Name="jefeInmediatoActual" ColumnName="jefeInmediatoActual" />
+                <ScalarProperty Name="sucursalNuevo" ColumnName="sucursalNuevo" />
+                <ScalarProperty Name="sucursalActual" ColumnName="sucursalActual" />
+                <ScalarProperty Name="areaNuevo" ColumnName="areaNuevo" />
+                <ScalarProperty Name="areaActual" ColumnName="areaActual" />
+                <ScalarProperty Name="puestoNuevo" ColumnName="puestoNuevo" />
+                <ScalarProperty Name="puestoActual" ColumnName="puestoActual" />
+                <ScalarProperty Name="sueldoNuevo" ColumnName="sueldoNuevo" />
+                <ScalarProperty Name="sueldoActual" ColumnName="sueldoActual" />
+                <ScalarProperty Name="fechaMovimiento" ColumnName="fechaMovimiento" />
+                <ScalarProperty Name="idcMotivoMovimiento" ColumnName="idcMotivoMovimiento" />
+                <ScalarProperty Name="idmEmpleado" ColumnName="idmEmpleado" />
+                <ScalarProperty Name="ideEmpleadoPromocion" ColumnName="ideEmpleadoPromocion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

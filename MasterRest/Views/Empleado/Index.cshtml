@@ -1,0 +1,138 @@
+﻿@model IEnumerable<MasterRest.Models.mEmpleado>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="content">
+    <div class="page-header">
+        <div class="add-item d-flex">
+            <div class="page-title">
+                <h4 class="fw-bold">Lista de empleados</h4>
+            </div>
+        </div>
+        <ul class="table-top-head">
+            <li>
+                <a data-bs-toggle="tooltip" data-bs-placement="top" title="Excel" href="~/Report/Personal"><img src="~/assets/img/icons/excel.svg" alt="img"></a>
+            </li>
+            <li>
+                <a data-bs-toggle="tooltip" data-bs-placement="top" title="Refresh" href="~/Empleado"><i class="ti ti-refresh"></i></a>
+            </li>
+            <li>
+                <a data-bs-toggle="tooltip" data-bs-placement="top" title="Collapse" id="collapse-header"><i class="ti ti-chevron-up"></i></a>
+            </li>
+        </ul>
+        <div class="page-btn">
+            <a href="javascript:AbreModal3('@Url.Action("Create","Empleado")','Agregar empleado');" class="btn btn-primary"><i class="ti ti-circle-plus me-1"></i>Agregar empleado</a>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header d-flex align-items-center justify-content-between flex-wrap row-gap-3">
+            <div class="search-set">
+                <div class="search-input">
+                    <span class="btn-searchset"><i class="ti ti-search fs-14 feather-search"></i></span>
+                </div>
+            </div>
+            <div class="d-flex table-dropdown my-xl-auto right-content align-items-center flex-wrap row-gap-3">
+                
+            </div>
+        </div>
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table datatable" style="width:100%" id="tbl">
+                    <thead>
+                        <tr>
+                            <th width="1"></th>
+                            <th width="1"></th>
+                            <th>Estatus</th>
+                            <th><strong>Nombre</strong></th>
+                            <th>Puesto</th>
+                            <th>Área</th>
+                            <th>Sucursal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="text-center">
+                                    <a class="action-set" href="javascript:void(0);" data-bs-toggle="dropdown" aria-expanded="true"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="javascript:AbreModal3('@Url.Action("Details", "Empleado", new { id = item.idmEmpleado })','Detalle empleado');" class="dropdown-item"><i data-feather="eye" class="info-img"></i>Detalle</a></li>
+                                        <li><a href="javascript:AbreModal3('@Url.Action("Edit", "Empleado", new { id = item.idmEmpleado })','Editar empleado');" class="dropdown-item"><i data-feather="edit" class="info-img"></i>Editar</a></li>
+                                        <li><a href="javascript:AbreModal3('@Url.Action("Promote", "Empleado", new { id = item.idmEmpleado })','Movimiento empleado');" class="dropdown-item"><i data-feather="refresh-cw" class="info-img"></i>Movimiento</a></li>
+                                        <li><a href="javascript:AbreModal('@Url.Action("Discharge", "Empleado", new { id = item.idmEmpleado })','Baja empleado');" class="dropdown-item"><i data-feather="minus-circle" class="info-img"></i>Baja</a></li>
+                                        <li><a href="javascript:AbreModal3('@Url.Action("Reenter", "Empleado", new { id = item.idmEmpleado })','Reingresar empleado');" class="dropdown-item"><i data-feather="check-circle" class="info-img"></i>Reingresar</a></li>
+                                       <li><a href="javascript:AbreModal('@Url.Action("Delete", "Empleado", new { id = item.idmEmpleado })','Eliminar empleado');" class="dropdown-item" style="color: red"><i data-feather="trash-2" class="info-img"></i>Eliminar</a></li>
+                                    </ul>
+                                </td>
+                                <td class="action-table-data">
+                                    <div class="edit-delete-action">
+                                        <a href="javascript:AbreModal3('@Url.Action("Salary", "Empleado", new { id = item.idmEmpleado })','Salario empleado');">
+                                            <i class="ti ti-user-dollar me-1" style="color: @(item.salarioMensual == null || item.salarioMensual == "" ? "red" : "gray")"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                                <td>
+                                    @switch (item.estatus)
+                                    {
+                                        case "PENDIENTE":<span class="badge bg-info fw-medium me-1">PENDIENTE</span> break;
+                                        case "ACTIVO": <span class="badge bg-success fw-medium me-1">ACTIVO</span> break;
+                                        case "BAJA": <span class="badge bg-warning fw-medium me-1">BAJA</span>break;
+                                    }
+                                </td>
+                                <td style="color: @(item.estatus == "BAJA" ? "orange" : "#646B72")"><strong>@item.paterno @item.materno @item.nombre</strong></td>
+                                @{
+                                    var puesto = "";
+                                    var area = "";
+                                    var sucursal = "";
+
+                                    if (item.estatus == "BAJA")
+                                    {
+                                        if (item.eEmpleadoBaja.Count > 0)
+                                        {
+                                            //var nodo = System.Text.Json.Nodes.JsonNode.Parse(item.eEmpleadoBaja.LastOrDefault().json);
+
+                                            //puesto = (string)nodo["plantilla"]["puesto"];
+                                            //departamento = (string)nodo["plantilla"]["departamento"];
+                                            //centroTrabajo = (string)nodo["plantilla"]["centroTrabajo"];
+                                        }
+                                    }
+                                    else
+                                    {
+                                        if (item.mPlaza.Count > 0)
+                                        {
+                                            var mPlaza = item.mPlaza.LastOrDefault();
+                                            puesto = mPlaza.cPuesto.puesto;
+                                            area = mPlaza.cArea.area;
+                                            sucursal = mPlaza.cSucursal.sucursal;
+                                        }
+                                    }
+                                }
+                                <td style="color: @(item.estatus == "BAJA" ? "orange" : "#646B72")">@puesto</td>
+                                <td style="color: @(item.estatus == "BAJA" ? "orange" : "#646B72")">@area</td>
+                                <td style="color: @(item.estatus == "BAJA" ? "orange" : "#646B72")">@sucursal</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function OnChange() {
+        var form = document.createElement("form");
+        var element1 = document.createElement("input");
+        var element2 = document.createElement("input");
+        form.method = "POST";
+        form.action = "@Url.Action("Index", "Empleado")";
+        element1.value = $("#estatus").val();
+        element1.name = "estatus";
+        form.appendChild(element1);
+        element2.value = $("#centroTrabajo2").val();
+        element2.name = "centroTrabajo";
+        form.appendChild(element2);
+        document.body.appendChild(form);
+        form.submit();
+        document.body.removeChild(form);
+    }
+</script>

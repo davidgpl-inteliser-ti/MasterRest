@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f3155c6a3ef343ad9d743d6f0cf5b682" Name="Diagram1" ZoomLevel="92">
+        <EntityTypeShape EntityType="MasterRestModel.cArea" Width="1.5" PointX="6" PointY="31.75" />
+        <EntityTypeShape EntityType="MasterRestModel.cBeneficio" Width="1.5" PointX="11.25" PointY="29.5" />
+        <EntityTypeShape EntityType="MasterRestModel.cCategoria" Width="1.5" PointX="5.25" PointY="39.75" />
+        <EntityTypeShape EntityType="MasterRestModel.cCliente" Width="1.5" PointX="3" PointY="15.625" />
+        <EntityTypeShape EntityType="MasterRestModel.cDocumento" Width="1.5" PointX="9" PointY="8.875" />
+        <EntityTypeShape EntityType="MasterRestModel.cDocumentoProbatorio" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="MasterRestModel.cEmpresa" Width="1.5" PointX="0.75" PointY="23.375" />
+        <EntityTypeShape EntityType="MasterRestModel.cEntidadFederativa" Width="1.5" PointX="1.5" PointY="6.375" />
+        <EntityTypeShape EntityType="MasterRestModel.cEscolaridad" Width="1.5" PointX="3.75" PointY="19.25" />
+        <EntityTypeShape EntityType="MasterRestModel.cEstadoCivil" Width="1.5" PointX="3.75" PointY="12.625" />
+        <EntityTypeShape EntityType="MasterRestModel.cIncapacidad" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="MasterRestModel.cInventario" Width="1.5" PointX="5.25" PointY="42.75" />
+        <EntityTypeShape EntityType="MasterRestModel.cMenu" Width="1.5" PointX="7.5" PointY="39.375" />
+        <EntityTypeShape EntityType="MasterRestModel.cMesa" Width="1.5" PointX="5.25" PointY="36.25" />
+        <EntityTypeShape EntityType="MasterRestModel.cMotivoBaja" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="MasterRestModel.cMotivoMovimiento" Width="1.5" PointX="6" PointY="8.125" />
+        <EntityTypeShape EntityType="MasterRestModel.cMotivoRequisicion" Width="1.5" PointX="2.75" PointY="3.75" />
+        <EntityTypeShape EntityType="MasterRestModel.cMunicipio" Width="1.5" PointX="1.5" PointY="9.25" />
+        <EntityTypeShape EntityType="MasterRestModel.cProfesion" Width="1.5" PointX="3.75" PointY="27.625" />
+        <EntityTypeShape EntityType="MasterRestModel.cPuesto" Width="1.5" PointX="3" PointY="48.75" />
+        <EntityTypeShape EntityType="MasterRestModel.cRol" Width="1.5" PointX="3" PointY="45.875" />
+        <EntityTypeShape EntityType="MasterRestModel.cSucursal" Width="1.5" PointX="3" PointY="38.875" />
+        <EntityTypeShape EntityType="MasterRestModel.cTipoBaja" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="MasterRestModel.cTipoContrato" Width="1.5" PointX="9" PointY="12.125" />
+        <EntityTypeShape EntityType="MasterRestModel.cTipoNomina" Width="1.5" PointX="4.75" PointY="3.75" />
+        <EntityTypeShape EntityType="MasterRestModel.cUsuario" Width="1.5" PointX="3" PointY="23.75" />
+        <EntityTypeShape EntityType="MasterRestModel.dEmpleadoDomicilio" Width="1.5" PointX="3.75" PointY="8.75" />
+        <EntityTypeShape EntityType="MasterRestModel.dPedido" Width="1.5" PointX="10.75" PointY="32.5" />
+        <EntityTypeShape EntityType="MasterRestModel.eEmpleadoBaja" Width="1.5" PointX="10.5" PointY="20" />
+        <EntityTypeShape EntityType="MasterRestModel.eEmpleadoContrato" Width="1.5" PointX="11.25" PointY="12.375" />
+        <EntityTypeShape EntityType="MasterRestModel.eEmpleadoDocumentacion" Width="1.5" PointX="11.25" PointY="17" />
+        <EntityTypeShape EntityType="MasterRestModel.ePlazaBeneficio" Width="1.5" PointX="13.5" PointY="31.5" />
+        <EntityTypeShape EntityType="MasterRestModel.mEmpleado" Width="1.5" PointX="6" PointY="11.375" />
+        <EntityTypeShape EntityType="MasterRestModel.mFactura" Width="1.5" PointX="9.75" PointY="25.875" />
+        <EntityTypeShape EntityType="MasterRestModel.mPedido" Width="1.5" PointX="7.5" PointY="25.625" />
+        <EntityTypeShape EntityType="MasterRestModel.mPlaza" Width="1.5" PointX="8.25" PointY="30.25" />
+        <AssociationConnector Association="MasterRestModel.FK__mPlaza__idcArea__123EB7A3" />
+        <AssociationConnector Association="MasterRestModel.FK__ePlazaBen__idcBe__160F4887" />
+        <AssociationConnector Association="MasterRestModel.FK__cCategori__idcSu__245D67DE" />
+        <AssociationConnector Association="MasterRestModel.FK__cMenu__idcCatego__2739D489" />
+        <AssociationConnector Association="MasterRestModel.FK__cCliente__idcEmp__208CD6FA" />
+        <AssociationConnector Association="MasterRestModel.FK__mPedido__idcClie__339FAB6E" />
+        <AssociationConnector Association="MasterRestModel.FK__eEmpleado__idcDo__7B5B524B" />
+        <AssociationConnector Association="MasterRestModel.FK__cPuesto__idcEmpr__07C12930" />
+        <AssociationConnector Association="MasterRestModel.FK__cRol__idcEmpresa__04E4BC85" />
+        <AssociationConnector Association="MasterRestModel.FK__cSucursal__idcEm__02084FDA" />
+        <AssociationConnector Association="MasterRestModel.FK__cUsuario__idcEmp__1CBC4616" />
+        <AssociationConnector Association="MasterRestModel.FK__mEmpleado__idcEm__6EF57B66" />
+        <AssociationConnector Association="MasterRestModel.FK__mPlaza__idcEmpre__0C85DE4D" />
+        <AssociationConnector Association="MasterRestModel.FK__cMunicipi__idcEn__4CA06362" />
+        <AssociationConnector Association="MasterRestModel.FK__mEmpleado__idcEs__72C60C4A" />
+        <AssociationConnector Association="MasterRestModel.FK__mEmpleado__idcEs__71D1E811" />
+        <AssociationConnector Association="MasterRestModel.FK__cInventar__idcSu__42E1EEFE" />
+        <AssociationConnector Association="MasterRestModel.FK__dPedido__idcMenu__3A4CA8FD" />
+        <AssociationConnector Association="MasterRestModel.FK__cMesa__idcSucurs__2BFE89A6" />
+        <AssociationConnector Association="MasterRestModel.FK__mPedido__idcMesa__31B762FC" />
+        <AssociationConnector Association="MasterRestModel.FK__dEmpleado__idcMu__628FA481" />
+        <AssociationConnector Association="MasterRestModel.FK__mEmpleado__idcPr__73BA3083" />
+        <AssociationConnector Association="MasterRestModel.FK__mPlaza__idcPuest__114A936A" />
+        <AssociationConnector Association="MasterRestModel.FK__mPlaza__idcRol__0F624AF8" />
+        <AssociationConnector Association="MasterRestModel.FK__mPlaza__idcSucur__0D7A0286" />
+        <AssociationConnector Association="MasterRestModel.FK__eEmpleado__idcTi__778AC167" />
+        <AssociationConnector Association="MasterRestModel.FK__cUsuario__idmEmp__1DB06A4F" />
+        <AssociationConnector Association="MasterRestModel.FK__mEmpleado__iddEm__6FE99F9F" />
+        <AssociationConnector Association="MasterRestModel.FK__dPedido__idmPedi__395884C4" />
+        <AssociationConnector Association="MasterRestModel.FK__eEmpleado__idmEm__18EBB532" />
+        <AssociationConnector Association="MasterRestModel.FK__eEmpleado__idmPl__19DFD96B" />
+        <AssociationConnector Association="MasterRestModel.FK__eEmpleado__idmEm__76969D2E" />
+        <AssociationConnector Association="MasterRestModel.FK__eEmpleado__idmEm__7A672E12" />
+        <AssociationConnector Association="MasterRestModel.FK__ePlazaBen__idmPl__151B244E" />
+        <AssociationConnector Association="MasterRestModel.FK__mPedido__idmEmpl__32AB8735" />
+        <AssociationConnector Association="MasterRestModel.FK__mPlaza__idmEmple__0E6E26BF" />
+        <AssociationConnector Association="MasterRestModel.FK__mFactura__idmPed__3E1D39E1" />
+        <AssociationConnector Association="MasterRestModel.FK__mPlaza__idmPlaza__10566F31" />
+        <EntityTypeShape EntityType="MasterRestModel.eEmpleadoPromocion" Width="1.5" PointX="8.25" PointY="15.25" />
+        <AssociationConnector Association="MasterRestModel.FK__eEmpleado__idcMo__7F2BE32F" />
+        <AssociationConnector Association="MasterRestModel.FK__eEmpleado__idmEm__7E37BEF6" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
