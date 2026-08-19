@@ -141,25 +141,41 @@
                             </div>
                             <br />
                             <div class="form-group row">
-                                <div class="col-lg-2">
-                                    
-                                </div>
                                 <div class="col-lg-4">
                                     @Html.LabelFor(model => model.curp, "CURP", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
                                     @Html.TextBoxFor(model => model.curp, new { @class = "form-control", @maxlength = "18", @required = "*", @onfocusout = "onFocusOutCURP()", @onkeyup = "this.value = textUppercaseNumbersComma(this.value);" })
                                     @Html.ValidationMessageFor(model => model.curp, "", new { @class = "text-danger" })
                                     <div id="errorCURP" style="color:red"></div>
                                 </div>
-                                <div class="col-lg-3">
+                                <div class="col-lg-4">
                                     @Html.LabelFor(model => model.rfc, "RFC", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
                                     @Html.TextBoxFor(model => model.rfc, new { @class = "form-control", @maxlength = "13", @required = "*", @onfocusout = "onFocusOutRFC()", @onkeyup = "this.value = textUppercaseNumbersComma(this.value);" })
                                     @Html.ValidationMessageFor(model => model.rfc, "", new { @class = "text-danger" })
                                     <div id="errorRFC" style="color:red"></div>
                                 </div>
-                                <div class="col-lg-3">
+                                <div class="col-lg-4">
                                     @Html.LabelFor(model => model.sexo, "Sexo", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
                                     @Html.DropDownList("sexo", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown", @required = "*" })
                                     @Html.ValidationMessageFor(model => model.sexo, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <br />
+                            <div class="form-group row">
+                                <div class="col-lg-4">
+                                    @Html.LabelFor(model => model.fechaNacimiento, "Fecha de nacimiento", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
+                                    @Html.TextBoxFor(model => model.fechaNacimiento, new { @class = "form-control", @required = "*", @type = "date", @min = DateTime.Now.AddYears(-70).ToString("yyyy-MM-dd"), @max = DateTime.Now.AddYears(-18).ToString("yyyy-MM-dd"), @onfocusout = "this.value = validarFecha_18_70(this.value);", @onchange = "calcularAños(this.value)" })
+                                    @Html.ValidationMessageFor(model => model.fechaNacimiento, "", new { @class = "text-danger" })
+                                    <div id="edad" style="font-weight: bold;"></div>
+                                </div>
+                                <div class="col-lg-4">
+                                    @Html.LabelFor(model => model.lugarNacimiento, "Lugar de nacimiento", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
+                                    @Html.DropDownList("lugarNacimiento", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown", @required = "*" })
+                                    @Html.ValidationMessageFor(model => model.lugarNacimiento, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-lg-4">
+                                    @Html.LabelFor(model => model.nacionalidad, "Nacionalidad", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
+                                    @Html.DropDownList("nacionalidad", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown", @required = "*" })
+                                    @Html.ValidationMessageFor(model => model.nacionalidad, "", new { @class = "text-danger" })
                                 </div>
                             </div>
                         </div>
@@ -167,48 +183,29 @@
                     <br />
                     <div class="form-group row">
                         <div class="col-lg-3">
-                            @Html.LabelFor(model => model.fechaNacimiento, "Fecha de nacimiento", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
-                            @Html.TextBoxFor(model => model.fechaNacimiento, new { @class = "form-control", @required = "*", @type = "date", @min = DateTime.Now.AddYears(-70).ToString("yyyy-MM-dd"), @max = DateTime.Now.AddYears(-18).ToString("yyyy-MM-dd"), @onfocusout = "this.value = validarFecha_18_70(this.value);", @onchange = "calcularAños(this.value)" })
-                            @Html.ValidationMessageFor(model => model.fechaNacimiento, "", new { @class = "text-danger" })
-                            <div id="edad" style="font-weight: bold;"></div>
-                        </div>
-                        <div class="col-lg-3">
-                            @Html.LabelFor(model => model.lugarNacimiento, "Lugar de nacimiento", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
-                            @Html.DropDownList("lugarNacimiento", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown", @required = "*" })
-                            @Html.ValidationMessageFor(model => model.lugarNacimiento, "", new { @class = "text-danger" })
-                        </div>
-                        <div class="col-lg-3">
-                            @Html.LabelFor(model => model.nacionalidad, "Nacionalidad", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
-                            @Html.DropDownList("nacionalidad", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown", @required = "*" })
-                            @Html.ValidationMessageFor(model => model.nacionalidad, "", new { @class = "text-danger" })
-                        </div>
-                        <div class="col-lg-3">
                             @Html.LabelFor(model => model.tipoSangre, "Tipo de sangre", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
                             @Html.DropDownList("tipoSangre", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown" })
                             @Html.ValidationMessageFor(model => model.tipoSangre, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    <br />
-                    <div class="form-group row">
-                        <div class="col-lg-3">
-                            @Html.LabelFor(model => model.correoPersonal, "Correo personal", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
-                            @Html.TextBoxFor(model => model.correoPersonal, new { @class = "form-control", @required = "*", @maxlength = "100" })
-                            @Html.ValidationMessageFor(model => model.correoPersonal, "", new { @class = "text-danger" })
                         </div>
                         <div class="col-lg-3">
                             @Html.LabelFor(model => model.cEstadoCivil, "Estado civil", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
                             @Html.DropDownList("cEstadoCivil", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown", @required = "*" })
                             @Html.ValidationMessageFor(model => model.cEstadoCivil, "", new { @class = "text-danger" })
                         </div>
-                    </div>
-                    <br />
-                    <div class="form-group row">
+                        <div class="col-lg-3">
+                            @Html.LabelFor(model => model.correoPersonal, "Correo personal", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
+                            @Html.TextBoxFor(model => model.correoPersonal, new { @class = "form-control", @required = "*", @maxlength = "100" })
+                            @Html.ValidationMessageFor(model => model.correoPersonal, "", new { @class = "text-danger" })
+                        </div>
                         <div class="col-lg-3">
                             @Html.LabelFor(model => model.telefono, "Teléfono personal", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
                             @Html.TextBoxFor(model => model.telefono, new { @class = "form-control", @required = "*", @maxlength = "10", @onfocusout = "onFocusOutTelefono('telefono')", @onkeypress = "return validNumbers(event);" })
                             @Html.ValidationMessageFor(model => model.telefono, "", new { @class = "text-danger" })
                             <div id="errortelefono" style="color:red"></div>
                         </div>
+                    </div>
+                    <br />
+                    <div class="form-group row">
                         <div class="col-lg-3">
                             @Html.LabelFor(model => model.telefonoContacto, "Teléfono contacto emerg.", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
                             @Html.TextBoxFor(model => model.telefonoContacto, new { @class = "form-control", @required = "*", @maxlength = "10", @onfocusout = "onFocusOutTelefono('telefonoContacto')", @onkeypress = "return validNumbers(event);" })
@@ -285,7 +282,7 @@
                         </div>
                         <div class="col-lg-6">
                             @Html.LabelFor(model => model.cProfesion, "Profesión", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
-                            @Html.DropDownList("profesion", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown" })
+                            @Html.DropDownList("cProfesion", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown" })
                             @Html.ValidationMessageFor(model => model.cProfesion, "", new { @class = "text-danger" })
                         </div>
                         <div class="col-lg-3">
@@ -345,9 +342,9 @@
                 <div class="tab-pane fade" id="navs-top-5" role="tabpanel">
                     <div class="form-group row">
                         <div class="col-lg-4">
-                            @Html.Label("idmPlantilla", "Posición", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
-                            @Html.DropDownList("idmPlantilla", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown", @required = "*", @id = "idmPlantilla", @onchange = "OnChangePuesto(this.value)" })
-                            @Html.ValidationMessage("idmPlantilla", "", new { @class = "text-danger" })
+                            @Html.Label("idmPlaza", "Posición", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
+                            @Html.DropDownList("idmPlaza", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown", @required = "*", @id = "idmPlantilla", @onchange = "OnChangePuesto(this.value)" })
+                            @Html.ValidationMessage("idmPlaza", "", new { @class = "text-danger" })
                         </div>
                     </div>
                     <br />
@@ -445,7 +442,7 @@
                         <div class="col-lg-3">
                             @Html.LabelFor(model => model.salarioMensual, "Salario mensual", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
                             <a href="javascript:verAccesoRestringidoSalario2();"><i class="bx bx-lock"></i></a>
-                            @Html.TextBoxFor(model => model.salarioMensual, new { @class = "form-control", @id = "salarioMensual", onblur = "calcula();", @placeholder = "0.00", @readonly = "readonly", @minlength = "0", @maxlength = "10", @onkeypress = "return validNumbers3(event, this);", @onfocusout = "if(this.value=='.'){this.value='';}else if(this.value.substring(0,1)=='.'){this.value='0'+this.value}else if(this.value.substring(this.value.length-1)=='.'){this.value=this.value.substring(0, this.value.length - 1)}" })
+                            @Html.TextBoxFor(model => model.salarioMensual, new { @class = "form-control", @id = "salarioMensual", onblur = "calcula();", @placeholder = "0.00", @minlength = "0", @maxlength = "10", @onkeypress = "return validNumbers3(event, this);", @onfocusout = "if(this.value=='.'){this.value='';}else if(this.value.substring(0,1)=='.'){this.value='0'+this.value}else if(this.value.substring(this.value.length-1)=='.'){this.value=this.value.substring(0, this.value.length - 1)}" })
                             @Html.ValidationMessageFor(model => model.salarioMensual, "", new { @class = "text-danger" })
                         </div>
                         <div class="col-lg-3">
@@ -463,12 +460,12 @@
                     <div class="form-group row">
                         <div class="col-lg-3">
                             @Html.LabelFor(model => model.salarioDiarioCotizacion, "Salario diario cotización", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
-                            @Html.TextBoxFor(model => model.salarioDiarioCotizacion, new { @class = "form-control", @id = "salarioDiarioCotizacion", @placeholder = "0.00", @readonly = "readonly", @minlength = "0", @maxlength = "10", @onkeypress = "return validNumbers3(event, this);", @onfocusout = "if(this.value=='.'){this.value='';}else if(this.value.substring(0,1)=='.'){this.value='0'+this.value}else if(this.value.substring(this.value.length-1)=='.'){this.value=this.value.substring(0, this.value.length - 1)}" })
+                            @Html.TextBoxFor(model => model.salarioDiarioCotizacion, new { @class = "form-control", @id = "salarioDiarioCotizacion", @placeholder = "0.00", @minlength = "0", @maxlength = "10", @onkeypress = "return validNumbers3(event, this);", @onfocusout = "if(this.value=='.'){this.value='';}else if(this.value.substring(0,1)=='.'){this.value='0'+this.value}else if(this.value.substring(this.value.length-1)=='.'){this.value=this.value.substring(0, this.value.length - 1)}" })
                             @Html.ValidationMessageFor(model => model.salarioDiarioCotizacion, "", new { @class = "text-danger" })
                         </div>
                         <div class="col-lg-3">
                             @Html.LabelFor(model => model.salarioDiarioExcedente, "Salario diario excedente", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
-                            @Html.TextBoxFor(model => model.salarioDiarioExcedente, new { @class = "form-control", @id = "salarioDiarioExcedente", @placeholder = "0.00", @readonly = "readonly", @minlength = "0", @maxlength = "10", @onkeypress = "return validNumbers3(event, this);", @onfocusout = "if(this.value=='.'){this.value='';}else if(this.value.substring(0,1)=='.'){this.value='0'+this.value}else if(this.value.substring(this.value.length-1)=='.'){this.value=this.value.substring(0, this.value.length - 1)}" })
+                            @Html.TextBoxFor(model => model.salarioDiarioExcedente, new { @class = "form-control", @id = "salarioDiarioExcedente", @placeholder = "0.00", @minlength = "0", @maxlength = "10", @onkeypress = "return validNumbers3(event, this);", @onfocusout = "if(this.value=='.'){this.value='';}else if(this.value.substring(0,1)=='.'){this.value='0'+this.value}else if(this.value.substring(this.value.length-1)=='.'){this.value=this.value.substring(0, this.value.length - 1)}" })
                             @Html.ValidationMessageFor(model => model.salarioDiarioExcedente, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -476,9 +473,9 @@
                 <div class="tab-pane fade" id="navs-top-8" role="tabpanel">
                     <div class="form-group row">
                         <div class="col-lg-3">
-                            @Html.Label("idcContrato", "Tipo de contrato", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
-                            @Html.DropDownList("idcContrato", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown", @required = "*", @id = "idcContrato", @name = "idcContrato" })
-                            @Html.ValidationMessage("idcContrato", "", new { @class = "text-danger" })
+                            @Html.Label("idcTipoContrato", "Tipo de contrato", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
+                            @Html.DropDownList("idcTipoContrato", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown", @required = "*", @id = "idcContrato", @name = "idcContrato" })
+                            @Html.ValidationMessage("idcTipoContrato", "", new { @class = "text-danger" })
                         </div>
                         <div class="col-lg-3">
                             @Html.Label("fechaInicialContrato", "Fecha inicial", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })

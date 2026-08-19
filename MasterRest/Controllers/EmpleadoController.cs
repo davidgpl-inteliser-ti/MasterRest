@@ -83,7 +83,7 @@ namespace MasterRest.Controllers
             ViewBag.cEstadoCivil = new SelectList(db.cEstadoCivil.Where(_ => _.estatus == "ACTIVO").OrderBy(_ => _.estadoCivil), "estadoCivil", "estadoCivil");
             ViewBag.cEscolaridad = new SelectList(db.cEscolaridad.Where(_ => _.estatus == "ACTIVO").OrderBy(_ => _.escolaridad), "escolaridad", "escolaridad");
             ViewBag.cProfesion = new SelectList(db.cProfesion.Where(_ => _.estatus == "ACTIVO").OrderBy(_ => _.profesion), "profesion", "profesion");
-            ViewBag.cTipoNomina = new SelectList(db.cTipoNomina.Where(_ => _.estatus == "ACTIVO"), "tipoNomina", "tipoNomina");
+            ViewBag.tipoNomina = new SelectList(db.cTipoNomina.Where(_ => _.estatus == "ACTIVO"), "tipoNomina", "tipoNomina");
             ViewBag.idcEntidadFederativa = new SelectList(db.cEntidadFederativa, dataValueField: "idcEntidadFederativa", dataTextField: "entidadFederativa");
             ViewBag.idmPlazaJefeInmediato = new SelectList(db.mPlaza.Where(_ => _.estatus == "VACANTE" || _.estatus == "AUTORIZADA" || _.estatus == "PRE-ASIGNADO").OrderBy(_ => _.cPuesto.puesto).Select(_ => new { _.idmPlaza, puesto = _.cPuesto.puesto + (_.mEmpleado != null ? " - (" + _.mEmpleado.nombre + " " + _.mEmpleado.paterno + " " + _.mEmpleado.materno + ")" : "") }), "idmPlaza", "puesto");
             ViewBag.idcTipoContrato = new SelectList(db.cTipoContrato.Where(_ => _.estatus == "ACTIVO"), dataValueField: "idcTipoContrato", dataTextField: "contrato");
