@@ -16,6 +16,7 @@ namespace MasterRest.Entities
         public int idmPlaza { get; set; }
         public string puesto { get; set; }
         public string area { get; set; }
+        public int idcEmpresa { get; set; }
         public string empresa { get; set; }
         public string rol { get; set; }
     }

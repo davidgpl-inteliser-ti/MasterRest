@@ -17,7 +17,6 @@ namespace MasterRest.Controllers
         {
             public int idcUsuario { get; set; }
             public int idmEmpleado { get; set; }
-            public int? numeroEmpleado { get; set; }
             public string nombre { get; set; }
             public string usuario { get; set; }
             public string clave { get; set; }
@@ -99,7 +98,6 @@ namespace MasterRest.Controllers
             return RedirectToAction("Index");
         }
 
-        
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -133,7 +131,6 @@ namespace MasterRest.Controllers
             return View(cUsuario);
         }
 
-        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "idcUsuario,idmEmpleado,usuario,clave,estatus")] cUsuario cUsuario, FormCollection datos)

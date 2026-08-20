@@ -21,25 +21,11 @@ namespace MasterRest.Controllers
     {
         private MasterRestEntities db = new MasterRestEntities();
 
-        public ActionResult Index(string sucursal, string estatus, string buscar)
+        private Session session => Session["MR"] as Session;
+
+        public ActionResult Index()
         {
-            ViewBag.buscar = buscar;
-            ViewBag.centrosTrabajo = db.cSucursal.ToList();
-            ViewBag.centroTrabajo = sucursal != null ? sucursal : "";
-            ViewBag.estatuses = "";
-            ViewBag.estatus = estatus != null ? estatus.ToString() : "";
-
-            var mEmpleado = db.mEmpleado.Include(_ => _.dEmpleadoDomicilio).Include(_ => _.mPlaza).ToList();
-
-            if (estatus != null && estatus != "")
-            {
-                mEmpleado = mEmpleado.Where(_ => _.estatus == estatus).ToList();
-            }
-
-            if (sucursal != null && sucursal != "")
-            {
-                mEmpleado = mEmpleado.Where(_ => _.mPlaza != null && _.mPlaza.Count() > 0 && _.mPlaza.FirstOrDefault().cSucursal.sucursal == sucursal).ToList();
-            }
+            var mEmpleado = db.mEmpleado.Where(_ => _.idcEmpresa == session.idcEmpresa).Include(_ => _.dEmpleadoDomicilio).Include(_ => _.mPlaza).ToList();
 
             return View(mEmpleado);
         }
@@ -80,6 +66,7 @@ namespace MasterRest.Controllers
         public ActionResult Create()
         {
             ViewBag.idmPlaza = new SelectList(db.mPlaza.Where(_ => _.estatus == "VACANTE").OrderBy(_ => _.cPuesto.puesto).Select(_ => new { _.idmPlaza, puesto = _.idmPlaza + " | " + _.cPuesto.puesto }), "idmPlaza ", "puesto");
+            ViewBag.cBanco = new SelectList(db.cBanco.Where(_ => _.estatus == "ACTIVO").OrderBy(_ => _.banco), "idcBanco", "banco");
             ViewBag.cEstadoCivil = new SelectList(db.cEstadoCivil.Where(_ => _.estatus == "ACTIVO").OrderBy(_ => _.estadoCivil), "estadoCivil", "estadoCivil");
             ViewBag.cEscolaridad = new SelectList(db.cEscolaridad.Where(_ => _.estatus == "ACTIVO").OrderBy(_ => _.escolaridad), "escolaridad", "escolaridad");
             ViewBag.cProfesion = new SelectList(db.cProfesion.Where(_ => _.estatus == "ACTIVO").OrderBy(_ => _.profesion), "profesion", "profesion");
@@ -128,7 +115,7 @@ namespace MasterRest.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "idmEmpleado,iddDomicilio,numeroEmpleado,nombre,paterno,materno,fechaContratacion,fechaIngresoImss,fechaNacimiento,lugarNacimiento,curp,rfc,nss,estadoCivil,hijos,nacionalidad,sexo,tipoSangre,correoCoorporativo,correoPersonal,telefono,telefonoContacto,nombreContacto,parentescoContacto,escolaridad,profesion,institucion,estatusInstitucion,esquemaPago,tipoNomina,patronal,noCreditoInfonavit,descuentoInfonavit,noCreditoFonacot,descuentoFonacot,codigoBanco,codigoSucursal,noCuenta,clabeInterbancaria,salarioDiarioExcedente,salarioDiarioCotizacion,salarioDiario,salarioIntegrado,salarioMensual,fotoPerfil,observaciones,estatus,tipoInstitucion,telefonoCelularEmpresa,telefonoFijoEmpresa,telefonoExtension,hijosEdadXML,documentoProbatorio,factorInfonavit,factorFonacot,idcHorario")] mEmpleado mEmpleado, FormCollection datos, HttpPostedFileBase fileFoto, HttpPostedFileBase fileContrato, HttpPostedFileBase fileDocumento)
+        public ActionResult Create([Bind(Include = "idmEmpleado,idcEmpresa,iddEmpleadoDomicilio,nombre,paterno,materno,fechaContratacion,fechaIngresoImss,fechaNacimiento,lugarNacimiento,curp,rfc,nss,estadoCivil,hijos,nacionalidad,sexo,tipoSangre,correoCoorporativo,correoPersonal,telefono,telefonoContacto,nombreContacto,parentescoContacto,escolaridad,profesion,institucion,estatusInstitucion,esquemaPago,tipoNomina,patronal,noCreditoInfonavit,descuentoInfonavit,noCreditoFonacot,descuentoFonacot,codigoBanco,codigoSucursal,noCuenta,clabeInterbancaria,salarioDiarioExcedente,salarioDiarioCotizacion,salarioDiario,salarioIntegrado,salarioMensual,fotoPerfil,observaciones,estatus,tipoInstitucion,telefonoCelularEmpresa,telefonoFijoEmpresa,telefonoExtension,hijosEdadXML,documentoProbatorio,factorInfonavit,factorFonacot,idcHorario")] mEmpleado mEmpleado, FormCollection datos, HttpPostedFileBase fileFoto, HttpPostedFileBase fileContrato, HttpPostedFileBase fileDocumento)
         {
             if (db.mEmpleado.Where(_ => _.curp == mEmpleado.curp).Count() == 0)
             {
@@ -149,13 +136,7 @@ namespace MasterRest.Controllers
                     db.SaveChanges();
 
                     mEmpleado.iddEmpleadoDomicilio = dEmpleadoDomicilio.iddEmpleadoDomicilio;
-
-                    mEmpleado.salarioMensual = mEmpleado.salarioMensual != null && mEmpleado.salarioMensual != "" ? Utilities.Encriptar(mEmpleado.salarioMensual) : null;
-                    mEmpleado.salarioDiario = mEmpleado.salarioDiario != null && mEmpleado.salarioDiario != "" ? Utilities.Encriptar(mEmpleado.salarioDiario) : null;
-                    mEmpleado.salarioIntegrado = mEmpleado.salarioIntegrado != null && mEmpleado.salarioIntegrado != "" ? Utilities.Encriptar(mEmpleado.salarioIntegrado) : null;
-                    mEmpleado.salarioDiarioCotizacion = mEmpleado.salarioDiarioCotizacion != null && mEmpleado.salarioDiarioCotizacion != "" ? Utilities.Encriptar(mEmpleado.salarioDiarioCotizacion) : null;
-                    mEmpleado.salarioDiarioExcedente = mEmpleado.salarioDiarioExcedente != null && mEmpleado.salarioDiarioExcedente != "" ? Utilities.Encriptar(mEmpleado.salarioDiarioExcedente) : null;
-
+                    mEmpleado.idcEmpresa = session.idcEmpresa;
                     db.mEmpleado.Add(mEmpleado);
                     db.SaveChanges();
 
@@ -189,7 +170,6 @@ namespace MasterRest.Controllers
                     if (!cTipoContrato.contrato.Equals("INDETERMINADO") && datos["fechaVencimientoContrato"] != null && datos["fechaVencimientoContrato"] != "")
                     {
                         var fechaVencimientoContrato = DateTime.Parse(datos["fechaVencimientoContrato"]);
-                        //tiempoContrato = (short)Math.Abs((fechaInicial.Month - fechaVencimientoContrato.Month) + 12 * (fechaInicial.Year - fechaVencimientoContrato.Year));
                         fechaFinal = fechaVencimientoContrato;
                     }
                     if (!cTipoContrato.contrato.Equals("OBRA O TIEMPO DETERMINADO"))
@@ -318,8 +298,6 @@ namespace MasterRest.Controllers
                         }
                     }
                     catch { }
-
-                    //auditrail("Create", "CREAR Empleado", "NUEVO", mEmpleado.idmEmpleado.ToString(), makeJson(mEmpleado, mPlaza != null ? mPlaza.ePlazaBeneficio.ToList() : new List<ePlazaBeneficio>()), "");
                 }
             }
             return RedirectToAction("Index");
@@ -336,11 +314,11 @@ namespace MasterRest.Controllers
             {
                 return HttpNotFound();
             }
-
-            ViewBag.estadoCivil = new SelectList(db.cEstadoCivil.Where(_ => _.estatus == "ACTIVO").OrderBy(_ => _.estadoCivil), "estadoCivil", "estadoCivil", mEmpleado.cEstadoCivil.estadoCivil);
-            ViewBag.escolaridad = new SelectList(db.cEscolaridad.Where(_ => _.estatus == "ACTIVO").OrderBy(_ => _.escolaridad), "escolaridad", "escolaridad", mEmpleado.cEscolaridad.escolaridad);
-            ViewBag.profesion = new SelectList(db.cProfesion.Where(_ => _.estatus == "ACTIVO").OrderBy(_ => _.profesion), "profesion", "profesion", mEmpleado.cProfesion.profesion);
-            ViewBag.tipoNomina = new SelectList(db.cTipoNomina.Where(_ => _.estatus == "ACTIVO"), "tipoNomina", "tipoNomina", mEmpleado.tipoNomina);
+            ViewBag.cBanco = new SelectList(db.cBanco.Where(_ => _.estatus == "ACTIVO").OrderBy(_ => _.banco), "idcBanco", "banco", mEmpleado.cBanco?.banco);
+            ViewBag.cEstadoCivil = new SelectList(db.cEstadoCivil.Where(_ => _.estatus == "ACTIVO").OrderBy(_ => _.estadoCivil), "estadoCivil", "estadoCivil", mEmpleado.cEstadoCivil?.estadoCivil);
+            ViewBag.cEscolaridad = new SelectList(db.cEscolaridad.Where(_ => _.estatus == "ACTIVO").OrderBy(_ => _.escolaridad), "escolaridad", "escolaridad", mEmpleado.cEscolaridad?.escolaridad);
+            ViewBag.cProfesion = new SelectList(db.cProfesion.Where(_ => _.estatus == "ACTIVO").OrderBy(_ => _.profesion), "profesion", "profesion", mEmpleado.cProfesion?.profesion);
+            ViewBag.tipoNomina = new SelectList(db.cTipoNomina.Where(_ => _.estatus == "ACTIVO"), "idcTipoNomina", "tipoNomina", mEmpleado.tipoNomina);
 
             var idcEntidadFederativa = 0;
             var idcMunicipio = 0;
@@ -356,7 +334,7 @@ namespace MasterRest.Controllers
             }
 
             ViewBag.idcEntidadFederativa = new SelectList(db.cEntidadFederativa, dataValueField: "idcEntidadFederativa", dataTextField: "entidadFederativa", idcEntidadFederativa);
-            ViewBag.idcMunicipio = new SelectList(db.cMunicipio.Where(_ => _.idcEntidadFederativa == idcEntidadFederativa), dataValueField: "idcMunicipio", dataTextField: "municipio", idcMunicipio);
+            ViewBag.idcMunicipio = new SelectList(db.cMunicipio.Where(_ => _.idcEntidadFederativa == idcEntidadFederativa), dataValueField: "municipio", dataTextField: "municipio", idcMunicipio);
 
             var ji = db.mPlaza
                 .Where(_ => _.estatus == "VACANTE" || _.estatus == "AUTORIZADA" || _.estatus == "PRE-ASIGNADO")
@@ -409,7 +387,7 @@ namespace MasterRest.Controllers
         [SessionExpire]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "idmEmpleado,iddDomicilio,numeroEmpleado,nombre,paterno,materno,fechaContratacion,fechaIngresoImss,fechaNacimiento,lugarNacimiento,curp,rfc,nss,estadoCivil,hijos,nacionalidad,sexo,tipoSangre,correoCoorporativo,correoPersonal,telefono,telefonoContacto,nombreContacto,parentescoContacto,escolaridad,profesion,institucion,estatusInstitucion,esquemaPago,tipoNomina,patronal,noCreditoInfonavit,descuentoInfonavit,noCreditoFonacot,descuentoFonacot,codigoBanco,codigoSucursal,noCuenta,clabeInterbancaria,salarioDiarioExcedente,salarioDiarioCotizacion,salarioDiario,salarioIntegrado,salarioMensual,fotoPerfil,observaciones,estatus,tipoInstitucion,telefonoCelularEmpresa,telefonoFijoEmpresa,telefonoExtension,hijosEdadXML,documentoProbatorio,factorInfonavit,factorFonacot,idcHorario")] mEmpleado mEmpleado, FormCollection datos)
+        public ActionResult Edit([Bind(Include = "idmEmpleado,idcEmpresa,iddEmpleadoDomicilio,nombre,paterno,materno,fechaContratacion,fechaIngresoImss,fechaNacimiento,lugarNacimiento,curp,rfc,nss,estadoCivil,hijos,nacionalidad,sexo,tipoSangre,correoCoorporativo,correoPersonal,telefono,telefonoContacto,nombreContacto,parentescoContacto,escolaridad,profesion,institucion,estatusInstitucion,esquemaPago,tipoNomina,patronal,noCreditoInfonavit,descuentoInfonavit,noCreditoFonacot,descuentoFonacot,codigoBanco,codigoSucursal,noCuenta,clabeInterbancaria,salarioDiarioExcedente,salarioDiarioCotizacion,salarioDiario,salarioIntegrado,salarioMensual,fotoPerfil,observaciones,estatus,tipoInstitucion,telefonoCelularEmpresa,telefonoFijoEmpresa,telefonoExtension,hijosEdadXML,documentoProbatorio,factorInfonavit,factorFonacot,idcHorario")] mEmpleado mEmpleado, FormCollection datos)
         {
             if (ModelState.IsValid)
             {
@@ -577,7 +555,7 @@ namespace MasterRest.Controllers
         [SessionExpire]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Salary([Bind(Include = "idmEmpleado,iddDomicilio,numeroEmpleado,nombre,paterno,materno,fechaContratacion,fechaIngresoImss,fechaNacimiento,lugarNacimiento,curp,rfc,nss,estadoCivil,hijos,nacionalidad,sexo,tipoSangre,correoCoorporativo,correoPersonal,telefono,telefonoContacto,nombreContacto,parentescoContacto,escolaridad,profesion,institucion,estatusInstitucion,esquemaPago,tipoNomina,patronal,noCreditoInfonavit,descuentoInfonavit,noCreditoFonacot,descuentoFonacot,codigoBanco,codigoSucursal,noCuenta,clabeInterbancaria,salarioDiarioExcedente,salarioDiarioCotizacion,salarioDiario,salarioIntegrado,salarioMensual,fotoPerfil,observaciones,estatus,tipoInstitucion,telefonoCelularEmpresa,telefonoFijoEmpresa,telefonoExtension,hijosEdadXML,documentoProbatorio,factorInfonavit,factorFonacot,idcHorario")] mEmpleado mEmpleado, FormCollection datos)
+        public ActionResult Salary([Bind(Include = "idmEmpleado,idcEmpresa,iddEmpleadoDomicilio,nombre,paterno,materno,fechaContratacion,fechaIngresoImss,fechaNacimiento,lugarNacimiento,curp,rfc,nss,estadoCivil,hijos,nacionalidad,sexo,tipoSangre,correoCoorporativo,correoPersonal,telefono,telefonoContacto,nombreContacto,parentescoContacto,escolaridad,profesion,institucion,estatusInstitucion,esquemaPago,tipoNomina,patronal,noCreditoInfonavit,descuentoInfonavit,noCreditoFonacot,descuentoFonacot,codigoBanco,codigoSucursal,noCuenta,clabeInterbancaria,salarioDiarioExcedente,salarioDiarioCotizacion,salarioDiario,salarioIntegrado,salarioMensual,fotoPerfil,observaciones,estatus,tipoInstitucion,telefonoCelularEmpresa,telefonoFijoEmpresa,telefonoExtension,hijosEdadXML,documentoProbatorio,factorInfonavit,factorFonacot,idcHorario")] mEmpleado mEmpleado, FormCollection datos)
         {
             var dh_m_Empleado2 = db.mEmpleado.Find(mEmpleado.idmEmpleado);
 
@@ -624,7 +602,7 @@ namespace MasterRest.Controllers
         [SessionExpire]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Discharge([Bind(Include = "ideEmpleadoBaja,idmEmpleado,idmPlaza,empresa,sucursal,rol,jefeInmediato,puesto,area,motivoBaja,tipoBaja,fechaContratacion,fechaBaja,observacionesBaja,recontratable,json")] eEmpleadoBaja eEmpleadoBaja, FormCollection datos)
+        public ActionResult Discharge([Bind(Include = "ideEmpleadoBaja,idmEmpleado,idmPlaza,empresa,sucursal,rol,idmPlazaJefeInmediato,puesto,area,motivoBaja,tipoBaja,fechaContratacion,fechaBaja,observacionesBaja,recontratable,json")] eEmpleadoBaja eEmpleadoBaja, FormCollection datos)
         {
             try
             {
@@ -653,8 +631,8 @@ namespace MasterRest.Controllers
                 eEmpleadoBaja.empresa = mPlaza.cEmpresa.nombreComercial;
                 eEmpleadoBaja.sucursal = mPlaza.cSucursal.sucursal;
                 eEmpleadoBaja.rol = mPlaza.cRol.rol;
-                var jefeInmediato = db.mPlaza.Find(mPlaza.idmPlazaJefeInmediato);
-                eEmpleadoBaja.jefeInmediato = jefeInmediato != null && jefeInmediato.mEmpleado != null ? jefeInmediato.mEmpleado.nombre + " " + jefeInmediato.mEmpleado.paterno + " " + jefeInmediato.mEmpleado.materno : "";
+                var idmPlazaJefeInmediato = db.mPlaza.Find(mPlaza.idmPlazaJefeInmediato);
+                eEmpleadoBaja.idmPlazaJefeInmediato = idmPlazaJefeInmediato != null && idmPlazaJefeInmediato.mEmpleado != null ? idmPlazaJefeInmediato.mEmpleado.nombre + " " + idmPlazaJefeInmediato.mEmpleado.paterno + " " + idmPlazaJefeInmediato.mEmpleado.materno : "";
                 eEmpleadoBaja.puesto = mPlaza.cPuesto.puesto;
                 eEmpleadoBaja.area = mPlaza.cArea.area;
                 eEmpleadoBaja.recontratable = datos["recontratable"] != null ? true : false;
@@ -680,8 +658,8 @@ namespace MasterRest.Controllers
             var vacantes = db.mPlaza.Where(m => m.estatus == "VACANTE").ToList();
             if (vacantes.Count() == 0)
             {
-                Session["Mensaje"] = "SinVacantes";
-                return RedirectToAction(actionName: "Inicio", controllerName: "Sesion");
+                ViewBag.sinVacantes = "No hay vacantes para promover";
+                return View(new eEmpleadoPromocion());
             }
             var mEmpleado = db.mEmpleado.FirstOrDefault(x => x.idmEmpleado == id);
             if (mEmpleado != null)
@@ -692,8 +670,8 @@ namespace MasterRest.Controllers
             ViewBag.tipoNomina = mEmpleado.tipoNomina;
             ViewBag.idcMotivoMovimiento = new SelectList(db.cMotivoMovimiento.Where(_ => _.estatus == "ACTIVO"), dataValueField: "idcMotivoMovimiento", dataTextField: "motivo");
 
-            var plantillas = vacantes.Select(m => new { puesto = (m.idmPlaza + " | " + m.cPuesto.puesto), m.idmPlaza }).OrderBy(x => x.puesto).ToList();
-            ViewBag.idmPlaza = new SelectList(plantillas, dataValueField: "idmPlaza", dataTextField: "puesto");
+            var plazasVacantes = vacantes.Select(m => new { puesto = (m.idmPlaza + " | " + m.cPuesto.puesto), m.idmPlaza }).OrderBy(x => x.puesto).ToList();
+            ViewBag.idmPlaza = new SelectList(plazasVacantes, dataValueField: "idmPlaza", dataTextField: "puesto");
             var mPlaza = db.mPlaza.FirstOrDefault(_ => _.idmPlaza == id);
             var eEmpleadoPromocion = new eEmpleadoPromocion();
             eEmpleadoPromocion.puestoActual = mPlaza != null ? mPlaza.cPuesto.puesto : "";
@@ -789,18 +767,12 @@ namespace MasterRest.Controllers
             {
                 return HttpNotFound();
             }
-
-            mEmpleado.salarioMensual = mEmpleado.salarioMensual != null && mEmpleado.salarioMensual != "" ? mEmpleado.salarioMensual : "";
-            mEmpleado.salarioDiario = mEmpleado.salarioDiario != null && mEmpleado.salarioDiario != "" ? mEmpleado.salarioDiario : "";
-            mEmpleado.salarioIntegrado = mEmpleado.salarioIntegrado != null && mEmpleado.salarioIntegrado != "" ? mEmpleado.salarioIntegrado : "";
-            mEmpleado.salarioDiarioCotizacion = mEmpleado.salarioDiarioCotizacion != null && mEmpleado.salarioDiarioCotizacion != "" ? mEmpleado.salarioDiarioCotizacion : "";
-            mEmpleado.salarioDiarioExcedente = mEmpleado.salarioDiarioExcedente != null && mEmpleado.salarioDiarioExcedente != "" ? mEmpleado.salarioDiarioExcedente : "";
-
-            ViewBag.estadoCivil = new SelectList(db.cEstadoCivil.Where(_ => _.estatus == "ACTIVO").OrderBy(_ => _.estadoCivil), "estadoCivil", "estadoCivil", mEmpleado.cEstadoCivil.estadoCivil);
-            ViewBag.escolaridad = new SelectList(db.cEscolaridad.Where(_ => _.estatus == "ACTIVO").OrderBy(_ => _.escolaridad), "escolaridad", "escolaridad", mEmpleado.cEscolaridad.escolaridad);
-            ViewBag.profesion = new SelectList(db.cProfesion.Where(_ => _.estatus == "ACTIVO").OrderBy(_ => _.profesion), "profesion", "profesion", mEmpleado.cProfesion.profesion);
+            ViewBag.cBanco = new SelectList(db.cBanco.Where(_ => _.estatus == "ACTIVO").OrderBy(_ => _.banco), "idcBanco", "banco", mEmpleado.cBanco?.banco);
+            ViewBag.cEstadoCivil = new SelectList(db.cEstadoCivil.Where(_ => _.estatus == "ACTIVO").OrderBy(_ => _.estadoCivil), "estadoCivil", "estadoCivil", mEmpleado.cEstadoCivil?.estadoCivil);
+            ViewBag.cEscolaridad = new SelectList(db.cEscolaridad.Where(_ => _.estatus == "ACTIVO").OrderBy(_ => _.escolaridad), "escolaridad", "escolaridad", mEmpleado.cEscolaridad?.escolaridad);
+            ViewBag.cProfesion = new SelectList(db.cProfesion.Where(_ => _.estatus == "ACTIVO").OrderBy(_ => _.profesion), "profesion", "profesion", mEmpleado.cProfesion?.profesion);
             ViewBag.tipoNomina = new SelectList(db.cTipoNomina.Where(_ => _.estatus == "ACTIVO"), "tipoNomina", "tipoNomina", mEmpleado.tipoNomina);
-            ViewBag.idcEntidadFederativa = new SelectList(db.cEntidadFederativa, dataValueField: "idcEntidadFederativa", dataTextField: "entidadFederativa", mEmpleado.dEmpleadoDomicilio.cMunicipio.idcEntidadFederativa);
+            ViewBag.idcEntidadFederativa = new SelectList(db.cEntidadFederativa, dataValueField: "idcEntidadFederativa", dataTextField: "entidadFederativa", mEmpleado.dEmpleadoDomicilio?.cMunicipio?.idcEntidadFederativa);
             ViewBag.idcMunicipio = new SelectList(db.cMunicipio, dataValueField: "idcMunicipio", dataTextField: "municipio", mEmpleado.dEmpleadoDomicilio.idcMunicipio);
             ViewBag.idmPlaza = new SelectList(db.mPlaza.Where(_ => _.estatus == "VACANTE").OrderBy(_ => _.cPuesto.puesto).Select(_ => new { _.idmPlaza, puesto = _.idmPlaza + " | " + _.cPuesto.puesto }), "idmPlaza ", "puesto");
 
@@ -852,7 +824,7 @@ namespace MasterRest.Controllers
         [SessionExpire]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Reenter([Bind(Include = "idmPlaza,iddDomicilio,numeroEmpleado,nombre,paterno,materno,fechaContratacion,fechaIngresoImss,fechaNacimiento,lugarNacimiento,curp,rfc,nss,estadoCivil,hijos,nacionalidad,sexo,tipoSangre,correoCoorporativo,correoPersonal,telefono,telefonoContacto,nombreContacto,parentescoContacto,escolaridad,profesion,institucion,estatusInstitucion,esquemaPago,tipoNomina,patronal,noCreditoInfonavit,descuentoInfonavit,noCreditoFonacot,descuentoFonacot,codigoBanco,codigoSucursal,noCuenta,clabeInterbancaria,salarioDiarioExcedente,salarioDiarioCotizacion,salarioDiario,salarioIntegrado,salarioMensual,fotoPerfil,observaciones,estatus,tipoInstitucion,telefonoCelularEmpresa,telefonoFijoEmpresa,telefonoExtension,hijosEdadXML,documentoProbatorio,factorInfonavit,factorFonacot,idcHorario")] mEmpleado mEmpleado, FormCollection datos)
+        public ActionResult Reenter([Bind(Include = "idmPlaza,iddEmpleadoDomicilio,numeroEmpleado,nombre,paterno,materno,fechaContratacion,fechaIngresoImss,fechaNacimiento,lugarNacimiento,curp,rfc,nss,estadoCivil,hijos,nacionalidad,sexo,tipoSangre,correoCoorporativo,correoPersonal,telefono,telefonoContacto,nombreContacto,parentescoContacto,escolaridad,profesion,institucion,estatusInstitucion,esquemaPago,tipoNomina,patronal,noCreditoInfonavit,descuentoInfonavit,noCreditoFonacot,descuentoFonacot,codigoBanco,codigoSucursal,noCuenta,clabeInterbancaria,salarioDiarioExcedente,salarioDiarioCotizacion,salarioDiario,salarioIntegrado,salarioMensual,fotoPerfil,observaciones,estatus,tipoInstitucion,telefonoCelularEmpresa,telefonoFijoEmpresa,telefonoExtension,hijosEdadXML,documentoProbatorio,factorInfonavit,factorFonacot,idcHorario")] mEmpleado mEmpleado, FormCollection datos)
         {
             if (ModelState.IsValid)
             {

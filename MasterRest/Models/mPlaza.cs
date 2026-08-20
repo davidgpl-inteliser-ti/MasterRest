@@ -41,9 +41,9 @@ namespace MasterRest.Models
         public virtual ICollection<eEmpleadoBaja> eEmpleadoBaja { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ePlazaBeneficio> ePlazaBeneficio { get; set; }
-        public virtual mEmpleado mEmpleado { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<mPlaza> mPlaza1 { get; set; }
         public virtual mPlaza mPlaza2 { get; set; }
+        public virtual mEmpleado mEmpleado { get; set; }
     }
 }

@@ -6,16 +6,13 @@
     <div class="nav-align-top mb-4">
         <ul class="nav nav-tabs default-tabs mb-3">
             <li class="nav-item"><a href="#tab1" data-bs-toggle="tab" aria-expanded="true" class="nav-link active">Personal</a></li>
-            <li class="nav-item"><a href="#tab2" data-bs-toggle="tab" aria-expanded="false" class="nav-link">Domicilio</a></li>
-            <li class="nav-item"><a href="#tab3" data-bs-toggle="tab" aria-expanded="false" class="nav-link">Estudios</a></li>
-            <li class="nav-item"><a href="#tab4" data-bs-toggle="tab" aria-expanded="false" class="nav-link">Contacto</a></li>
-            <li class="nav-item"><a href="#tab5" data-bs-toggle="tab" aria-expanded="false" class="nav-link">Nómina</a></li>
-            <li class="nav-item"><a href="#tab6" data-bs-toggle="tab" aria-expanded="false" class="nav-link">Sueldo</a></li>
-            <li class="nav-item"><a href="#tab7" data-bs-toggle="tab" aria-expanded="false" class="nav-link">Contratos</a></li>
-            <li class="nav-item"><a href="#tab8" data-bs-toggle="tab" aria-expanded="false" class="nav-link">Beneficios</a></li>
-            <li class="nav-item"><a href="#tab9" data-bs-toggle="tab" aria-expanded="false" class="nav-link">Documentación</a></li>
-            <li class="nav-item"><a href="#tab10" data-bs-toggle="tab" aria-expanded="false" class="nav-link">Movimientos</a></li>
-            <li class="nav-item"><a href="#tab11" data-bs-toggle="tab" aria-expanded="false" class="nav-link">Bajas</a></li>
+            <li class="nav-item"><a href="#tab2" data-bs-toggle="tab" aria-expanded="false" class="nav-link">Otros</a></li>
+            <li class="nav-item"><a href="#tab3" data-bs-toggle="tab" aria-expanded="false" class="nav-link">Nómina</a></li>
+            <li class="nav-item"><a href="#tab4" data-bs-toggle="tab" aria-expanded="false" class="nav-link">Contratos</a></li>
+            <li class="nav-item"><a href="#tab5" data-bs-toggle="tab" aria-expanded="false" class="nav-link">Beneficios</a></li>
+            <li class="nav-item"><a href="#tab6" data-bs-toggle="tab" aria-expanded="false" class="nav-link">Documentación</a></li>
+            <li class="nav-item"><a href="#tab7" data-bs-toggle="tab" aria-expanded="false" class="nav-link">Movimientos</a></li>
+            <li class="nav-item"><a href="#tab8" data-bs-toggle="tab" aria-expanded="false" class="nav-link">Bajas</a></li>
         </ul>
         <div class="tab-content">
             <div class="tab-pane show active" id="tab1">
@@ -56,6 +53,8 @@
                     <div class="col-lg-3"><label><b>Correo personal</b></label><br />@Model.correoPersonal</div>
                     <div class="col-lg-3"><label><b>Teléfono personal</b></label><br />@Model.telefono</div>
                 </div>
+                <hr />
+                <h4>Información de contacto de emergencias</h4>
                 <br />
                 <div class="form-group row">
                     <div class="col-lg-3"><label><b>Teléfono contacto emerg.</b></label><br />@Model.telefonoContacto</div>
@@ -64,6 +63,8 @@
                 </div>
             </div>
             <div class="tab-pane" id="tab2">
+                <h4>Información del domicilio</h4>
+                <br />
                 <div class="form-group row">
                     <div class="col-lg-3"><label><b>Calle</b></label><br />@Model.dEmpleadoDomicilio.calle</div>
                     <div class="col-lg-3"><label><b>Número exterior</b></label><br />@Model.dEmpleadoDomicilio.noExterior</div>
@@ -77,8 +78,9 @@
                     <div class="col-lg-3"><label><b>Código postal</b></label><br />@Model.dEmpleadoDomicilio.codigoPostal</div>
                     <div class="col-lg-3"><label><b>Referencia</b></label><br />@Model.dEmpleadoDomicilio.referencia</div>
                 </div>
-            </div>
-            <div class="tab-pane" id="tab3">
+                <hr />
+                <h4>Información de estudios</h4>
+                <br />
                 <div class="form-group row">
                     <div class="col-lg-3"><label><b>Escolaridad</b></label><br />@Model.cEscolaridad.escolaridad</div>
                     <div class="col-lg-6"><label><b>Profesión</b></label><br />@Model.cProfesion.profesion</div>
@@ -90,19 +92,17 @@
                     <div class="col-lg-3"><label><b>Tipo de institución</b></label><br />@Model.tipoInstitucion</div>
                     <div class="col-lg-3"><label><b>Estatus de estudios</b></label><br />@Model.estatusInstitucion</div>
                 </div>
-            </div>
-            <div class="tab-pane" id="tab4">
-                <div class="form-group row">
-                    <div class="col-lg-4"><label><b>Celular de la empresa</b></label><br />@Model.telefonoCelularEmpresa</div>
-                    <div class="col-lg-4"><label><b>Teléfono fijo</b></label><br />@Model.telefonoFijoEmpresa</div>
-                    <div class="col-lg-4"><label><b>Extensión</b></label><br />@Model.telefonoExtension</div>
-                </div>
+                <hr />
+                <h4>Información de contacto</h4>
                 <br />
                 <div class="form-group row">
-                    <div class="col-lg-4"><label><b>Correo corporativo</b></label><br />@Model.correoCoorporativo</div>
+                    <div class="col-lg-3"><label><b>Correo corporativo</b></label><br />@Model.correoCoorporativo</div>
+                    <div class="col-lg-3"><label><b>Teléfono corporativo</b></label><br />@Model.telefonoCelularEmpresa</div>
+                    <div class="col-lg-3"><label><b>Teléfono fijo</b></label><br />@Model.telefonoFijoEmpresa</div>
+                    <div class="col-lg-3"><label><b>Extensión</b></label><br />@Model.telefonoExtension</div>
                 </div>
             </div>
-            <div class="tab-pane" id="tab5">
+            <div class="tab-pane" id="tab3">
                 <div class="form-group row">
                     <div class="col-lg-4">
                         <label><b>Puesto</b></label><br /><font style="color:@(Model.estatus == "BAJA" ? "red" : "black")">@(Model.mPlaza != null && Model.mPlaza.Count > 0 ? Model.mPlaza.FirstOrDefault().cPuesto.puesto : "")</font>
@@ -114,7 +114,7 @@
                             <b>Rol</b> @(Model.mPlaza != null && Model.mPlaza.Count > 0 ? Model.mPlaza.FirstOrDefault().cRol.rol : "")<br />
                         </p>
                     </div>
-                    <div class="col-md-4"><label><b>Jefe inmediato</b></label><br />@ViewBag.jefeInmediatoPuesto<br />@ViewBag.jefeInmediato</div>
+                    <div class="col-md-4"><label><b>Jefe inmediato</b></label><br />@ViewBag.jefeInmediatoPuesto<br />@ViewBag.idmPlazaJefeInmediato</div>
                 </div>
                 <br />
                 <div class="form-group row">
@@ -126,7 +126,7 @@
                 <br />
                 <div class="form-group row">
                     <div class="col-lg-3"><label><b>Fecha de ingreso</b></label><br />@(Model.fechaContratacion != null ? ((DateTime)Model.fechaContratacion).ToString("dd/MM/yyyy") : "")</div>
-                    <div class="col-lg-3"><label><b>Código de banco</b></label><br />@ViewBag.banco</div>
+                    <div class="col-lg-3"><label><b>Banco</b></label><br />@(Model != null && Model.cBanco != null ? (Model.cBanco.codigo + " - " + @Model.cBanco.banco) : "")</div>
                     <div class="col-lg-3"><label><b>Número de cuenta</b></label><br />@Model.noCuenta</div>
                     <div class="col-lg-3"><label><b>Clabe interbancaria</b></label><br />@Model.clabeInterbancaria</div>
                 </div>
@@ -146,8 +146,9 @@
                     <div class="col-lg-3"><label><b>Descuento fonacot</b></label><br />@Model.descuentoFonacot</div>
                 </div>
                 <br />
-            </div>
-            <div class="tab-pane" id="tab6">
+                <hr />
+                <h4>Información del salario</h4>
+                <br />
                 <div class="form-group row">
                     <div class="col-lg-3"><label><b>Salario mensual: </b></label><br />@Model.salarioMensual</div>
                     <div class="col-lg-3"><label><b>Salario diario neto</b></label><br />@Model.salarioDiario</div>
@@ -159,7 +160,7 @@
                     <div class="col-lg-3"><label><b>Salario diario excedente</b></label><br />@Model.salarioDiarioExcedente</div>
                 </div>
             </div>
-            <div class="tab-pane" id="tab7" style="overflow: scroll;">
+            <div class="tab-pane" id="tab4">
                 @if (Model.eEmpleadoContrato.Count > 0)
                 {
                     <table class="table table-hover">
@@ -194,7 +195,7 @@
                     <p>No tiene contratos</p>
                 }
             </div>
-            <div class="tab-pane" id="tab8">
+            <div class="tab-pane" id="tab5">
                 @if (Model.mPlaza.Count > 0 && Model.mPlaza.FirstOrDefault().ePlazaBeneficio.Count > 0)
                 {
                     <table class="table table-hover">
@@ -222,7 +223,7 @@
                     <p>No tiene beneficios</p>
                 }
             </div>
-            <div class="tab-pane" id="tab9">
+            <div class="tab-pane" id="tab6">
                 @if (Model.eEmpleadoDocumentacion.Count > 0)
                 {
                     <table class="table table-hover">
@@ -248,7 +249,7 @@
                     <p>No tiene documentos</p>
                 }
             </div>
-            <div class="tab-pane" id="tab10">
+            <div class="tab-pane" id="tab7">
                 @if (Model.eEmpleadoPromocion.Count > 0)
                 {
                     <div style="display: block; overflow-x: auto; white-space: nowrap;">
@@ -298,7 +299,7 @@
                     <p>No tiene movimientos</p>
                 }
             </div>
-            <div class="tab-pane" id="tab11">
+            <div class="tab-pane" id="tab8">
                 @if (Model.eEmpleadoBaja.Count > 0)
                 {
                     <div style="display: block; overflow-x: auto; white-space: nowrap;">

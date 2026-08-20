@@ -57,10 +57,11 @@ namespace MasterRest.Models
         public virtual DbSet<eEmpleadoContrato> eEmpleadoContrato { get; set; }
         public virtual DbSet<eEmpleadoDocumentacion> eEmpleadoDocumentacion { get; set; }
         public virtual DbSet<ePlazaBeneficio> ePlazaBeneficio { get; set; }
-        public virtual DbSet<mEmpleado> mEmpleado { get; set; }
         public virtual DbSet<mFactura> mFactura { get; set; }
         public virtual DbSet<mPedido> mPedido { get; set; }
         public virtual DbSet<mPlaza> mPlaza { get; set; }
         public virtual DbSet<eEmpleadoPromocion> eEmpleadoPromocion { get; set; }
+        public virtual DbSet<cBanco> cBanco { get; set; }
+        public virtual DbSet<mEmpleado> mEmpleado { get; set; }
     }
 }

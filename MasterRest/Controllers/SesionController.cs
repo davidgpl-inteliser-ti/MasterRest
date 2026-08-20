@@ -40,6 +40,7 @@ namespace MasterRest.Controllers
                                 idmPlaza = cUsuario.mEmpleado.mPlaza.FirstOrDefault().idmPlaza,
                                 puesto = cUsuario.mEmpleado.mPlaza.FirstOrDefault().cPuesto.puesto,
                                 area = cUsuario.mEmpleado.mPlaza.FirstOrDefault().cArea.area,
+                                idcEmpresa = cUsuario.mEmpleado.mPlaza.FirstOrDefault().cEmpresa.idcEmpresa,
                                 empresa = cUsuario.mEmpleado.mPlaza.FirstOrDefault().cEmpresa.nombreComercial,
                                 rol = cUsuario.mEmpleado.mPlaza.FirstOrDefault().cRol.rol
                             };

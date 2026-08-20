@@ -12,28 +12,20 @@ namespace MasterRest.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class mPedido
+    public partial class cBanco
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public mPedido()
+        public cBanco()
         {
-            this.dPedido = new HashSet<dPedido>();
-            this.mFactura = new HashSet<mFactura>();
+            this.mEmpleado = new HashSet<mEmpleado>();
         }
     
-        public int idmPedido { get; set; }
-        public int idcMesa { get; set; }
-        public int idmEmpleado { get; set; }
-        public Nullable<int> idcCliente { get; set; }
-        public Nullable<System.DateTime> fechaPedido { get; set; }
+        public int idcBanco { get; set; }
+        public string codigo { get; set; }
+        public string banco { get; set; }
         public string estatus { get; set; }
     
-        public virtual cCliente cCliente { get; set; }
-        public virtual cMesa cMesa { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<dPedido> dPedido { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<mFactura> mFactura { get; set; }
-        public virtual mEmpleado mEmpleado { get; set; }
+        public virtual ICollection<mEmpleado> mEmpleado { get; set; }
     }
 }

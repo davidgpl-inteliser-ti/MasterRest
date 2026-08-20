@@ -8,7 +8,7 @@
     <div class="form-horizontal">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.idmEmpleado)
-        @Html.HiddenFor(model => model.idmPlantilla)
+        @Html.HiddenFor(model => model.idmPlaza)
         @Html.HiddenFor(model => model.fechaAlta)
         <div class="form-group row">
             <div class="col-md-12">
@@ -25,12 +25,7 @@
         <div class="form-group row">
             <div class="col-md-12">
                 @Html.LabelFor(model => model.fechaBaja, "Fecha de baja", htmlAttributes: new { @class = "control-label col-md-12", @style = "font-weight:bold" })
-                @Html.TextBoxFor(model => model.fechaBaja, new
-                {
-                    @class = "form-control",
-                    @type = "date",
-                    @Value = DateTime.Now.ToString("yyyy-MM-dd"),@*@min = DateTime.Now.AddDays(-10).ToString("yyyy-MM-dd"), @max = DateTime.Now.ToString("yyyy-MM-dd"), @onfocusout = "this.value = validarFecha_10(this.value);",*@ @required = "*"
-                })
+                @Html.TextBoxFor(model => model.fechaBaja, new { @class = "form-control", @type = "date", @Value = DateTime.Now.ToString("yyyy-MM-dd"), @required = "*" })
                 @Html.ValidationMessageFor(model => model.fechaBaja, "", new { @class = "text-danger" })
             </div>
         </div><br />
@@ -46,29 +41,6 @@
                 @Html.LabelFor(model => model.motivoBaja, "Motivo de baja", htmlAttributes: new { @class = "control-label col-md-12", @style = "font-weight:bold" })
                 @Html.DropDownList("motivoBaja", null, "", htmlAttributes: new { @class = "form-select color-dropdown", @required = "*" })
                 @Html.ValidationMessageFor(model => model.motivoBaja, "", new { @class = "text-danger" })
-            </div>
-        </div><br />
-        <div class="form-group row">
-            <div class="col-md-12">
-                @{
-                    List<string> htList = (List<string>)ViewBag.herramientasTrabajoList;
-
-                    if (htList.Count > 0)
-                    {
-                        <b>Herramientas de trabajo</b><br />
-
-                        foreach (var _ in htList)
-                        {
-                            <div class="col-md-12">
-                                <div style="font-family:Arial"><i class="menu-icon tf-icons bx bx-check-square"></i> @_ @(_ == "OTRO(S)" ? ": " + @ViewBag.otraHerramientaTrabajo : "")</div>
-                            </div>
-                        }
-                    }
-                    else
-                    {
-                        <div>No tiene herramientas de trabajo.</div>
-                    }
-                }
             </div>
         </div><br />
         <div class="form-group row">

@@ -9,14 +9,16 @@
         overflow: hidden;
         display: inline-block;
     }
-    .upload-btn-wrapper input[type=file]
-    {
-        font-size: 100px;
-        position: absolute;
-        left: 0;
-        top: 0;
-        opacity: 0;
-    }
+
+        .upload-btn-wrapper input[type=file]
+        {
+            font-size: 100px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+        }
+
     .boton-standar-rw
     {
         margin: 5px;
@@ -31,10 +33,12 @@
         width: 9.7em;
         padding: 5px;
     }
+
         .boton-standar-rw:hover
         {
             color: white;
         }
+
     .toast.bs-toast .toast-header .btn-close
     {
         position: absolute;
@@ -47,6 +51,7 @@
         box-shadow: 0 0.125rem 0.25rem rgba(161, 172, 184, 0.4);
         right: 20px !important;
     }
+
     .required::after
     {
         content: " *";
@@ -59,27 +64,19 @@
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     @Html.HiddenFor(model => model.idmEmpleado)
-    @Html.HiddenFor(model => model.nombreCompleto)
-    @Html.HiddenFor(model => model.iddDomicilio)
-    @Html.HiddenFor(model => model.salarioMensual)
-    @Html.HiddenFor(model => model.salarioDiario)
-    @Html.HiddenFor(model => model.salarioIntegrado)
-    @Html.HiddenFor(model => model.salarioDiarioCotizacion)
-    @Html.HiddenFor(model => model.salarioDiarioExcedente)
+    @Html.HiddenFor(model => model.idcEmpresa)
+    @Html.HiddenFor(model => model.iddEmpleadoDomicilio)
     @Html.HiddenFor(model => model.fotoPerfil)
     @Html.HiddenFor(model => model.estatus)
     <div class="col-xl-12">
         <div class="nav-align-top mb-4">
             <ul class="nav nav-tabs default-tabs mb-3">
                 <li class="nav-item"><a href="#tab1" data-bs-toggle="tab" aria-expanded="true" class="nav-link active">Personal</a></li>
-                <li class="nav-item"><a href="#tab2" data-bs-toggle="tab" aria-expanded="false" class="nav-link">Domicilio</a></li>
-                <li class="nav-item"><a href="#tab3" data-bs-toggle="tab" aria-expanded="false" class="nav-link">Estudios</a></li>
-                <li class="nav-item"><a href="#tab4" data-bs-toggle="tab" aria-expanded="false" class="nav-link">Contacto</a></li>
-                <li class="nav-item"><a href="#tab5" data-bs-toggle="tab" aria-expanded="false" class="nav-link">Nómina</a></li>
-                <li class="nav-item"><a href="#tab6" data-bs-toggle="tab" aria-expanded="false" class="nav-link">Sueldo</a></li>
-                <li class="nav-item"><a href="#tab7" data-bs-toggle="tab" aria-expanded="false" class="nav-link">Contratos</a></li>
-                <li class="nav-item"><a href="#tab8" data-bs-toggle="tab" aria-expanded="false" class="nav-link">Beneficios</a></li>
-                <li class="nav-item"><a href="#tab9" data-bs-toggle="tab" aria-expanded="false" class="nav-link">Documentación</a></li>
+                <li class="nav-item"><a href="#tab2" data-bs-toggle="tab" aria-expanded="false" class="nav-link">Otros</a></li>
+                <li class="nav-item"><a href="#tab3" data-bs-toggle="tab" aria-expanded="false" class="nav-link">Nómina</a></li>
+                <li class="nav-item"><a href="#tab4" data-bs-toggle="tab" aria-expanded="false" class="nav-link">Contratos</a></li>
+                <li class="nav-item"><a href="#tab5" data-bs-toggle="tab" aria-expanded="false" class="nav-link">Beneficios</a></li>
+                <li class="nav-item"><a href="#tab6" data-bs-toggle="tab" aria-expanded="false" class="nav-link">Documentación</a></li>
             </ul>
             <div class="tab-content">
                 <div class="tab-pane show active" id="tab1">
@@ -126,28 +123,41 @@
                             </div>
                             <br />
                             <div class="form-group row">
-                                <div class="col-lg-2">
-                                    @Html.LabelFor(model => model.numeroEmpleado, "No. colab.", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
-                                    @Html.TextBoxFor(model => model.numeroEmpleado, new { @class = "form-control", @maxlength = "12", @required = "*", @onfocusout = "onFocusOutNE()" })
-                                    @Html.ValidationMessageFor(model => model.numeroEmpleado, "", new { @class = "text-danger" })
-                                    <div id="errorNE" style="color:red"></div>
-                                </div>
                                 <div class="col-lg-4">
                                     @Html.LabelFor(model => model.curp, "CURP", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
                                     @Html.TextBoxFor(model => model.curp, new { @class = "form-control", @required = "*", @maxlength = "18", @onfocusout = "onFocusOutCURP()", @onkeyup = "this.value = textUppercaseNumbersComma(this.value);" })
                                     @Html.ValidationMessageFor(model => model.curp, "", new { @class = "text-danger" })
                                     <div id="errorCURP" style="color:red"></div>
                                 </div>
-                                <div class="col-lg-3">
+                                <div class="col-lg-4">
                                     @Html.LabelFor(model => model.rfc, "RFC", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
                                     @Html.TextBoxFor(model => model.rfc, new { @class = "form-control", @required = "*", @maxlength = "13", @onfocusout = "onFocusOutRFC()", @onkeyup = "this.value = textUppercaseNumbersComma(this.value);" })
                                     @Html.ValidationMessageFor(model => model.rfc, "", new { @class = "text-danger" })
                                     <div id="errorRFC" style="color:red"></div>
                                 </div>
-                                <div class="col-lg-3">
+                                <div class="col-lg-4">
                                     @Html.LabelFor(model => model.sexo, "Sexo", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
                                     @Html.DropDownList("sexo", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown"/*, @required = "*"*/ })
                                     @Html.ValidationMessageFor(model => model.sexo, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <br />
+                            <div class="form-group row">
+                                <div class="col-lg-4">
+                                    @Html.LabelFor(model => model.fechaNacimiento, "Fecha de nacimiento", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
+                                    @Html.TextBoxFor(model => model.fechaNacimiento, new { @class = "form-control"/*, @required = "*"*/, @type = "date", @Value = (Model.fechaNacimiento != null ? ((DateTime)Model.fechaNacimiento).ToString("yyyy-MM-dd") : ""), @onchange = "calcularAños(this.value)" })
+                                    @Html.ValidationMessageFor(model => model.fechaNacimiento, "", new { @class = "text-danger" })
+                                    <div id="edad" style="font-weight: bold;"></div>
+                                </div>
+                                <div class="col-lg-4">
+                                    @Html.LabelFor(model => model.lugarNacimiento, "Lugar de nacimiento", htmlAttributes: new { @class = "control-labe required", @style = "font-weight:bold" })
+                                    @Html.DropDownList("lugarNacimiento", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown"/*, @required = "*"*/ })
+                                    @Html.ValidationMessageFor(model => model.lugarNacimiento, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-lg-4">
+                                    @Html.LabelFor(model => model.nacionalidad, "Nacionalidad", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
+                                    @Html.DropDownList("nacionalidad", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown"/*, @required = "*"*/ })
+                                    @Html.ValidationMessageFor(model => model.nacionalidad, "", new { @class = "text-danger" })
                                 </div>
                             </div>
                         </div>
@@ -155,83 +165,31 @@
                     <br />
                     <div class="form-group row">
                         <div class="col-lg-3">
-                            @Html.LabelFor(model => model.fechaNacimiento, "Fecha de nacimiento", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
-                            @Html.TextBoxFor(model => model.fechaNacimiento, new { @class = "form-control"/*, @required = "*"*/, @type = "date", @Value = (Model.fechaNacimiento != null ? ((DateTime)Model.fechaNacimiento).ToString("yyyy-MM-dd") : ""), @onchange = "calcularAños(this.value)" })
-                            @Html.ValidationMessageFor(model => model.fechaNacimiento, "", new { @class = "text-danger" })
-                            <div id="edad" style="font-weight: bold;"></div>
-                        </div>
-                        <div class="col-lg-3">
-                            @Html.LabelFor(model => model.lugarNacimiento, "Lugar de nacimiento", htmlAttributes: new { @class = "control-labe required", @style = "font-weight:bold" })
-                            @Html.DropDownList("lugarNacimiento", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown"/*, @required = "*"*/ })
-                            @Html.ValidationMessageFor(model => model.lugarNacimiento, "", new { @class = "text-danger" })
-                        </div>
-                        <div class="col-lg-3">
-                            @Html.LabelFor(model => model.nacionalidad, "Nacionalidad", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
-                            @Html.DropDownList("nacionalidad", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown"/*, @required = "*"*/ })
-                            @Html.ValidationMessageFor(model => model.nacionalidad, "", new { @class = "text-danger" })
-                        </div>
-                        <div class="col-lg-3">
                             @Html.LabelFor(model => model.tipoSangre, "Tipo de sangre", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
                             @Html.DropDownList("tipoSangre", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown" })
                             @Html.ValidationMessageFor(model => model.tipoSangre, "", new { @class = "text-danger" })
                         </div>
-                    </div>
-                    <br />
-                    <div class="form-group row">
+                        <div class="col-lg-3">
+                            @Html.LabelFor(model => model.cEstadoCivil, "Estado civil", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
+                            @Html.DropDownList("cEstadoCivil", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown"/*, @required = "*"*/ })
+                            @Html.ValidationMessageFor(model => model.cEstadoCivil, "", new { @class = "text-danger" })
+                        </div>
                         <div class="col-lg-3">
                             @Html.LabelFor(model => model.correoPersonal, "Correo personal", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
                             @Html.TextBoxFor(model => model.correoPersonal, new { @class = "form-control"/*, @required = "*"*/, @maxlength = "100" })
                             @Html.ValidationMessageFor(model => model.correoPersonal, "", new { @class = "text-danger" })
                         </div>
                         <div class="col-lg-3">
-                            @Html.LabelFor(model => model.estadoCivil, "Estado civil", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
-                            @Html.DropDownList("estadoCivil", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown"/*, @required = "*"*/ })
-                            @Html.ValidationMessageFor(model => model.estadoCivil, "", new { @class = "text-danger" })
-                        </div>
-                        <div class="col-lg-1">
-                            @Html.LabelFor(model => model.hijos, "Hijos", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
-                            @Html.TextBoxFor(model => model.hijos, new { @class = "form-control"/*, @required = "*"*/, @type = "number", @Value = Model.hijos, @min = 0, @max = 99, @onkeyup = "validNumberRange(this, 0, 99);" })
-                            @Html.ValidationMessageFor(model => model.hijos, "", new { @class = "text-danger" })
-                        </div>
-                        <div class="col-lg-5">
-                            <div id="divE" style="display: @(Model.hijos > 0 ? "block" : "none")">
-                                @Html.LabelFor(model => model.hijosEdadXML, "Fechas nacimiento hijos", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
-                                @Html.HiddenFor(model => model.hijosEdadXML, new { htmlAttributes = new { @class = "form-control" } })
-                                <div class="input-group">
-                                    <input class="form-control" type="date" id="fechaNacimientoHijos" />
-                                    <select class="form-select color-dropdown" id="sexoHijos">
-                                        <option value="MUJER">MUJER</option>
-                                        <option value="HOMBRE">HOMBRE</option>
-                                    </select>
-                                    <button type="button" class="btn btn-icon btn-success" onclick="addModalHEX();"><span class="tf-icons bx bx-send"></span></button>
-                                </div>
-                                <div class="input-group">
-                                    <select class="form-select" id="shijosEdadXML">
-                                        @if (Model.hijosEdadXML != null & Model.hijosEdadXML != "")
-                                        {
-                                            var x = 0;
-                                            foreach (var f in Model.hijosEdadXML.Split('|'))
-                                            {
-                                                var arg = f.Replace(" ", "").Split('-');
-                                                <option value="@arg[0] - @arg[1]" @(x == 0 ? "selected" : "")>@arg[0] - @arg[1]</option>
-                                                x++;
-                                            }
-                                        }
-                                    </select>
-                                    <button type="button" class="btn btn-icon btn-warning" onclick="clearModalHEX();"><span class="tf-icons bx bx-minus"></span></button>
-                                </div>
-                                @Html.ValidationMessageFor(model => model.hijosEdadXML, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                    </div>
-                    <br />
-                    <div class="form-group row">
-                        <div class="col-lg-3">
                             @Html.LabelFor(model => model.telefono, "Teléfono personal", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
                             @Html.TextBoxFor(model => model.telefono, new { @class = "form-control"/*, @required = "*"*/, @maxlength = "10", @onfocusout = "onFocusOutTelefono('telefono')", @onkeypress = "return validNumbers(event);" })
                             @Html.ValidationMessageFor(model => model.telefono, "", new { @class = "text-danger" })
                             <div id="errortelefono" style="color:red"></div>
                         </div>
+                    </div>
+                    <hr />
+                    <h4>Información de contacto de emergencias</h4>
+                    <br />
+                    <div class="form-group row">
                         <div class="col-lg-3">
                             @Html.LabelFor(model => model.telefonoContacto, "Teléfono contacto emerg.", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
                             @Html.TextBoxFor(model => model.telefonoContacto, new { @class = "form-control"/*, @required = "*"*/, @maxlength = "10", @onfocusout = "onFocusOutTelefono('telefonoContacto')", @onkeypress = "return validNumbers(event);" })
@@ -251,6 +209,8 @@
                     </div>
                 </div>
                 <div class="tab-pane" id="tab2">
+                    <h4>Información del domicilio</h4>
+                    <br />
                     <div class="form-group row">
                         <div class="col-lg-3">
                             @Html.Label("calle", "Calle", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
@@ -278,13 +238,13 @@
                         <div class="col-lg-3">
                             @Html.Label("idcEntidadFederativa", "Entidad federativa", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
                             @Html.DropDownList("idcEntidadFederativa", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown", @required = "*", @onchange = "OnChangeEntidadFederativa(this)" })
-                            @Html.TextBox("entidadFederativa", null, new { @type = "hidden", @Value = Model.dEmpleadoDomicilio.entidadFederativa })
+                            @Html.TextBox("entidadFederativa", null, new { @type = "hidden", @Value = Model.dEmpleadoDomicilio.cMunicipio.cEntidadFederativa.entidadFederativa })
                             @Html.ValidationMessage("idcEntidadFederativa", "", new { @class = "text-danger" })
                         </div>
                         <div class="col-lg-3">
                             @Html.Label("idcMunicipio", "Municipio", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
                             @Html.DropDownList("idcMunicipio", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown", @required = "*", @onchange = "OnChangeMunicipio(this)" })
-                            @Html.TextBox("municipio", null, new { @type = "hidden", @Value = Model.dEmpleadoDomicilio.municipio })
+                            @Html.TextBox("municipio", null, new { @type = "hidden", @Value = Model.dEmpleadoDomicilio.cMunicipio.municipio })
                             @Html.ValidationMessage("idcMunicipio", "", new { @class = "text-danger" })
                         </div>
                         <div class="col-lg-3">
@@ -298,18 +258,19 @@
                             @Html.ValidationMessage("referencia", "", new { @class = "text-danger" })
                         </div>
                     </div>
-                </div>
-                <div class="tab-pane" id="tab3">
+                    <hr />
+                    <h4>Información de estudios</h4>
+                    <br />
                     <div class="form-group row">
                         <div class="col-lg-3">
-                            @Html.LabelFor(model => model.escolaridad, "Escolaridad", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
-                            @Html.DropDownList("escolaridad", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown"/*, @required = "*"*/ })
-                            @Html.ValidationMessageFor(model => model.escolaridad, "", new { @class = "text-danger" })
+                            @Html.LabelFor(model => model.cEscolaridad, "Escolaridad", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
+                            @Html.DropDownList("cEscolaridad", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown"/*, @required = "*"*/ })
+                            @Html.ValidationMessageFor(model => model.cEscolaridad, "", new { @class = "text-danger" })
                         </div>
                         <div class="col-lg-6">
-                            @Html.LabelFor(model => model.profesion, "Profesión", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
-                            @Html.DropDownList("profesion", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown" })
-                            @Html.ValidationMessageFor(model => model.profesion, "", new { @class = "text-danger" })
+                            @Html.LabelFor(model => model.cProfesion, "Profesión", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
+                            @Html.DropDownList("cProfesion", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown" })
+                            @Html.ValidationMessageFor(model => model.cProfesion, "", new { @class = "text-danger" })
                         </div>
                         <div class="col-lg-3">
                             @Html.LabelFor(model => model.documentoProbatorio, "Documento probatorio", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
@@ -335,52 +296,45 @@
                             @Html.ValidationMessageFor(model => model.estatusInstitucion, "", new { @class = "text-danger" })
                         </div>
                     </div>
-                </div>
-                <div class="tab-pane" id="tab4">
+                    <hr />
+                    <h4>Información de contacto</h4>
+                    <br />
                     <div class="form-group row">
-                        <div class="col-lg-4">
-                            @Html.LabelFor(model => model.telefonoCelularEmpresa, "Celular de la empresa", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
+                        <div class="col-lg-34">
+                            @Html.LabelFor(model => model.correoCoorporativo, "Correo corporativo", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
+                            @Html.TextBoxFor(model => model.correoCoorporativo, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.correoCoorporativo, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-lg-3">
+                            @Html.LabelFor(model => model.telefonoCelularEmpresa, "Teléfono corporativo", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
                             @Html.TextBoxFor(model => model.telefonoCelularEmpresa, new { @class = "form-control", @maxlength = "10", @onfocusout = "onFocusOutTelefono('telefonoCelularEmpresa')", @onkeypress = "return validNumbers(event);" })
                             @Html.ValidationMessageFor(model => model.telefonoCelularEmpresa, "", new { @class = "text-danger" })
                             <div id="errortelefonoCelularEmpresa" style="color:red"></div>
                         </div>
-                        <div class="col-lg-4">
+                        <div class="col-lg-3">
                             @Html.LabelFor(model => model.telefonoFijoEmpresa, "Teléfono fijo", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
                             @Html.TextBoxFor(model => model.telefonoFijoEmpresa, new { @class = "form-control", @maxlength = "10", @onfocusout = "onFocusOutTelefono('telefonoFijoEmpresa')", @onkeypress = "return validNumbers(event);" })
                             @Html.ValidationMessageFor(model => model.telefonoFijoEmpresa, "", new { @class = "text-danger" })
                             <div id="errortelefonoFijoEmpresa" style="color:red"></div>
                         </div>
-                        <div class="col-lg-4">
+                        <div class="col-lg-3">
                             @Html.LabelFor(model => model.telefonoExtension, "Extensión", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
                             @Html.TextBoxFor(model => model.telefonoExtension, new { @class = "form-control", @maxlength = "10", @onkeypress = "return validNumbers(event);" })
                             @Html.ValidationMessageFor(model => model.telefonoExtension, "", new { @class = "text-danger" })
                         </div>
                     </div>
-                    <br />
-                    <div class="form-group row">
-                        <div class="col-lg-4">
-                            @Html.LabelFor(model => model.correoCoorporativo, "Correo corporativo", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
-                            @Html.TextBoxFor(model => model.correoCoorporativo, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.correoCoorporativo, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
                 </div>
-                <div class="tab-pane" id="tab5">
+                <div class="tab-pane" id="tab3">
                     <div class="form-group row">
                         <div class="col-lg-4">
                             <label class="control-label" style="font-weight: bold;">Posición</label>
-                            <input type="text" class="form-control" id="Puesto" name="Puesto" value="@(Model.mPlaza != null && Model.mPlaza.Count > 0 ? Model.mPlaza.FirstOrDefault().puesto : "")" readonly />
+                            <input type="text" class="form-control" id="Puesto" name="Puesto" value="@(Model.mPlaza != null && Model.mPlaza.Count > 0 ? Model.mPlaza.FirstOrDefault().cPuesto.puesto : "")" readonly />
                         </div>
-                        @*<div class="col-md-4">
-                        @Html.Label("jefeInmediato", "Jefe inmediato", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
-                        @Html.DropDownList("jefeInmediato", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown", @required = "*" })
-                        @Html.ValidationMessage("jefeInmediato", "", new { @class = "text-danger" })
-                    </div>
-                    <div class="col-md-4">
-                        @Html.Label("patronal", "Patronal", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
-                        @Html.DropDownList("patronal", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown", @required = "*" })
-                        @Html.ValidationMessage("patronal", "", new { @class = "text-danger" })
-                    </div>*@
+                        <div class="col-md-4">
+                            @Html.Label("idmPlazaJefeInmediato", "Jefe inmediato", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
+                            @Html.DropDownList("idmPlazaJefeInmediato", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown", @required = "*" })
+                            @Html.ValidationMessage("idmPlazaJefeInmediato", "", new { @class = "text-danger" })
+                        </div>
                     </div>
                     <br />
                     <div class="form-group row">
@@ -395,7 +349,6 @@
                             @Html.TextBoxFor(model => model.fechaIngresoImss, new { @class = "form-control"/*, @required = "*"*/, @type = "date", @Value = (Model.fechaIngresoImss != null ? ((DateTime)Model.fechaIngresoImss).ToString("yyyy-MM-dd") : "") })
                             @Html.ValidationMessageFor(model => model.fechaIngresoImss, "", new { @class = "text-danger" })
                         </div>
-
                         <div class="col-lg-3">
                             @Html.LabelFor(model => model.tipoNomina, "Tipo de nómina", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
                             @Html.DropDownList("tipoNomina", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown"/*, @required = "*"*/ })
@@ -410,14 +363,14 @@
                     <br />
                     <div class="form-group row">
                         <div class="col-lg-3">
-                            @Html.LabelFor(model => model.fechaAlta, "Fecha de ingreso", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
-                            @Html.TextBoxFor(model => model.fechaAlta, new { @class = "form-control"/*, @required = "*"*/, @type = "date", @Value = Model.fechaAlta.ToString("yyyy-MM-dd") })
-                            @Html.ValidationMessageFor(model => model.fechaAlta, "", new { @class = "text-danger" })
+                            @Html.LabelFor(model => model.fechaContratacion, "Fecha de ingreso", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
+                            @Html.TextBoxFor(model => model.fechaContratacion, new { @class = "form-control", @required = "*", @type = "date", @Value = (Model.fechaContratacion != null ? ((DateTime)Model.fechaContratacion).ToString("yyyy-MM-dd") : "") })
+                            @Html.ValidationMessageFor(model => model.fechaContratacion, "", new { @class = "text-danger" })
                         </div>
                         <div class="col-lg-3">
-                            @Html.LabelFor(model => model.codigoBanco, "Código de banco", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
-                            @Html.DropDownList("codigoBanco", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown" })
-                            @Html.ValidationMessageFor(model => model.codigoBanco, "", new { @class = "text-danger" })
+                            @Html.LabelFor(model => model.cBanco, "Banco", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
+                            @Html.DropDownList("cBanco", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown" })
+                            @Html.ValidationMessageFor(model => model.cBanco, "", new { @class = "text-danger" })
                         </div>
                         <div class="col-lg-3">
                             @Html.LabelFor(model => model.noCuenta, "Número de cuenta", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
@@ -461,51 +414,41 @@
                             @Html.ValidationMessageFor(model => model.descuentoFonacot, "", new { @class = "text-danger" })
                         </div>
                     </div>
-                    <br />
                     <hr />
+                    <h4>Información del salario</h4>
+                    <br />
                     <div class="form-group row">
                         <div class="col-lg-3">
-                            @Html.LabelFor(model => model.idcHorario, "Horario laboral", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
-                            @Html.DropDownList("idcHorario", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select"/*, @required = "required"*/, @id = "horarioLaboral" })
-                            @Html.ValidationMessageFor(model => model.idcHorario, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                </div>
-                <div class="tab-pane" id="tab6">
-                    <div class="form-group row">
-                        <div class="col-lg-3">
-                            @Html.Label("salarioMensual2", "Salario mensual", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
-                            <a href="javascript:verAccesoRestringidoSalario2();"><i class="bx bx-lock"></i></a>
-                            @Html.TextBox("salarioMensual2", null, new { @class = "form-control", @id = "salarioMensual2", onblur = "calcula();", @placeholder = "0.00", @readonly = "readonly", @minlength = "0", @maxlength = "10", @onkeypress = "return validNumbers3(event, this);", @onfocusout = "if(this.value=='.'){this.value='';}else if(this.value.substring(0,1)=='.'){this.value='0'+this.value}else if(this.value.substring(this.value.length-1)=='.'){this.value=this.value.substring(0, this.value.length - 1)}" })
-                            @Html.ValidationMessage("salarioMensual2", "", new { @class = "text-danger" })
+                            @Html.LabelFor(model => model.salarioMensual, "Salario mensual", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
+                            @Html.TextBoxFor(model => model.salarioMensual, new { @class = "form-control", @id = "salarioMensual", onblur = "calcula();", @placeholder = "0.00", @minlength = "0", @maxlength = "10", @onkeypress = "return validNumbers3(event, this);", @onfocusout = "if(this.value=='.'){this.value='';}else if(this.value.substring(0,1)=='.'){this.value='0'+this.value}else if(this.value.substring(this.value.length-1)=='.'){this.value=this.value.substring(0, this.value.length - 1)}" })
+                            @Html.ValidationMessageFor(model => model.salarioMensual, "", new { @class = "text-danger" })
                         </div>
                         <div class="col-lg-3">
-                            @Html.Label("salarioDiario2", "Salario diario neto", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
-                            @Html.TextBox("salarioDiario2", null, new { @class = "form-control", @id = "salarioDiario2", @readonly = "readonly", @placeholder = "0.00" })
-                            @Html.ValidationMessage("salarioDiario2", "", new { @class = "text-danger" })
+                            @Html.LabelFor(model => model.salarioDiario, "Salario diario neto", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
+                            @Html.TextBoxFor(model => model.salarioDiario, new { @class = "form-control", @id = "salarioDiario", @readonly = "readonly", @placeholder = "0.00" })
+                            @Html.ValidationMessageFor(model => model.salarioDiario, "", new { @class = "text-danger" })
                         </div>
                         <div class="col-lg-3">
-                            @Html.Label("salarioIntegrado2", "Salario diario integrado", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
-                            @Html.TextBox("salarioIntegrado2", null, new { @class = "form-control", @id = "salarioIntegrado2", @readonly = "readonly", @placeholder = "0.00" })
-                            @Html.ValidationMessage("salarioIntegrado2", "", new { @class = "text-danger" })
+                            @Html.LabelFor(model => model.salarioIntegrado, "Salario diario integrado", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
+                            @Html.TextBoxFor(model => model.salarioIntegrado, new { @class = "form-control", @id = "salarioIntegrado", @readonly = "readonly", @placeholder = "0.00" })
+                            @Html.ValidationMessageFor(model => model.salarioIntegrado, "", new { @class = "text-danger" })
                         </div>
                     </div>
                     <br />
                     <div class="form-group row">
                         <div class="col-lg-3">
-                            @Html.Label("salarioDiarioCotizacion2", "Salario diario cotización", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
-                            @Html.TextBox("salarioDiarioCotizacion2", null, new { @class = "form-control", @id = "salarioDiarioCotizacion2", @placeholder = "0.00", @readonly = "readonly", @minlength = "0", @maxlength = "10", @onkeypress = "return validNumbers3(event, this);", @onfocusout = "if(this.value=='.'){this.value='';}else if(this.value.substring(0,1)=='.'){this.value='0'+this.value}else if(this.value.substring(this.value.length-1)=='.'){this.value=this.value.substring(0, this.value.length - 1)}" })
-                            @Html.ValidationMessage("salarioDiarioCotizacion2", "", new { @class = "text-danger" })
+                            @Html.LabelFor(model => model.salarioDiarioCotizacion, "Salario diario cotización", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
+                            @Html.TextBoxFor(model => model.salarioDiarioCotizacion, new { @class = "form-control", @id = "salarioDiarioCotizacion", @placeholder = "0.00", @minlength = "0", @maxlength = "10", @onkeypress = "return validNumbers3(event, this);", @onfocusout = "if(this.value=='.'){this.value='';}else if(this.value.substring(0,1)=='.'){this.value='0'+this.value}else if(this.value.substring(this.value.length-1)=='.'){this.value=this.value.substring(0, this.value.length - 1)}" })
+                            @Html.ValidationMessageFor(model => model.salarioDiarioCotizacion, "", new { @class = "text-danger" })
                         </div>
                         <div class="col-lg-3">
-                            @Html.Label("salarioDiarioExcedente2", "Salario diario excedente", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
-                            @Html.TextBox("salarioDiarioExcedente2", null, new { @class = "form-control", @id = "salarioDiarioExcedente2", @placeholder = "0.00", @readonly = "readonly", @minlength = "0", @maxlength = "10", @onkeypress = "return validNumbers3(event, this);", @onfocusout = "if(this.value=='.'){this.value='';}else if(this.value.substring(0,1)=='.'){this.value='0'+this.value}else if(this.value.substring(this.value.length-1)=='.'){this.value=this.value.substring(0, this.value.length - 1)}" })
-                            @Html.ValidationMessage("salarioDiarioExcedente2", "", new { @class = "text-danger" })
+                            @Html.LabelFor(model => model.salarioDiarioExcedente, "Salario diario excedente", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
+                            @Html.TextBoxFor(model => model.salarioDiarioExcedente, new { @class = "form-control", @id = "salarioDiarioExcedente", @placeholder = "0.00", @minlength = "0", @maxlength = "10", @onkeypress = "return validNumbers3(event, this);", @onfocusout = "if(this.value=='.'){this.value='';}else if(this.value.substring(0,1)=='.'){this.value='0'+this.value}else if(this.value.substring(this.value.length-1)=='.'){this.value=this.value.substring(0, this.value.length - 1)}" })
+                            @Html.ValidationMessageFor(model => model.salarioDiarioExcedente, "", new { @class = "text-danger" })
                         </div>
                     </div>
-                    <br />
                 </div>
-                <div class="tab-pane" id="tab7">
+                <div class="tab-pane" id="tab4">
                     <div class="accordion mt-3" id="accordionContrato">
                         <div class="card accordion-item active">
                             <h2 class="accordion-header" id="headingOne">
@@ -516,9 +459,9 @@
                                     <div class="form-group row p-2">
                                         <input type="hidden" id="ideContrato" name="ideContrato" />
                                         <div class="col-lg-3">
-                                            @Html.Label("idcContrato", "Tipo de contrato", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
-                                            @Html.DropDownList("idcContrato", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown", @id = "idcContrato", @name = "idcContrato" })
-                                            @Html.ValidationMessage("idcContrato", "", new { @class = "text-danger" })
+                                            @Html.Label("idcTipoContrato", "Tipo de contrato", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
+                                            @Html.DropDownList("idcTipoContrato", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown", @id = "idcContrato", @name = "idcContrato" })
+                                            @Html.ValidationMessage("idcTipoContrato", "", new { @class = "text-danger" })
                                         </div>
                                         <div class="col-lg-3">
                                             @Html.Label("fechaInicial", "Fecha inicial", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
@@ -601,7 +544,7 @@
                                                 @if (c.ruta != null && c.ruta != "")
                                                 {<a href="../@(Url.Content("~/").TrimStart('/') + c.ruta)?id=@(DateTime.Now.ToString("hhmmss"))" target="_blank"><i class="bx bxs-file-pdf me-1"></i></a>}
                                             </th>
-                                            <th><a href="javascript:editarContrato('@c.ideContrato','@c.idcContrato','@(c.fechaInicial.ToString("yyyy-MM-dd"))','@(c.fechaFinal != null ? ((DateTime)c.fechaFinal).ToString("yyyy-MM-dd") : "")','@c.descripcion','@c.proyecto','@c.tiempoContrato');"><i class="bx bxs-edit me-1"></i></a></th>
+                                            <th><a href="javascript:editarContrato('@c.ideEmpleadoContrato','@c.idcTipoContrato','@(c.fechaInicial.ToString("yyyy-MM-dd"))','@(c.fechaFinal != null ? ((DateTime)c.fechaFinal).ToString("yyyy-MM-dd") : "")','@c.descripcion','@c.proyecto','@c.tiempoContrato');"><i class="bx bxs-edit me-1"></i></a></th>
                                         </tr>
                                     }
                                 </tbody>
@@ -613,7 +556,7 @@
                         <p>No tiene contratos</p>
                     }
                 </div>
-                <div class="tab-pane" id="tab8">
+                <div class="tab-pane" id="tab5">
                     @{
                         var total = ViewBag.beneficio.Count;
                         var totalx = total % 3 > 0 ? total / 3 + 1 : total / 3;
@@ -673,7 +616,7 @@
                         }
                     }
                 </div>
-                <div class="tab-pane" id="tab9" style="height: 450px; overflow: auto;">
+                <div class="tab-pane" id="tab6" style="height: 450px; overflow: auto;">
                     <table class="table table-hover">
                         <thead>
                             <tr>
@@ -709,7 +652,7 @@
         </div>
         <div class="form-group col-md-12">
             <div style="position: relative; float: right;">
-                <input type="submit" value="Guardar" class="btn btn-primary" onclick='return guardar()' style="margin-top:22px" />
+                <input type="submit" value="Guardar" class="btn btn-success" onclick='return guardar()' style="margin-top:22px" />
             </div>
         </div>
     </div>
@@ -738,8 +681,8 @@
         $("#documentoProbatorio").select2({ dropdownParent: $('#myModal3') });
         $("#tipoInstitucion").select2({ dropdownParent: $('#myModal3') });
         $("#estatusInstitucion").select2({ dropdownParent: $('#myModal3') });
-        $("#idmPlantilla").select2({ dropdownParent: $('#myModal3') });
-        $("#jefeInmediato").select2({ dropdownParent: $('#myModal3') });
+        $("#idmPlaza").select2({ dropdownParent: $('#myModal3') });
+        $("#idmPlazaJefeInmediato").select2({ dropdownParent: $('#myModal3') });
         $("#tipoNomina").select2({ dropdownParent: $('#myModal3') });
         $("#isn").select2({ dropdownParent: $('#myModal3') });
         $("#codigoBanco").select2({ dropdownParent: $('#myModal3') });

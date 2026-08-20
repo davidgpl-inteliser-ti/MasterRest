@@ -1,0 +1,409 @@
+﻿@model MasterRest.Models.mPlaza
+@{
+    Layout = null;
+}
+<style>
+    .required::after
+    {
+        content: " *";
+        font-weight: bold;
+        color: red;
+    }
+</style>
+@using (Html.BeginForm(new { onsubmit = "return loading();" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.idmPlaza)
+        @Html.HiddenFor(model => model.idmEmpleado)
+        @Html.HiddenFor(model => model.idPosicion)
+        @Html.HiddenFor(model => model.fechaCreacion)
+
+        @Html.HiddenFor(model => model.direccion)
+        @Html.HiddenFor(model => model.area)
+        @Html.HiddenFor(model => model.departamento)
+        @Html.HiddenFor(model => model.puesto)
+        @Html.HiddenFor(model => model.centroTrabajo)
+        @Html.HiddenFor(model => model.nivelMercer)
+
+        @Html.HiddenFor(model => model.estatus)
+        <div class="nav-align-top mb-4">
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item">
+                    <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-1" aria-controls="navs-top-1" aria-selected="true">Plantilla</button>
+                </li>
+                <li class="nav-item">
+                    <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-2" aria-controls="navs-top-2" aria-selected="false">Herramientas y funciones</button>
+                </li>
+                <li class="nav-item">
+                    <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-3" aria-controls="navs-top-3" aria-selected="false">Beneficios</button>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane fade show active" id="navs-top-1" role="tabpanel">
+                    <div class="form-group row mb-3">
+                        <div class="col-md-4">
+                            <label class="control-label col-md-12" style="font-weight:bold">ID PUESTO</label>
+                            <span style="color:white">|</span><span id="DIR">@ViewBag.DIR</span><span id="ARE">@ViewBag.ARE</span><span id="UBI">@ViewBag.UBI</span><span id="MER">@ViewBag.MER</span><span id="PUE">@ViewBag.PUE</span>
+                            @Html.TextBox("idPosicion2", null, new { @class = "form-control", @type = "hidden" })
+                        </div>
+                    </div>
+                    <div class="form-group row mb-3">
+                        <div class="col-md-4">
+                            @Html.LabelFor(model => model.direccion, "Dirección", htmlAttributes: new { @class = "control-label col-md-12 required", @style = "font-weight:bold" })
+                            <input type="text" class="form-control" value="@Model.direccion" readonly />
+                            @Html.ValidationMessageFor(model => model.direccion, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-4">
+                            @Html.LabelFor(model => model.area, "Área", htmlAttributes: new { @class = "control-label col-md-12 required", @style = "font-weight:bold" })
+                            <input type="text" class="form-control" value="@Model.area" readonly />
+                            @Html.ValidationMessageFor(model => model.area, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-4">
+                            @Html.LabelFor(model => model.departamento, "Departamento", htmlAttributes: new { @class = "control-label col-md-12 required", @style = "font-weight:bold" })
+                            <input type="text" class="form-control" value="@Model.departamento" readonly />
+                            @Html.ValidationMessageFor(model => model.departamento, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group row mb-3">
+                        <div class="col-md-4">
+                            @Html.LabelFor(model => model.puesto, "Puesto", htmlAttributes: new { @class = "control-label col-md-12 required", @style = "font-weight:bold" })
+                            <input type="text" class="form-control" value="@Model.puesto" readonly />
+                            @Html.ValidationMessageFor(model => model.puesto, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-4">
+                            @Html.LabelFor(model => model.idmPlazaJefeInmediato, "Jefe inmediato", htmlAttributes: new { @class = "control-label col-md-12", @style = "font-weight:bold" })
+                            @Html.DropDownList("idmPlazaJefeInmediato", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown" })
+                            @Html.ValidationMessageFor(model => model.idmPlazaJefeInmediato, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-4">
+                            @Html.LabelFor(model => model.jerarquia, "Jerarquía", htmlAttributes: new { @class = "control-label col-md-12 required", @style = "font-weight:bold" })
+                            @Html.DropDownList("jerarquia", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown", @required = "*" })
+                            @Html.ValidationMessageFor(model => model.jerarquia, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group row mb-3">
+                        <div class="col-md-4">
+                            @Html.LabelFor(model => model.centroCostos, "Centro de costos", htmlAttributes: new { @class = "control-label col-md-12", @style = "font-weight:bold" })
+                            @Html.DropDownList("centroCostos", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown" })
+                            @Html.ValidationMessageFor(model => model.centroCostos, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-4">
+                            @Html.LabelFor(model => model.programa, "Programa", htmlAttributes: new { @class = "control-label col-md-12 required", @style = "font-weight:bold" })
+                            @Html.DropDownList("programa", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown", @required = "*" })
+                            @Html.ValidationMessageFor(model => model.programa, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-4">
+                            @Html.LabelFor(model => model.facturar, "Facturar", htmlAttributes: new { @class = "control-label col-md-12 required", @style = "font-weight:bold" })
+                            @Html.DropDownList("facturar", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown", @required = "*" })
+                            @Html.ValidationMessageFor(model => model.facturar, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group row mb-3">
+                        <div class="col-md-4">
+                            @Html.LabelFor(model => model.clasificacion, "Clasificación", htmlAttributes: new { @class = "control-label col-md-12", @style = "font-weight:bold" })
+                            @Html.DropDownList("clasificacion", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown" })
+                            @Html.ValidationMessageFor(model => model.clasificacion, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-4">
+                            @Html.LabelFor(model => model.centroTrabajo, "Centro de trabajo", htmlAttributes: new { @class = "control-label col-md-12 required", @style = "font-weight:bold" })
+                            <input type="text" class="form-control" value="@Model.centroTrabajo" readonly />
+                            @Html.ValidationMessageFor(model => model.centroTrabajo, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-4">
+                            @Html.LabelFor(model => model.empresaGV, "Empresa", htmlAttributes: new { @class = "control-label col-md-12 required", @style = "font-weight:bold" })
+                            @Html.DropDownList("empresaGV", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown", @required = "*" })
+                            @Html.ValidationMessageFor(model => model.empresaGV, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group row mb-3">
+                        <div class="col-md-4">
+                            @Html.LabelFor(model => model.nivelMercer, "Nivel mercer", htmlAttributes: new { @class = "control-label col-md-12 required", @style = "font-weight:bold" })
+                            <input type="text" class="form-control" value="@Model.nivelMercer" readonly />
+                            @Html.ValidationMessageFor(model => model.nivelMercer, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-4">
+                            @Html.LabelFor(model => model.presupuestoAutorizado, "Presupuesto autorizado", htmlAttributes: new { @class = "control-label col-md-12 required", @style = "font-weight:bold" })
+                            @Html.TextBoxFor(model => model.presupuestoAutorizado, new { @class = "form-control", @type = "number", @min = 0, @max = 9999999, @required = "*", @onkeyup = "validNumberRange(this, 0, 9999999);" })
+                            @Html.ValidationMessageFor(model => model.presupuestoAutorizado, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-4">
+                            @Html.LabelFor(model => model.idcRol, "Rol", htmlAttributes: new { @class = "control-label col-md-12 required", @style = "font-weight:bold" })
+                            @Html.DropDownList("idcRol", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown", @required = "*" })
+                            @Html.ValidationMessage("idcRol", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group row mb-3">
+                        <div class="col-md-4">
+                            @Html.LabelFor(model => model.agencia, "Agencia", htmlAttributes: new { @class = "control-label col-md-12 required", @style = "font-weight:bold" })
+                            @Html.DropDownList("agencia", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown", @required = "*" })
+                            @Html.ValidationMessageFor(model => model.agencia, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-4">
+                            @Html.LabelFor(model => model.patronal, "Patronal", htmlAttributes: new { @class = "control-label col-md-12 required", @style = "font-weight:bold" })
+                            @Html.DropDownList("patronal", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown", @required = "*" })
+                            @Html.ValidationMessageFor(model => model.patronal, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="navs-top-2" role="tabpanel">
+                    <div class="form-group row">
+                        <div class="col-md-4">
+                            <label><b>Herramientas de trabajo</b></label><br />
+                            @{
+                                List<string> htList = (List<string>)ViewBag.herramientasTrabajoList;
+
+                                foreach (var _ in ViewBag.herramientasTrabajo)
+                                {
+                                    var ht = ((string)_.herramientasTrabajo).Replace(" ", "_");
+
+                                    <div class="col-md-12">
+                                        <input type="checkbox" class="form-check-input" id="@ht" name="@ht" onchange="herramientasTrabajo(this)" @(htList.Contains(_.herramientasTrabajo) ? "checked" : "") /><label style="font-size:12px; font-weight:bold" for="@ht">&nbsp;&nbsp;@_.herramientasTrabajo</label>
+                                    </div>
+                                }
+                            }
+                            <div style="display:@(htList.Contains("OTRO(S)") ? "block": "none")" id="divOtraHerramientaTrabajo">
+                                @Html.TextBoxFor(model => model.otraHerramientaTrabajo, new { @class = "form-control", @maxlength = 150, @onkeyup = "this.value = textUppercase(this.value);" })
+                                @Html.ValidationMessageFor(model => model.otraHerramientaTrabajo, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            @Html.LabelFor(model => model.funcionesPuesto, "funciones del puesto", htmlAttributes: new { @class = "control-label col-md-12", @style = "font-weight:bold" })
+                            @Html.TextAreaFor(model => model.funcionesPuesto, new { @class = "form-control", @onkeyup = "this.value = textUppercase(this.value);" })
+                            @Html.ValidationMessageFor(model => model.funcionesPuesto, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="navs-top-3" role="tabpanel">
+                    @{
+                        var total = ViewBag.beneficio.Count;
+                        var totalx = total % 3 > 0 ? total / 3 + 1 : total / 3;
+                        var i = 0;
+                        for (int a = 0; a < totalx; a++)
+                        {
+                            <div class="form-group row">
+                                @for (int b = 0; b < 3; b++)
+                                {
+                                    if (i < total)
+                                    {
+                                        var ben = Model.ePlazaBeneficio.FirstOrDefault(_ => _.idcBeneficio == ViewBag.beneficio[i].idcBeneficio);
+
+                                        <div class="col-md-4">
+                                            <input type="checkbox" class="form-check-input" id="check-@ViewBag.beneficio[i].idcBeneficio" name="check-@ViewBag.beneficio[i].idcBeneficio" onclick="OnClickTextVisible(this, '@ViewBag.beneficio[i].idcBeneficio');" @(ben != null ? "checked" : "") />
+                                            <label style="font-size:12px; font-weight:bold" for="check-@ViewBag.beneficio[i].idcBeneficio"> @ViewBag.beneficio[i].beneficio</label>
+                                            @if (ViewBag.beneficio[i].tipo == "IMPORTE" || ViewBag.beneficio[i].tipo == "PORCENTAJE")
+                                            {
+                                                <div id="div-@ViewBag.beneficio[i].idcBeneficio" style="display:@(ben != null ? "block" : "none")">
+                                                    <div class="input-group" style="width:120px;">
+                                                        @if (ViewBag.beneficio[i].tipo == "IMPORTE")
+                                                        {
+                                                            <span class="input-group-text">$</span>
+                                                        }
+                                                        <input type="text" class="form-control" id="input-@ViewBag.beneficio[i].idcBeneficio" name="input-@ViewBag.beneficio[i].idcBeneficio" value="@(ben != null && ben.valor != null ? ben.valor : "")" maxlength="6" onkeypress="return validNumbers2(event);">
+                                                        @if (ViewBag.beneficio[i].tipo == "PORCENTAJE")
+                                                        {
+                                                            <span class="input-group-text">%</span>
+                                                        }
+                                                    </div>
+                                                </div>
+                                            }
+                                            else if (ViewBag.beneficio[i].tipo == "LISTA")
+                                            {
+                                                var opciones = ViewBag.beneficio[i].opciones.Split(',');
+
+                                                <div id="div-@ViewBag.beneficio[i].idcBeneficio" style="display:@(ben != null ? "block" : "none")">
+                                                    <select class="form-select " id="input-@ViewBag.beneficio[i].idcBeneficio" name="input-@ViewBag.beneficio[i].idcBeneficio" style="width:120px;">
+                                                        <option value=""></option>
+                                                        @foreach (var opcion in opciones)
+                                                        {
+                                                            <option value="@opcion" @(ben == null || ben.valor == null ? "" : (ben.valor == opcion ? "selected" : "") ) )>@opcion</option>
+                                                        }
+                                                    </select>
+                                                </div>
+                                            }
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="col-md-6"></div>
+                                    }
+                                    i++;
+                                }
+                            </div>
+                            <br />
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="form-group col-md-12">
+            <div style="position: relative; float: right;">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+<script src="~/assets/js/a-valid-input.js"></script>
+
+<script type="text/javascript">
+
+    $(function () {
+        $("#idmPlazaJefeInmediato").select2({ dropdownParent: $('#myModal3') });
+        $("#idcRol").select2({ dropdownParent: $('#myModal3') });
+        $("#jerarquia").select2({ dropdownParent: $('#myModal3') });
+        $("#centroCostos").select2({ dropdownParent: $('#myModal3') });
+        $("#programa").select2({ dropdownParent: $('#myModal3') });
+        $("#facturar").select2({ dropdownParent: $('#myModal3') });
+        $("#clasificacion").select2({ dropdownParent: $('#myModal3') });
+        $("#empresaGV").select2({ dropdownParent: $('#myModal3') });
+        $("#agencia").select2({ dropdownParent: $('#myModal3') });
+    });
+
+    function herramientasTrabajo(e) {
+        if (e.id == "OTRO(S)") {
+            document.getElementById("divOtraHerramientaTrabajo").style.display = e.checked ? "block" : "none";
+            document.getElementById("otraHerramientaTrabajo").value = "";
+        }
+    }
+
+    function OnChangeDireccion(e) {
+        $("#direccion").val(e.options[e.selectedIndex].innerHTML);
+        $("#area").empty();
+        $("#departamento").empty();
+        $("#departamento").append('<option value="">SELECCIONE...</option>');
+        $("#puesto").empty();
+        $("#puesto").append('<option value="">SELECCIONE...</option>');
+        $("#idmPlazaJefeInmediato").empty();
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("area", "mPlaza")',
+            dataType: 'json',
+            data: { direccion: e.value },
+            success: function (items) {
+                $("#area").append('<option value="">SELECCIONE...</option>');
+                $.each(items, function (i, item) {
+                    $("#area").append('<option value="' + item.Value + '">' + item.Text + '</option>');
+                });
+
+                $("#idmPlazaJefeInmediato").append('<option value="">SELECCIONE...</option>');
+                $.each(items.idmPlazaJefeInmediato, function (i, x) {
+                    $("#idmPlazaJefeInmediato").append('<option value="' + x.idmPlaza + '">' + x.puesto + '</option>');
+                });
+            }
+        });
+
+        $("#DIR").text("");
+        $("#ARE").text("");
+        $("#PUE").text("");
+        if (e.value != "") {
+            var claves = @Html.Raw(Json.Encode(ViewBag.direccionClaves));
+            $.each(claves, function (i, item) {
+                if (item.texto == e.value) {
+                    $("#DIR").text(item.clave);
+                }
+            });
+        }
+        readIdPosicion();
+    }
+
+    function OnChangeArea(e) {
+        $("#area").val(e.options[e.selectedIndex].innerHTML);
+        $("#departamento").empty();
+        $("#puesto").empty();
+        $("#puesto").append('<option value="">SELECCIONE...</option>');
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("departamento", "mPlaza")',
+            dataType: 'json',
+            data: { area: e.value },
+            success: function (items) {
+                $("#departamento").append('<option value="">SELECCIONE...</option>');
+                $.each(items, function (i, item) {
+                    $("#departamento").append('<option value="' + item.Value + '">' + item.Text + '</option>');
+                });
+            }
+        });
+
+        $("#ARE").text("");
+        $("#PUE").text("");
+        if (e.value != "") {
+            var claves = @Html.Raw(Json.Encode(ViewBag.areaClaves));
+            $.each(claves, function (i, item) {
+                if (item.texto == e.value) {
+                    $("#ARE").text(item.clave);
+                }
+            });
+        }
+        readIdPosicion();
+    }
+
+    function OnChangeDepartamento(e) {
+        $("#departamento").val(e.options[e.selectedIndex].innerHTML);
+        $("#puesto").empty();
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("puesto", "mPlaza")',
+            dataType: 'json',
+            data: { departamento: e.value },
+            success: function (items) {
+                $("#puesto").append('<option value="">SELECCIONE...</option>');
+                $.each(items, function (i, item) {
+                    $("#puesto").append('<option value="' + item.Value + '">' + item.Text + '</option>');
+                });
+            }
+        });
+
+        $("#PUE").text("");
+        readIdPosicion();
+    }
+
+    function OnChangePuesto(e) {
+        $("#PUE").text("");
+        if (e.value != "") {
+            var claves = @Html.Raw(Json.Encode(ViewBag.puestoClaves));
+            $.each(claves, function (i, item) {
+                if (item.texto == e.value) {
+                    $("#PUE").text(item.clave);
+                }
+            });
+        }
+        readIdPosicion();
+    }
+
+    function OnChangeCentroTrabajo(e) {
+        $("#UBI").text("");
+        if (e.value != "") {
+            var claves = @Html.Raw(Json.Encode(ViewBag.centroTrabajoClaves));
+            $.each(claves, function (i, item) {
+                if (item.texto == e.value) {
+                    $("#UBI").text(item.clave);
+                }
+            });
+        }
+        readIdPosicion();
+    }
+
+    function OnChangeNivelMercer(e) {
+        $("#MER").text("");
+        if (e.value != "") {
+            var claves = @Html.Raw(Json.Encode(ViewBag.nivelMercerClaves));
+            $.each(claves, function (i, item) {
+                if (item.texto == e.value) {
+                    $("#MER").text(item.clave);
+                }
+            });
+        }
+        readIdPosicion();
+    }
+
+    function readIdPosicion() {
+        $("#idPosicion2").val($("#DIR").text() + $("#ARE").text() + $("#UBI").text() + $("#MER").text() + $("#PUE").text());
+    }
+
+    function OnClickTextVisible(cb, input) {
+        document.getElementById('div-' + input).style.display = cb.checked ? "block" : "none";
+        document.getElementById('input-' + input).value = "";
+    }
+</script>

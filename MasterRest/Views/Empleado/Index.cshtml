@@ -41,7 +41,6 @@
                     <thead>
                         <tr>
                             <th width="1"></th>
-                            <th width="1"></th>
                             <th>Estatus</th>
                             <th><strong>Nombre</strong></th>
                             <th>Puesto</th>
@@ -63,13 +62,6 @@
                                         <li><a href="javascript:AbreModal3('@Url.Action("Reenter", "Empleado", new { id = item.idmEmpleado })','Reingresar empleado');" class="dropdown-item"><i data-feather="check-circle" class="info-img"></i>Reingresar</a></li>
                                        <li><a href="javascript:AbreModal('@Url.Action("Delete", "Empleado", new { id = item.idmEmpleado })','Eliminar empleado');" class="dropdown-item" style="color: red"><i data-feather="trash-2" class="info-img"></i>Eliminar</a></li>
                                     </ul>
-                                </td>
-                                <td class="action-table-data">
-                                    <div class="edit-delete-action">
-                                        <a href="javascript:AbreModal3('@Url.Action("Salary", "Empleado", new { id = item.idmEmpleado })','Salario empleado');">
-                                            <i class="ti ti-user-dollar me-1" style="color: @(item.salarioMensual == null || item.salarioMensual == "" ? "red" : "gray")"></i>
-                                        </a>
-                                    </div>
                                 </td>
                                 <td>
                                     @switch (item.estatus)

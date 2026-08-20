@@ -1,0 +1,72 @@
+﻿@model MasterRest.Models.cUsuario
+@{
+    Layout = null;
+}
+@using (Html.BeginForm(new { onsubmit = "return loading();" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.idcUsuario)
+        @Html.HiddenFor(model => model.idmEmpleado)
+        <div class="form-group">
+            <div class="col-md-12">
+                <label class="control-label"><b>Nombre</b></label>
+                <input type="text" class="form-control" value="@ViewBag.nombre" readonly="readonly" />
+            </div>
+        </div>
+        <br />
+        <div class="form-group">
+            <div class="col-md-12">
+                <label class="control-label"><b>Usuario</b></label>
+                @Html.TextBoxFor(model => model.usuario, new { @class = "form-control", @maxlength = "50", @required = "*" })
+                @Html.ValidationMessageFor(model => model.usuario, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br />
+        <div class="form-group">
+            <div class="col-md-12">
+                <label class="control-label"><b>Contraseña</b></label>
+                @Html.TextBoxFor(model => model.clave, new { @type = "password", @class = "form-control", @minlength = "6", @maxlength = "50", @required = "*", @onblur = "verificarPassword(this.value)", @Id = "password" })
+                @Html.ValidationMessageFor(model => model.clave, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br />
+        <div class="form-group">
+            <div class="col-md-12">
+                <label class="control-label"><b>Estatus</b></label>
+                @Html.DropDownList("estatus", null, htmlAttributes: new { @class = "form-select color-dropdown" })
+                @Html.ValidationMessageFor(model => model.estatus, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br />
+        <div class="row g-2">
+            <div class="form-group col-md-12">
+                <div style="position: relative; float: right;">
+                    <input type="submit" value="Guardar" class="btn btn-success" />
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<script>
+    
+    function verificarPassword(password) {
+        if (!/[a-z]/.test(password)) {
+            $("#password").val("");
+            swal('Contraseña!', 'Debe contener al menos una minúscula!', 'warning');
+        } else if (!/[A-Z]/.test(password)) {
+            $("#password").val("");
+            swal('Contraseña!', 'Debe contener al menos una mayúscula!', 'warning');
+        } else if (!/[0-9]/.test(password)) {
+            $("#password").val("");
+            swal('Contraseña!', 'Debe contener al menos un dígito!', 'warning');
+        } else if (!/[!#$%^&*()_+\-=\[\]{};'"\\|,.<>\/?~]/.test(password)) {
+            $("#password").val("");
+            swal('Contraseña!', 'Debe contener al menos un caracter especial!', 'warning');
+        } else if (password.length < 6) {
+            $("#password").val("");
+            swal('Contraseña!', 'Debe contener al menos 6 caracteres!', 'warning');
+        }
+    }
+</script>

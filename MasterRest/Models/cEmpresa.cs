@@ -22,8 +22,8 @@ namespace MasterRest.Models
             this.cRol = new HashSet<cRol>();
             this.cSucursal = new HashSet<cSucursal>();
             this.cUsuario = new HashSet<cUsuario>();
-            this.mEmpleado = new HashSet<mEmpleado>();
             this.mPlaza = new HashSet<mPlaza>();
+            this.mEmpleado = new HashSet<mEmpleado>();
         }
     
         public int idcEmpresa { get; set; }
@@ -43,8 +43,8 @@ namespace MasterRest.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<cUsuario> cUsuario { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<mEmpleado> mEmpleado { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<mPlaza> mPlaza { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<mEmpleado> mEmpleado { get; set; }
     }
 }

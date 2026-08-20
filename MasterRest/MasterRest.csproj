@@ -150,6 +150,9 @@
     <Compile Include="Models\cArea.cs">
       <DependentUpon>MasterRestModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\cBanco.cs">
+      <DependentUpon>MasterRestModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\cBeneficio.cs">
       <DependentUpon>MasterRestModel.tt</DependentUpon>
     </Compile>
@@ -2473,8 +2476,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Plaza\" />
-    <Folder Include="Views\Usuario\" />
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="Models\MasterRestModel.edmx">
@@ -2497,7 +2498,13 @@
     <Content Include="Views\Empleado\Index.cshtml" />
     <Content Include="Views\Empleado\Promote.cshtml" />
     <Content Include="Views\Empleado\Reenter.cshtml" />
-    <Content Include="Views\Empleado\Salary.cshtml" />
+    <Content Include="Views\Usuario\Index.cshtml" />
+    <Content Include="Views\Usuario\Edit.cshtml" />
+    <Content Include="Views\Plaza\Index.cshtml" />
+    <Content Include="Views\Plaza\Edit.cshtml" />
+    <Content Include="Views\Plaza\Details.cshtml" />
+    <Content Include="Views\Plaza\Deactivate.cshtml" />
+    <Content Include="Views\Plaza\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="assets\plugins\flatpickr\l10n\ar-dz.d.ts" />

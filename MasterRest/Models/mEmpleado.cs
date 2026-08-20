@@ -21,9 +21,9 @@ namespace MasterRest.Models
             this.eEmpleadoBaja = new HashSet<eEmpleadoBaja>();
             this.eEmpleadoContrato = new HashSet<eEmpleadoContrato>();
             this.eEmpleadoDocumentacion = new HashSet<eEmpleadoDocumentacion>();
+            this.eEmpleadoPromocion = new HashSet<eEmpleadoPromocion>();
             this.mPedido = new HashSet<mPedido>();
             this.mPlaza = new HashSet<mPlaza>();
-            this.eEmpleadoPromocion = new HashSet<eEmpleadoPromocion>();
         }
     
         public int idmEmpleado { get; set; }
@@ -66,7 +66,7 @@ namespace MasterRest.Models
         public string noCreditoFonacot { get; set; }
         public string descuentoFonacot { get; set; }
         public string factorFonacot { get; set; }
-        public string codiBanco { get; set; }
+        public Nullable<int> idcBanco { get; set; }
         public string codiSucursal { get; set; }
         public string noCuenta { get; set; }
         public string clabeInterbancaria { get; set; }
@@ -79,6 +79,7 @@ namespace MasterRest.Models
         public string observaciones { get; set; }
         public string estatus { get; set; }
     
+        public virtual cBanco cBanco { get; set; }
         public virtual cEmpresa cEmpresa { get; set; }
         public virtual cEscolaridad cEscolaridad { get; set; }
         public virtual cEstadoCivil cEstadoCivil { get; set; }
@@ -93,10 +94,10 @@ namespace MasterRest.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<eEmpleadoDocumentacion> eEmpleadoDocumentacion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<eEmpleadoPromocion> eEmpleadoPromocion { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<mPedido> mPedido { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<mPlaza> mPlaza { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<eEmpleadoPromocion> eEmpleadoPromocion { get; set; }
     }
 }
