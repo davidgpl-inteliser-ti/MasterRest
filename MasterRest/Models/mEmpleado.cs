@@ -18,12 +18,12 @@ namespace MasterRest.Models
         public mEmpleado()
         {
             this.cUsuario = new HashSet<cUsuario>();
-            this.eEmpleadoBaja = new HashSet<eEmpleadoBaja>();
             this.eEmpleadoContrato = new HashSet<eEmpleadoContrato>();
             this.eEmpleadoDocumentacion = new HashSet<eEmpleadoDocumentacion>();
             this.eEmpleadoPromocion = new HashSet<eEmpleadoPromocion>();
             this.mPedido = new HashSet<mPedido>();
             this.mPlaza = new HashSet<mPlaza>();
+            this.eEmpleadoBaja = new HashSet<eEmpleadoBaja>();
         }
     
         public int idmEmpleado { get; set; }
@@ -88,8 +88,6 @@ namespace MasterRest.Models
         public virtual ICollection<cUsuario> cUsuario { get; set; }
         public virtual dEmpleadoDomicilio dEmpleadoDomicilio { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<eEmpleadoBaja> eEmpleadoBaja { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<eEmpleadoContrato> eEmpleadoContrato { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<eEmpleadoDocumentacion> eEmpleadoDocumentacion { get; set; }
@@ -99,5 +97,7 @@ namespace MasterRest.Models
         public virtual ICollection<mPedido> mPedido { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<mPlaza> mPlaza { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<eEmpleadoBaja> eEmpleadoBaja { get; set; }
     }
 }

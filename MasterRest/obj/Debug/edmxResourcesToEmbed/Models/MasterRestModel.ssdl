@@ -287,7 +287,7 @@
     <Property Name="empresa" Type="varchar" MaxLength="150" />
     <Property Name="sucursal" Type="varchar" MaxLength="150" />
     <Property Name="rol" Type="varchar" MaxLength="150" />
-    <Property Name="idmPlazaJefeInmediato" Type="varchar" MaxLength="550" />
+    <Property Name="jefeInmediato" Type="varchar" MaxLength="550" />
     <Property Name="puesto" Type="varchar" MaxLength="150" />
     <Property Name="area" Type="varchar" MaxLength="150" />
     <Property Name="motivoBaja" Type="varchar" MaxLength="75" />

@@ -5,128 +5,41 @@
 <div class="alert mb-0" role="alert">
     <div class="form-horizontal">
         <div class="nav-align-top mb-4">
-            <ul class="nav nav-tabs" role="tablist">
-                <li class="nav-item">
-                    <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-1" aria-controls="navs-top-1" aria-selected="true">Plantilla</button>
-                </li>
-                <li class="nav-item">
-                    <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-2" aria-controls="navs-top-2" aria-selected="false">Herramientas y funciones</button>
-                </li>
-                <li class="nav-item">
-                    <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-3" aria-controls="navs-top-3" aria-selected="false">Beneficios</button>
-                </li>
+            <ul class="nav nav-tabs default-tabs mb-3">
+                <li class="nav-item"><a href="#tab1" data-bs-toggle="tab" aria-expanded="true" class="nav-link active">Plaza</a></li>
+                <li class="nav-item"><a href="#tab2" data-bs-toggle="tab" aria-expanded="false" class="nav-link">Beneficios</a></li>
             </ul>
             <div class="tab-content">
-                <div class="tab-pane fade show active" id="navs-top-1" role="tabpanel">
+                <div class="tab-pane show active" id="tab1">
                     <div class="form-group row">
-                        <div class="col-md-4"><b>ID POSICIÓN</b><br />@if (Model.idPosicion != null)
-                        {@Model.idPosicion }
-                    else
-                    { <b>&nbsp;</b>}</div>
-                        <div class="col-md-4"><b>Trabajador</b><br />@if (Model.mEmpleado != null)
-                        {@(Model.mEmpleado.nombre + " " + Model.mEmpleado.paterno + " " + Model.mEmpleado.materno ) }
-                        else
-                        { <b>&nbsp;</b>}</div>
                         <div class="col-md-4">
-                            <b>Estatus</b><br />
-                            @switch (Model.estatus)
-                            {
-                                case "INACTIVA":<span class="badge bg-label-warning me-1">INACTIVA</span>break;
-                                case "VACANTE": <span class="badge bg-label-secondary me-1">VACANTE</span> break;
-                                case "PRE-ASIGNADO": <span class="badge bg-label-primary me-1">PRE-ASIGNADO</span> break;
-                                case "AUTORIZADA": <span class="badge bg-label-success me-1">ASIGNADO</span>break;
-                            }
+                            <b>Empleado</b><br />@if (Model.mEmpleado != null) { @(Model.mEmpleado.nombre + " " + Model.mEmpleado.paterno + " " + Model.mEmpleado.materno ) } else { <b>&nbsp;</b> }
                         </div>
-                    </div><hr />
+                        <div class="col-md-4">
+                            <b>Estatus</b><br /><span class="badge bg-@(Model.estatus == "ACTIVO" ? "success" : (Model.estatus == "VACANTE" ? "secondary" : "warning")) fw-medium me-1">@Model.estatus</span>
+                        </div>
+                        <div class="col-md-4">
+                            <b>Sucursal</b><br />@if (Model.cSucursal != null) { @Model.cSucursal.sucursal } else { <b>&nbsp;</b> }
+                        </div>
+                    </div>
+                    <hr />
                     <div class="form-group row">
-                        <div class="col-md-4"><b>Dirección</b><br />@if (Model.direccion != null)
-                        {@Model.direccion }
-                    else
-                    { <b>&nbsp;</b>}</div>
-                        <div class="col-md-4"><b>Área</b><br />@if (Model.area != null)
-                        {@Model.area }
-                    else
-                    { <b>&nbsp;</b>}</div>
-                        <div class="col-md-4"><b>Departamento</b><br />@if (Model.departamento != null)
-                        {@Model.departamento }
-                    else
-                    { <b>&nbsp;</b>}</div>
-                    </div><hr />
+                        <div class="col-md-4">
+                            <b>Puesto</b><br />@if (Model.cPuesto != null) { @Model.cPuesto.puesto } else { <b>&nbsp;</b> }
+                        </div>
+                        <div class="col-md-4">
+                            <b>Área</b><br />@if (Model.cArea != null) { @Model.cArea.area } else { <b>&nbsp;</b> }
+                        </div>
+                        <div class="col-md-4">
+                            <b>Rol</b><br />@if (Model.cRol != null) { @Model.cRol.rol } else { <b>&nbsp;</b>}
+                        </div>
+                    </div>
+                    <hr />
                     <div class="form-group row">
-                        <div class="col-md-4"><b>Puesto</b><br />@Model.puesto</div>
                         <div class="col-md-4"><b>Jefe inmediato</b><br />@ViewBag.jefeInmediatoPuesto<br />@ViewBag.idmPlazaJefeInmediato</div>
-                        <div class="col-md-4"><b>Jerarquía</b><br />@if (Model.jerarquia != null)
-                        {@Model.jerarquia }
-                    else
-                    { <b>&nbsp;</b>}</div>
-                    </div><hr />
-                    <div class="form-group row">
-                        <div class="col-md-4"><b>Centro de costos</b><br />@if (Model.centroCostos != null)
-                        {@(Model.centroCostos + " " + ViewBag.descripcionCC) }
-                        else
-                        { <b>&nbsp;</b>}</div>
-                        <div class="col-md-4"><b>Programa</b><br />@if (Model.programa != null)
-                        {@Model.programa }
-                    else
-                    { <b>&nbsp;</b>}</div>
-                        <div class="col-md-4"><b>Facturar</b><br />@if (Model.facturar != null)
-                        {@Model.facturar }
-                    else
-                    { <b>&nbsp;</b>}</div>
-                    </div><hr />
-                    <div class="form-group row">
-                        <div class="col-md-4"><b>Clasificacion</b><br />@if (Model.clasificacion != null)
-                        {@Model.clasificacion }
-                    else
-                    { <b>&nbsp;</b>}</div>
-                        <div class="col-md-4"><b>Centro de trabajo</b><br />@if (Model.centroTrabajo != null)
-                        {@Model.centroTrabajo }
-                    else
-                    { <b>&nbsp;</b>}</div>
-                        <div class="col-md-4"><b>Empresa</b><br />@if (Model.empresaGV != null)
-                        {@Model.empresaGV }
-                    else
-                    { <b>&nbsp;</b>}</div>
-                    </div><hr />
-                    <div class="form-group row">
-                        <div class="col-md-4"><b>Nivel mercer</b><br />@if (Model.nivelMercer != null)
-                        {@Model.nivelMercer }
-                    else
-                    { <b>&nbsp;</b>}</div>
-                        <div class="col-md-4"><b>Presupuesto autorizado</b><br />@(((decimal)Model.presupuestoAutorizado).ToString("0.0"))</div>
-                        <div class="col-md-4"><b>Agencia</b><br />@if (Model.agencia != null)
-                        {@Model.agencia }
-                    else
-                    { <b>&nbsp;</b>}</div>
-                    </div><hr />
-                    <div class="form-group row">
-                        <div class="col-md-4"><b>Patronal</b><br />@if (Model.patronal != null)
-                        {@Model.patronal }
-                    else
-                    { <b>&nbsp;</b>}</div>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="navs-top-2" role="tabpanel">
-                    <div class="form-group row">
-                        <div class="col-md-4">
-                            <b>Herramientas de trabajo</b><br />
-                            @{
-                                List<string> htList = (List<string>)ViewBag.herramientasTrabajoList;
-                                foreach (var _ in htList)
-                                {
-                                    <div class="col-md-12">
-                                        <div style="font-family:Arial"><i class="menu-icon tf-icons bx bx-check-square"></i> @_ @(_ == "OTRO(S)" ? ": " + @Model.otraHerramientaTrabajo : "")</div>
-                                    </div>
-                                }
-                            }
-                        </div>
-                        <div class="col-md-8"><b>Funciones de puesto</b><br />@if (Model.funcionesPuesto != null)
-                        {@Model.funcionesPuesto }
-                    else
-                    { <b>&nbsp;</b>}</div>
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="navs-top-3" role="tabpanel">
+                <div class="tab-pane" id="tab2">
                     @if (Model.ePlazaBeneficio.Count > 0)
                     {
                         <table class="table table-hover">

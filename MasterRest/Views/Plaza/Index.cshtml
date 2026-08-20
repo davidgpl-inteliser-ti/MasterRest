@@ -6,8 +6,7 @@
     <div class="page-header">
         <div class="add-item d-flex">
             <div class="page-title">
-                <h4 class="fw-bold">Lista de posiciones</h4>
-                <h6>Gestiona tus posiciones</h6>
+                <h4 class="fw-bold">Lista de plazas</h4>
             </div>
         </div>
         <ul class="table-top-head">
@@ -15,14 +14,14 @@
                 <a data-bs-toggle="tooltip" data-bs-placement="top" title="Excel" href="~/Report/Positions"><img src="~/assets/img/icons/excel.svg" alt="img"></a>
             </li>
             <li>
-                <a data-bs-toggle="tooltip" data-bs-placement="top" title="Refresh" href="~/mPlaza"><i class="ti ti-refresh"></i></a>
+                <a data-bs-toggle="tooltip" data-bs-placement="top" title="Refresh" href="~/Plaza"><i class="ti ti-refresh"></i></a>
             </li>
             <li>
                 <a data-bs-toggle="tooltip" data-bs-placement="top" title="Collapse" id="collapse-header"><i class="ti ti-chevron-up"></i></a>
             </li>
         </ul>
         <div class="page-btn">
-            <a href="javascript:AbreModal3('@Url.Action("Create","mPlaza")','Agregar posición');" class="btn btn-primary"><i class="ti ti-circle-plus me-1"></i>Agregar plaza</a>
+            <a href="javascript:AbreModal3('@Url.Action("Create","Plaza")','Agregar plaza');" class="btn btn-primary"><i class="ti ti-circle-plus me-1"></i>Agregar plaza</a>
         </div>
     </div>
     <div class="card">
@@ -55,13 +54,19 @@
                                 <td class="text-center">
                                     <a class="action-set" href="javascript:void(0);" data-bs-toggle="dropdown" aria-expanded="true"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="javascript:AbreModal3('@Url.Action("Details", "mPlaza", new { id = item.idmPlaza })','Detalle de la posición');" class="dropdown-item"><i data-feather="eye" class="info-img"></i>Detalle</a></li>
-                                        <li><a href="javascript:AbreModal3('@Url.Action("Edit", "mPlaza", new { id = item.idmPlaza })','Editar posición');" class="dropdown-item"><i data-feather="edit" class="info-img"></i>Editar</a></li>
-                                        <li><a href="javascript:AbreModal('@Url.Action("DeActivate", "mPlaza", new { id = item.idmPlaza })','Desactivar posición');" class="dropdown-item"><i data-feather="minus-circle" class="info-img"></i>Desactivar</a></li>
-                                        <li><a href="javascript:AbreModal('@Url.Action("DeActivate", "mPlaza", new { id = item.idmPlaza })','Activar posición');" class="dropdown-item"><i data-feather="check-circle" class="info-img"></i>Activar</a></li>
+                                        <li><a href="javascript:AbreModal3('@Url.Action("Details", "Plaza", new { id = item.idmPlaza })','Detalle de la plaza');" class="dropdown-item"><i data-feather="eye" class="info-img"></i>Detalle</a></li>
+                                        <li><a href="javascript:AbreModal3('@Url.Action("Edit", "Plaza", new { id = item.idmPlaza })','Editar plaza');" class="dropdown-item"><i data-feather="edit" class="info-img"></i>Editar</a></li>
+                                        @if (item.estatus == "VACANTE")
+                                        {
+                                            <li><a href="javascript:AbreModal('@Url.Action("DeActivate", "Plaza", new { id = item.idmPlaza })','Desactivar plaza');" class="dropdown-item"><i data-feather="minus-circle" class="info-img"></i>Desactivar</a></li>
+                                        }
+                                        else if (item.estatus == "INACTIVO")
+                                        {
+                                            <li><a href="javascript:AbreModal('@Url.Action("DeActivate", "Plaza", new { id = item.idmPlaza })','Activar plaza');" class="dropdown-item"><i data-feather="check-circle" class="info-img"></i>Activar</a></li>
+                                        }
                                     </ul>
                                 </td>
-                                <td><span class="badge bg-@(item.estatus == "ASIGNADA" ? "success" : (item.estatus == "VACANTE" ? "secondary" : "warning")) fw-medium me-1">@item.estatus</span></td>
+                                <td><span class="badge bg-@(item.estatus == "ACTIVO" ? "success" : (item.estatus == "VACANTE" ? "info" : "warning")) fw-medium me-1">@item.estatus</span></td>
                                 @{
                                     var nombreCompleto = item.mEmpleado != null ? item.mEmpleado.nombre + " " + item.mEmpleado.paterno + " " + item.mEmpleado.materno : "";
 

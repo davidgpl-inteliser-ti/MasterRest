@@ -53,7 +53,6 @@ namespace MasterRest.Models
         public virtual DbSet<cUsuario> cUsuario { get; set; }
         public virtual DbSet<dEmpleadoDomicilio> dEmpleadoDomicilio { get; set; }
         public virtual DbSet<dPedido> dPedido { get; set; }
-        public virtual DbSet<eEmpleadoBaja> eEmpleadoBaja { get; set; }
         public virtual DbSet<eEmpleadoContrato> eEmpleadoContrato { get; set; }
         public virtual DbSet<eEmpleadoDocumentacion> eEmpleadoDocumentacion { get; set; }
         public virtual DbSet<ePlazaBeneficio> ePlazaBeneficio { get; set; }
@@ -63,5 +62,6 @@ namespace MasterRest.Models
         public virtual DbSet<eEmpleadoPromocion> eEmpleadoPromocion { get; set; }
         public virtual DbSet<cBanco> cBanco { get; set; }
         public virtual DbSet<mEmpleado> mEmpleado { get; set; }
+        public virtual DbSet<eEmpleadoBaja> eEmpleadoBaja { get; set; }
     }
 }

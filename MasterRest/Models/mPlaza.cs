@@ -17,9 +17,9 @@ namespace MasterRest.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public mPlaza()
         {
-            this.eEmpleadoBaja = new HashSet<eEmpleadoBaja>();
             this.ePlazaBeneficio = new HashSet<ePlazaBeneficio>();
             this.mPlaza1 = new HashSet<mPlaza>();
+            this.eEmpleadoBaja = new HashSet<eEmpleadoBaja>();
         }
     
         public int idmPlaza { get; set; }
@@ -38,12 +38,12 @@ namespace MasterRest.Models
         public virtual cRol cRol { get; set; }
         public virtual cSucursal cSucursal { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<eEmpleadoBaja> eEmpleadoBaja { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ePlazaBeneficio> ePlazaBeneficio { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<mPlaza> mPlaza1 { get; set; }
         public virtual mPlaza mPlaza2 { get; set; }
         public virtual mEmpleado mEmpleado { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<eEmpleadoBaja> eEmpleadoBaja { get; set; }
     }
 }

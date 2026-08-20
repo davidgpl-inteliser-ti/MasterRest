@@ -29,7 +29,6 @@
     <EntitySet Name="cUsuario" EntityType="MasterRestModel.cUsuario" />
     <EntitySet Name="dEmpleadoDomicilio" EntityType="MasterRestModel.dEmpleadoDomicilio" />
     <EntitySet Name="dPedido" EntityType="MasterRestModel.dPedido" />
-    <EntitySet Name="eEmpleadoBaja" EntityType="MasterRestModel.eEmpleadoBaja" />
     <EntitySet Name="eEmpleadoContrato" EntityType="MasterRestModel.eEmpleadoContrato" />
     <EntitySet Name="eEmpleadoDocumentacion" EntityType="MasterRestModel.eEmpleadoDocumentacion" />
     <EntitySet Name="ePlazaBeneficio" EntityType="MasterRestModel.ePlazaBeneficio" />
@@ -128,10 +127,6 @@
       <End Role="mPedido" EntitySet="mPedido" />
       <End Role="dPedido" EntitySet="dPedido" />
     </AssociationSet>
-    <AssociationSet Name="FK__eEmpleado__idmPl__19DFD96B" Association="MasterRestModel.FK__eEmpleado__idmPl__19DFD96B">
-      <End Role="mPlaza" EntitySet="mPlaza" />
-      <End Role="eEmpleadoBaja" EntitySet="eEmpleadoBaja" />
-    </AssociationSet>
     <AssociationSet Name="FK__ePlazaBen__idmPl__151B244E" Association="MasterRestModel.FK__ePlazaBen__idmPl__151B244E">
       <End Role="mPlaza" EntitySet="mPlaza" />
       <End Role="ePlazaBeneficio" EntitySet="ePlazaBeneficio" />
@@ -179,10 +174,6 @@
       <End Role="dEmpleadoDomicilio" EntitySet="dEmpleadoDomicilio" />
       <End Role="mEmpleado" EntitySet="mEmpleado" />
     </AssociationSet>
-    <AssociationSet Name="FK__eEmpleado__idmEm__74AE54BC" Association="MasterRestModel.FK__eEmpleado__idmEm__74AE54BC">
-      <End Role="mEmpleado" EntitySet="mEmpleado" />
-      <End Role="eEmpleadoBaja" EntitySet="eEmpleadoBaja" />
-    </AssociationSet>
     <AssociationSet Name="FK__eEmpleado__idmEm__52593CB8" Association="MasterRestModel.FK__eEmpleado__idmEm__52593CB8">
       <End Role="mEmpleado" EntitySet="mEmpleado" />
       <End Role="eEmpleadoContrato" EntitySet="eEmpleadoContrato" />
@@ -202,6 +193,15 @@
     <AssociationSet Name="FK__mPlaza__idmEmple__6A30C649" Association="MasterRestModel.FK__mPlaza__idmEmple__6A30C649">
       <End Role="mEmpleado" EntitySet="mEmpleado" />
       <End Role="mPlaza" EntitySet="mPlaza" />
+    </AssociationSet>
+    <EntitySet Name="eEmpleadoBaja" EntityType="MasterRestModel.eEmpleadoBaja" />
+    <AssociationSet Name="FK__eEmpleado__idmEm__74AE54BC" Association="MasterRestModel.FK__eEmpleado__idmEm__74AE54BC">
+      <End Role="mEmpleado" EntitySet="mEmpleado" />
+      <End Role="eEmpleadoBaja" EntitySet="eEmpleadoBaja" />
+    </AssociationSet>
+    <AssociationSet Name="FK__eEmpleado__idmPl__75A278F5" Association="MasterRestModel.FK__eEmpleado__idmPl__75A278F5">
+      <End Role="mPlaza" EntitySet="mPlaza" />
+      <End Role="eEmpleadoBaja" EntitySet="eEmpleadoBaja" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="cArea">
@@ -514,29 +514,6 @@
     <NavigationProperty Name="cMenu" Relationship="MasterRestModel.FK__dPedido__idcMenu__3A4CA8FD" FromRole="dPedido" ToRole="cMenu" />
     <NavigationProperty Name="mPedido" Relationship="MasterRestModel.FK__dPedido__idmPedi__395884C4" FromRole="dPedido" ToRole="mPedido" />
   </EntityType>
-  <EntityType Name="eEmpleadoBaja">
-    <Key>
-      <PropertyRef Name="ideEmpleadoBaja" />
-    </Key>
-    <Property Name="ideEmpleadoBaja" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="idmEmpleado" Type="Int32" />
-    <Property Name="idmPlaza" Type="Int32" />
-    <Property Name="empresa" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-    <Property Name="sucursal" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-    <Property Name="rol" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-    <Property Name="idmPlazaJefeInmediato" Type="String" MaxLength="550" FixedLength="false" Unicode="false" />
-    <Property Name="puesto" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-    <Property Name="area" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-    <Property Name="motivoBaja" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
-    <Property Name="tipoBaja" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
-    <Property Name="fechaAlta" Type="DateTime" Precision="0" />
-    <Property Name="fechaBaja" Type="DateTime" Precision="0" />
-    <Property Name="observacionesBaja" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
-    <Property Name="recontratable" Type="Boolean" />
-    <Property Name="json" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="mPlaza" Relationship="MasterRestModel.FK__eEmpleado__idmPl__19DFD96B" FromRole="eEmpleadoBaja" ToRole="mPlaza" />
-    <NavigationProperty Name="mEmpleado" Relationship="MasterRestModel.FK__eEmpleado__idmEm__74AE54BC" FromRole="eEmpleadoBaja" ToRole="mEmpleado" />
-  </EntityType>
   <EntityType Name="eEmpleadoContrato">
     <Key>
       <PropertyRef Name="ideEmpleadoContrato" />
@@ -624,11 +601,11 @@
     <NavigationProperty Name="cPuesto" Relationship="MasterRestModel.FK__mPlaza__idcPuest__114A936A" FromRole="mPlaza" ToRole="cPuesto" />
     <NavigationProperty Name="cRol" Relationship="MasterRestModel.FK__mPlaza__idcRol__0F624AF8" FromRole="mPlaza" ToRole="cRol" />
     <NavigationProperty Name="cSucursal" Relationship="MasterRestModel.FK__mPlaza__idcSucur__0D7A0286" FromRole="mPlaza" ToRole="cSucursal" />
-    <NavigationProperty Name="eEmpleadoBaja" Relationship="MasterRestModel.FK__eEmpleado__idmPl__19DFD96B" FromRole="mPlaza" ToRole="eEmpleadoBaja" />
     <NavigationProperty Name="ePlazaBeneficio" Relationship="MasterRestModel.FK__ePlazaBen__idmPl__151B244E" FromRole="mPlaza" ToRole="ePlazaBeneficio" />
     <NavigationProperty Name="mPlaza1" Relationship="MasterRestModel.FK__mPlaza__idmPlaza__10566F31" FromRole="mPlaza" ToRole="mPlaza1" />
     <NavigationProperty Name="mPlaza2" Relationship="MasterRestModel.FK__mPlaza__idmPlaza__10566F31" FromRole="mPlaza1" ToRole="mPlaza" />
     <NavigationProperty Name="mEmpleado" Relationship="MasterRestModel.FK__mPlaza__idmEmple__6A30C649" FromRole="mPlaza" ToRole="mEmpleado" />
+    <NavigationProperty Name="eEmpleadoBaja" Relationship="MasterRestModel.FK__eEmpleado__idmPl__75A278F5" FromRole="mPlaza" ToRole="eEmpleadoBaja" />
   </EntityType>
   <Association Name="FK__mPlaza__idcArea__123EB7A3">
     <End Type="MasterRestModel.cArea" Role="cArea" Multiplicity="1" />
@@ -908,18 +885,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__eEmpleado__idmPl__19DFD96B">
-    <End Type="MasterRestModel.mPlaza" Role="mPlaza" Multiplicity="0..1" />
-    <End Type="MasterRestModel.eEmpleadoBaja" Role="eEmpleadoBaja" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="mPlaza">
-        <PropertyRef Name="idmPlaza" />
-      </Principal>
-      <Dependent Role="eEmpleadoBaja">
-        <PropertyRef Name="idmPlaza" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK__ePlazaBen__idmPl__151B244E">
     <End Type="MasterRestModel.mPlaza" Role="mPlaza" Multiplicity="1" />
     <End Type="MasterRestModel.ePlazaBeneficio" Role="ePlazaBeneficio" Multiplicity="*" />
@@ -1063,12 +1028,12 @@
     <NavigationProperty Name="cProfesion" Relationship="MasterRestModel.FK__mEmpleado__idcPr__4E88ABD4" FromRole="mEmpleado" ToRole="cProfesion" />
     <NavigationProperty Name="cUsuario" Relationship="MasterRestModel.FK__cUsuario__idmEmp__797309D9" FromRole="mEmpleado" ToRole="cUsuario" />
     <NavigationProperty Name="dEmpleadoDomicilio" Relationship="MasterRestModel.FK__mEmpleado__iddEm__4AB81AF0" FromRole="mEmpleado" ToRole="dEmpleadoDomicilio" />
-    <NavigationProperty Name="eEmpleadoBaja" Relationship="MasterRestModel.FK__eEmpleado__idmEm__74AE54BC" FromRole="mEmpleado" ToRole="eEmpleadoBaja" />
     <NavigationProperty Name="eEmpleadoContrato" Relationship="MasterRestModel.FK__eEmpleado__idmEm__52593CB8" FromRole="mEmpleado" ToRole="eEmpleadoContrato" />
     <NavigationProperty Name="eEmpleadoDocumentacion" Relationship="MasterRestModel.FK__eEmpleado__idmEm__5629CD9C" FromRole="mEmpleado" ToRole="eEmpleadoDocumentacion" />
     <NavigationProperty Name="eEmpleadoPromocion" Relationship="MasterRestModel.FK__eEmpleado__idmEm__59FA5E80" FromRole="mEmpleado" ToRole="eEmpleadoPromocion" />
     <NavigationProperty Name="mPedido" Relationship="MasterRestModel.FK__mPedido__idmEmpl__0E6E26BF" FromRole="mEmpleado" ToRole="mPedido" />
     <NavigationProperty Name="mPlaza" Relationship="MasterRestModel.FK__mPlaza__idmEmple__6A30C649" FromRole="mEmpleado" ToRole="mPlaza" />
+    <NavigationProperty Name="eEmpleadoBaja" Relationship="MasterRestModel.FK__eEmpleado__idmEm__74AE54BC" FromRole="mEmpleado" ToRole="eEmpleadoBaja" />
   </EntityType>
   <Association Name="FK__mEmpleado__idcBa__4F7CD00D">
     <End Type="MasterRestModel.cBanco" Role="cBanco" Multiplicity="0..1" />
@@ -1154,18 +1119,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__eEmpleado__idmEm__74AE54BC">
-    <End Type="MasterRestModel.mEmpleado" Role="mEmpleado" Multiplicity="0..1" />
-    <End Type="MasterRestModel.eEmpleadoBaja" Role="eEmpleadoBaja" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="mEmpleado">
-        <PropertyRef Name="idmEmpleado" />
-      </Principal>
-      <Dependent Role="eEmpleadoBaja">
-        <PropertyRef Name="idmEmpleado" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK__eEmpleado__idmEm__52593CB8">
     <End Type="MasterRestModel.mEmpleado" Role="mEmpleado" Multiplicity="1" />
     <End Type="MasterRestModel.eEmpleadoContrato" Role="eEmpleadoContrato" Multiplicity="*" />
@@ -1223,6 +1176,53 @@
       </Principal>
       <Dependent Role="mPlaza">
         <PropertyRef Name="idmEmpleado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="eEmpleadoBaja">
+    <Key>
+      <PropertyRef Name="ideEmpleadoBaja" />
+    </Key>
+    <Property Name="ideEmpleadoBaja" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idmEmpleado" Type="Int32" />
+    <Property Name="idmPlaza" Type="Int32" />
+    <Property Name="empresa" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="sucursal" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="rol" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="jefeInmediato" Type="String" MaxLength="550" FixedLength="false" Unicode="false" />
+    <Property Name="puesto" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="area" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="motivoBaja" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
+    <Property Name="tipoBaja" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
+    <Property Name="fechaAlta" Type="DateTime" Precision="0" />
+    <Property Name="fechaBaja" Type="DateTime" Precision="0" />
+    <Property Name="observacionesBaja" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="recontratable" Type="Boolean" />
+    <Property Name="json" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="mEmpleado" Relationship="MasterRestModel.FK__eEmpleado__idmEm__74AE54BC" FromRole="eEmpleadoBaja" ToRole="mEmpleado" />
+    <NavigationProperty Name="mPlaza" Relationship="MasterRestModel.FK__eEmpleado__idmPl__75A278F5" FromRole="eEmpleadoBaja" ToRole="mPlaza" />
+  </EntityType>
+  <Association Name="FK__eEmpleado__idmEm__74AE54BC">
+    <End Type="MasterRestModel.mEmpleado" Role="mEmpleado" Multiplicity="0..1" />
+    <End Type="MasterRestModel.eEmpleadoBaja" Role="eEmpleadoBaja" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="mEmpleado">
+        <PropertyRef Name="idmEmpleado" />
+      </Principal>
+      <Dependent Role="eEmpleadoBaja">
+        <PropertyRef Name="idmEmpleado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__eEmpleado__idmPl__75A278F5">
+    <End Type="MasterRestModel.mPlaza" Role="mPlaza" Multiplicity="0..1" />
+    <End Type="MasterRestModel.eEmpleadoBaja" Role="eEmpleadoBaja" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="mPlaza">
+        <PropertyRef Name="idmPlaza" />
+      </Principal>
+      <Dependent Role="eEmpleadoBaja">
+        <PropertyRef Name="idmPlaza" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

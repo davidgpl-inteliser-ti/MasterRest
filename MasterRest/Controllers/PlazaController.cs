@@ -54,10 +54,11 @@ namespace MasterRest.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.cSucursal = new SelectList(db.cSucursal.Where(_ => _.estatus == "ACTIVO").OrderBy(_ => _.sucursal), "idcSucursal", "sucursal");
-            ViewBag.cRol = new SelectList(db.cRol.Where(_ => _.estatus == "ACTIVO").OrderBy(_ => _.rol), "idcRol", "rol");
-            ViewBag.cPuesto = new SelectList(db.cPuesto.Where(_ => _.estatus == "ACTIVO").OrderBy(_ => _.puesto), "idcPuesto", "puesto");
+            ViewBag.cSucursal = new SelectList(db.cSucursal.Where(_ => _.idcEmpresa == session.idcEmpresa && _.estatus == "ACTIVO").OrderBy(_ => _.sucursal), "idcSucursal", "sucursal");
+            ViewBag.cRol = new SelectList(db.cRol.Where(_ => _.idcEmpresa == session.idcEmpresa && _.estatus == "ACTIVO").OrderBy(_ => _.rol), "idcRol", "rol");
+            ViewBag.cPuesto = new SelectList(db.cPuesto.Where(_ => _.idcEmpresa == session.idcEmpresa && _.estatus == "ACTIVO").OrderBy(_ => _.puesto), "idcPuesto", "puesto");
             ViewBag.cArea = new SelectList(db.cArea.Where(_ => _.estatus == "ACTIVO").OrderBy(_ => _.area), "idcArea", "area");
+            ViewBag.cBeneficio = db.cBeneficio.Where(_ => _.estatus == "ACTIVO").OrderBy(_ => _.beneficio).ToList();
             return View(new mPlaza());
         }
 
@@ -117,10 +118,11 @@ namespace MasterRest.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.cSucursal = new SelectList(db.cSucursal.Where(_ => _.estatus == "ACTIVO").OrderBy(_ => _.sucursal), "idcSucursal", "sucursal", mPlaza.cSucursal.sucursal);
-            ViewBag.cRol = new SelectList(db.cRol.Where(_ => _.estatus == "ACTIVO").OrderBy(_ => _.rol), "idcRol", "rol", mPlaza.cRol.rol);
-            ViewBag.cPuesto = new SelectList(db.cPuesto.Where(_ => _.estatus == "ACTIVO").OrderBy(_ => _.puesto), "idcPuesto", "puesto", mPlaza.cPuesto.puesto);
-            ViewBag.cArea = new SelectList(db.cArea.Where(_ => _.estatus == "ACTIVO").OrderBy(_ => _.area), "idcArea", "area", mPlaza.cArea.area);
+            ViewBag.cSucursal = new SelectList(db.cSucursal.Where(_ => _.idcEmpresa == session.idcEmpresa && _.estatus == "ACTIVO").OrderBy(_ => _.sucursal), "idcSucursal", "sucursal", mPlaza.cSucursal.idcSucursal);
+            ViewBag.cRol = new SelectList(db.cRol.Where(_ => _.idcEmpresa == session.idcEmpresa && _.estatus == "ACTIVO").OrderBy(_ => _.rol), "idcRol", "rol", mPlaza.cRol.idcRol);
+            ViewBag.cPuesto = new SelectList(db.cPuesto.Where(_ => _.idcEmpresa == session.idcEmpresa && _.estatus == "ACTIVO").OrderBy(_ => _.puesto), "idcPuesto", "puesto", mPlaza.cPuesto.idcPuesto);
+            ViewBag.cArea = new SelectList(db.cArea.Where(_ => _.estatus == "ACTIVO").OrderBy(_ => _.area), "idcArea", "area", mPlaza.cArea.idcArea);
+            ViewBag.cBeneficio = db.cBeneficio.Where(_ => _.estatus == "ACTIVO").OrderBy(_ => _.beneficio).ToList();
             return View(mPlaza);
         }
 

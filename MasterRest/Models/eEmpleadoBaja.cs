@@ -20,7 +20,7 @@ namespace MasterRest.Models
         public string empresa { get; set; }
         public string sucursal { get; set; }
         public string rol { get; set; }
-        public string idmPlazaJefeInmediato { get; set; }
+        public string jefeInmediato { get; set; }
         public string puesto { get; set; }
         public string area { get; set; }
         public string motivoBaja { get; set; }
@@ -31,7 +31,7 @@ namespace MasterRest.Models
         public Nullable<bool> recontratable { get; set; }
         public string json { get; set; }
     
-        public virtual mPlaza mPlaza { get; set; }
         public virtual mEmpleado mEmpleado { get; set; }
+        public virtual mPlaza mPlaza { get; set; }
     }
 }

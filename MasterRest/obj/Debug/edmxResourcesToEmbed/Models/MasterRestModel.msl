@@ -297,28 +297,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="eEmpleadoBaja">
-      <EntityTypeMapping TypeName="MasterRestModel.eEmpleadoBaja">
-        <MappingFragment StoreEntitySet="eEmpleadoBaja">
-          <ScalarProperty Name="json" ColumnName="json" />
-          <ScalarProperty Name="recontratable" ColumnName="recontratable" />
-          <ScalarProperty Name="observacionesBaja" ColumnName="observacionesBaja" />
-          <ScalarProperty Name="fechaBaja" ColumnName="fechaBaja" />
-          <ScalarProperty Name="fechaAlta" ColumnName="fechaAlta" />
-          <ScalarProperty Name="tipoBaja" ColumnName="tipoBaja" />
-          <ScalarProperty Name="motivoBaja" ColumnName="motivoBaja" />
-          <ScalarProperty Name="area" ColumnName="area" />
-          <ScalarProperty Name="puesto" ColumnName="puesto" />
-          <ScalarProperty Name="idmPlazaJefeInmediato" ColumnName="idmPlazaJefeInmediato" />
-          <ScalarProperty Name="rol" ColumnName="rol" />
-          <ScalarProperty Name="sucursal" ColumnName="sucursal" />
-          <ScalarProperty Name="empresa" ColumnName="empresa" />
-          <ScalarProperty Name="idmPlaza" ColumnName="idmPlaza" />
-          <ScalarProperty Name="idmEmpleado" ColumnName="idmEmpleado" />
-          <ScalarProperty Name="ideEmpleadoBaja" ColumnName="ideEmpleadoBaja" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="eEmpleadoContrato">
       <EntityTypeMapping TypeName="MasterRestModel.eEmpleadoContrato">
         <MappingFragment StoreEntitySet="eEmpleadoContrato">
@@ -482,6 +460,28 @@
           <ScalarProperty Name="iddEmpleadoDomicilio" ColumnName="iddEmpleadoDomicilio" />
           <ScalarProperty Name="idcEmpresa" ColumnName="idcEmpresa" />
           <ScalarProperty Name="idmEmpleado" ColumnName="idmEmpleado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="eEmpleadoBaja">
+      <EntityTypeMapping TypeName="MasterRestModel.eEmpleadoBaja">
+        <MappingFragment StoreEntitySet="eEmpleadoBaja">
+          <ScalarProperty Name="json" ColumnName="json" />
+          <ScalarProperty Name="recontratable" ColumnName="recontratable" />
+          <ScalarProperty Name="observacionesBaja" ColumnName="observacionesBaja" />
+          <ScalarProperty Name="fechaBaja" ColumnName="fechaBaja" />
+          <ScalarProperty Name="fechaAlta" ColumnName="fechaAlta" />
+          <ScalarProperty Name="tipoBaja" ColumnName="tipoBaja" />
+          <ScalarProperty Name="motivoBaja" ColumnName="motivoBaja" />
+          <ScalarProperty Name="area" ColumnName="area" />
+          <ScalarProperty Name="puesto" ColumnName="puesto" />
+          <ScalarProperty Name="jefeInmediato" ColumnName="jefeInmediato" />
+          <ScalarProperty Name="rol" ColumnName="rol" />
+          <ScalarProperty Name="sucursal" ColumnName="sucursal" />
+          <ScalarProperty Name="empresa" ColumnName="empresa" />
+          <ScalarProperty Name="idmPlaza" ColumnName="idmPlaza" />
+          <ScalarProperty Name="idmEmpleado" ColumnName="idmEmpleado" />
+          <ScalarProperty Name="ideEmpleadoBaja" ColumnName="ideEmpleadoBaja" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

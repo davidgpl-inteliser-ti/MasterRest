@@ -33,7 +33,6 @@
         <EntityTypeShape EntityType="MasterRestModel.cUsuario" Width="1.5" PointX="3" PointY="23.75" />
         <EntityTypeShape EntityType="MasterRestModel.dEmpleadoDomicilio" Width="1.5" PointX="3.75" PointY="8.75" />
         <EntityTypeShape EntityType="MasterRestModel.dPedido" Width="1.5" PointX="10.75" PointY="32.5" />
-        <EntityTypeShape EntityType="MasterRestModel.eEmpleadoBaja" Width="1.5" PointX="10.5" PointY="20" />
         <EntityTypeShape EntityType="MasterRestModel.eEmpleadoContrato" Width="1.5" PointX="11.25" PointY="12.375" />
         <EntityTypeShape EntityType="MasterRestModel.eEmpleadoDocumentacion" Width="1.5" PointX="11.25" PointY="17" />
         <EntityTypeShape EntityType="MasterRestModel.ePlazaBeneficio" Width="1.5" PointX="13.5" PointY="31.5" />
@@ -63,7 +62,6 @@
         <AssociationConnector Association="MasterRestModel.FK__mPlaza__idcSucur__0D7A0286" />
         <AssociationConnector Association="MasterRestModel.FK__eEmpleado__idcTi__778AC167" />
         <AssociationConnector Association="MasterRestModel.FK__dPedido__idmPedi__395884C4" />
-        <AssociationConnector Association="MasterRestModel.FK__eEmpleado__idmPl__19DFD96B" />
         <AssociationConnector Association="MasterRestModel.FK__ePlazaBen__idmPl__151B244E" />
         <AssociationConnector Association="MasterRestModel.FK__mFactura__idmPed__3E1D39E1" />
         <AssociationConnector Association="MasterRestModel.FK__mPlaza__idmPlaza__10566F31" />
@@ -78,12 +76,14 @@
         <AssociationConnector Association="MasterRestModel.FK__mEmpleado__idcPr__4E88ABD4" />
         <AssociationConnector Association="MasterRestModel.FK__cUsuario__idmEmp__797309D9" />
         <AssociationConnector Association="MasterRestModel.FK__mEmpleado__iddEm__4AB81AF0" />
-        <AssociationConnector Association="MasterRestModel.FK__eEmpleado__idmEm__74AE54BC" />
         <AssociationConnector Association="MasterRestModel.FK__eEmpleado__idmEm__52593CB8" />
         <AssociationConnector Association="MasterRestModel.FK__eEmpleado__idmEm__5629CD9C" />
         <AssociationConnector Association="MasterRestModel.FK__eEmpleado__idmEm__59FA5E80" />
         <AssociationConnector Association="MasterRestModel.FK__mPedido__idmEmpl__0E6E26BF" />
         <AssociationConnector Association="MasterRestModel.FK__mPlaza__idmEmple__6A30C649" />
+        <EntityTypeShape EntityType="MasterRestModel.eEmpleadoBaja" Width="1.5" PointX="10.5" PointY="19.875" />
+        <AssociationConnector Association="MasterRestModel.FK__eEmpleado__idmEm__74AE54BC" />
+        <AssociationConnector Association="MasterRestModel.FK__eEmpleado__idmPl__75A278F5" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -142,7 +142,7 @@ namespace MasterRest.Controllers
 
                     var mPlaza = db.mPlaza.Find(int.Parse(datos["idmPlaza"]));
                     mPlaza.idmEmpleado = mEmpleado.idmEmpleado;
-                    mPlaza.estatus = "AUTORIZADA";
+                    mPlaza.estatus = "ACTIVO";
                     if (datos["idmPlazaJefeInmediato"] != null && datos["idmPlazaJefeInmediato"] != "" && mPlaza.idmPlazaJefeInmediato != int.Parse(datos["idmPlazaJefeInmediato"]))
                     {
                         mPlaza.idmPlazaJefeInmediato = datos["idmPlazaJefeInmediato"] != "" ? int.Parse(datos["idmPlazaJefeInmediato"]) : (int?)null;
@@ -631,8 +631,8 @@ namespace MasterRest.Controllers
                 eEmpleadoBaja.empresa = mPlaza.cEmpresa.nombreComercial;
                 eEmpleadoBaja.sucursal = mPlaza.cSucursal.sucursal;
                 eEmpleadoBaja.rol = mPlaza.cRol.rol;
-                var idmPlazaJefeInmediato = db.mPlaza.Find(mPlaza.idmPlazaJefeInmediato);
-                eEmpleadoBaja.idmPlazaJefeInmediato = idmPlazaJefeInmediato != null && idmPlazaJefeInmediato.mEmpleado != null ? idmPlazaJefeInmediato.mEmpleado.nombre + " " + idmPlazaJefeInmediato.mEmpleado.paterno + " " + idmPlazaJefeInmediato.mEmpleado.materno : "";
+                var ji = db.mPlaza.Find(mPlaza.idmPlazaJefeInmediato);
+                eEmpleadoBaja.jefeInmediato = ji != null && ji.mEmpleado != null ? ji.mEmpleado.nombre + " " + ji.mEmpleado.paterno + " " + ji.mEmpleado.materno : "";
                 eEmpleadoBaja.puesto = mPlaza.cPuesto.puesto;
                 eEmpleadoBaja.area = mPlaza.cArea.area;
                 eEmpleadoBaja.recontratable = datos["recontratable"] != null ? true : false;
@@ -903,7 +903,7 @@ namespace MasterRest.Controllers
 
                 var mPlaza = db.mPlaza.Find(int.Parse(datos["idmPlaza"]));
                 mPlaza.idmEmpleado = mEmpleado.idmEmpleado;
-                mPlaza.estatus = "AUTORIZADA";
+                mPlaza.estatus = "ACTIVO";
                 if (datos["idmPlazaJefeInmediato"] != null && datos["idmPlazaJefeInmediato"] != "" && mPlaza.idmPlazaJefeInmediato != int.Parse(datos["idmPlazaJefeInmediato"]))
                 {
                     mPlaza.idmPlazaJefeInmediato = datos["idmPlazaJefeInmediato"] != "" ? int.Parse(datos["idmPlazaJefeInmediato"]) : (int?)null;

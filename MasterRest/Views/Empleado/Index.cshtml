@@ -57,20 +57,19 @@
                                     <ul class="dropdown-menu">
                                         <li><a href="javascript:AbreModal3('@Url.Action("Details", "Empleado", new { id = item.idmEmpleado })','Detalle empleado');" class="dropdown-item"><i data-feather="eye" class="info-img"></i>Detalle</a></li>
                                         <li><a href="javascript:AbreModal3('@Url.Action("Edit", "Empleado", new { id = item.idmEmpleado })','Editar empleado');" class="dropdown-item"><i data-feather="edit" class="info-img"></i>Editar</a></li>
-                                        <li><a href="javascript:AbreModal3('@Url.Action("Promote", "Empleado", new { id = item.idmEmpleado })','Movimiento empleado');" class="dropdown-item"><i data-feather="refresh-cw" class="info-img"></i>Movimiento</a></li>
-                                        <li><a href="javascript:AbreModal('@Url.Action("Discharge", "Empleado", new { id = item.idmEmpleado })','Baja empleado');" class="dropdown-item"><i data-feather="minus-circle" class="info-img"></i>Baja</a></li>
-                                        <li><a href="javascript:AbreModal3('@Url.Action("Reenter", "Empleado", new { id = item.idmEmpleado })','Reingresar empleado');" class="dropdown-item"><i data-feather="check-circle" class="info-img"></i>Reingresar</a></li>
-                                       <li><a href="javascript:AbreModal('@Url.Action("Delete", "Empleado", new { id = item.idmEmpleado })','Eliminar empleado');" class="dropdown-item" style="color: red"><i data-feather="trash-2" class="info-img"></i>Eliminar</a></li>
+                                        @if (item.estatus == "ACTIVO")
+                                        {
+                                            <li><a href="javascript:AbreModal3('@Url.Action("Promote", "Empleado", new { id = item.idmEmpleado })','Movimiento empleado');" class="dropdown-item"><i data-feather="refresh-cw" class="info-img"></i>Movimiento</a></li>
+                                            <li><a href="javascript:AbreModal('@Url.Action("Discharge", "Empleado", new { id = item.idmEmpleado })','Baja empleado');" class="dropdown-item"><i data-feather="minus-circle" class="info-img"></i>Baja</a></li>
+                                        }
+                                        @if (item.estatus == "BAJA")
+                                        {
+                                            <li><a href="javascript:AbreModal3('@Url.Action("Reenter", "Empleado", new { id = item.idmEmpleado })','Reingresar empleado');" class="dropdown-item"><i data-feather="check-circle" class="info-img"></i>Reingresar</a></li>
+                                            <li><a href="javascript:AbreModal('@Url.Action("Delete", "Empleado", new { id = item.idmEmpleado })','Eliminar empleado');" class="dropdown-item" style="color: red"><i data-feather="trash-2" class="info-img"></i>Eliminar</a></li>
+                                        }
                                     </ul>
                                 </td>
-                                <td>
-                                    @switch (item.estatus)
-                                    {
-                                        case "PENDIENTE":<span class="badge bg-info fw-medium me-1">PENDIENTE</span> break;
-                                        case "ACTIVO": <span class="badge bg-success fw-medium me-1">ACTIVO</span> break;
-                                        case "BAJA": <span class="badge bg-warning fw-medium me-1">BAJA</span>break;
-                                    }
-                                </td>
+                                <td><span class="badge bg-@(item.estatus == "ACTIVO" ? "success" : "warning") fw-medium me-1">ACTIVO</span></td>
                                 <td style="color: @(item.estatus == "BAJA" ? "orange" : "#646B72")"><strong>@item.paterno @item.materno @item.nombre</strong></td>
                                 @{
                                     var puesto = "";
