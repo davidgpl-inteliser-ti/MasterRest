@@ -1,14 +1,6 @@
 ﻿@model MasterRest.Models.mEmpleado
 @{
     Layout = null;
-
-    var sesion = Session["GV"] as MasterRest.Entities.Session;
-
-    var AP_PER_BEN = sesion.eReglaNegocio.Contains("AP-PER-BEN");
-
-    var AP_PER_SAL = sesion.eReglaNegocio.Contains("AP-PER-SAL");
-
-    var AP_PER_SAL_EDT = sesion.eReglaNegocio.Contains("AP-PER-SAL-EDT");
 }
 <style>
     .upload-btn-wrapper
@@ -17,16 +9,14 @@
         overflow: hidden;
         display: inline-block;
     }
-
-        .upload-btn-wrapper input[type=file]
-        {
-            font-size: 100px;
-            position: absolute;
-            left: 0;
-            top: 0;
-            opacity: 0;
-        }
-
+    .upload-btn-wrapper input[type=file]
+    {
+        font-size: 100px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        opacity: 0;
+    }
     .boton-standar-rw
     {
         margin: 5px;
@@ -41,13 +31,10 @@
         width: 9.7em;
         padding: 5px;
     }
-
         .boton-standar-rw:hover
         {
             color: white;
-            background-color: rgb(245, 61, 58);
         }
-
     .toast.bs-toast .toast-header .btn-close
     {
         position: absolute;
@@ -60,7 +47,6 @@
         box-shadow: 0 0.125rem 0.25rem rgba(161, 172, 184, 0.4);
         right: 20px !important;
     }
-
     .required::after
     {
         content: " *";
@@ -84,43 +70,19 @@
     @Html.HiddenFor(model => model.estatus)
     <div class="col-xl-12">
         <div class="nav-align-top mb-4">
-            <ul class="nav nav-tabs" role="tablist">
-                <li class="nav-item">
-                    <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-1" aria-controls="navs-top-1" aria-selected="true" id="btn-top-1">Personal</button>
-                </li>
-                <li class="nav-item">
-                    <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-2" aria-controls="navs-top-2" aria-selected="false">Domicilio</button>
-                </li>
-                <li class="nav-item">
-                    <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-3" aria-controls="navs-top-3" aria-selected="false">Estudios</button>
-                </li>
-                <li class="nav-item">
-                    <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-4" aria-controls="navs-top-4" aria-selected="false">Contacto</button>
-                </li>
-                <li class="nav-item">
-                    <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-5" aria-controls="navs-top-5" aria-selected="false">Nómina</button>
-                </li>
-                @if (AP_PER_SAL_EDT)
-                {
-                    <li class="nav-item">
-                        <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-9" aria-controls="navs-top-9" aria-selected="false" id="btn-top-9">Sueldo</button>
-                    </li>
-                }
-                <li class="nav-item">
-                    <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-6" aria-controls="navs-top-6" aria-selected="false">Contratos</button>
-                </li>
-                @if (AP_PER_BEN)
-                {
-                    <li class="nav-item">
-                        <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-7" aria-controls="navs-top-7" aria-selected="false">Beneficios</button>
-                    </li>
-                }
-                <li class="nav-item">
-                    <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-8" aria-controls="navs-top-8" aria-selected="false">Documentación</button>
-                </li>
+            <ul class="nav nav-tabs default-tabs mb-3">
+                <li class="nav-item"><a href="#tab1" data-bs-toggle="tab" aria-expanded="true" class="nav-link active">Personal</a></li>
+                <li class="nav-item"><a href="#tab2" data-bs-toggle="tab" aria-expanded="false" class="nav-link">Domicilio</a></li>
+                <li class="nav-item"><a href="#tab3" data-bs-toggle="tab" aria-expanded="false" class="nav-link">Estudios</a></li>
+                <li class="nav-item"><a href="#tab4" data-bs-toggle="tab" aria-expanded="false" class="nav-link">Contacto</a></li>
+                <li class="nav-item"><a href="#tab5" data-bs-toggle="tab" aria-expanded="false" class="nav-link">Nómina</a></li>
+                <li class="nav-item"><a href="#tab6" data-bs-toggle="tab" aria-expanded="false" class="nav-link">Sueldo</a></li>
+                <li class="nav-item"><a href="#tab7" data-bs-toggle="tab" aria-expanded="false" class="nav-link">Contratos</a></li>
+                <li class="nav-item"><a href="#tab8" data-bs-toggle="tab" aria-expanded="false" class="nav-link">Beneficios</a></li>
+                <li class="nav-item"><a href="#tab9" data-bs-toggle="tab" aria-expanded="false" class="nav-link">Documentación</a></li>
             </ul>
             <div class="tab-content">
-                <div class="tab-pane fade show active" id="navs-top-1" role="tabpanel">
+                <div class="tab-pane show active" id="tab1">
                     <div class="form-group row">
                         <div class="col-lg-3">
                             <div class="upload-btn-wrapper">
@@ -288,26 +250,26 @@
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="navs-top-2" role="tabpanel">
+                <div class="tab-pane" id="tab2">
                     <div class="form-group row">
                         <div class="col-lg-3">
                             @Html.Label("calle", "Calle", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
-                            @Html.TextBox("calle", null, new { @class = "form-control"/*, @required = "*"*/, @Value = Model.dh_d_trabajadorDomicilio.calle, @maxlength = "150", @id = "calle", @name = "calle", @onkeyup = "this.value = textUppercaseNumbersComma(this.value);" })
+                            @Html.TextBox("calle", null, new { @class = "form-control"/*, @required = "*"*/, @Value = Model.dEmpleadoDomicilio.calle, @maxlength = "150", @id = "calle", @name = "calle", @onkeyup = "this.value = textUppercaseNumbersComma(this.value);" })
                             @Html.ValidationMessage("calle", "", new { @class = "text-danger" })
                         </div>
                         <div class="col-lg-3">
                             @Html.Label("noExterior", "Número exterior", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
-                            @Html.TextBox("noExterior", null, new { @class = "form-control"/*, @required = "*"*/, @Value = Model.dh_d_trabajadorDomicilio.noExterior, @maxlength = "15", @id = "noExterior", @name = "noExterior", @onkeyup = "this.value = textUppercaseNumbersComma(this.value);" })
+                            @Html.TextBox("noExterior", null, new { @class = "form-control"/*, @required = "*"*/, @Value = Model.dEmpleadoDomicilio.noExterior, @maxlength = "15", @id = "noExterior", @name = "noExterior", @onkeyup = "this.value = textUppercaseNumbersComma(this.value);" })
                             @Html.ValidationMessage("noExterior", "", new { @class = "text-danger" })
                         </div>
                         <div class="col-lg-3">
                             @Html.Label("noInterior", "Número interior", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
-                            @Html.TextBox("noInterior", null, new { @class = "form-control", @Value = Model.dh_d_trabajadorDomicilio.noInterior, @maxlength = "15", @id = "noInterior", @name = "noInteror", @onkeyup = "this.value = textUppercaseNumbersComma(this.value);" })
+                            @Html.TextBox("noInterior", null, new { @class = "form-control", @Value = Model.dEmpleadoDomicilio.noInterior, @maxlength = "15", @id = "noInterior", @name = "noInteror", @onkeyup = "this.value = textUppercaseNumbersComma(this.value);" })
                             @Html.ValidationMessage("noInterior", "", new { @class = "text-danger" })
                         </div>
                         <div class="col-lg-3">
                             @Html.Label("colonia", "Colonia", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
-                            @Html.TextBox("colonia", null, new { @class = "form-control"/*, @required = "*"*/, @Value = Model.dh_d_trabajadorDomicilio.colonia, @maxlength = "150", @id = "colonia", @name = "colonia", @onkeyup = "this.value = textUppercaseNumbersComma(this.value);" })
+                            @Html.TextBox("colonia", null, new { @class = "form-control"/*, @required = "*"*/, @Value = Model.dEmpleadoDomicilio.colonia, @maxlength = "150", @id = "colonia", @name = "colonia", @onkeyup = "this.value = textUppercaseNumbersComma(this.value);" })
                             @Html.ValidationMessage("colonia", "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -316,28 +278,28 @@
                         <div class="col-lg-3">
                             @Html.Label("idcEntidadFederativa", "Entidad federativa", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
                             @Html.DropDownList("idcEntidadFederativa", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown", @required = "*", @onchange = "OnChangeEntidadFederativa(this)" })
-                            @Html.TextBox("entidadFederativa", null, new { @type = "hidden", @Value = Model.dh_d_trabajadorDomicilio.entidadFederativa })
+                            @Html.TextBox("entidadFederativa", null, new { @type = "hidden", @Value = Model.dEmpleadoDomicilio.entidadFederativa })
                             @Html.ValidationMessage("idcEntidadFederativa", "", new { @class = "text-danger" })
                         </div>
                         <div class="col-lg-3">
                             @Html.Label("idcMunicipio", "Municipio", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
                             @Html.DropDownList("idcMunicipio", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown", @required = "*", @onchange = "OnChangeMunicipio(this)" })
-                            @Html.TextBox("municipio", null, new { @type = "hidden", @Value = Model.dh_d_trabajadorDomicilio.municipio })
+                            @Html.TextBox("municipio", null, new { @type = "hidden", @Value = Model.dEmpleadoDomicilio.municipio })
                             @Html.ValidationMessage("idcMunicipio", "", new { @class = "text-danger" })
                         </div>
                         <div class="col-lg-3">
                             @Html.Label("codigoPostal", "Código postal", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
-                            @Html.TextBox("codigoPostal", null, new { @class = "form-control", @required = "*", @Value = Model.dh_d_trabajadorDomicilio.codigoPostal, @maxlength = "6", @id = "codigoPostal", @name = "codigoPostal", @onkeypress = "return validNumbers(event);" })
+                            @Html.TextBox("codigoPostal", null, new { @class = "form-control", @required = "*", @Value = Model.dEmpleadoDomicilio.codigoPostal, @maxlength = "6", @id = "codigoPostal", @name = "codigoPostal", @onkeypress = "return validNumbers(event);" })
                             @Html.ValidationMessage("codigoPostal", "", new { @class = "text-danger" })
                         </div>
                         <div class="col-lg-3">
                             @Html.Label("referencia", "Referencia", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
-                            @Html.TextBox("referencia", null, new { @class = "form-control", @Value = Model.dh_d_trabajadorDomicilio.referencia, @maxlength = "250", @id = "referencia", @name = "referencia", @onkeyup = "this.value = textUppercaseNumbersComma(this.value);" })
+                            @Html.TextBox("referencia", null, new { @class = "form-control", @Value = Model.dEmpleadoDomicilio.referencia, @maxlength = "250", @id = "referencia", @name = "referencia", @onkeyup = "this.value = textUppercaseNumbersComma(this.value);" })
                             @Html.ValidationMessage("referencia", "", new { @class = "text-danger" })
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="navs-top-3" role="tabpanel">
+                <div class="tab-pane" id="tab3">
                     <div class="form-group row">
                         <div class="col-lg-3">
                             @Html.LabelFor(model => model.escolaridad, "Escolaridad", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
@@ -374,7 +336,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="navs-top-4" role="tabpanel">
+                <div class="tab-pane" id="tab4">
                     <div class="form-group row">
                         <div class="col-lg-4">
                             @Html.LabelFor(model => model.telefonoCelularEmpresa, "Celular de la empresa", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
@@ -403,22 +365,22 @@
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="navs-top-5" role="tabpanel">
+                <div class="tab-pane" id="tab5">
                     <div class="form-group row">
                         <div class="col-lg-4">
                             <label class="control-label" style="font-weight: bold;">Posición</label>
                             <input type="text" class="form-control" id="Puesto" name="Puesto" value="@(Model.mPlaza != null && Model.mPlaza.Count > 0 ? Model.mPlaza.FirstOrDefault().puesto : "")" readonly />
                         </div>
                         @*<div class="col-md-4">
-                                @Html.Label("jefeInmediato", "Jefe inmediato", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
-                                @Html.DropDownList("jefeInmediato", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown", @required = "*" })
-                                @Html.ValidationMessage("jefeInmediato", "", new { @class = "text-danger" })
-                            </div>
-                            <div class="col-md-4">
-                                @Html.Label("patronal", "Patronal", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
-                                @Html.DropDownList("patronal", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown", @required = "*" })
-                                @Html.ValidationMessage("patronal", "", new { @class = "text-danger" })
-                            </div>*@
+                        @Html.Label("jefeInmediato", "Jefe inmediato", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
+                        @Html.DropDownList("jefeInmediato", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown", @required = "*" })
+                        @Html.ValidationMessage("jefeInmediato", "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-4">
+                        @Html.Label("patronal", "Patronal", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
+                        @Html.DropDownList("patronal", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown", @required = "*" })
+                        @Html.ValidationMessage("patronal", "", new { @class = "text-danger" })
+                    </div>*@
                     </div>
                     <br />
                     <div class="form-group row">
@@ -509,7 +471,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="navs-top-9" role="tabpanel">
+                <div class="tab-pane" id="tab6">
                     <div class="form-group row">
                         <div class="col-lg-3">
                             @Html.Label("salarioMensual2", "Salario mensual", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
@@ -543,7 +505,7 @@
                     </div>
                     <br />
                 </div>
-                <div class="tab-pane fade" id="navs-top-6" role="tabpanel">
+                <div class="tab-pane" id="tab7">
                     <div class="accordion mt-3" id="accordionContrato">
                         <div class="card accordion-item active">
                             <h2 class="accordion-header" id="headingOne">
@@ -613,7 +575,7 @@
                             </div>
                         </div>
                     </div><br />
-                    @if (Model.dh_e_trabajadorContrato.Count > 0)
+                    @if (Model.eEmpleadoContrato.Count > 0)
                     {
                         <div style="overflow: scroll;">
                             <table id="tableContratos" class="table table-hover">
@@ -628,11 +590,11 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach (var c in Model.dh_e_trabajadorContrato)
+                                    @foreach (var c in Model.eEmpleadoContrato)
                                     {
                                         <tr>
                                             <th>@c.noContrato</th>
-                                            <th>@c.dh_c_contrato.contrato</th>
+                                            <th>@c.cTipoContrato.contrato</th>
                                             <th>@c.fechaInicial.ToString("dd/MM/yyyy")</th>
                                             <th>@(c.fechaFinal != null ? ((DateTime)c.fechaFinal).ToString("dd/MM/yyyy") : "")</th>
                                             <th>
@@ -651,7 +613,7 @@
                         <p>No tiene contratos</p>
                     }
                 </div>
-                <div class="tab-pane fade" id="navs-top-7" role="tabpanel">
+                <div class="tab-pane" id="tab8">
                     @{
                         var total = ViewBag.beneficio.Count;
                         var totalx = total % 3 > 0 ? total / 3 + 1 : total / 3;
@@ -663,7 +625,7 @@
                                 {
                                     if (i < total)
                                     {
-                                        var ben = (Model.mPlaza.Count() > 0) ? Model.mPlaza.FirstOrDefault().dh_e_plantillaBeneficio.FirstOrDefault(_ => _.idcBeneficio == ViewBag.beneficio[i].idcBeneficio) : new MasterRest.Models.dh_e_plantillaBeneficio();
+                                        var ben = (Model.mPlaza.Count() > 0) ? Model.mPlaza.FirstOrDefault().ePlazaBeneficio.FirstOrDefault(_ => _.idcBeneficio == ViewBag.beneficio[i].idcBeneficio) : new MasterRest.Models.ePlazaBeneficio();
 
                                         <div class="col-md-4">
                                             <input type="checkbox" class="form-check-input" id="check-@ViewBag.beneficio[i].idcBeneficio" name="check-@ViewBag.beneficio[i].idcBeneficio" onclick="OnClickTextVisible(this, '@ViewBag.beneficio[i].idcBeneficio');" @(ben != null ? "checked" : "") />
@@ -711,7 +673,7 @@
                         }
                     }
                 </div>
-                <div class="tab-pane fade" id="navs-top-8" role="tabpanel" style="height: 450px; overflow: auto;">
+                <div class="tab-pane" id="tab9" style="height: 450px; overflow: auto;">
                     <table class="table table-hover">
                         <thead>
                             <tr>
@@ -721,19 +683,19 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var d in (List<MasterRest.Models.dh_c_documento>)ViewBag.documentos)
+                            @foreach (var d in (List<MasterRest.Models.cDocumento>)ViewBag.documentos)
                             {
                                 <tr>
                                     <th style="padding: 0">@d.documento</th>
                                     <th style="padding: 0"><input class="form-control" type="file" id="fileDocumento_@d.idcDocumento" name="fileDocumento_@d.idcDocumento" accept="application/pdf" /></th>
                                     <th style="padding: 0">
                                         <center>
-                                            @if (Model.dh_e_trabajadorDocumentacion.Count > 0)
+                                            @if (Model.eEmpleadoDocumentacion.Count > 0)
                                             {
-                                                var dh_e_trabajadorDocumentacion = Model.dh_e_trabajadorDocumentacion.FirstOrDefault(_ => _.idcDocumento == d.idcDocumento);
-                                                if (dh_e_trabajadorDocumentacion != null)
+                                                var eEmpleadoDocumentacion = Model.eEmpleadoDocumentacion.FirstOrDefault(_ => _.idcDocumento == d.idcDocumento);
+                                                if (eEmpleadoDocumentacion != null)
                                                 {
-                                                    <a href="../@(Url.Content("~/").TrimStart('/') + dh_e_trabajadorDocumentacion.ruta)?id=@(DateTime.Now.ToString("hhmmss"))" target="_blank"><i class="bx bxs-file-pdf me-1"></i></a>
+                                                    <a href="../@(Url.Content("~/").TrimStart('/') + eEmpleadoDocumentacion.ruta)?id=@(DateTime.Now.ToString("hhmmss"))" target="_blank"><i class="bx bxs-file-pdf me-1"></i></a>
                                                 }
                                             }
                                         </center>

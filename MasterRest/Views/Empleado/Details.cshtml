@@ -1,62 +1,24 @@
 ﻿@model MasterRest.Models.mEmpleado
 @{
     Layout = null;
-
-    var sesion = Session["GV"] as MasterRest.Entities.Session;
-
-    var AP_PER_BEN = sesion.eReglaNegocio.Contains("AP-PER-BEN");
-
-    var AP_PER_SAL = sesion.eReglaNegocio.Contains("AP-PER-SAL");
 }
 <div class="col-xl-12">
     <div class="nav-align-top mb-4">
-        <ul class="nav nav-tabs" role="tablist">
-            <li class="nav-item">
-                <button type="button" id="btn-top-1" class="nav-link active" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-1" aria-controls="navs-top-1" aria-selected="true">Personal</button>
-            </li>
-            <li class="nav-item">
-                <button type="button" id="btn-top-2" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-2" aria-controls="navs-top-2" aria-selected="false">Domicilio</button>
-            </li>
-            <li class="nav-item">
-                <button type="button" id="btn-top-3" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-3" aria-controls="navs-top-3" aria-selected="false">Estudios</button>
-            </li>
-            <li class="nav-item">
-                <button type="button" id="btn-top-4" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-4" aria-controls="navs-top-4" aria-selected="false">Contacto</button>
-            </li>
-            <li class="nav-item">
-                <button type="button" id="btn-top-5" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-5" aria-controls="navs-top-5" aria-selected="false">Nómina</button>
-            </li>
-            @if (AP_PER_SAL)
-            {
-                <li class="nav-item">
-                    <button type="button" id="btn-top-10" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-10" aria-controls="navs-top-10" aria-selected="false">Sueldo</button>
-                </li>
-            }
-            <li class="nav-item">
-                <button type="button" id="btn-top-6" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-6" aria-controls="navs-top-6" aria-selected="false">Contratos</button>
-            </li>
-            <li class="nav-item">
-                <button type="button" id="btn-top-7" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-7" aria-controls="navs-top-7" aria-selected="false">Beneficios</button>
-            </li>
-            <li class="nav-item">
-                <button type="button" id="btn-top-8" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-8" aria-controls="navs-top-8" aria-selected="false">Documentación</button>
-            </li>
-            @if (Model.dh_e_trabajadorPromocion.Count > 0)
-            {
-                <li class="nav-item">
-                    <button type="button" id="btn-top-9" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-9" aria-controls="navs-top-9" aria-selected="false">Movimientos</button>
-                </li>
-            }
-            @if (Model.dh_e_trabajadorBaja.Count > 0)
-            {
-                <li class="nav-item">
-                    <button type="button" id="btn-top-11" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-11" aria-controls="navs-top-11" aria-selected="false">Bajas</button>
-                </li>
-            }
-
+        <ul class="nav nav-tabs default-tabs mb-3">
+            <li class="nav-item"><a href="#tab1" data-bs-toggle="tab" aria-expanded="true" class="nav-link active">Personal</a></li>
+            <li class="nav-item"><a href="#tab2" data-bs-toggle="tab" aria-expanded="false" class="nav-link">Domicilio</a></li>
+            <li class="nav-item"><a href="#tab3" data-bs-toggle="tab" aria-expanded="false" class="nav-link">Estudios</a></li>
+            <li class="nav-item"><a href="#tab4" data-bs-toggle="tab" aria-expanded="false" class="nav-link">Contacto</a></li>
+            <li class="nav-item"><a href="#tab5" data-bs-toggle="tab" aria-expanded="false" class="nav-link">Nómina</a></li>
+            <li class="nav-item"><a href="#tab6" data-bs-toggle="tab" aria-expanded="false" class="nav-link">Sueldo</a></li>
+            <li class="nav-item"><a href="#tab7" data-bs-toggle="tab" aria-expanded="false" class="nav-link">Contratos</a></li>
+            <li class="nav-item"><a href="#tab8" data-bs-toggle="tab" aria-expanded="false" class="nav-link">Beneficios</a></li>
+            <li class="nav-item"><a href="#tab9" data-bs-toggle="tab" aria-expanded="false" class="nav-link">Documentación</a></li>
+            <li class="nav-item"><a href="#tab10" data-bs-toggle="tab" aria-expanded="false" class="nav-link">Movimientos</a></li>
+            <li class="nav-item"><a href="#tab11" data-bs-toggle="tab" aria-expanded="false" class="nav-link">Bajas</a></li>
         </ul>
         <div class="tab-content">
-            <div class="tab-pane fade show active" id="navs-top-1" role="tabpanel">
+            <div class="tab-pane show active" id="tab1">
                 <div class="form-group row">
                     <div class="col-lg-3">
                         <div class="d-flex align-items-start align-items-sm-center gap-4">
@@ -71,10 +33,15 @@
                         </div>
                         <br />
                         <div class="form-group row">
-                            <div class="col-lg-2"><label><b>No. colab.</b></label><br />@Model.numeroEmpleado</div>
                             <div class="col-lg-4"><label><b>CURP</b></label><br />@Model.curp</div>
-                            <div class="col-lg-3"><label><b>RFC</b></label><br />@Model.rfc</div>
-                            <div class="col-lg-3"><label><b>Sexo</b></label><br />@Model.sexo</div>
+                            <div class="col-lg-4"><label><b>RFC</b></label><br />@Model.rfc</div>
+                            <div class="col-lg-4"><label><b>Sexo</b></label><br />@Model.sexo</div>
+                        </div>
+                        <br />
+                        <div class="form-group row">
+                            <div class="col-lg-4"><label><b>Fecha de nacimiento</b></label><br />@(Model.fechaNacimiento != null ? ((DateTime)Model.fechaNacimiento).ToString("dd/MM/yyyy") : "")</div>
+                            <div class="col-lg-4"><label><b>Lugar de nacimiento</b></label><br />@Model.lugarNacimiento</div>
+                            <div class="col-lg-4"><label><b>Nacionalidad</b></label><br />@Model.nacionalidad</div>
                         </div>
                         <br />
                         <div class="form-group row">
@@ -84,56 +51,37 @@
                 </div>
                 <br />
                 <div class="form-group row">
-                    <div class="col-lg-3"><label><b>Fecha de nacimiento</b></label><br />@(Model.fechaNacimiento != null ? ((DateTime)Model.fechaNacimiento).ToString("dd/MM/yyyy") : "")</div>
-                    <div class="col-lg-3"><label><b>Lugar de nacimiento</b></label><br />@Model.lugarNacimiento</div>
-                    <div class="col-lg-3"><label><b>Nacionalidad</b></label><br />@Model.nacionalidad</div>
                     <div class="col-lg-3"><label><b>Tipo de sangre</b></label><br />@Model.tipoSangre</div>
-
-                </div>
-                <br />
-                <div class="form-group row">
+                    <div class="col-lg-3"><label><b>Estado civil</b></label><br />@Model.cEstadoCivil.estadoCivil</div>
                     <div class="col-lg-3"><label><b>Correo personal</b></label><br />@Model.correoPersonal</div>
-                    <div class="col-lg-3"><label><b>Estado civil</b></label><br />@Model.estadoCivil</div>
-                    <div class="col-lg-3"><label><b>No. hijos</b></label><br />@Model.hijos</div>
-                    <div class="col-lg-3">
-                        <label><b>Fechas nacimiento hijos</b></label><br />
-                        @if (Model.hijosEdadXML != null & Model.hijosEdadXML != "")
-                        {
-                            foreach (var f in Model.hijosEdadXML.Split(','))
-                            {
-                                var arg = f.Replace(" ", "").Split('-');
-                                <span class="badge bg-label-dark me-1">@arg[0] - @arg[1]</span>
-                            }
-                        }
-                    </div>
+                    <div class="col-lg-3"><label><b>Teléfono personal</b></label><br />@Model.telefono</div>
                 </div>
                 <br />
                 <div class="form-group row">
-                    <div class="col-lg-3"><label><b>Teléfono personal</b></label><br />@Model.telefono</div>
                     <div class="col-lg-3"><label><b>Teléfono contacto emerg.</b></label><br />@Model.telefonoContacto</div>
                     <div class="col-lg-3"><label><b>Nombre contacto emerg.</b></label><br />@Model.nombreContacto</div>
                     <div class="col-lg-3"><label><b>Parentesco contacto emerg.</b></label><br />@Model.parentescoContacto</div>
                 </div>
             </div>
-            <div class="tab-pane fade" id="navs-top-2" role="tabpanel">
+            <div class="tab-pane" id="tab2">
                 <div class="form-group row">
-                    <div class="col-lg-3"><label><b>Calle</b></label><br />@Model.dh_d_trabajadorDomicilio.calle</div>
-                    <div class="col-lg-3"><label><b>Número exterior</b></label><br />@Model.dh_d_trabajadorDomicilio.noExterior</div>
-                    <div class="col-lg-3"><label><b>Número interior</b></label><br />@Model.dh_d_trabajadorDomicilio.noInterior</div>
-                    <div class="col-lg-3"><label><b>Colonia</b></label><br />@Model.dh_d_trabajadorDomicilio.colonia</div>
+                    <div class="col-lg-3"><label><b>Calle</b></label><br />@Model.dEmpleadoDomicilio.calle</div>
+                    <div class="col-lg-3"><label><b>Número exterior</b></label><br />@Model.dEmpleadoDomicilio.noExterior</div>
+                    <div class="col-lg-3"><label><b>Número interior</b></label><br />@Model.dEmpleadoDomicilio.noInterior</div>
+                    <div class="col-lg-3"><label><b>Colonia</b></label><br />@Model.dEmpleadoDomicilio.colonia</div>
                 </div>
                 <br />
                 <div class="form-group row">
-                    <div class="col-lg-3"><label><b>Entidad federativa</b></label><br />@Model.dh_d_trabajadorDomicilio.entidadFederativa</div>
-                    <div class="col-lg-3"><label><b>Municipio</b></label><br />@Model.dh_d_trabajadorDomicilio.municipio</div>
-                    <div class="col-lg-3"><label><b>Código postal</b></label><br />@Model.dh_d_trabajadorDomicilio.codigoPostal</div>
-                    <div class="col-lg-3"><label><b>Referencia</b></label><br />@Model.dh_d_trabajadorDomicilio.referencia</div>
+                    <div class="col-lg-3"><label><b>Entidad federativa</b></label><br />@Model.dEmpleadoDomicilio.cMunicipio.cEntidadFederativa.entidadFederativa</div>
+                    <div class="col-lg-3"><label><b>Municipio</b></label><br />@Model.dEmpleadoDomicilio.cMunicipio.municipio</div>
+                    <div class="col-lg-3"><label><b>Código postal</b></label><br />@Model.dEmpleadoDomicilio.codigoPostal</div>
+                    <div class="col-lg-3"><label><b>Referencia</b></label><br />@Model.dEmpleadoDomicilio.referencia</div>
                 </div>
             </div>
-            <div class="tab-pane fade" id="navs-top-3" role="tabpanel">
+            <div class="tab-pane" id="tab3">
                 <div class="form-group row">
-                    <div class="col-lg-3"><label><b>Escolaridad</b></label><br />@Model.escolaridad</div>
-                    <div class="col-lg-6"><label><b>Profesión</b></label><br />@Model.profesion</div>
+                    <div class="col-lg-3"><label><b>Escolaridad</b></label><br />@Model.cEscolaridad.escolaridad</div>
+                    <div class="col-lg-6"><label><b>Profesión</b></label><br />@Model.cProfesion.profesion</div>
                     <div class="col-lg-3"><label><b>Documento probatorio</b></label><br />@Model.documentoProbatorio</div>
                 </div>
                 <br />
@@ -143,7 +91,7 @@
                     <div class="col-lg-3"><label><b>Estatus de estudios</b></label><br />@Model.estatusInstitucion</div>
                 </div>
             </div>
-            <div class="tab-pane fade" id="navs-top-4" role="tabpanel">
+            <div class="tab-pane" id="tab4">
                 <div class="form-group row">
                     <div class="col-lg-4"><label><b>Celular de la empresa</b></label><br />@Model.telefonoCelularEmpresa</div>
                     <div class="col-lg-4"><label><b>Teléfono fijo</b></label><br />@Model.telefonoFijoEmpresa</div>
@@ -154,25 +102,16 @@
                     <div class="col-lg-4"><label><b>Correo corporativo</b></label><br />@Model.correoCoorporativo</div>
                 </div>
             </div>
-            <div class="tab-pane fade" id="navs-top-5" role="tabpanel">
+            <div class="tab-pane" id="tab5">
                 <div class="form-group row">
                     <div class="col-lg-4">
-                        <label><b>Puesto</b></label><br /><font style="color:@(Model.estatus == "BAJA" ? "red" : "black")">@(Model.mPlaza != null && Model.mPlaza.Count > 0 ? Model.mPlaza.FirstOrDefault().puesto : "")</font>
+                        <label><b>Puesto</b></label><br /><font style="color:@(Model.estatus == "BAJA" ? "red" : "black")">@(Model.mPlaza != null && Model.mPlaza.Count > 0 ? Model.mPlaza.FirstOrDefault().cPuesto.puesto : "")</font>
                         <p style="font-size:12px; color:gray; margin:0; padding:0;">
-                            <b>ID POSICIÓN</b> @(Model.mPlaza != null && Model.mPlaza.Count > 0 ? Model.mPlaza.FirstOrDefault().idPosicion : "")<br />
-                            <b>Dirección</b> @(Model.mPlaza != null && Model.mPlaza.Count > 0 ? Model.mPlaza.FirstOrDefault().direccion : "")<br />
-                            <b>Área</b> @(Model.mPlaza != null && Model.mPlaza.Count > 0 ? Model.mPlaza.FirstOrDefault().area : "")<br />
-                            <b>Departamento</b> @(Model.mPlaza != null && Model.mPlaza.Count > 0 ? Model.mPlaza.FirstOrDefault().departamento : "")<br />
-                            <b>Jerarquia</b> @(Model.mPlaza != null && Model.mPlaza.Count > 0 ? Model.mPlaza.FirstOrDefault().jerarquia : "")<br />
-                            <b>Centro de costos</b> @(Model.mPlaza != null && Model.mPlaza.Count > 0 ? Model.mPlaza.FirstOrDefault().centroCostos : "")<br />
-                            <b>Programa</b> @(Model.mPlaza != null && Model.mPlaza.Count > 0 ? Model.mPlaza.FirstOrDefault().programa : "")<br />
-                            <b>Facturar a</b> @(Model.mPlaza != null && Model.mPlaza.Count > 0 ? Model.mPlaza.FirstOrDefault().facturar : "")<br />
-                            <b>Centro de trabajo</b> @(Model.mPlaza != null && Model.mPlaza.Count > 0 ? Model.mPlaza.FirstOrDefault().centroTrabajo : "")<br />
-                            <b>Empresa</b> @(Model.mPlaza != null && Model.mPlaza.Count > 0 ? Model.mPlaza.FirstOrDefault().empresaGV : "")<br />
-                            <b>Nivel mercer</b> @(Model.mPlaza != null && Model.mPlaza.Count > 0 ? Model.mPlaza.FirstOrDefault().nivelMercer : "")<br />
-                            <b>Agencia</b> @(Model.mPlaza != null && Model.mPlaza.Count > 0 ? Model.mPlaza.FirstOrDefault().agencia : "")<br />
-                            <b>Patronal</b> @(Model.mPlaza != null && Model.mPlaza.Count > 0 ? Model.mPlaza.FirstOrDefault().patronal : "")<br />
-                            <b>Clasificación</b> @(Model.mPlaza != null && Model.mPlaza.Count > 0 ? Model.mPlaza.FirstOrDefault().clasificacion : "")<br />
+                            <b>Área</b> @(Model.mPlaza != null && Model.mPlaza.Count > 0 ? Model.mPlaza.FirstOrDefault().cArea.area : "")<br />
+                            <b>Sucursal</b> @(Model.mPlaza != null && Model.mPlaza.Count > 0 ? Model.mPlaza.FirstOrDefault().cSucursal.sucursal : "")<br />
+                            <b>Empresa</b> @(Model.mPlaza != null && Model.mPlaza.Count > 0 ? Model.mPlaza.FirstOrDefault().cEmpresa.nombreComercial : "")<br />
+                            <b>Razón social</b> @(Model.mPlaza != null && Model.mPlaza.Count > 0 ? Model.mPlaza.FirstOrDefault().cEmpresa.razonSocial : "")<br />
+                            <b>Rol</b> @(Model.mPlaza != null && Model.mPlaza.Count > 0 ? Model.mPlaza.FirstOrDefault().cRol.rol : "")<br />
                         </p>
                     </div>
                     <div class="col-md-4"><label><b>Jefe inmediato</b></label><br />@ViewBag.jefeInmediatoPuesto<br />@ViewBag.jefeInmediato</div>
@@ -186,7 +125,7 @@
                 </div>
                 <br />
                 <div class="form-group row">
-                    <div class="col-lg-3"><label><b>Fecha de ingreso</b></label><br />@Model.fechaAlta.ToString("dd/MM/yyyy")</div>
+                    <div class="col-lg-3"><label><b>Fecha de ingreso</b></label><br />@(Model.fechaContratacion != null ? ((DateTime)Model.fechaContratacion).ToString("dd/MM/yyyy") : "")</div>
                     <div class="col-lg-3"><label><b>Código de banco</b></label><br />@ViewBag.banco</div>
                     <div class="col-lg-3"><label><b>Número de cuenta</b></label><br />@Model.noCuenta</div>
                     <div class="col-lg-3"><label><b>Clabe interbancaria</b></label><br />@Model.clabeInterbancaria</div>
@@ -207,25 +146,21 @@
                     <div class="col-lg-3"><label><b>Descuento fonacot</b></label><br />@Model.descuentoFonacot</div>
                 </div>
                 <br />
-                <hr />
-                <div class="form-group row">
-                    <div class="col-lg-3"><label><b>Horario laboral</b></label><br />@(Model.dh_c_horario != null ? Model.dh_c_horario.descripcion : "")</div>
-                </div>
             </div>
-            <div class="tab-pane fade" id="navs-top-10" role="tabpanel">
+            <div class="tab-pane" id="tab6">
                 <div class="form-group row">
-                    <div class="col-lg-3"><label><b>Salario mensual: <a href="javascript:verAccesoRestringidoSalario();"><i class="bx bx-lock"></i></a></b></label><br /><div id="salarioMensual">********</div></div>
-                    <div class="col-lg-3"><label><b>Salario diario neto</b></label><br /><div id="salarioDiario">********</div></div>
-                    <div class="col-lg-3"><label><b>Salario diario integrado</b></label><br /><div id="salarioIntegrado">********</div></div>
+                    <div class="col-lg-3"><label><b>Salario mensual: </b></label><br />@Model.salarioMensual</div>
+                    <div class="col-lg-3"><label><b>Salario diario neto</b></label><br />@Model.salarioDiario</div>
+                    <div class="col-lg-3"><label><b>Salario diario integrado</b></label><br />@Model.salarioIntegrado</div>
                 </div>
                 <br />
                 <div class="form-group row">
-                    <div class="col-lg-3"><label><b>Salario diario cotización</b></label><br /><div id="salarioDiarioCotizacion">********</div></div>
-                    <div class="col-lg-3"><label><b>Salario diario excedente</b></label><br /><div id="salarioDiarioExcedente">********</div></div>
+                    <div class="col-lg-3"><label><b>Salario diario cotización</b></label><br />@Model.salarioDiarioCotizacion</div>
+                    <div class="col-lg-3"><label><b>Salario diario excedente</b></label><br />@Model.salarioDiarioExcedente</div>
                 </div>
             </div>
-            <div class="tab-pane fade" id="navs-top-6" role="tabpanel" style="overflow: scroll;">
-                @if (Model.dh_e_trabajadorContrato.Count > 0)
+            <div class="tab-pane" id="tab7" style="overflow: scroll;">
+                @if (Model.eEmpleadoContrato.Count > 0)
                 {
                     <table class="table table-hover">
                         <thead>
@@ -238,11 +173,11 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var c in Model.dh_e_trabajadorContrato)
+                            @foreach (var c in Model.eEmpleadoContrato)
                             {
                                 <tr>
                                     <th>@c.noContrato</th>
-                                    <th>@c.dh_c_contrato.contrato</th>
+                                    <th>@c.cTipoContrato.contrato</th>
                                     <th>@c.fechaInicial.ToString("dd/MM/yyyy")</th>
                                     <th>@(c.fechaFinal != null ? ((DateTime)c.fechaFinal).ToString("dd/MM/yyyy") : "")</th>
                                     <th>
@@ -259,8 +194,8 @@
                     <p>No tiene contratos</p>
                 }
             </div>
-            <div class="tab-pane fade" id="navs-top-7" role="tabpanel">
-                @if (Model.mPlaza.Count > 0 && Model.mPlaza.FirstOrDefault().dh_e_plantillaBeneficio.Count > 0)
+            <div class="tab-pane" id="tab8">
+                @if (Model.mPlaza.Count > 0 && Model.mPlaza.FirstOrDefault().ePlazaBeneficio.Count > 0)
                 {
                     <table class="table table-hover">
                         <thead>
@@ -271,10 +206,10 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var b in Model.mPlaza.FirstOrDefault().dh_e_plantillaBeneficio)
+                            @foreach (var b in Model.mPlaza.FirstOrDefault().ePlazaBeneficio)
                             {
                                 <tr>
-                                    <th>@b.dh_c_beneficio.beneficio</th>
+                                    <th>@b.cBeneficio.beneficio</th>
                                     <th>@b.tipo</th>
                                     <th>@b.valor</th>
                                 </tr>
@@ -287,8 +222,8 @@
                     <p>No tiene beneficios</p>
                 }
             </div>
-            <div class="tab-pane fade" id="navs-top-8" role="tabpanel">
-                @if (Model.dh_e_trabajadorDocumentacion.Count > 0)
+            <div class="tab-pane" id="tab9">
+                @if (Model.eEmpleadoDocumentacion.Count > 0)
                 {
                     <table class="table table-hover">
                         <thead>
@@ -298,10 +233,10 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var d in Model.dh_e_trabajadorDocumentacion.OrderBy(_ => _.dh_c_documento.documento))
+                            @foreach (var d in Model.eEmpleadoDocumentacion.OrderBy(_ => _.cDocumento.documento))
                             {
                                 <tr>
-                                    <th>@d.dh_c_documento.documento</th>
+                                    <th>@d.cDocumento.documento</th>
                                     <th><a href="../@(Url.Content("~/").TrimStart('/') + d.ruta)?id=@(DateTime.Now.ToString("hhmmss"))" target="_blank"><i class="bx bxs-file-pdf me-1"></i></a></th>
                                 </tr>
                             }
@@ -313,8 +248,8 @@
                     <p>No tiene documentos</p>
                 }
             </div>
-            <div class="tab-pane fade" id="navs-top-9" role="tabpanel">
-                @if (Model.dh_e_trabajadorPromocion.Count > 0)
+            <div class="tab-pane" id="tab10">
+                @if (Model.eEmpleadoPromocion.Count > 0)
                 {
                     <div style="display: block; overflow-x: auto; white-space: nowrap;">
                         <table class="table table-hover">
@@ -322,54 +257,35 @@
                                 <tr>
                                     <th>Motivo</th>
                                     <th>Fecha</th>
-                                    <th>
-                                        Sueldo anterior @if (AP_PER_SAL)
-                                        {<a href="javascript:verAccesoRestringidoSalarioMovimiento();"><i class="bx bx-lock"></i></a>}
-                                    </th>
+                                    <th>Sueldo anterior</th>
                                     <th>Sueldo actual</th>
                                     <th>Puesto anterior</th>
                                     <th>Puesto actual</th>
-                                    <th>Departamento anterior</th>
-                                    <th>Departamento actual</th>
-                                    <th>Empresa anterior</th>
-                                    <th>Empresa actual</th>
-                                    <th>Patronal anterior</th>
-                                    <th>Patronal actual</th>
-                                    <th>Centro costos anterior</th>
-                                    <th>Centro costos actual</th>
+                                    <th>Área anterior</th>
+                                    <th>Área actual</th>
+                                    <th>Sucursal anterior</th>
+                                    <th>Sucursal actual</th>
                                     <th>Jefe inmediato anterior</th>
                                     <th>Jefe inmediato actual</th>
-                                    <th>Centro de trabajo anterior</th>
-                                    <th>Centro de trabajo actual</th>
-                                    <th>Nivel mercer anterior</th>
-                                    <th>Nivel mercer actual</th>
                                     <th>Observaciones</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (var d in Model.dh_e_trabajadorPromocion)
+                                @foreach (var d in Model.eEmpleadoPromocion)
                                 {
                                     <tr>
-                                        <th>@d.dh_c_motivoMovimiento.motivo</th>
+                                        <th>@d.cMotivoMovimiento.motivo</th>
                                         <th>@(((DateTime)d.fechaMovimiento).ToString("dd/MM/yyyy"))</th>
-                                        <th><div id="sueldoActualMovimiento_@(d.idePromocion)">********</div></th>
-                                        <th><div id="sueldoNuevoMovimiento_@(d.idePromocion)">********</div></th>
+                                        <th>@d.sueldoActual</th>
+                                        <th>@d.sueldoNuevo</th>
                                         <th>@d.puestoActual</th>
                                         <th>@d.puestoNuevo</th>
-                                        <th>@d.departamentoActual</th>
-                                        <th>@d.departamentoNuevo</th>
-                                        <th>@d.empresaActual</th>
-                                        <th>@d.empresaNuevo</th>
-                                        <th>@d.patronalActual</th>
-                                        <th>@d.patronalNuevo</th>
-                                        <th>@d.centroCostosActual</th>
-                                        <th>@d.centroCostosNuevo</th>
+                                        <th>@d.areaActual</th>
+                                        <th>@d.areaNuevo</th>
+                                        <th>@d.sucursalActual</th>
+                                        <th>@d.sucursalNuevo</th>
                                         <th>@d.jefeInmediatoActual</th>
                                         <th>@d.jefeInmediatoNuevo</th>
-                                        <th>@d.centroTrabajoActual</th>
-                                        <th>@d.centroTrabajoNuevo</th>
-                                        <th>@d.nivelMercerActual</th>
-                                        <th>@d.nivelMercerNuevo</th>
                                         <th>@d.observaciones</th>
                                     </tr>
                                 }
@@ -382,15 +298,15 @@
                     <p>No tiene movimientos</p>
                 }
             </div>
-            <div class="tab-pane fade" id="navs-top-11" role="tabpanel">
-                @if (Model.dh_e_trabajadorBaja.Count > 0)
+            <div class="tab-pane" id="tab11">
+                @if (Model.eEmpleadoBaja.Count > 0)
                 {
                     <div style="display: block; overflow-x: auto; white-space: nowrap;">
                         <table class="table table-hover">
                             <thead>
                                 <tr>
                                     <th>Puesto</th>
-                                    <th>Departamento</th>
+                                    <th>Área</th>
                                     <th>Motivo</th>
                                     <th>Tipo</th>
                                     <th>Fecha de ingreso</th>
@@ -399,11 +315,11 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (var d in Model.dh_e_trabajadorBaja)
+                                @foreach (var d in Model.eEmpleadoBaja)
                                 {
                                     <tr>
                                         <th>@d.puesto</th>
-                                        <th>@d.departamento</th>
+                                        <th>@d.area</th>
                                         <th>@d.motivoBaja</th>
                                         <th>@d.tipoBaja</th>
                                         <th>@(((DateTime)d.fechaAlta).ToString("dd/MM/yyyy"))</th>
@@ -469,23 +385,23 @@
             }).then(function (password) {
                 if (isOkay) {
                     verSalarioMovimiento = true;
-                    @foreach (var _ in Model.dh_e_trabajadorPromocion) {
-                        @:$("#sueldoActualMovimiento_@_.idePromocion").text("@(_.sueldoActual)");
-                        @:$("#sueldoNuevoMovimiento_@_.idePromocion").text("@_.sueldoNuevo");
+                    @foreach (var _ in Model.eEmpleadoPromocion) {
+                        @:$("#sueldoActualMovimiento_@_.ideEmpleadoPromocion").text("@(_.sueldoActual)");
+                        @:$("#sueldoNuevoMovimiento_@_.ideEmpleadoPromocion").text("@_.sueldoNuevo");
                     }
                     @*setTimeout(function () {
-                        @foreach (var _ in Model.dh_e_trabajadorPromocion) {
-                            @:$("#sueldoActualMovimiento_@_.idePromocion").text("********");
-                            @:$("#sueldoNuevoMovimiento_@_.idePromocion").text("********");
+                        @foreach (var _ in Model.eEmpleadoPromocion) {
+                            @:$("#sueldoActualMovimiento_@_.ideEmpleadoPromocion").text("********");
+                            @:$("#sueldoNuevoMovimiento_@_.ideEmpleadoPromocion").text("********");
                         }
                     }, 2000);*@
                 }
             })
         } else {
             verSalarioMovimiento = false;
-            @foreach (var _ in Model.dh_e_trabajadorPromocion) {
-                @:$("#sueldoActualMovimiento_@_.idePromocion").text("********");
-                @:$("#sueldoNuevoMovimiento_@_.idePromocion").text("********");
+            @foreach (var _ in Model.eEmpleadoPromocion) {
+                @:$("#sueldoActualMovimiento_@_.ideEmpleadoPromocion").text("********");
+                @:$("#sueldoNuevoMovimiento_@_.ideEmpleadoPromocion").text("********");
             }
         }
     }

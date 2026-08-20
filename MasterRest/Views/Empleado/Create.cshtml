@@ -67,37 +67,19 @@
     @Html.Hidden("estatus", "ACTIVO")
     <div class="col-xl-12">
         <div class="nav-align-top mb-4">
-            <ul class="nav nav-tabs" role="tablist">
-                <li class="nav-item">
-                    <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-1" aria-controls="navs-top-1" aria-selected="true">Personal</button>
-                </li>
-                <li class="nav-item">
-                    <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-2" aria-controls="navs-top-2" aria-selected="false">Domicilio</button>
-                </li>
-                <li class="nav-item">
-                    <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-3" aria-controls="navs-top-3" aria-selected="false">Estudios</button>
-                </li>
-                <li class="nav-item">
-                    <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-4" aria-controls="navs-top-4" aria-selected="false">Contacto</button>
-                </li>
-                <li class="nav-item">
-                    <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-5" aria-controls="navs-top-5" aria-selected="false">Nómina</button>
-                </li>
-                <li class="nav-item">
-                    <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-9" aria-controls="navs-top-9" aria-selected="false">Sueldo</button>
-                </li>
-                <li class="nav-item">
-                    <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-8" aria-controls="navs-top-8" aria-selected="false">Contratos</button>
-                </li>
-                <li class="nav-item">
-                    <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-6" aria-controls="navs-top-6" aria-selected="false">Beneficios</button>
-                </li>
-                <li class="nav-item">
-                    <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-7" aria-controls="navs-top-7" aria-selected="false">Documentación</button>
-                </li>
+            <ul class="nav nav-tabs default-tabs mb-3">
+                <li class="nav-item"><a href="#tab1" data-bs-toggle="tab" aria-expanded="true" class="nav-link active">Personal</a></li>
+                <li class="nav-item"><a href="#tab2" data-bs-toggle="tab" aria-expanded="false" class="nav-link">Domicilio</a></li>
+                <li class="nav-item"><a href="#tab3" data-bs-toggle="tab" aria-expanded="false" class="nav-link">Estudios</a></li>
+                <li class="nav-item"><a href="#tab4" data-bs-toggle="tab" aria-expanded="false" class="nav-link">Contacto</a></li>
+                <li class="nav-item"><a href="#tab5" data-bs-toggle="tab" aria-expanded="false" class="nav-link">Nómina</a></li>
+                <li class="nav-item"><a href="#tab6" data-bs-toggle="tab" aria-expanded="false" class="nav-link">Sueldo</a></li>
+                <li class="nav-item"><a href="#tab7" data-bs-toggle="tab" aria-expanded="false" class="nav-link">Contratos</a></li>
+                <li class="nav-item"><a href="#tab8" data-bs-toggle="tab" aria-expanded="false" class="nav-link">Beneficios</a></li>
+                <li class="nav-item"><a href="#tab9" data-bs-toggle="tab" aria-expanded="false" class="nav-link">Documentación</a></li>
             </ul>
             <div class="tab-content">
-                <div class="tab-pane fade show active" id="navs-top-1" role="tabpanel">
+                <div class="tab-pane show active" id="tab1">
                     <div class="form-group row">
                         <div class="col-lg-3">
                             <div class="upload-btn-wrapper">
@@ -224,7 +206,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="navs-top-2" role="tabpanel">
+                <div class="tab-pane" id="tab2">
                     <div class="form-group row">
                         <div class="col-lg-3">
                             @Html.Label("calle", "Calle", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
@@ -272,12 +254,11 @@
                             @Html.ValidationMessage("referencia", "", new { @class = "text-danger" })
                         </div>
                     </div>
-                </div>
-                <div class="tab-pane fade" id="navs-top-3" role="tabpanel">
+                    <hr />
                     <div class="form-group row">
                         <div class="col-lg-3">
                             @Html.LabelFor(model => model.cEscolaridad, "Escolaridad", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
-                            @Html.DropDownList("cEscolaridad", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown", @required = "*"@*, @onchange = "OnChangeNivelEstudios(this.value)"*@})
+                            @Html.DropDownList("cEscolaridad", null, "SELECCIONE...", htmlAttributes: new { @class = "form-select color-dropdown", @required = "*" })
                             @Html.ValidationMessageFor(model => model.cEscolaridad, "", new { @class = "text-danger" })
                         </div>
                         <div class="col-lg-6">
@@ -309,37 +290,33 @@
                             @Html.ValidationMessageFor(model => model.estatusInstitucion, "", new { @class = "text-danger" })
                         </div>
                     </div>
-                </div>
-                <div class="tab-pane fade" id="navs-top-4" role="tabpanel">
+                    <hr />
                     <div class="form-group row">
-                        <div class="col-lg-4">
-                            @Html.LabelFor(model => model.telefonoCelularEmpresa, "Celular de la empresa", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
+                        <div class="col-lg-3">
+                            @Html.LabelFor(model => model.correoCoorporativo, "Correo corporativo", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
+                            @Html.TextBoxFor(model => model.correoCoorporativo, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.correoCoorporativo, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-lg-3">
+                            @Html.LabelFor(model => model.telefonoCelularEmpresa, "Teléfono corporativo", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
                             @Html.TextBoxFor(model => model.telefonoCelularEmpresa, new { @class = "form-control", @maxlength = "10", @onfocusout = "onFocusOutTelefono('telefonoCelularEmpresa')", @onkeypress = "return validNumbers(event);" })
                             @Html.ValidationMessageFor(model => model.telefonoCelularEmpresa, "", new { @class = "text-danger" })
                             <div id="errortelefonoCelularEmpresa" style="color:red"></div>
                         </div>
-                        <div class="col-lg-4">
+                        <div class="col-lg-3">
                             @Html.LabelFor(model => model.telefonoFijoEmpresa, "Teléfono fijo", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
                             @Html.TextBoxFor(model => model.telefonoFijoEmpresa, new { @class = "form-control", @maxlength = "10", @onfocusout = "onFocusOutTelefono('telefonoFijoEmpresa')", @onkeypress = "return validNumbers(event);" })
                             @Html.ValidationMessageFor(model => model.telefonoFijoEmpresa, "", new { @class = "text-danger" })
                             <div id="errortelefonoFijoEmpresa" style="color:red"></div>
                         </div>
-                        <div class="col-lg-4">
+                        <div class="col-lg-3">
                             @Html.LabelFor(model => model.telefonoExtension, "Extensión", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
                             @Html.TextBoxFor(model => model.telefonoExtension, new { @class = "form-control", @maxlength = "10", @onkeypress = "return validNumbers(event);" })
                             @Html.ValidationMessageFor(model => model.telefonoExtension, "", new { @class = "text-danger" })
                         </div>
                     </div>
-                    <br />
-                    <div class="form-group row">
-                        <div class="col-lg-4">
-                            @Html.LabelFor(model => model.correoCoorporativo, "Correo corporativo", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
-                            @Html.TextBoxFor(model => model.correoCoorporativo, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.correoCoorporativo, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
                 </div>
-                <div class="tab-pane fade" id="navs-top-5" role="tabpanel">
+                <div class="tab-pane" id="tab5">
                     <div class="form-group row">
                         <div class="col-lg-4">
                             @Html.Label("idmPlaza", "Posición", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
@@ -383,11 +360,18 @@
                     <div class="form-group row">
                         <div class="col-lg-3">
                             @Html.LabelFor(model => model.fechaContratacion, "Fecha de ingreso", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
-                            @Html.EditorFor(model => model.fechaContratacion, new { htmlAttributes = new { @class = "form-control", @required = "*", @type = "date", @Value = DateTime.Now.ToString("yyyy-MM-dd")@*, @min = DateTime.Now.AddDays(-10).ToString("yyyy-MM-dd"), @max = DateTime.Now.ToString("yyyy-MM-dd"), @onfocusout = "this.value = validarFecha_10(this.value);"*@ }})
+                            @Html.EditorFor(model => model.fechaContratacion, new
+                            {
+                                htmlAttributes = new
+                                {
+                                    @class = "form-control",
+                                    @required = "*",
+                                    @type = "date",
+                                    @Value = DateTime.Now.ToString("yyyy-MM-dd")@*, @min = DateTime.Now.AddDays(-10).ToString("yyyy-MM-dd"), @max = DateTime.Now.ToString("yyyy-MM-dd"), @onfocusout = "this.value = validarFecha_10(this.value);"*@ }})
                             @Html.ValidationMessageFor(model => model.fechaContratacion, "", new { @class = "text-danger" })
                         </div>
                         <div class="col-lg-3">
-                            
+
                         </div>
                         <div class="col-lg-3">
                             @Html.LabelFor(model => model.noCuenta, "Número de cuenta", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
@@ -434,10 +418,10 @@
                     <br />
                     <hr />
                     <div class="form-group row">
-                        
+
                     </div>
                 </div>
-                <div class="tab-pane fade" id="navs-top-9" role="tabpanel">
+                <div class="tab-pane" id="tab6">
                     <div class="form-group row">
                         <div class="col-lg-3">
                             @Html.LabelFor(model => model.salarioMensual, "Salario mensual", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
@@ -470,7 +454,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="navs-top-8" role="tabpanel">
+                <div class="tab-pane" id="tab7">
                     <div class="form-group row">
                         <div class="col-lg-3">
                             @Html.Label("idcTipoContrato", "Tipo de contrato", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
@@ -514,7 +498,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="navs-top-6" role="tabpanel">
+                <div class="tab-pane" id="tab8">
                     @{
                         var total = ViewBag.beneficio.Count;
                         var totalx = total % 3 > 0 ? total / 3 + 1 : total / 3;
@@ -572,7 +556,7 @@
                         }
                     }
                 </div>
-                <div class="tab-pane fade" id="navs-top-7" role="tabpanel" style="height: 450px; overflow: auto;">
+                <div class="tab-pane" id="tab9" style="height: 450px; overflow: auto;">
                     <table class="table table-hover">
                         <thead>
                             <tr>

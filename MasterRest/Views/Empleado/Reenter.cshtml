@@ -118,7 +118,7 @@
                 </li>
             </ul>
             <div class="tab-content">
-                <div class="tab-pane fade show active" id="navs-top-1" role="tabpanel">
+                <div class="tab-pane fade show active" id="navs-top-1">
                     <div class="form-group row">
                         <div class="col-lg-3">
                             <div class="upload-btn-wrapper">
@@ -280,26 +280,26 @@
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="navs-top-2" role="tabpanel">
+                <div class="tab-pane fade" id="navs-top-2">
                     <div class="form-group row">
                         <div class="col-lg-3">
                             @Html.Label("calle", "Calle", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
-                            @Html.TextBox("calle", null, new { @class = "form-control", @required = "*", @Value = Model.dh_d_trabajadorDomicilio.calle, @maxlength = "150", @id = "calle", @name = "calle", @onkeyup = "this.value = textUppercaseNumbersComma(this.value);" })
+                            @Html.TextBox("calle", null, new { @class = "form-control", @required = "*", @Value = Model.dEmpleadoDomicilio.calle, @maxlength = "150", @id = "calle", @name = "calle", @onkeyup = "this.value = textUppercaseNumbersComma(this.value);" })
                             @Html.ValidationMessage("calle", "", new { @class = "text-danger" })
                         </div>
                         <div class="col-lg-3">
                             @Html.Label("noExterior", "Número exterior", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
-                            @Html.TextBox("noExterior", null, new { @class = "form-control", @required = "*", @Value = Model.dh_d_trabajadorDomicilio.noExterior, @maxlength = "15", @id = "noExterior", @name = "noExterior", @onkeyup = "this.value = textUppercaseNumbersComma(this.value);" })
+                            @Html.TextBox("noExterior", null, new { @class = "form-control", @required = "*", @Value = Model.dEmpleadoDomicilio.noExterior, @maxlength = "15", @id = "noExterior", @name = "noExterior", @onkeyup = "this.value = textUppercaseNumbersComma(this.value);" })
                             @Html.ValidationMessage("noExterior", "", new { @class = "text-danger" })
                         </div>
                         <div class="col-lg-3">
                             @Html.Label("noInterior", "Número interior", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
-                            @Html.TextBox("noInterior", null, new { @class = "form-control", @Value = Model.dh_d_trabajadorDomicilio.noInterior, @maxlength = "15", @id = "noInterior", @name = "noInteror", @onkeyup = "this.value = textUppercaseNumbersComma(this.value);" })
+                            @Html.TextBox("noInterior", null, new { @class = "form-control", @Value = Model.dEmpleadoDomicilio.noInterior, @maxlength = "15", @id = "noInterior", @name = "noInteror", @onkeyup = "this.value = textUppercaseNumbersComma(this.value);" })
                             @Html.ValidationMessage("noInterior", "", new { @class = "text-danger" })
                         </div>
                         <div class="col-lg-3">
                             @Html.Label("colonia", "Colonia", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
-                            @Html.TextBox("colonia", null, new { @class = "form-control", @required = "*", @Value = Model.dh_d_trabajadorDomicilio.colonia, @maxlength = "150", @id = "colonia", @name = "colonia", @onkeyup = "this.value = textUppercaseNumbersComma(this.value);" })
+                            @Html.TextBox("colonia", null, new { @class = "form-control", @required = "*", @Value = Model.dEmpleadoDomicilio.colonia, @maxlength = "150", @id = "colonia", @name = "colonia", @onkeyup = "this.value = textUppercaseNumbersComma(this.value);" })
                             @Html.ValidationMessage("colonia", "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -319,17 +319,17 @@
                         </div>
                         <div class="col-lg-3">
                             @Html.Label("codigoPostal", "Código postal", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
-                            @Html.TextBox("codigoPostal", null, new { @class = "form-control", @required = "*", @Value = Model.dh_d_trabajadorDomicilio.codigoPostal, @maxlength = "6", @id = "codigoPostal", @name = "codigoPostal", @onkeypress = "return validNumbers(event);" })
+                            @Html.TextBox("codigoPostal", null, new { @class = "form-control", @required = "*", @Value = Model.dEmpleadoDomicilio.codigoPostal, @maxlength = "6", @id = "codigoPostal", @name = "codigoPostal", @onkeypress = "return validNumbers(event);" })
                             @Html.ValidationMessage("codigoPostal", "", new { @class = "text-danger" })
                         </div>
                         <div class="col-lg-3">
                             @Html.Label("referencia", "Referencia", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
-                            @Html.TextBox("referencia", null, new { @class = "form-control", @Value = Model.dh_d_trabajadorDomicilio.referencia, @maxlength = "250", @id = "referencia", @name = "referencia", @onkeyup = "this.value = textUppercaseNumbersComma(this.value);" })
+                            @Html.TextBox("referencia", null, new { @class = "form-control", @Value = Model.dEmpleadoDomicilio.referencia, @maxlength = "250", @id = "referencia", @name = "referencia", @onkeyup = "this.value = textUppercaseNumbersComma(this.value);" })
                             @Html.ValidationMessage("referencia", "", new { @class = "text-danger" })
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="navs-top-3" role="tabpanel">
+                <div class="tab-pane fade" id="navs-top-3">
                     <div class="form-group row">
                         <div class="col-lg-3">
                             @Html.LabelFor(model => model.escolaridad, "Escolaridad", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
@@ -366,7 +366,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="navs-top-4" role="tabpanel">
+                <div class="tab-pane fade" id="navs-top-4">
                     <div class="form-group row">
                         <div class="col-lg-4">
                             @Html.LabelFor(model => model.telefonoCelularEmpresa, "Celular de la empresa", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
@@ -395,7 +395,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="navs-top-5" role="tabpanel">
+                <div class="tab-pane fade" id="navs-top-5">
                     <div class="form-group row">
                         <div class="col-lg-4">
                             @Html.Label("idmPlantilla", "Posición", htmlAttributes: new { @class = "control-label required", @style = "font-weight:bold" })
@@ -505,7 +505,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="navs-top-9" role="tabpanel">
+                <div class="tab-pane fade" id="navs-top-9">
                     <div class="form-group row">
                         <div class="col-lg-3">
                             @Html.Label("salarioMensual2", "Salario mensual", htmlAttributes: new { @class = "control-label", @style = "font-weight:bold" })
@@ -539,7 +539,7 @@
                     </div>
                     <br />
                 </div>
-                <div class="tab-pane fade" id="navs-top-6" role="tabpanel">
+                <div class="tab-pane fade" id="navs-top-6">
                     <div class="accordion mt-3" id="accordionContrato">
                         <div class="card accordion-item active">
                             <h2 class="accordion-header" id="headingOne">
@@ -602,7 +602,7 @@
                             </div>
                         </div>
                     </div><br />
-                    @if (Model.dh_e_trabajadorContrato.Count > 0)
+                    @if (Model.eEmpleadoContrato.Count > 0)
                     {
                         <div style="overflow: scroll;">
                             <table id="tableContratos" class="table table-hover">
@@ -616,11 +616,11 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach (var c in Model.dh_e_trabajadorContrato)
+                                    @foreach (var c in Model.eEmpleadoContrato)
                                     {
                                         <tr>
                                             <th>@c.noContrato</th>
-                                            <th>@c.dh_c_contrato.contrato</th>
+                                            <th>@c.cTipoContrato.contrato</th>
                                             <th>@c.fechaInicial.ToString("dd/MM/yyyy")</th>
                                             <th>@(c.fechaFinal != null ? ((DateTime)c.fechaFinal).ToString("dd/MM/yyyy") : "")</th>
                                             <th>
@@ -640,7 +640,7 @@
                 </div>
                 @if (AP_PER_BEN)
                 {
-                    <div class="tab-pane fade" id="navs-top-7" role="tabpanel">
+                    <div class="tab-pane fade" id="navs-top-7">
                         @{
                             var total = ViewBag.beneficio.Count;
                             var totalx = total % 3 > 0 ? total / 3 + 1 : total / 3;
@@ -699,7 +699,7 @@
                         }
                     </div>
                 }
-                <div class="tab-pane fade" id="navs-top-8" role="tabpanel" style="height: 450px; overflow: auto;">
+                <div class="tab-pane fade" id="navs-top-8" style="height: 450px; overflow: auto;">
                     <table class="table table-hover">
                         <thead>
                             <tr>
@@ -709,19 +709,19 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var d in (List<MasterRest.Models.dh_c_documento>)ViewBag.documentos)
+                            @foreach (var d in (List<MasterRest.Models.cDocumento>)ViewBag.documentos)
                             {
                                 <tr>
                                     <th style="padding: 0">@d.documento</th>
                                     <th style="padding: 0"><input class="form-control" type="file" id="fileDocumento_@d.idcDocumento" name="fileDocumento_@d.idcDocumento" accept="application/pdf" /></th>
                                     <th style="padding: 0">
                                         <center>
-                                            @if (Model.dh_e_trabajadorDocumentacion.Count > 0)
+                                            @if (Model.eEmpleadoDocumentacion.Count > 0)
                                             {
-                                                var dh_e_trabajadorDocumentacion = Model.dh_e_trabajadorDocumentacion.FirstOrDefault(_ => _.idcDocumento == d.idcDocumento);
-                                                if (dh_e_trabajadorDocumentacion != null)
+                                                var eEmpleadoDocumentacion = Model.eEmpleadoDocumentacion.FirstOrDefault(_ => _.idcDocumento == d.idcDocumento);
+                                                if (eEmpleadoDocumentacion != null)
                                                 {
-                                                    <a href="../@dh_e_trabajadorDocumentacion.ruta" target="_blank"><i class="bx bxs-file-pdf me-1"></i></a>
+                                                    <a href="../@eEmpleadoDocumentacion.ruta" target="_blank"><i class="bx bxs-file-pdf me-1"></i></a>
                                                 }
                                             }
                                         </center>
